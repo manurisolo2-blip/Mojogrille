@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { TopMarquee, Navbar, HeroSection } from '../components/hero';
 import { CubanDeconstruction } from '../components/CubanDeconstruction';
+import { CuratedMenu } from '../components/CuratedMenu';
 import { CravStyleMenuGrid, FloatingCravBar } from '../components/menu';
 import { Preloader } from '../components/preloader';
 import { CartDrawer } from '../components/CartDrawer';
@@ -26,6 +27,9 @@ export default function HomePage() {
 
       {/* 3.5. Fase 5: El Elemento Estrella — Deconstrucción en Scroll (CubanDeconstruction) */}
       <CubanDeconstruction />
+
+      {/* 3.8. Selección de la Plancha — 6 Platos Estelares Curados */}
+      <CuratedMenu />
 
       {/* 4. Catálogo Interactivo de Menú estilo CRAV */}
       <section id="menu" className="border-t border-charcoal-ink/10">
