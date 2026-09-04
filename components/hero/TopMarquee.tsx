@@ -7,10 +7,10 @@ interface TopMarqueeProps {
 }
 
 const MARQUEE_ITEMS = [
-  '★ 24H CITRUS MARINATED MOJO',
-  '★ FRESH LOCAL INGREDIENTS',
-  '★ 4.7 STARS (+3,000 MIAMI REVIEWS)',
-  '★ HANDCRAFTED BOWLS & CUBAN SANDWICHES',
+  'MOJO GRILLE',
+  'SLOW ROASTED PORK',
+  'CITRUS MARINATED',
+  'PRESSED TO PERFECTION',
 ];
 
 export function TopMarquee({ variant = 'terracotta' }: TopMarqueeProps) {
@@ -22,28 +22,31 @@ export function TopMarquee({ variant = 'terracotta' }: TopMarqueeProps) {
   return (
     <aside
       aria-label="Destacados de Mojo Grille"
-      className={`relative z-50 w-full overflow-hidden py-2 text-cream-bg select-none border-b ${bgClass} shadow-xs`}
+      className={`relative z-50 w-full overflow-hidden py-2.5 text-cream-bg select-none border-b ${bgClass} shadow-xs`}
     >
       <div className="relative flex overflow-x-hidden">
-        {/* Usando framer-motion con fallback garantizado por animate-marquee */}
-        <motion.div
-          className="flex gap-8 whitespace-nowrap w-max font-display text-sm sm:text-base font-bold tracking-wider uppercase items-center"
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{ ease: 'linear', duration: 24, repeat: Infinity }}
-        >
-          {/* Cadena duplicada para looping sin saltos */}
-          {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map(
-            (phrase, index) => (
-              <span
-                key={index}
-                className="inline-flex items-center gap-8 text-cream-bg drop-shadow-xs"
-              >
+        {/* Dos contenedores flexibles con white-space: nowrap animados a velocidad constante (transform: translateX(-50%)) */}
+        <div className="flex w-max will-change-transform animate-marquee font-display text-sm sm:text-base md:text-lg font-bold tracking-wider uppercase">
+          {/* Primer contenedor flexible */}
+          <div className="flex shrink-0 items-center gap-6 pr-6 whitespace-nowrap">
+            {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((phrase, index) => (
+              <span key={`marq-1-${index}`} className="inline-flex items-center gap-6">
                 <span>{phrase}</span>
-                <span className="text-mojo-citrus font-serif text-sm select-none">✦</span>
+                <span className="text-mojo-citrus font-serif text-base select-none">✦</span>
               </span>
-            )
-          )}
-        </motion.div>
+            ))}
+          </div>
+
+          {/* Segundo contenedor flexible para loop continuo infinito idéntico */}
+          <div className="flex shrink-0 items-center gap-6 pr-6 whitespace-nowrap" aria-hidden="true">
+            {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((phrase, index) => (
+              <span key={`marq-2-${index}`} className="inline-flex items-center gap-6">
+                <span>{phrase}</span>
+                <span className="text-mojo-citrus font-serif text-base select-none">✦</span>
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </aside>
   );

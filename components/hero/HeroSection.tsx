@@ -2,166 +2,193 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HeroProductCard } from './HeroProductCard';
+import { UtensilsCrossed, CalendarHeart, Sparkles } from 'lucide-react';
+import { MagneticButton } from './MagneticButton';
+
+const TICKER_ITEMS = [
+  'MOJO GRILLE',
+  'SLOW ROASTED PORK',
+  'CITRUS MARINATED',
+  'PRESSED TO PERFECTION',
+];
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-cream-bg border-b border-charcoal-ink/10 pt-8 pb-16 sm:pt-14 sm:pb-24 lg:pt-18 lg:pb-32">
-      {/* Destellos / Gradientes Circulares Difuminados en Bordes (Cítrico y Naranja) */}
+    <section className="relative overflow-hidden bg-[#F6F2E9] border-b border-charcoal-ink/10 pt-8 pb-16 sm:pt-14 sm:pb-24 select-none">
+      {/* Destellos / Gradientes Circulares Difuminados en Bordes (CRAV style) */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -top-24 -left-20 h-96 w-96 rounded-full bg-leaf-green/10 blur-3xl"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/4 -right-24 h-[450px] w-[450px] rounded-full bg-brand-fire/10 blur-3xl"
+        className="pointer-events-none absolute top-1/3 -right-24 h-[480px] w-[480px] rounded-full bg-brand-fire/10 blur-3xl"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-24 left-1/3 h-80 w-80 rounded-full bg-mojo-citrus/10 blur-3xl"
+        className="pointer-events-none absolute -bottom-24 left-1/4 h-80 w-80 rounded-full bg-mojo-citrus/10 blur-3xl"
       />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        
+        {/* Encabezado Monumental Centrado */}
+        <div className="flex flex-col items-center text-center space-y-4 max-w-5xl mx-auto">
           
-          {/* Columna Izquierda: Copy, Tipografía y CTA (7 columnas en desktop) */}
-          <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
-            
-            {/* Pill superior de procedencia */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-charcoal-ink/10 bg-surface-sand px-4 py-1.5 shadow-xs">
-              <span className="h-2 w-2 rounded-full bg-leaf-green animate-pulse" />
-              <span className="font-sans text-[11px] font-bold uppercase tracking-widest text-charcoal-ink">
-                Authentic Cuban Kitchen • Miami, FL
+          {/* Pill superior de procedencia */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-charcoal-ink/10 bg-surface-sand px-4 py-1.5 shadow-xs">
+            <span className="h-2 w-2 rounded-full bg-leaf-green animate-pulse" aria-hidden="true" />
+            <span className="font-sans text-[11px] font-bold uppercase tracking-widest text-charcoal-ink">
+              Authentic Cuban Kitchen • Miami, FL
+            </span>
+          </div>
+
+          {/* Titular Monumental en Caja Alta Centrado (text-[10vw] leading-[0.85] font-display uppercase tracking-tight text-mojoRed) */}
+          {/* The Authentic Criollo Flavor of Miami, Marinado to Perfection */}
+          <h1 className="font-display text-[8.5vw] sm:text-[9.5vw] lg:text-[10vw] font-bold tracking-tight text-brand-fire uppercase leading-[0.85] text-center">
+            The Authentic Criollo Flavor of Miami, <span className="font-accent italic lowercase text-charcoal-ink block sm:inline">Marinado to Perfection</span>.
+          </h1>
+
+          {/* Accent Subtitle Editorial */}
+          <p className="font-accent italic text-2xl sm:text-3xl lg:text-4xl text-charcoal-ink lowercase tracking-normal">
+            juicy, crispy &amp; sazonado al mojo criollo · slow cooked al momento.
+          </p>
+
+          <p className="max-w-2xl font-sans text-sm sm:text-base leading-relaxed text-charcoal-ink/75">
+            Artisanal bowls marinated 24h in citrus mojo, freshly pressed Cuban sandwiches &amp; family recipes made al momento in Little Havana, Brickell and Doral.
+          </p>
+        </div>
+
+        {/* Elemento Fotográfico Central y Stickers */}
+        <div className="relative mx-auto mt-10 w-full max-w-2xl">
+          
+          {/* Contenedor Fotográfico con Profundidad 3D y Sombra Volumétrica */}
+          <div className="group relative overflow-hidden rounded-3xl border border-charcoal-ink/10 bg-surface-sand shadow-[0_24px_50px_-12px_rgba(20,18,16,0.22)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_32px_64px_-16px_rgba(20,18,16,0.28)]">
+            <img
+              src="/assets/mojo-bowl-ropa-vieja.jpg"
+              alt="Signature Mojo Grille dish: Artisanal Cuban bowl marinated in citrus mojo"
+              width={1024}
+              height={768}
+              loading="eager"
+              className="aspect-16/10 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
+
+            {/* Tag de Precio Flotante estilo CRAV */}
+            <div className="absolute top-4 left-4 z-20 flex items-center gap-2 rounded-xl bg-charcoal-ink/90 px-3.5 py-1.5 backdrop-blur-md border border-cream-bg/20 text-cream-bg shadow-lg">
+              <span className="font-sans text-base font-black text-mojo-citrus tracking-tight">
+                $15.50
+              </span>
+              <span className="h-3 w-px bg-cream-bg/20" />
+              <span className="font-sans text-[11px] font-semibold uppercase tracking-wider text-cream-bg">
+                Al Momento
               </span>
             </div>
 
-            {/* Título de gran escala con palabras clave acentuadas */}
-            <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-charcoal-ink uppercase leading-[0.88]">
-              El Auténtico Sabor Criollo de Miami,{' '}
-              <span className="relative inline-block text-brand-fire">
-                Marinado
-                {/* Subrayado orgánico sutil */}
-                <svg
-                  className="absolute -bottom-1 left-0 w-full text-brand-fire/30"
-                  viewBox="0 0 100 8"
-                  preserveAspectRatio="none"
-                  height="6"
-                >
-                  <path d="M0 5 Q 50 0, 100 5" stroke="currentColor" strokeWidth="3" fill="none" />
-                </svg>
-              </span>{' '}
-              a la{' '}
-              <span className="text-leaf-green">Perfección</span>.
-            </h1>
-
-            {/* Accent Subtitle Cursiva Artesanal */}
-            <p className="font-accent italic text-2xl sm:text-3xl text-brand-fire lowercase tracking-normal">
-              juicy, crispy &amp; sazonado al mojo criollo.
-            </p>
-
-            {/* Subtítulo ágil con ingredientes destacados */}
-            <p className="mx-auto lg:mx-0 max-w-2xl font-sans text-sm sm:text-base text-charcoal-ink/80 leading-relaxed">
-              Bowls artesanales y sándwiches cubanos prensados al momento. Carne marinada 24 horas en cítricos naturales, ajo criollo y orégano fresco, acompañada de tostones dorados crujientes.
-            </p>
-
-            {/* Contenedor de Stickers Flotantes con rotación estilo CRAV */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1 select-none">
-              {/* Badge 1: Rotado -3deg, fondo surface-sand, borde tenue, icono de estrella */}
-              <motion.div
-                whileHover={{ scale: 1.06, rotate: 0 }}
-                className="-rotate-3 transition-transform duration-300 animate-float rounded-2xl border border-charcoal-ink/10 bg-surface-sand px-4 py-2.5 shadow-sm shadow-charcoal-ink/5 cursor-pointer"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="text-mojo-citrus text-lg">⭐</span>
-                  <div className="text-left">
-                    <p className="font-sans text-xs font-black text-charcoal-ink leading-tight">
-                      4.7 en 3K+ Reviews
-                    </p>
-                    <p className="font-sans text-[10px] text-charcoal-ink/70">
-                      Google &amp; UberEats Miami
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Badge 2: Rotado 3deg, fondo verde fresco leaf-green, texto cream-bg */}
-              <motion.div
-                whileHover={{ scale: 1.06, rotate: 0 }}
-                className="rotate-3 transition-transform duration-300 animate-float-reverse rounded-2xl bg-leaf-green px-4 py-2.5 text-cream-bg shadow-md shadow-leaf-green/20 cursor-pointer"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">🌿</span>
-                  <div className="text-left">
-                    <p className="font-sans text-xs font-black text-cream-bg leading-tight uppercase tracking-wide">
-                      100% Fresh Daily
-                    </p>
-                    <p className="font-sans text-[10px] text-cream-bg/85">
-                      Hecho Al Momento
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Botones de Acción */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-              {/* Botón principal con brand-fire */}
-              <motion.a
-                href="#menu"
-                whileHover={{ scale: 1.04, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-3 rounded-full bg-brand-fire px-8 py-4 font-sans text-base font-bold text-cream-bg shadow-lg shadow-brand-fire/30 transition-all duration-300 hover:bg-brand-fire/90 hover:shadow-xl hover:shadow-brand-fire/40"
-              >
-                <span>Explorar Menú</span>
-                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5 font-bold">
-                  →
-                </span>
-              </motion.a>
-
-              {/* Botón secundario con surface-sand */}
-              <motion.a
-                href="#catering"
-                whileHover={{ scale: 1.03, y: -1 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-charcoal-ink/20 bg-surface-sand px-7 py-4 font-sans text-base font-semibold text-charcoal-ink shadow-xs transition-all duration-200 hover:bg-surface-sand/80 hover:border-brand-fire/40 hover:text-brand-fire"
-              >
-                <span>Pedir Catering</span>
-              </motion.a>
-            </div>
-
-            {/* Social Proof Strip inferior */}
-            <div className="pt-2 flex items-center justify-center lg:justify-start gap-3 text-xs text-[#78716C]">
-              <div className="flex -space-x-2">
-                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#D95327] text-[10px] font-bold text-white border-2 border-white">
-                  LH
-                </span>
-                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#4D7C0F] text-[10px] font-bold text-white border-2 border-white">
-                  BR
-                </span>
-                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#F59E0B] text-[10px] font-bold text-white border-2 border-white">
-                  DO
-                </span>
+            {/* Sello Circular Giratorio CRAV Style */}
+            <div className="animate-spin [animation-duration:18s] absolute -bottom-3 -right-3 z-20 hidden sm:flex h-20 w-20 items-center justify-center rounded-full bg-brand-fire text-cream-bg p-2 text-center shadow-xl border-2 border-cream-bg select-none">
+              <div className="font-sans text-[8px] font-black uppercase tracking-widest leading-tight">
+                ★ AUTÉNTICO ★ SABOR MIAMI
               </div>
-              <p className="font-sans font-medium">
-                Disponible en <strong className="text-[#1C1917]">Little Havana</strong>, <strong className="text-[#1C1917]">Brickell</strong> y <strong className="text-[#1C1917]">Doral</strong>.
-              </p>
             </div>
-
           </div>
 
-          {/* Columna Derecha: Composición de Producto Central con Tarjeta 3D (5 columnas en desktop) */}
-          <div className="lg:col-span-5 flex items-center justify-center">
-            <HeroProductCard
-              imageSrc="/assets/mojo-bowl-ropa-vieja.jpg"
-              title="Signature Mojo Bowl • Ropa Vieja Criolla"
-              category="Top Seller #1 en Miami"
-              price="$15.50"
-              calories="480 kcal"
-            />
-          </div>
+          {/* Badge Izquierdo: Social Proof Rating */}
+          <motion.div
+            role="status"
+            aria-label="Average customer rating in Miami"
+            whileHover={{ scale: 1.06, rotate: 0 }}
+            className="absolute -top-4 -left-4 sm:-top-5 sm:-left-6 z-20 -rotate-3 transition-transform duration-300 animate-float rounded-2xl border border-charcoal-ink/10 bg-surface-sand px-4 py-2.5 shadow-md select-none cursor-pointer"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-mojo-citrus text-lg" aria-hidden="true">⭐</span>
+              <div className="text-left">
+                <p className="font-sans text-xs font-black text-charcoal-ink leading-tight">
+                  4.7 Stars across +3,000 orders in Miami
+                </p>
+                <p className="font-sans text-[10px] text-charcoal-ink/70">
+                  UberEats &amp; Google Miami (4.7 en 3K+ Reviews)
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Badge Derecho: Frescura 100% Hecho Al Momento */}
+          <motion.div
+            whileHover={{ scale: 1.06, rotate: 0 }}
+            className="absolute -bottom-4 -left-3 sm:-bottom-5 sm:-left-4 z-20 rotate-2 transition-transform duration-300 animate-float-reverse rounded-2xl bg-leaf-green px-4 py-2.5 text-cream-bg shadow-md shadow-leaf-green/20 select-none cursor-pointer"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-lg" aria-hidden="true">🌿</span>
+              <div className="text-left">
+                <p className="font-sans text-xs font-black text-cream-bg leading-tight uppercase tracking-wide">
+                  100% Fresh Daily
+                </p>
+                <p className="font-sans text-[10px] text-cream-bg/85">
+                  Hecho Al Momento
+                </p>
+              </div>
+            </div>
+          </motion.div>
 
         </div>
+
+        {/* Botón de Llamada a la Acción Primario con Efecto Magnético (GSAP) */}
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <MagneticButton
+            href="#menu"
+            className="group relative inline-flex items-center justify-center gap-3 rounded-full bg-brand-fire px-9 py-4.5 font-sans text-base sm:text-lg font-bold text-cream-bg shadow-[0_16px_32px_-8px_rgba(229,37,22,0.42)] transition-all duration-300 hover:bg-brand-fire/90 hover:shadow-[0_20px_38px_-6px_rgba(199,31,18,0.52)] cursor-pointer"
+          >
+            <UtensilsCrossed className="h-5 w-5 transition-transform group-hover:rotate-12" aria-hidden="true" />
+            <span>See Menu &amp; Order Now</span>
+            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 font-bold">
+              →
+            </span>
+          </MagneticButton>
+
+          <a
+            href="#catering"
+            className="inline-flex items-center justify-center gap-2.5 rounded-full border border-charcoal-ink/20 bg-surface-sand px-7 py-4.5 font-sans text-base font-semibold text-charcoal-ink shadow-sm transition-all duration-200 hover:bg-surface-sand/80 hover:border-brand-fire/40"
+          >
+            <CalendarHeart className="h-5 w-5 text-leaf-green" aria-hidden="true" />
+            <span>Catering &amp; Events</span>
+          </a>
+        </div>
+
+        {/* Microcopia de Confianza y Rapidez */}
+        <div className="mt-4 flex items-center justify-center gap-2 text-xs text-charcoal-ink/70">
+          <Sparkles className="h-3.5 w-3.5 text-leaf-green" aria-hidden="true" />
+          <span>Fresh ingredients • 15 min pickup • Fast delivery caliente al momento</span>
+        </div>
+
       </div>
+
+      {/* Marquesina Tipográfica Cinética Integrada (2 Contenedores Flexibles Continuos) */}
+      <div className="mt-12 overflow-hidden border-y border-charcoal-ink/10 bg-brand-fire py-3 text-cream-bg shadow-xs">
+        <div className="flex overflow-x-hidden whitespace-nowrap">
+          <div className="flex w-max will-change-transform animate-marquee font-display text-base sm:text-lg md:text-xl font-bold uppercase tracking-wider">
+            {/* Contenedor 1 */}
+            <div className="flex shrink-0 items-center gap-6 pr-6 whitespace-nowrap">
+              {[...TICKER_ITEMS, ...TICKER_ITEMS].map((phrase, idx) => (
+                <span key={`hero-nxt-t1-${idx}`} className="inline-flex items-center gap-6">
+                  <span>{phrase}</span>
+                  <span className="text-mojo-citrus font-serif text-base select-none" aria-hidden="true">✦</span>
+                </span>
+              ))}
+            </div>
+
+            {/* Contenedor 2 */}
+            <div className="flex shrink-0 items-center gap-6 pr-6 whitespace-nowrap" aria-hidden="true">
+              {[...TICKER_ITEMS, ...TICKER_ITEMS].map((phrase, idx) => (
+                <span key={`hero-nxt-t2-${idx}`} className="inline-flex items-center gap-6">
+                  <span>{phrase}</span>
+                  <span className="text-mojo-citrus font-serif text-base select-none" aria-hidden="true">✦</span>
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
   );
 }

@@ -303,6 +303,12 @@
 @utility mojo-gold {
   background-color: #F59E0B;
 }
+@utility text-mojoRed {
+  color: #E52516;
+}
+@utility bg-mojoRed {
+  background-color: #E52516;
+}
 
 @keyframes marquee {
   0% {

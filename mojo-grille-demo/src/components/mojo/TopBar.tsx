@@ -29,25 +29,49 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
 
   return (
     <header className="sticky top-0 z-40">
-      <div className="relative overflow-hidden bg-brand-fire py-2 text-cream-bg border-b border-brand-fire/80 shadow-xs select-none">
+      <div className="relative overflow-hidden bg-brand-fire py-2.5 text-cream-bg border-b border-brand-fire/80 shadow-xs select-none">
         <div className="flex overflow-x-hidden">
-          <div className="animate-marquee flex gap-8 whitespace-nowrap text-sm font-display font-bold uppercase tracking-wider">
-            <span>★ 24H CITRUS MARINATED MOJO</span>
-            <span className="text-mojo-citrus font-serif">✦</span>
-            <span>★ FRESH LOCAL INGREDIENTS</span>
-            <span className="text-mojo-citrus font-serif">✦</span>
-            <span>★ 4.7 STARS (+3,000 MIAMI REVIEWS)</span>
-            <span className="text-mojo-citrus font-serif">✦</span>
-            <span>★ HANDCRAFTED BOWLS &amp; CUBAN SANDWICHES</span>
-            <span className="text-mojo-citrus font-serif">✦</span>
-            <span>★ 24H CITRUS MARINATED MOJO</span>
-            <span className="text-mojo-citrus font-serif">✦</span>
-            <span>★ FRESH LOCAL INGREDIENTS</span>
-            <span className="text-mojo-citrus font-serif">✦</span>
-            <span>★ 4.7 STARS (+3,000 MIAMI REVIEWS)</span>
-            <span className="text-mojo-citrus font-serif">✦</span>
-            <span>★ HANDCRAFTED BOWLS &amp; CUBAN SANDWICHES</span>
-            <span className="text-mojo-citrus font-serif">✦</span>
+          {/* Dos contenedores flexibles con white-space: nowrap animados con transform: translateX(-50%) a velocidad constante */}
+          <div className="flex w-max will-change-transform animate-marquee font-display text-sm sm:text-base font-bold uppercase tracking-wider">
+            {/* Contenedor 1 */}
+            <div className="flex shrink-0 items-center gap-6 pr-6 whitespace-nowrap">
+              <span>MOJO GRILLE</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+              <span>SLOW ROASTED PORK</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+              <span>CITRUS MARINATED</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+              <span>PRESSED TO PERFECTION</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+              <span>MOJO GRILLE</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+              <span>SLOW ROASTED PORK</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+              <span>CITRUS MARINATED</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+              <span>PRESSED TO PERFECTION</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+            </div>
+
+            {/* Contenedor 2 (Looping infinito continuo sin saltos) */}
+            <div className="flex shrink-0 items-center gap-6 pr-6 whitespace-nowrap" aria-hidden="true">
+              <span>MOJO GRILLE</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+              <span>SLOW ROASTED PORK</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+              <span>CITRUS MARINATED</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+              <span>PRESSED TO PERFECTION</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+              <span>MOJO GRILLE</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+              <span>SLOW ROASTED PORK</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+              <span>CITRUS MARINATED</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+              <span>PRESSED TO PERFECTION</span>
+              <span className="text-mojo-citrus font-serif">✦</span>
+            </div>
           </div>
         </div>
       </div>
