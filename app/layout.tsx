@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Bebas_Neue, Plus_Jakarta_Sans, Instrument_Serif } from 'next/font/google';
 import './globals.css';
-import { SmoothScroll } from '../components/scroll/SmoothScroll';
+import { SmoothScroll } from '../components/SmoothScroll';
 
 const displayFont = Bebas_Neue({
   weight: '400',
