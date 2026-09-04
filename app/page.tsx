@@ -8,7 +8,6 @@ import { Preloader } from '../components/Preloader';
 import { CartDrawer } from '../components/CartDrawer';
 import { Navbar } from '../components/hero/Navbar';
 import { HeroSection } from '../components/HeroSection';
-import { MarqueeTicker } from '../components/MarqueeTicker';
 import { CubanDeconstruction } from '../components/CubanDeconstruction';
 import { CuratedMenu } from '../components/CuratedMenu';
 import { DistrictsCatering } from '../components/DistrictsCatering';
@@ -86,10 +85,7 @@ export default function HomePage() {
       {/* 3. Hero Section interactivo con magnetic CTAs y producto insignia */}
       <HeroSection shouldAnimateIn={isLoaded} />
 
-      {/* 4. Marquee Ticker: Marquesina cinética continua de choque */}
-      <MarqueeTicker variant="brand" />
-
-      {/* 5. Cuban Deconstruction: Deconstrucción en scroll de 5 capas con scrub GSAP */}
+      {/* 4. Cuban Deconstruction: Deconstrucción en scroll de 5 capas con scrub GSAP */}
       <CubanDeconstruction />
 
       {/* 6. Curated Menu: Selección de la plancha con 6 platos estelares y badges técnicos */}

@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { UtensilsCrossed, CalendarHeart, Sparkles } from "lucide-react";
-import gsap from "gsap";
 import defaultHeroImage from "@/assets/mojo-bowl-ropa-vieja.jpg";
 import { MagneticButton } from "./MagneticButton";
 
@@ -16,102 +15,25 @@ export interface HeroSectionProps {
   shouldAnimateIn?: boolean;
 }
 
-const TICKER_TEXT =
-  "MOJO GRILLE · SLOW ROASTED PORK · CITRUS MARINATED · PRESSED TO PERFECTION · MIAMI FL";
-
-function TickerBar({
-  variant = "brand",
-}: {
-  variant?: "brand" | "charcoal";
-}) {
-  const isBrand = variant === "brand";
-  return (
-    <div
-      className={`overflow-hidden border-y border-charcoal-ink/10 select-none py-3 shadow-xs ${
-        isBrand ? "bg-brand-fire text-cream-bg" : "bg-charcoal-ink text-cream-bg"
-      }`}
-    >
-      <div className="flex overflow-x-hidden whitespace-nowrap">
-        <div className="flex w-max will-change-transform animate-marquee font-display text-lg sm:text-xl md:text-2xl font-black uppercase tracking-wider">
-          {/* Bloque 1 */}
-          <div className="flex shrink-0 items-center gap-8 pr-8 whitespace-nowrap">
-            {[1, 2, 3, 4].map((idx) => (
-              <span key={`ticker-1-${idx}`} className="inline-flex items-center gap-8">
-                <span>{TICKER_TEXT}</span>
-                <span
-                  className="text-mojo-citrus font-serif text-lg sm:text-xl select-none"
-                  aria-hidden="true"
-                >
-                  ✦
-                </span>
-              </span>
-            ))}
-          </div>
-
-          {/* Bloque 2 duplicado para scroll continuo infinito */}
-          <div
-            className="flex shrink-0 items-center gap-8 pr-8 whitespace-nowrap"
-            aria-hidden="true"
-          >
-            {[1, 2, 3, 4].map((idx) => (
-              <span key={`ticker-2-${idx}`} className="inline-flex items-center gap-8">
-                <span>{TICKER_TEXT}</span>
-                <span
-                  className="text-mojo-citrus font-serif text-lg sm:text-xl select-none"
-                  aria-hidden="true"
-                >
-                  ✦
-                </span>
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function HeroSection({
   onOrderClick,
   menuAnchorId = "menu",
   cateringHref = "#catering",
   imageUrl = defaultHeroImage,
-  shouldAnimateIn,
+  shouldAnimateIn = true,
 }: HeroSectionProps) {
+  const [animReady, setAnimReady] = useState(false);
+
   useEffect(() => {
-    if (!shouldAnimateIn || typeof window === "undefined") return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".hero-fade-item",
-        { opacity: 0, y: 36 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.75,
-          stagger: 0.08,
-          ease: "power3.out",
-        }
-      );
-
-      gsap.fromTo(
-        ".hero-card-item",
-        { opacity: 0, scale: 0.9, y: 44 },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.95,
-          ease: "power4.out",
-          delay: 0.15,
-        }
-      );
-    });
-
-    return () => ctx.revert();
+    // Si shouldAnimateIn es false (esperando preloader), no mostramos animación aún
+    if (!shouldAnimateIn) {
+      return undefined;
+    }
+    const timer = setTimeout(() => setAnimReady(true), 150);
+    return () => clearTimeout(timer);
   }, [shouldAnimateIn]);
 
-  const handleScrollToMenu = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+  const handleScrollToMenu = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const target = document.getElementById(menuAnchorId);
     if (target) {
       e.preventDefault();
@@ -120,8 +42,18 @@ export function HeroSection({
     onOrderClick?.();
   };
 
-  const animItemClass = shouldAnimateIn === false ? "opacity-0 hero-fade-item" : "hero-fade-item";
-  const animCardClass = shouldAnimateIn === false ? "opacity-0 hero-card-item" : "hero-card-item";
+  // Clases dinámicas de animación de entrada sincronizada
+  const animContainerClass = animReady
+    ? "opacity-100 translate-y-0 transition-all duration-700 ease-out"
+    : "opacity-0 translate-y-6";
+
+  const animItemClass = animReady
+    ? "opacity-100 translate-y-0 transition-all duration-500 delay-200 ease-out"
+    : "opacity-0 translate-y-4";
+
+  const animCardClass = animReady
+    ? "opacity-100 scale-100 transition-all duration-700 delay-300 ease-out"
+    : "opacity-0 scale-95";
 
   return (
     <section
@@ -129,11 +61,8 @@ export function HeroSection({
       aria-label="Welcome to Mojo Grille Cuban Kitchen"
       className="relative overflow-hidden bg-cream-bg border-b border-charcoal-ink/10 select-none"
     >
-      {/* 1. Marquesina Tipográfica Infinita Superior (Ticker) */}
-      <TickerBar variant="brand" />
-
       {/* 2. Bloque Principal Hero */}
-      <div className="relative pt-10 pb-16 md:pt-16 md:pb-24">
+      <div className={`relative pt-10 pb-16 md:pt-16 md:pb-24 ${animContainerClass}`}>
         {/* Destellos / Gradientes Circulares Difuminados en Bordes (CRAV style) */}
         <div
           aria-hidden="true"
@@ -281,9 +210,6 @@ export function HeroSection({
 
         </div>
       </div>
-
-      {/* 3. Marquesina Tipográfica Infinita Inferior (Ticker) */}
-      <TickerBar variant="charcoal" />
     </section>
   );
 }

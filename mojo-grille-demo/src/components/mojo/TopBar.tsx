@@ -28,55 +28,8 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40">
-      <div className="relative overflow-hidden bg-brand-fire py-2.5 text-cream-bg border-b border-brand-fire/80 shadow-xs select-none">
-        <div className="flex overflow-x-hidden">
-          {/* Dos contenedores flexibles con white-space: nowrap animados con transform: translateX(-50%) a velocidad constante */}
-          <div className="flex w-max will-change-transform animate-marquee font-display text-sm sm:text-base font-bold uppercase tracking-wider">
-            {/* Contenedor 1 */}
-            <div className="flex shrink-0 items-center gap-6 pr-6 whitespace-nowrap">
-              <span>MOJO GRILLE</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-              <span>SLOW ROASTED PORK</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-              <span>CITRUS MARINATED</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-              <span>PRESSED TO PERFECTION</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-              <span>MOJO GRILLE</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-              <span>SLOW ROASTED PORK</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-              <span>CITRUS MARINATED</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-              <span>PRESSED TO PERFECTION</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-            </div>
-
-            {/* Contenedor 2 (Looping infinito continuo sin saltos) */}
-            <div className="flex shrink-0 items-center gap-6 pr-6 whitespace-nowrap" aria-hidden="true">
-              <span>MOJO GRILLE</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-              <span>SLOW ROASTED PORK</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-              <span>CITRUS MARINATED</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-              <span>PRESSED TO PERFECTION</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-              <span>MOJO GRILLE</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-              <span>SLOW ROASTED PORK</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-              <span>CITRUS MARINATED</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-              <span>PRESSED TO PERFECTION</span>
-              <span className="text-mojo-citrus font-serif">✦</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="border-b border-charcoal-ink/10 bg-cream-bg/95 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-charcoal-ink/10 bg-cream-bg/95 backdrop-blur-md">
+      <div className="bg-cream-bg/95">
         <nav className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
           <a href="#top" className="flex min-w-0 items-center gap-2.5">
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-fire font-display text-2xl font-bold text-cream-bg shadow-sm">

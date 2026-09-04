@@ -20,7 +20,9 @@
     font-family: var(--font-sans);
   }
 
-  .grain {
+  .grain,
+  .bg-cream-bg {
+    background-color: #F6F1E8;
     background-image: url('/assets/noise.png');
     background-repeat: repeat;
   }

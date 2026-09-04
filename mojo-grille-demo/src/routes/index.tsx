@@ -6,7 +6,6 @@ import { Clock, MapPin, Phone } from "lucide-react";
 import { CartProvider } from "@/components/mojo/cart";
 import { TopBar } from "@/components/mojo/TopBar";
 import { HeroSection } from "@/components/mojo/HeroSection";
-import { MarqueeTicker } from "@/components/mojo/MarqueeTicker";
 import { CategoryTabs } from "@/components/mojo/CategoryTabs";
 import { MenuGrid } from "@/components/mojo/MenuGrid";
 import { CravStyleMenuGrid } from "@/components/mojo/CravStyleMenuGrid";
@@ -132,9 +131,6 @@ function Index() {
             cateringHref="#catering"
             shouldAnimateIn={isLoaded}
           />
-
-          {/* Marquesina Cinética Continua */}
-          <MarqueeTicker variant="brand" />
 
           {/* Fase 5: El Elemento Estrella — Deconstrucción en Scroll (CubanDeconstruction) */}
           <CubanDeconstruction />

@@ -5,65 +5,11 @@ import { motion } from 'framer-motion';
 import { UtensilsCrossed, CalendarHeart, Sparkles } from 'lucide-react';
 import { MagneticButton } from './hero/MagneticButton';
 
-const TICKER_TEXT =
-  'MOJO GRILLE · SLOW ROASTED PORK · CITRUS MARINATED · PRESSED TO PERFECTION · MIAMI FL';
-
-function TickerBar({
-  variant = 'brand',
-}: {
-  variant?: 'brand' | 'charcoal';
-}) {
-  const isBrand = variant === 'brand';
-  return (
-    <div
-      className={`overflow-hidden border-y border-charcoal-ink/10 select-none py-3 shadow-xs ${
-        isBrand ? 'bg-brand-fire text-cream-bg' : 'bg-charcoal-ink text-cream-bg'
-      }`}
-    >
-      <div className="flex overflow-x-hidden whitespace-nowrap">
-        <div className="flex w-max will-change-transform animate-marquee font-display text-lg sm:text-xl md:text-2xl font-black uppercase tracking-wider">
-          {/* Bloque 1 */}
-          <div className="flex shrink-0 items-center gap-8 pr-8 whitespace-nowrap">
-            {[1, 2, 3, 4].map((idx) => (
-              <span key={`ticker-1-${idx}`} className="inline-flex items-center gap-8">
-                <span>{TICKER_TEXT}</span>
-                <span
-                  className="text-mojo-citrus font-serif text-lg sm:text-xl select-none"
-                  aria-hidden="true"
-                >
-                  ✦
-                </span>
-              </span>
-            ))}
-          </div>
-
-          {/* Bloque 2 duplicado para scroll infinito continuo */}
-          <div
-            className="flex shrink-0 items-center gap-8 pr-8 whitespace-nowrap"
-            aria-hidden="true"
-          >
-            {[1, 2, 3, 4].map((idx) => (
-              <span key={`ticker-2-${idx}`} className="inline-flex items-center gap-8">
-                <span>{TICKER_TEXT}</span>
-                <span
-                  className="text-mojo-citrus font-serif text-lg sm:text-xl select-none"
-                  aria-hidden="true"
-                >
-                  ✦
-                </span>
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export interface HeroSectionProps {
   onOrderClick?: () => void;
   menuAnchorId?: string;
   cateringHref?: string;
+  shouldAnimateIn?: boolean;
 }
 
 export function HeroSection({
@@ -86,8 +32,7 @@ export function HeroSection({
       aria-label="Hero Section Mojo Grille"
       className="relative overflow-hidden bg-cream-bg border-b border-charcoal-ink/10 select-none"
     >
-      {/* 1. Marquesina Tipográfica Infinita Superior (Ticker) */}
-      <TickerBar variant="brand" />
+      {/* Bloque Principal Hero */}
 
       {/* 2. Bloque Principal Hero */}
       <div className="relative pt-10 pb-16 sm:pt-16 sm:pb-24">
@@ -240,9 +185,6 @@ export function HeroSection({
 
         </div>
       </div>
-
-      {/* 3. Marquesina Tipográfica Infinita Inferior (Ticker) */}
-      <TickerBar variant="charcoal" />
     </section>
   );
 }
