@@ -1,0 +1,11 @@
+# Mojo Grille Cuban Kitchen - Miami, FL
+# Multi-location Cuban Kitchen (Little Havana, Brickell, Doral)
+
+User-agent: *
+Allow: /
+
+# Host
+Host: https://mojogrille.com
+
+# Sitemaps
+Sitemap: https://mojogrille.com/sitemap.xml

@@ -11,6 +11,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { generateRestaurantSchema, generateMenuSchema } from "../lib/seo";
+import { locationsList } from "../data/locations";
+import { categories, menu } from "../data/menu";
+
 
 function NotFoundComponent() {
   return (
@@ -83,16 +87,56 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Artisanal Cuban bowls, freshly pressed Cubano sandwiches, and party catering in Miami. Marinated 24h in citrus mojo. Fast takeout & delivery al momento.",
       },
+      {
+        name: "keywords",
+        content:
+          "Cuban food Miami, Cuban restaurant Little Havana, lechón asado, Cuban bowls, cubano sandwich, ropa vieja, catering Miami, cafecito cubano, mojo criollo, Brickell Cuban food, Doral takeout",
+      },
       { name: "theme-color", content: "#D95327" },
-      { property: "og:title", content: "Mojo Grille | Authentic Cuban Kitchen Miami" },
+      { name: "author", content: "Mojo Grille Cuban Kitchen" },
+
+      // OpenGraph Metadata
+      { property: "og:title", content: "Mojo Grille | Authentic Cuban Kitchen & Bowls in Miami" },
       {
         property: "og:description",
-        content: "The authentic criollo flavor of Miami, marinated to perfection.",
+        content:
+          "Artisanal Cuban bowls, freshly pressed Cubano sandwiches, and party catering in Miami. Marinated 24h in citrus mojo. Fast takeout & delivery al momento.",
       },
+      { property: "og:url", content: "https://mojogrille.com/" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Mojo Grille Cuban Kitchen" },
+      { property: "og:locale", content: "en_US" },
+      { property: "og:locale:alternate", content: "es_US" },
+      { property: "og:image", content: "https://mojogrille.com/og-image.jpg" },
+      {
+        property: "og:image:alt",
+        content: "Mojo Grille Cuban Kitchen - Authentic Cuban Bowls & Pressed Sandwiches in Miami",
+      },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+
+      // Twitter Card Metadata
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Mojo Grille | Authentic Cuban Kitchen & Bowls in Miami" },
+      {
+        name: "twitter:description",
+        content:
+          "Artisanal Cuban bowls, freshly pressed Cubano sandwiches, and party catering in Miami. Marinated 24h in citrus mojo. Fast takeout & delivery al momento.",
+      },
+      { name: "twitter:image", content: "https://mojogrille.com/og-image.jpg" },
+      { name: "twitter:image:alt", content: "Mojo Grille Cuban Kitchen Miami" },
+
+      // Local Geo Meta for Miami
+      { name: "geo.region", content: "US-FL" },
+      { name: "geo.placename", content: "Miami, Florida" },
+      { name: "geo.position", content: "25.7654;-80.2115" },
+      { name: "ICBM", content: "25.7654, -80.2115" },
     ],
     links: [
+      { rel: "canonical", href: "https://mojogrille.com/" },
+      { rel: "alternate", href: "https://mojogrille.com/", hrefLang: "x-default" },
+      { rel: "alternate", href: "https://mojogrille.com/", hrefLang: "en-us" },
+      { rel: "alternate", href: "https://mojogrille.com/", hrefLang: "es-us" },
       {
         rel: "stylesheet",
         href: appCss,
@@ -101,7 +145,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
@@ -113,10 +157,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const schemaOrgGraph = {
+    "@context": "https://schema.org",
+    "@graph": [
+      ...locationsList.map((loc) => generateRestaurantSchema(loc)),
+      generateMenuSchema(categories, menu),
+    ],
+  };
+
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrgGraph) }}
+        />
       </head>
       <body>
         {children}

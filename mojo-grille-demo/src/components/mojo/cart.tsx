@@ -1,58 +1,89 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
+import type {
+  CartLine,
+  CartState,
+  CartContextType,
+  AddCartItemInput,
+  LocationId,
+  Location,
+} from "@/types/mojo";
+import {
+  locationsList,
+  DEFAULT_LOCATION_ID,
+  resolveLocation,
+} from "@/data/locations";
 
-export type CartLine = {
-  key: string;
-  itemId: string;
-  name: string;
-  sides: string[];
-  price: number;
-  qty: number;
-};
+// Re-export type contracts for backward compatibility and clean ergonomics
+export type { CartLine, CartState, CartContextType, AddCartItemInput };
 
-type CartApi = {
-  lines: CartLine[];
-  count: number;
-  total: number;
-  add: (line: Omit<CartLine, "key" | "qty">) => void;
-  remove: (key: string) => void;
-  clear: () => void;
-};
+const CartContext = createContext<CartContextType | null>(null);
 
-const CartContext = createContext<CartApi | null>(null);
-
-export function CartProvider({ children }: { children: ReactNode }) {
+export function CartProvider({
+  children,
+  defaultLocationId = DEFAULT_LOCATION_ID,
+}: {
+  children: ReactNode;
+  defaultLocationId?: LocationId;
+}) {
   const [lines, setLines] = useState<CartLine[]>([]);
+  const [selectedLocationId, setSelectedLocationId] =
+    useState<LocationId>(defaultLocationId);
 
-  const api = useMemo<CartApi>(() => {
+  const currentLocation = useMemo<Location>(() => {
+    return resolveLocation(selectedLocationId);
+  }, [selectedLocationId]);
+
+  const api = useMemo<CartContextType>(() => {
     return {
       lines,
       count: lines.reduce((sum, line) => sum + line.qty, 0),
       total: lines.reduce((sum, line) => sum + line.qty * line.price, 0),
-      add: (line) => {
-        const key = `${line.itemId}::${[...line.sides].sort().join("|")}`;
+      selectedLocation: selectedLocationId,
+      location: currentLocation,
+      availableLocations: locationsList,
+      setLocation: (locationId: LocationId) => {
+        const resolved = resolveLocation(locationId);
+        setSelectedLocationId(resolved.id);
+      },
+      add: (line: AddCartItemInput) => {
+        const sortedSides = [...line.sides].sort();
+        const key = `${line.itemId}::${sortedSides.join("|")}`;
         setLines((prev) => {
           const existing = prev.find((l) => l.key === key);
           if (existing) {
-            return prev.map((l) => (l.key === key ? { ...l, qty: l.qty + 1 } : l));
+            return prev.map((l) =>
+              l.key === key ? { ...l, qty: l.qty + 1 } : l,
+            );
           }
-          return [...prev, { ...line, key, qty: 1 }];
+          return [...prev, { ...line, sides: sortedSides, key, qty: 1 }];
         });
       },
-      remove: (key) =>
+      remove: (key: string) =>
         setLines((prev) =>
           prev.flatMap((l) =>
             l.key === key ? (l.qty > 1 ? [{ ...l, qty: l.qty - 1 }] : []) : [l],
           ),
         ),
+      updateQty: (key: string, qty: number) => {
+        setLines((prev) =>
+          qty <= 0
+            ? prev.filter((l) => l.key !== key)
+            : prev.map((l) =>
+                l.key === key ? { ...l, qty: Math.max(1, Math.floor(qty)) } : l,
+              ),
+        );
+      },
       clear: () => setLines([]),
     };
-  }, [lines]);
+  }, [lines, selectedLocationId, currentLocation]);
 
   return <CartContext.Provider value={api}>{children}</CartContext.Provider>;
 }
 
-export function useCart() {
+export function useCart(): CartContextType {
   const ctx = useContext(CartContext);
-  if (!ctx) throw new Error("useCart must be used inside CartProvider");
+  if (!ctx) {
+    throw new Error("useCart must be used inside CartProvider");
+  }
   return ctx;
 }

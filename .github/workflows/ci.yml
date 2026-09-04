@@ -1,0 +1,67 @@
+name: Mojo Grille CI/CD & Quality Gate
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-and-build:
+    name: Lint, Test & Production Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./mojo-grille-demo
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: ./mojo-grille-demo/package-lock.json
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Static Code Analysis (ESLint)
+        run: npm run lint
+
+      - name: Strict TypeScript Compilation Check
+        run: npm run typecheck
+
+      - name: Execute Automated Test Suites
+        run: npm run test:all
+
+      - name: Compile Production Bundle (Vite + TanStack Start + Nitro)
+        run: npm run build
+
+      - name: Verify Cloudflare & Nitro Production Artifacts
+        run: |
+          test -d .output/public || (echo "Missing .output/public directory" && exit 1)
+          test -d .output/server || (echo "Missing .output/server directory" && exit 1)
+          test -f .output/public/_headers || (echo "Missing Cloudflare _headers file" && exit 1)
+          test -f .output/server/index.mjs || (echo "Missing Nitro SSR server bundle" && exit 1)
+          test -f .output/server/wrangler.json || (echo "Missing Cloudflare worker configuration" && exit 1)
+          grep -q "Strict-Transport-Security" .output/public/_headers || (echo "Missing HSTS in _headers" && exit 1)
+          grep -q "Content-Security-Policy" .output/public/_headers || (echo "Missing CSP in _headers" && exit 1)
+          echo "Production artifacts and security headers verified successfully!"
+
+      - name: Upload Production Build Artifacts
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: mojo-grille-production-bundle
+          path: |
+            ./mojo-grille-demo/.output/
+            ./mojo-grille-demo/wrangler.jsonc
+          retention-days: 7

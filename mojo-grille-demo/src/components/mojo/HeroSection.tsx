@@ -49,7 +49,7 @@ export function HeroSection({
                 <Star className="h-3.5 w-3.5 fill-[#F59E0B] stroke-[#F59E0B]" />
               </span>
               <span className="leading-none tracking-tight">
-                <strong className="font-bold">4.7 Stars</strong> across +3,000 orders in Miami{" "}
+                ⭐ <strong className="font-bold">4.7 Stars</strong> across +3,000 orders in Miami{" "}
                 <span className="font-normal text-[#78716C]">(UberEats &amp; Google)</span>
               </span>
             </div>
