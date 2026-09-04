@@ -3,6 +3,12 @@ import { Plus, Check, Sparkles } from "lucide-react";
 import { useCart } from "./cart";
 import { type MenuItem } from "@/data/menu";
 
+import chickenImg from "@/assets/mojo-pollo-bowl.jpg";
+import cubanImg from "@/assets/mojo-cubano.jpg";
+import porkImg from "@/assets/mojo-bowl-ropa-vieja.jpg";
+import tostonesImg from "@/assets/mojo-tostones.jpg";
+import cafecitoImg from "@/assets/mojo-cafecito.jpg";
+
 export type CategoryFilter = "favorites" | "bowls" | "sandwiches" | "sides" | "drinks";
 
 export interface CategoryTabItem {
@@ -40,8 +46,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     price: 14.5,
     description:
       "Pechuga tierna marinada en mojo cítrico por 24h, arroz blanco criollo, frijoles negros sazonados, plátanos maduros dulces y mojo verde fresco.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=800&q=80",
+    imageUrl: chickenImg,
     badgeType: "fresh",
     badgeText: "Fresh / Gluten Friendly",
     sidesAllowed: true,
@@ -54,8 +59,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     price: 13.95,
     description:
       "Jamón curado dulce, lechón asado desmenuzado en su jugo, queso suizo fundido, pepinillos encurtidos y mostaza suave en pan cubano prensado con mantequilla dorada.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80",
+    imageUrl: cubanImg,
     badgeType: "top_seller",
     badgeText: "Top Seller",
     sidesAllowed: true,
@@ -68,8 +72,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     price: 15.95,
     description:
       "Cerdo deshebrado marinado lentamente en naranja agria y ajo asado con comino. Acompañado de arroz moro con frijoles negros y crujientes tostones.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
+    imageUrl: porkImg,
     badgeType: "signature",
     badgeText: "Signature Mojo",
     sidesAllowed: true,
@@ -82,8 +85,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     price: 16.5,
     description:
       "Hebras de falda de res guisadas lentamente con sofrito de pimientos rojos, cebollas caramelizadas y aceitunas. Servido sobre arroz moro y maduros.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80",
+    imageUrl: porkImg,
     badgeType: "top_seller",
     badgeText: "Top Seller",
     sidesAllowed: true,
@@ -96,8 +98,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     price: 6.5,
     description:
       "Bastones de yuca crujientes y dorados por fuera, cremosos por dentro, bañados en abundante mojo de ajo asado con cilantro y limón.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=800&q=80",
+    imageUrl: tostonesImg,
     badgeType: "fresh",
     badgeText: "Fresh / Gluten Friendly",
     sidesAllowed: false,
@@ -110,8 +111,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     price: 6.0,
     description:
       "Plátanos machos verdes fritos dos veces al estilo tradicional de Miami con sal marina y salsa tártara criolla especial de la casa.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=800&q=80",
+    imageUrl: tostonesImg,
     badgeType: "fresh",
     badgeText: "Fresh / Gluten Friendly",
     sidesAllowed: false,
@@ -124,8 +124,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     price: 3.5,
     description:
       "Espresso cubano extra oscuro con su tradicional espumita dulce de caña de azúcar recién batida. Para compartir o disfrutar al momento.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80",
+    imageUrl: cafecitoImg,
     badgeType: "signature",
     badgeText: "Signature Mojo",
     sidesAllowed: false,
@@ -138,8 +137,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     price: 4.5,
     description:
       "Néctar de guayaba rosa batido en frío con zumo de limas recién exprimidas y azúcar morena de caña. Muy refrescante.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80",
     badgeType: "top_seller",
     badgeText: "Top Seller",
     sidesAllowed: false,
@@ -163,12 +161,10 @@ export function CravStyleMenuGrid({
   });
 
   const handleQuickAdd = (item: CravMenuItem) => {
-    // Feedback visual animado
     setClickedItemId(item.id);
     setTimeout(() => setClickedItemId(null), 1200);
 
     if (item.sidesAllowed && onSelect) {
-      // Si tiene guarniciones personalizables, abrir modal de selección
       onSelect({
         id: item.id,
         name: item.name,
@@ -180,7 +176,6 @@ export function CravStyleMenuGrid({
         sidesAllowed: true,
       });
     } else {
-      // Añadir directamente al carrito
       cart.add({
         itemId: item.id,
         name: item.name,
@@ -194,19 +189,19 @@ export function CravStyleMenuGrid({
     switch (type) {
       case "signature":
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-[#D95327] px-3 py-1 font-sans text-[11px] font-bold tracking-wide text-white shadow-md">
+          <span className="inline-flex items-center gap-1 rounded-full bg-[#D95327] px-3.5 py-1.5 font-sans text-xs font-bold tracking-wide text-white shadow-md">
             <span>★</span> {text}
           </span>
         );
       case "fresh":
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-[#4D7C0F] px-3 py-1 font-sans text-[11px] font-bold tracking-wide text-white shadow-md">
+          <span className="inline-flex items-center gap-1 rounded-full bg-[#4D7C0F] px-3.5 py-1.5 font-sans text-xs font-bold tracking-wide text-white shadow-md">
             <span>🌿</span> {text}
           </span>
         );
       case "top_seller":
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-[#F59E0B] px-3 py-1 font-sans text-[11px] font-bold tracking-wide text-[#1C1917] shadow-md">
+          <span className="inline-flex items-center gap-1 rounded-full bg-[#F59E0B] px-3.5 py-1.5 font-sans text-xs font-bold tracking-wide text-[#1C1917] shadow-md">
             <span>⭐</span> {text}
           </span>
         );
@@ -214,20 +209,25 @@ export function CravStyleMenuGrid({
   };
 
   return (
-    <section className="w-full bg-[#FAF8F5] py-8 sm:py-12">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section className="relative w-full bg-[#FAF8F5] py-10 sm:py-16 overflow-hidden">
+      {/* Destellos ambientales coloridos en el fondo del menú */}
+      <div className="pointer-events-none absolute -top-16 -right-16 h-80 w-80 rounded-full bg-[#D95327]/10 blur-3xl" />
+      <div className="pointer-events-none absolute top-1/2 -left-16 h-80 w-80 rounded-full bg-[#4D7C0F]/12 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-16 right-1/4 h-80 w-80 rounded-full bg-[#F59E0B]/12 blur-3xl" />
+
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         
-        {/* Encabezado de Catálogo */}
-        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-[#D95327]/30 bg-[#FBECE7] px-3.5 py-1 text-xs font-bold text-[#D95327] uppercase tracking-wider mb-3">
-            <Sparkles className="h-3.5 w-3.5" />
-            Catálogo Criollo Artesanal
+        {/* Encabezado con paleta gastronómica vívida */}
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#D95327]/40 bg-gradient-to-r from-[#FBECE7] via-[#FEF3C7] to-[#F0F6E8] px-4 py-1.5 text-xs font-bold text-[#D95327] uppercase tracking-wider mb-3 shadow-xs">
+            <Sparkles className="h-4 w-4 text-[#D95327]" />
+            <span>Catálogo Criollo Artesanal • Miami, FL</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1917]">
-            Hecho a Fuego Lento, Servido Al Momento.
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#1C1917]">
+            Hecho a Fuego Lento, Servido <span className="text-[#D95327]">Al Momento</span>.
           </h2>
-          <p className="mt-2.5 font-sans text-sm sm:text-base text-[#78716C]">
-            Preparado al instante en Little Havana, Brickell y Doral con 24 horas de maceración en naranja agria y ajo criollo.
+          <p className="mt-3 font-sans text-base text-[#78716C] leading-relaxed">
+            Preparado al instante en Little Havana, Brickell y Doral con 24 horas de maceración en naranja agria, ajo criollo y orégano fresco.
           </p>
         </div>
 
@@ -236,7 +236,7 @@ export function CravStyleMenuGrid({
           <div
             role="tablist"
             aria-label="Categorías del Menú"
-            className="no-scrollbar flex items-center justify-start sm:justify-center gap-2 overflow-x-auto p-1.5 rounded-full bg-white/90 border border-[#EAE5DC] shadow-xs max-w-3xl mx-auto"
+            className="no-scrollbar flex items-center justify-start sm:justify-center gap-2 overflow-x-auto p-1.5 rounded-full bg-white border-2 border-[#EAE5DC] shadow-md max-w-3xl mx-auto"
           >
             {CATEGORIES.map((category) => {
               const isSelected = selectedCategory === category.id;
@@ -249,8 +249,8 @@ export function CravStyleMenuGrid({
                   onClick={() => setSelectedCategory(category.id)}
                   className={`relative shrink-0 rounded-full px-5 py-2.5 font-sans text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 focus:outline-none select-none ${
                     isSelected
-                      ? "bg-[#D95327] text-white shadow-md shadow-[#D95327]/30 scale-[1.03]"
-                      : "bg-white text-[#1C1917] hover:text-[#D95327] hover:bg-[#FAF8F5] border border-[#EAE5DC]"
+                      ? "bg-[#D95327] text-white shadow-md shadow-[#D95327]/35 scale-[1.03]"
+                      : "bg-[#FAF8F5] text-[#1C1917] hover:text-[#D95327] hover:bg-[#FBECE7] border border-[#EAE5DC]"
                   }`}
                 >
                   {category.label}
@@ -260,17 +260,17 @@ export function CravStyleMenuGrid({
           </div>
         </div>
 
-        {/* 2. Tarjetas de Producto Interactivas estilo CRAV */}
+        {/* 2. Tarjetas de Producto Interactivas con alto impacto visual */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredItems.map((item) => {
             const isAdded = clickedItemId === item.id;
             return (
               <article
                 key={item.id}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[#EAE5DC] bg-white p-4 sm:p-5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#D95327]/30"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border-2 border-[#EAE5DC] bg-white p-4 sm:p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#D95327]/40"
               >
                 <div>
-                  {/* Imagen con Zoom Suave en Hover */}
+                  {/* Contenedor de Fotografía con Zoom Suave en Hover */}
                   <div
                     onClick={() => onSelect && onSelect({
                       id: item.id,
@@ -297,7 +297,7 @@ export function CravStyleMenuGrid({
                     </div>
                   </div>
 
-                  {/* Información */}
+                  {/* Información del Plato */}
                   <div className="mt-4">
                     <h3 className="font-serif text-xl font-bold tracking-tight text-[#1C1917] group-hover:text-[#D95327] transition-colors">
                       {item.name}
@@ -308,18 +308,18 @@ export function CravStyleMenuGrid({
                   </div>
                 </div>
 
-                {/* Precio y Botón Táctil de Adición Rápida */}
-                <div className="mt-6 flex items-center justify-between border-t border-[#EAE5DC]/80 pt-4">
+                {/* Fila Inferior de Precio y Botón Táctil */}
+                <div className="mt-6 flex items-center justify-between border-t border-[#EAE5DC] pt-4">
                   <div>
-                    <span className="font-sans text-[11px] font-semibold uppercase tracking-wider text-[#78716C] block">
+                    <span className="font-sans text-[11px] font-bold uppercase tracking-wider text-[#78716C] block">
                       Precio
                     </span>
-                    <span className="font-sans text-xl font-black text-[#1C1917]">
+                    <span className="font-sans text-2xl font-black text-[#1C1917]">
                       ${item.price.toFixed(2)}
                     </span>
                   </div>
 
-                  {/* Botón Circular Grande con Animación de Feedback */}
+                  {/* Botón Circular Táctil Grande con Feedback de Éxito en Verde Lima */}
                   <button
                     type="button"
                     onClick={() => handleQuickAdd(item)}
@@ -327,14 +327,14 @@ export function CravStyleMenuGrid({
                     title="Añadir al pedido"
                     className={`relative flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300 focus:outline-none active:scale-90 ${
                       isAdded
-                        ? "bg-[#4D7C0F] text-white border-[#4D7C0F] scale-110 shadow-lg"
-                        : "bg-[#FAF8F5] text-[#1C1917] border-[#EAE5DC] hover:bg-[#D95327] hover:text-white hover:border-[#D95327] hover:shadow-md"
+                        ? "bg-[#4D7C0F] text-white border-[#4D7C0F] scale-110 shadow-lg shadow-[#4D7C0F]/40"
+                        : "bg-[#FAF8F5] text-[#1C1917] border-[#EAE5DC] hover:bg-[#D95327] hover:text-white hover:border-[#D95327] hover:shadow-md hover:shadow-[#D95327]/30"
                     }`}
                   >
                     {isAdded ? (
-                      <Check className="h-5 w-5 stroke-[3] animate-bounce" />
+                      <Check className="h-6 w-6 stroke-[3] animate-bounce" />
                     ) : (
-                      <Plus className="h-5 w-5 stroke-[3]" />
+                      <Plus className="h-6 w-6 stroke-[3]" />
                     )}
                   </button>
                 </div>
@@ -343,19 +343,25 @@ export function CravStyleMenuGrid({
           })}
         </div>
 
-        {/* Footer info */}
-        <div className="mt-12 text-center">
-          <p className="font-sans text-xs sm:text-sm text-[#78716C]">
-            ¿Tienes alguna consulta de ingredientes o alérgenos?{" "}
+        {/* Banner inferior con gradiente de marca */}
+        <div className="mt-14 rounded-3xl bg-gradient-to-r from-[#FBECE7] via-white to-[#F0F6E8] p-6 sm:p-8 border border-[#EAE5DC] text-center shadow-xs">
+          <p className="font-serif text-lg font-bold text-[#1C1917]">
+            ¿Tienes alguna consulta de ingredientes o quieres armar un pedido personalizado?
+          </p>
+          <p className="mt-1 font-sans text-sm text-[#78716C]">
+            Nuestro equipo en Little Havana y Brickell atiende tus dudas al momento.
+          </p>
+          <div className="mt-4">
             <a
               href="https://wa.me/13055550123"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-[#D95327] hover:underline"
+              className="inline-flex items-center gap-2 rounded-full bg-[#4D7C0F] px-6 py-3 font-sans text-sm font-bold text-white shadow-md shadow-[#4D7C0F]/25 hover:bg-[#3F660C] transition-colors"
             >
-              Chatea con nuestro equipo por WhatsApp.
+              <span>Preguntar por WhatsApp</span>
+              <span>➔</span>
             </a>
-          </p>
+          </div>
         </div>
 
       </div>

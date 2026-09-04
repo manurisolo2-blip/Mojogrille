@@ -1,14 +1,22 @@
-import { useState, useEffect } from "react";
-import { ShoppingBag } from "lucide-react";
-import { currency } from "@/data/menu";
-import { useCart } from "./cart";
-import { whatsappHref } from "./whatsapp";
+'use client';
 
-export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
-  const { count, total, lines, location } = useCart();
+import React, { useState, useEffect } from "react";
+
+export interface FloatingCravBarProps {
+  itemCount?: number;
+  total?: number;
+  onOrderClick?: () => void;
+  whatsappNumber?: string;
+}
+
+export function FloatingCravBar({
+  itemCount = 1,
+  total = 15.5,
+  onOrderClick,
+  whatsappNumber = "+13055550123",
+}: FloatingCravBarProps) {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Aparece al hacer scroll más allá del Hero (~240px)
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY || document.documentElement.scrollTop;
@@ -21,7 +29,16 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const whatsappUrl = whatsappHref(location, lines, total);
+  const handleOrder = () => {
+    if (onOrderClick) {
+      onOrderClick();
+    } else {
+      window.open(
+        `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}?text=Hola%20Mojo%20Grille,%20quiero%20hacer%20un%20pedido%20al%20momento!`,
+        "_blank"
+      );
+    }
+  };
 
   return (
     <div
@@ -32,49 +49,39 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
       }`}
     >
       <div className="flex items-center justify-between gap-3 rounded-2xl bg-[#1C1917] p-3 pl-4 text-white shadow-[0_16px_36px_rgba(0,0,0,0.45)] border border-[#292524] backdrop-blur-lg">
-        {/* Lado Izquierdo: Contador y Total Acumulado */}
-        <div
-          className="flex items-center gap-3 cursor-pointer select-none"
-          onClick={onOpenCart}
-          role="button"
-          tabIndex={0}
-          aria-label="Abrir carrito"
-        >
-          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-stone-800/90 border border-stone-700">
-            <ShoppingBag className="h-5 w-5 text-[#FAF8F5]" />
-            {/* Badge Verde Lima (#4D7C0F) */}
+        {/* Lado Izquierdo: Contador y Total */}
+        <div className="flex items-center gap-3">
+          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-stone-800 border border-stone-700">
+            <span className="text-base">🛍️</span>
             <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[#4D7C0F] px-1 font-sans text-[11px] font-black text-white shadow-xs">
-              {count}
+              {itemCount}
             </span>
           </div>
 
           <div className="flex flex-col text-left">
             <span className="font-sans text-[10px] font-semibold uppercase tracking-wider text-[#FAF8F5]/70">
-              {count > 0 ? `${count} plato${count > 1 ? "s" : ""}` : "Tu Pedido"}
+              Total Estimado
             </span>
             <span className="font-sans text-base font-black tracking-tight text-white">
-              {count > 0 ? currency(total) : "$0.00"}
+              ${total.toFixed(2)}
             </span>
           </div>
         </div>
 
-        {/* Lado Derecho: Botón Terracota (#D95327) con pulsación elástica */}
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Hacer Pedido por WhatsApp"
+        {/* Lado Derecho: Botón Terracota */}
+        <button
+          type="button"
+          onClick={handleOrder}
           className="group flex items-center justify-center gap-2 rounded-xl bg-[#D95327] px-5 py-3 font-sans text-sm font-bold text-white shadow-md shadow-[#D95327]/30 transition-transform duration-150 hover:bg-[#B83E16] active:scale-95 focus:outline-none"
         >
           <span>Hacer Pedido</span>
           <span className="font-bold text-base transition-transform group-hover:translate-x-1">
             ➔
           </span>
-        </a>
+        </button>
       </div>
     </div>
   );
 }
 
-export { FloatingCravBar } from "./FloatingCravBar";
-export default MobileActionBar;
+export default FloatingCravBar;
