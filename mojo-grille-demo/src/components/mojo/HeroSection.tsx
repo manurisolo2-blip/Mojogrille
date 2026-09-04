@@ -66,8 +66,13 @@ export function HeroSection({
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           
           {/* Encabezado Monumental Centrado */}
-          <div className="flex flex-col items-center text-center space-y-4 max-w-5xl mx-auto">
+          <div className="flex flex-col items-center text-center space-y-3 max-w-5xl mx-auto">
             
+            {/* Metadato Crudo del Sistema */}
+            <div className={`font-mono text-[11px] uppercase tracking-widest text-charcoal-ink/70 select-none ${animItemClass}`}>
+              [SYS: ONLINE // 25.7617° N, 80.1918° W // MIAMI-DADE]
+            </div>
+
             {/* Ficha de Metadato Flotante Superior (Ticket de Comanda) */}
             <div className={`inline-flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-surface-sand px-3.5 py-1 ${animItemClass}`}>
               <span className="h-1.5 w-1.5 rounded-none bg-brand-fire" aria-hidden="true" />

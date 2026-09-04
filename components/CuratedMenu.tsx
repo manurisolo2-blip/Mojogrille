@@ -113,6 +113,11 @@ export function CuratedMenu() {
       className="relative bg-cream-bg py-16 sm:py-24 border-b border-charcoal-ink/20 select-none overflow-hidden"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16 text-center">
+        {/* Metadato Técnico de Catálogo */}
+        <div className="font-mono text-[11px] uppercase tracking-widest text-charcoal-ink/70 mb-2">
+          CATALOG_REV. 2026 // BATCH NO. 14
+        </div>
+
         {/* Badge Superior Tipo Sello Editorial */}
         <div className="inline-flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-surface-sand px-3.5 py-1 text-[11px] font-sans font-bold uppercase tracking-widest text-charcoal-ink mb-4">
           <span className="h-1.5 w-1.5 rounded-none bg-brand-fire" aria-hidden="true" />
@@ -131,7 +136,7 @@ export function CuratedMenu() {
       {/* Retícula de Periódico Impreso (Shared 1px Grid) */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-charcoal-ink/20 bg-cream-bg">
-          {CURATED_ITEMS.map((item) => (
+          {CURATED_ITEMS.map((item, index) => (
             <article
               key={item.id}
               className="group relative flex flex-col justify-between rounded-none bg-surface-sand/40 hover:bg-surface-sand border-r border-b border-charcoal-ink/20 transition-colors duration-200"
@@ -163,6 +168,11 @@ export function CuratedMenu() {
               {/* Cuerpo de la Ficha */}
               <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
                 <div>
+                  {/* Código de Comanda Monospace */}
+                  <div className="font-mono text-[11px] uppercase tracking-widest text-charcoal-ink/70 mb-2 border-b border-charcoal-ink/10 pb-1.5">
+                    ORD_ID: #{String(index + 1).padStart(3, '0')} // TEMP: 450°F // TIME: {item.cookTime}
+                  </div>
+
                   {/* Fila de Badges Técnicos Rectangulares */}
                   <div className="flex flex-wrap items-center gap-2 mb-3">
                     <span className="inline-flex items-center rounded-none bg-cream-bg text-charcoal-ink text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 border border-charcoal-ink/20">

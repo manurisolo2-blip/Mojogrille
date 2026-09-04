@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Bebas_Neue, Plus_Jakarta_Sans, Instrument_Serif } from 'next/font/google';
+import { Bebas_Neue, Plus_Jakarta_Sans, Instrument_Serif, Space_Mono } from 'next/font/google';
 import './globals.css';
 import { SmoothScroll } from '../components/SmoothScroll';
 import { NoiseOverlay } from '../components/NoiseOverlay';
@@ -23,6 +23,12 @@ const accentFont = Instrument_Serif({
   variable: '--font-accent',
 });
 
+const monoFont = Space_Mono({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-mono',
+});
+
 export const metadata: Metadata = {
   title: 'Mojo Grille | Authentic Cuban Kitchen & Bowls in Miami',
   description:
@@ -33,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="es"
-      className={`${displayFont.variable} ${bodyFont.variable} ${accentFont.variable}`}
+      className={`${displayFont.variable} ${bodyFont.variable} ${accentFont.variable} ${monoFont.variable}`}
     >
       <body className="bg-cream-bg text-charcoal-ink font-sans antialiased selection:bg-brand-fire selection:text-cream-bg min-h-screen">
         <NoiseOverlay />

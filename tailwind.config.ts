@@ -36,6 +36,7 @@ const config: Config = {
         sans: ['var(--font-sans)', 'Plus Jakarta Sans', 'Inter', 'sans-serif'],
         accent: ['var(--font-accent)', 'Instrument Serif', 'Playfair Display', 'serif'],
         serif: ['var(--font-accent)', 'Instrument Serif', 'Playfair Display', 'serif'],
+        mono: ['var(--font-mono)', 'monospace'],
       },
       boxShadow: {
         subtle: '0 2px 10px rgba(20, 18, 16, 0.04)',
