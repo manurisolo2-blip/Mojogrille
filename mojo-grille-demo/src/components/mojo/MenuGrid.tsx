@@ -35,7 +35,7 @@ export function MenuGrid({
             type="button"
             onClick={() => onSelect(item)}
             className="relative block text-left"
-            aria-label={`Ver ${item.name}`}
+            aria-label={`View details for ${item.name}`}
           >
             <img
               src={item.image}
@@ -62,7 +62,7 @@ export function MenuGrid({
                 className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary px-4 py-2.5 text-sm font-bold text-primary-foreground transition-colors hover:bg-primary-hover"
               >
                 <Plus className="h-4 w-4" />
-                Añadir
+                Add
               </button>
             </div>
           </div>

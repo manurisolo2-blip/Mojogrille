@@ -6,16 +6,17 @@ const PHONE = "13055550123"; // demo
 export function whatsappHref(lines: CartLine[], total: number) {
   const body =
     lines.length === 0
-      ? "Hola Mojo Grille! Quiero hacer un pedido."
+      ? "Hello Mojo Grille! I'd like to place an order."
       : [
-          "Hola Mojo Grille! Quiero pedir:",
+          "Hello Mojo Grille! I'd like to order:",
           ...lines.map(
             (l) =>
               `• ${l.qty}× ${l.name}${l.sides.length ? ` (${l.sides.join(", ")})` : ""} — ${currency(
                 l.price * l.qty,
               )}`,
           ),
-          `Total: ${currency(total)}`,
+          `Estimated Total: ${currency(total)}`,
+          "Muchas gracias!",
         ].join("\n");
 
   return `https://wa.me/${PHONE}?text=${encodeURIComponent(body)}`;

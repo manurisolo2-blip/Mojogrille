@@ -16,12 +16,12 @@ export type CategoryId =
 export type Category = { id: CategoryId; label: string };
 
 export const categories: Category[] = [
-  { id: "favoritos", label: "🔥 Favoritos" },
-  { id: "bowls", label: "🥗 Bowls" },
-  { id: "sandwiches", label: "🥪 Sándwiches Cubanos" },
+  { id: "favoritos", label: "🔥 Must-Tries / Favoritos" },
+  { id: "bowls", label: "🥗 Bowls Criollos" },
+  { id: "sandwiches", label: "🥪 Pressed Cubano Sandwiches" },
   { id: "sides", label: "🥟 Pa' Picar / Sides" },
-  { id: "bebidas", label: "🥤 Bebidas & Café" },
-  { id: "catering", label: "🎉 Catering" },
+  { id: "bebidas", label: "🥤 Cafecito & Drinks" },
+  { id: "catering", label: "🎉 Party Catering" },
 ];
 
 export type MenuItem = {
@@ -31,15 +31,15 @@ export type MenuItem = {
   price: number;
   image: string;
   category: CategoryId;
-  badge?: "Popular" | "Mojo Signature" | "Fresco del día";
+  badge?: "Popular" | "Mojo Signature" | "Fresco del día" | "Top Seller";
   sidesAllowed: boolean;
 };
 
 export const sideOptions = [
-  { id: "moro", name: "Arroz moro", price: 0 },
-  { id: "tostones", name: "Tostones crujientes", price: 1.5 },
-  { id: "yuca", name: "Yuca con mojo de ajo", price: 2 },
-  { id: "maduros", name: "Plátanos maduros", price: 1.75 },
+  { id: "moro", name: "Arroz Moro (Black beans & rice)", price: 0 },
+  { id: "tostones", name: "Crispy Tostones con Mojo", price: 1.5 },
+  { id: "yuca", name: "Yuca con Mojo de Ajo", price: 2 },
+  { id: "maduros", name: "Sweet Plátanos Maduros", price: 1.75 },
 ];
 
 export const menu: MenuItem[] = [
@@ -47,7 +47,7 @@ export const menu: MenuItem[] = [
     id: "ropa-vieja-bowl",
     name: "Ropa Vieja Bowl",
     description:
-      "Carne mechada deshebrada tras 24h de marinado en mojo cítrico, sobre arroz moro, con maduros caramelizados y cilantro fresco.",
+      "Tender shredded beef slow-cooked in rich criollo sofrito after 24h citrus mojo marinade, over savory arroz moro with sweet maduros & fresh cilantro.",
     price: 16.95,
     image: ropaVieja,
     category: "bowls",
@@ -58,7 +58,7 @@ export const menu: MenuItem[] = [
     id: "cubano-prensado",
     name: "El Cubano Prensado",
     description:
-      "Pan cubano prensado al momento, lechón asado, jamón dulce, suizo derretido, pepinillos y mostaza de la casa.",
+      "Authentic pressed Cuban sandwich with slow-roasted lechón, sweet smoked ham, melted Swiss cheese, tangy pickles & house mustard on crisp Cuban bread.",
     price: 14.95,
     image: cubano,
     category: "sandwiches",
@@ -67,20 +67,20 @@ export const menu: MenuItem[] = [
   },
   {
     id: "pollo-mojo-bowl",
-    name: "Pollo al Mojo Bowl",
+    name: "Chicken Fresco Bowl",
     description:
-      "Muslos de pollo asados al carbón con mojo de naranja agria, arroz blanco, frijoles negros, aguacate y cebolla encurtida.",
+      "Charbroiled chicken thighs infused with sour orange mojo, fluffy white rice, seasoned black beans, sliced ripe avocado & pickled red onions.",
     price: 15.5,
     image: polloBowl,
     category: "bowls",
-    badge: "Fresco del día",
+    badge: "Top Seller",
     sidesAllowed: true,
   },
   {
     id: "tostones-mojo",
     name: "Tostones con Mojo",
     description:
-      "Plátano verde doblemente frito, sal marina en escamas y salsa de ajo con lima recién exprimida.",
+      "Twice-fried golden green plantains seasoned with sea salt flakes, served with our zesty garlic-lime mojo dipping sauce.",
     price: 7.25,
     image: tostones,
     category: "sides",
@@ -91,7 +91,7 @@ export const menu: MenuItem[] = [
     id: "cafecito-pastelito",
     name: "Cafecito & Pastelito de Guayaba",
     description:
-      "Cortadito espumoso colado a la cubana y pastelito hojaldrado de guayaba, horneado cada mañana.",
+      "Authentic sweet Cuban espresso colada with golden foam, paired with a warm flaky puff pastry filled with cream cheese & sweet guava.",
     price: 5.95,
     image: cafecito,
     category: "bebidas",
@@ -99,9 +99,9 @@ export const menu: MenuItem[] = [
   },
   {
     id: "bandeja-familiar",
-    name: "Bandeja Criolla Familiar",
+    name: "Bandeja Criolla Familiar (Catering Feast)",
     description:
-      "Para 8–10 personas: lechón asado, arroz amarillo, frijoles negros, yuca con mojo y maduros. Catering listo para servir.",
+      "Feeds 8–10 people: Slow-roasted lechón asado, seasoned yellow rice, black beans, yuca con mojo & sweet maduros. Ready to serve con todo.",
     price: 129,
     image: catering,
     category: "catering",

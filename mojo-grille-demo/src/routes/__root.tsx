@@ -77,17 +77,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Mojo Grille | Cocina Cubana Artesanal en Miami" },
+      { title: "Mojo Grille | Authentic Cuban Kitchen & Bowls in Miami" },
       {
         name: "description",
         content:
-          "Bowls criollos, sándwiches cubanos prensados y catering en Miami. Marinados 24h en mojo cítrico.",
+          "Artisanal Cuban bowls, freshly pressed Cubano sandwiches, and party catering in Miami. Marinated 24h in citrus mojo. Fast takeout & delivery al momento.",
       },
       { name: "theme-color", content: "#D95327" },
-      { property: "og:title", content: "Mojo Grille | Cuban Kitchen Miami" },
+      { property: "og:title", content: "Mojo Grille | Authentic Cuban Kitchen Miami" },
       {
         property: "og:description",
-        content: "El auténtico sabor criollo de Miami, marinado a la perfección.",
+        content: "The authentic criollo flavor of Miami, marinated to perfection.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

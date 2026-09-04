@@ -11,17 +11,17 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
     <div className="fixed inset-0 z-50 flex justify-end">
       <button
         type="button"
-        aria-label="Cerrar carrito"
+        aria-label="Close cart"
         onClick={onClose}
         className="absolute inset-0 bg-foreground/50 backdrop-blur-sm"
       />
       <aside className="relative flex h-full w-full max-w-sm flex-col border-l border-border bg-card shadow-lift">
         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-border px-5 py-4">
-          <h2 className="truncate text-xl font-bold">Tu pedido</h2>
+          <h2 className="truncate text-xl font-bold">Your Order</h2>
           <button
             type="button"
             onClick={onClose}
-            aria-label="Cerrar"
+            aria-label="Close"
             className="grid h-9 w-9 shrink-0 place-items-center rounded-full hover:bg-muted"
           >
             <X className="h-5 w-5" />
@@ -33,7 +33,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
             <div className="mt-12 text-center">
               <ShoppingBag className="mx-auto h-8 w-8 text-muted-foreground" />
               <p className="mt-3 text-sm text-muted-foreground">
-                Tu carrito está vacío. Empieza por los favoritos.
+                Your cart is empty. Start with our signature favorites!
               </p>
             </div>
           ) : (
@@ -59,7 +59,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
                   <button
                     type="button"
                     onClick={() => remove(line.key)}
-                    aria-label={`Quitar ${line.name}`}
+                    aria-label={`Remove ${line.name}`}
                     className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-border hover:bg-muted"
                   >
                     <Minus className="h-4 w-4" />
@@ -72,7 +72,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
 
         <div className="border-t border-border px-5 py-4">
           <div className="flex items-center justify-between text-sm font-semibold">
-            <span>Total estimado</span>
+            <span>Estimated Total</span>
             <span>{currency(total)}</span>
           </div>
           <a
@@ -81,7 +81,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
             rel="noopener noreferrer"
             className="mt-3 block rounded-full bg-primary px-6 py-3.5 text-center text-base font-bold text-primary-foreground transition-colors hover:bg-primary-hover"
           >
-            Pedir por WhatsApp
+            Order via WhatsApp
           </a>
           {count > 0 && (
             <button
@@ -89,7 +89,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
               onClick={clear}
               className="mt-2 w-full py-2 text-xs font-semibold text-muted-foreground hover:text-foreground"
             >
-              Vaciar carrito
+              Clear Cart
             </button>
           )}
         </div>

@@ -38,7 +38,7 @@ export function QuickOrderModal({
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center">
       <button
         type="button"
-        aria-label="Cerrar"
+        aria-label="Close"
         onClick={onClose}
         className="absolute inset-0 bg-foreground/50 backdrop-blur-sm"
       />
@@ -55,7 +55,7 @@ export function QuickOrderModal({
           <button
             type="button"
             onClick={onClose}
-            aria-label="Cerrar"
+            aria-label="Close"
             className="absolute right-3 top-3 grid h-10 w-10 place-items-center rounded-full bg-card/90 text-foreground shadow-soft"
           >
             <X className="h-5 w-5" />
@@ -71,7 +71,7 @@ export function QuickOrderModal({
           {item.sidesAllowed ? (
             <>
               <p className="mt-6 text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
-                Elige tus guarniciones
+                Choose Your Sides (Guarniciones)
               </p>
               <ul className="mt-3 space-y-2">
                 {sideOptions.map((side) => {
@@ -102,7 +102,7 @@ export function QuickOrderModal({
                           {side.name}
                         </span>
                         <span className="shrink-0 text-sm text-muted-foreground">
-                          {side.price === 0 ? "Incluido" : `+${currency(side.price)}`}
+                          {side.price === 0 ? "Included" : `+${currency(side.price)}`}
                         </span>
                       </button>
                     </li>
@@ -112,7 +112,7 @@ export function QuickOrderModal({
             </>
           ) : (
             <p className="mt-6 rounded-xl bg-citrus-soft px-4 py-3 text-sm font-medium text-citrus">
-              Preparado al momento con ingredientes frescos del día.
+              Freshly prepared al momento with authentic Miami ingredients.
             </p>
           )}
 
@@ -129,7 +129,7 @@ export function QuickOrderModal({
             }}
             className="mt-6 grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-2 rounded-full bg-primary px-6 py-4 text-base font-bold text-primary-foreground transition-colors hover:bg-primary-hover"
           >
-            <span className="truncate text-left">Agregar al pedido</span>
+            <span className="truncate text-left">Add to Order</span>
             <span className="shrink-0">{currency(total)}</span>
           </button>
         </div>

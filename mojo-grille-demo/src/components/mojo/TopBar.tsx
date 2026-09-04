@@ -12,7 +12,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
   return (
     <header className="sticky top-0 z-40">
       <div className="bg-foreground px-4 py-2 text-center text-[11px] font-medium tracking-wide text-background sm:text-xs">
-        📍 Miami, FL • Abierto hoy hasta las 10:00 PM • Entregas y Takeout
+        📍 Miami, FL • Open today until 10:00 PM • Fast Takeout &amp; Delivery Caliente
       </div>
 
       <div className="border-b border-border bg-card/90 backdrop-blur-md">
@@ -65,7 +65,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
             <button
               type="button"
               onClick={onOpenCart}
-              aria-label="Ver carrito"
+              aria-label="View shopping bag"
               className="relative grid h-11 w-11 place-items-center rounded-full bg-primary text-primary-foreground shadow-soft transition-colors hover:bg-primary-hover"
             >
               <ShoppingBag className="h-5 w-5" />

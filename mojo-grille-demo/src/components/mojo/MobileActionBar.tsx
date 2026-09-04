@@ -12,7 +12,7 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
         <button
           type="button"
           onClick={onOpenCart}
-          aria-label="Ver carrito"
+          aria-label="View shopping bag"
           className="relative grid h-12 w-12 shrink-0 place-items-center rounded-full border border-border bg-background"
         >
           <ShoppingBag className="h-5 w-5" />
@@ -31,10 +31,10 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
         >
           <MessageCircle className="h-5 w-5 shrink-0" />
           <span className="min-w-0 truncate text-sm font-bold">
-            {count > 0 ? `Pedir ${count} ítem${count > 1 ? "s" : ""}` : "Pedir por WhatsApp"}
+            {count > 0 ? `Order ${count} item${count > 1 ? "s" : ""}` : "Order on WhatsApp"}
           </span>
           <span className="shrink-0 text-sm font-bold">
-            {count > 0 ? currency(total) : "En línea"}
+            {count > 0 ? currency(total) : "Online"}
           </span>
         </a>
       </div>
