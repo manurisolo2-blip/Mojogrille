@@ -30,7 +30,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
   return (
     <header className="sticky top-0 z-40 border-b border-charcoal-ink/10 bg-cream-bg/95 backdrop-blur-md">
       <div className="bg-cream-bg/95">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+        <nav className="mx-auto flex max-w-[1600px] w-full items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
           <a href="#top" className="flex min-w-0 items-center gap-2.5">
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-fire font-display text-2xl font-bold text-cream-bg shadow-sm">
               M

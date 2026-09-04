@@ -37,7 +37,7 @@ export function HeroSection({
 
       {/* 2. Bloque Principal Hero */}
       <div className="relative pt-10 pb-16 sm:pt-16 sm:pb-24">
-        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
           
           {/* Ficha de Metadato Flotante Superior (Ticket de Comanda) */}
           <div className="flex flex-col items-center text-center space-y-3 max-w-5xl mx-auto">
@@ -73,7 +73,7 @@ export function HeroSection({
           </div>
 
           {/* Elemento Fotográfico Central con Placas Editoriales */}
-          <div className="relative mx-auto mt-10 w-full max-w-2xl">
+          <div className="relative mx-auto mt-10 w-full max-w-4xl">
             
             {/* Contenedor Fotográfico con Marco Rígido Editorial */}
             <div className="group relative overflow-hidden rounded-none border-2 border-charcoal-ink bg-surface-sand">

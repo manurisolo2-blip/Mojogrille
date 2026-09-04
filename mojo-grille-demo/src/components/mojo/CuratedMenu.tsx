@@ -111,7 +111,7 @@ export function CuratedMenu() {
       aria-label="Selección de la plancha - Platos estelares de Mojo Grille"
       className="relative bg-cream-bg py-16 sm:py-24 border-b border-charcoal-ink/20 select-none overflow-hidden"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16 text-center">
+      <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16 text-center">
         {/* Metadato Técnico de Catálogo */}
         <div className="font-mono text-[11px] uppercase tracking-widest text-charcoal-ink/70 mb-2">
           CATALOG_REV. 2026 // BATCH NO. 14
@@ -133,7 +133,7 @@ export function CuratedMenu() {
       </div>
 
       {/* Retícula de Periódico Impreso (Shared 1px Grid) */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-charcoal-ink/20 bg-cream-bg">
           {CURATED_ITEMS.map((item, index) => (
             <article

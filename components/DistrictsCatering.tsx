@@ -133,9 +133,9 @@ export function DistrictsCatering() {
     <section
       id="districts-catering"
       aria-label="Packaging Térmico de Autor y Catering para Distritos de Miami"
-      className="relative bg-charcoal-ink text-cream-bg py-24 px-4 sm:px-6 lg:px-8 select-none overflow-hidden border-t border-charcoal-ink/30"
+      className="relative bg-charcoal-ink text-cream-bg py-24 select-none overflow-hidden border-t border-charcoal-ink/30"
     >
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
         {/* Encabezado Editorial */}
         <div className="text-center max-w-4xl mx-auto mb-16 sm:mb-20">
           <span className="block text-brand-fire font-bold uppercase tracking-widest text-xs sm:text-sm mb-3">

@@ -271,7 +271,7 @@ export function CubanDeconstruction() {
         </div>
 
         {/* Contenedor central y tarjeta lateral/inferior con layout adaptable */}
-        <div className="relative w-full max-w-6xl flex flex-col lg:flex-row items-center justify-center gap-4 sm:gap-6 lg:gap-14 pt-12 sm:pt-16 lg:pt-0">
+        <div className="relative w-full max-w-[1600px] px-4 sm:px-8 flex flex-col lg:flex-row items-center justify-center gap-4 sm:gap-6 lg:gap-14 pt-12 sm:pt-16 lg:pt-0">
           
           {/* Contenedor central de capas apiladas con perspectiva CSS y overflow visible */}
           <div
