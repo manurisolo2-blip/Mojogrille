@@ -13,12 +13,29 @@ export function CubanDeconstruction() {
   const bottomBreadRef = useRef<HTMLDivElement>(null);
   const sideCardRef = useRef<HTMLDivElement>(null);
 
+  const loadedImagesCountRef = useRef(0);
+  const TOTAL_LAYERS = 5;
+
+  const handleLayerImageLoad = () => {
+    loadedImagesCountRef.current += 1;
+    if (loadedImagesCountRef.current >= TOTAL_LAYERS) {
+      ScrollTrigger.refresh();
+    }
+  };
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
+      // Configurar inclinación inicial 3D en las tapas de los panes
+      gsap.set([topBreadRef.current, bottomBreadRef.current], {
+        rotateX: 20,
+        transformPerspective: 1000,
+        transformStyle: "preserve-3d",
+      });
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -29,12 +46,13 @@ export function CubanDeconstruction() {
         },
       });
 
-      // 1. Deconstrucción vertical de capas con rotaciones y escalas
+      // 1. Deconstrucción vertical de capas con perspectiva tridimensional
       tl.to(
         topBreadRef.current,
         {
           y: -220,
           rotate: -3,
+          rotateX: 20,
           ease: "power1.out",
         },
         0
@@ -71,6 +89,7 @@ export function CubanDeconstruction() {
           {
             y: 190,
             rotate: 1,
+            rotateX: 20,
             ease: "power1.out",
           },
           0
@@ -91,7 +110,21 @@ export function CubanDeconstruction() {
         );
     }, containerRef);
 
-    return () => ctx.revert();
+    const handleWindowLoad = () => {
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener("load", handleWindowLoad);
+
+    // Refresh tras montaje en caso de imágenes ya cacheadas en memoria
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 250);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("load", handleWindowLoad);
+      ctx.revert();
+    };
   }, []);
 
   return (
@@ -121,13 +154,17 @@ export function CubanDeconstruction() {
         {/* Contenedor central y tarjeta lateral en grid flexible */}
         <div className="relative w-full max-w-6xl flex flex-col md:flex-row items-center justify-center gap-8 lg:gap-16 pt-8 md:pt-0">
           
-          {/* Contenedor central cuadrado de capas apiladas */}
-          <div className="relative w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] md:w-[500px] md:h-[500px] flex items-center justify-center">
+          {/* Contenedor central cuadrado de capas apiladas con perspectiva CSS */}
+          <div
+            className="relative w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] md:w-[500px] md:h-[500px] flex items-center justify-center [perspective:1000px] [transform-style:preserve-3d]"
+            style={{ perspective: "1000px" }}
+          >
             
-            {/* Capa 1: Tapa superior de pan cubano */}
+            {/* Capa 1: Tapa superior de pan cubano (rotateX 20deg) */}
             <div
               ref={topBreadRef}
               className="absolute inset-0 flex items-center justify-center will-change-transform z-50 pointer-events-none"
+              style={{ willChange: "transform", transform: "rotateX(20deg)", transformStyle: "preserve-3d" }}
             >
               <img
                 src="/sandwich/01-top-bread.webp"
@@ -135,6 +172,7 @@ export function CubanDeconstruction() {
                 width={1000}
                 height={545}
                 loading="eager"
+                onLoad={handleLayerImageLoad}
                 className="w-full h-auto object-contain drop-shadow-[0_25px_25px_rgba(20,18,16,0.25)] select-none"
               />
             </div>
@@ -143,6 +181,7 @@ export function CubanDeconstruction() {
             <div
               ref={picklesRef}
               className="absolute inset-0 flex items-center justify-center will-change-transform z-40 pointer-events-none"
+              style={{ willChange: "transform", transformStyle: "preserve-3d" }}
             >
               <img
                 src="/sandwich/02-pickles.webp"
@@ -150,6 +189,7 @@ export function CubanDeconstruction() {
                 width={1000}
                 height={545}
                 loading="eager"
+                onLoad={handleLayerImageLoad}
                 className="w-full h-auto object-contain drop-shadow-[0_25px_25px_rgba(20,18,16,0.25)] select-none"
               />
             </div>
@@ -158,6 +198,7 @@ export function CubanDeconstruction() {
             <div
               ref={cheeseRef}
               className="absolute inset-0 flex items-center justify-center will-change-transform z-30 pointer-events-none"
+              style={{ willChange: "transform", transformStyle: "preserve-3d" }}
             >
               <img
                 src="/sandwich/03-melted-cheese.webp"
@@ -165,6 +206,7 @@ export function CubanDeconstruction() {
                 width={1000}
                 height={545}
                 loading="eager"
+                onLoad={handleLayerImageLoad}
                 className="w-full h-auto object-contain drop-shadow-[0_25px_25px_rgba(20,18,16,0.25)] select-none"
               />
             </div>
@@ -173,6 +215,7 @@ export function CubanDeconstruction() {
             <div
               ref={mojoPorkRef}
               className="absolute inset-0 flex items-center justify-center will-change-transform z-20 pointer-events-none"
+              style={{ willChange: "transform", transformStyle: "preserve-3d" }}
             >
               <img
                 src="/sandwich/04-mojo-pork.webp"
@@ -180,14 +223,16 @@ export function CubanDeconstruction() {
                 width={1000}
                 height={545}
                 loading="eager"
+                onLoad={handleLayerImageLoad}
                 className="w-full h-auto object-contain drop-shadow-[0_25px_25px_rgba(20,18,16,0.25)] select-none"
               />
             </div>
 
-            {/* Capa 5: Tapa inferior de pan cubano prensado */}
+            {/* Capa 5: Tapa inferior de pan cubano prensado (rotateX 20deg) */}
             <div
               ref={bottomBreadRef}
               className="absolute inset-0 flex items-center justify-center will-change-transform z-10 pointer-events-none"
+              style={{ willChange: "transform", transform: "rotateX(20deg)", transformStyle: "preserve-3d" }}
             >
               <img
                 src="/sandwich/05-bottom-bread.webp"
@@ -195,6 +240,7 @@ export function CubanDeconstruction() {
                 width={1000}
                 height={545}
                 loading="eager"
+                onLoad={handleLayerImageLoad}
                 className="w-full h-auto object-contain drop-shadow-[0_25px_25px_rgba(20,18,16,0.25)] select-none"
               />
             </div>
