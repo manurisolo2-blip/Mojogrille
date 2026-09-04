@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCartStore } from '../../store/useCartStore';
 
 export type CategoryId = 'favorites' | 'bowls' | 'sandwiches' | 'sides' | 'drinks';
 
@@ -165,6 +166,12 @@ export function CravStyleMenuGrid() {
       ...prev,
       [item.id]: (prev[item.id] || 0) + 1,
     }));
+    useCartStore.getState().addItem({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      image: item.imageUrl,
+    });
   };
 
   // Renderizado del badge con estilos semánticos oficiales

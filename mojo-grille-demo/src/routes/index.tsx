@@ -9,6 +9,7 @@ import { MenuGrid } from "@/components/mojo/MenuGrid";
 import { CravStyleMenuGrid } from "@/components/mojo/CravStyleMenuGrid";
 import { QuickOrderModal } from "@/components/mojo/QuickOrderModal";
 import { CartSheet } from "@/components/mojo/CartSheet";
+import { CartDrawer } from "@/components/mojo/CartDrawer";
 import { MobileActionBar } from "@/components/mojo/MobileActionBar";
 import { Preloader } from "@/components/mojo/Preloader";
 import { CubanDeconstruction } from "@/components/mojo/CubanDeconstruction";
@@ -166,6 +167,7 @@ function Index() {
 
         <QuickOrderModal item={selected} onClose={() => setSelected(null)} />
         <CartSheet open={cartOpen} onClose={() => setCartOpen(false)} />
+        <CartDrawer />
         <MobileActionBar onOpenCart={() => setCartOpen(true)} />
       </div>
     </CartProvider>

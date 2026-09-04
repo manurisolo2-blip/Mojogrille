@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from "react";
+import { useCartStore } from "../../store/useCartStore";
 
 export interface FloatingCravBarProps {
   itemCount?: number;
@@ -10,12 +11,19 @@ export interface FloatingCravBarProps {
 }
 
 export function FloatingCravBar({
-  itemCount = 1,
-  total = 15.5,
+  itemCount: propItemCount,
+  total: propTotal,
   onOrderClick,
   whatsappNumber = "+13055550123",
 }: FloatingCravBarProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const { getItemCount, getSubtotal, openCart } = useCartStore();
+
+  const storeCount = getItemCount();
+  const storeTotal = getSubtotal();
+
+  const effectiveCount = propItemCount !== undefined ? propItemCount : (storeCount > 0 ? storeCount : 1);
+  const effectiveTotal = propTotal !== undefined ? propTotal : (storeTotal > 0 ? storeTotal : 15.5);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,10 +41,7 @@ export function FloatingCravBar({
     if (onOrderClick) {
       onOrderClick();
     } else {
-      window.open(
-        `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}?text=Hola%20Mojo%20Grille,%20quiero%20hacer%20un%20pedido%20al%20momento!`,
-        "_blank"
-      );
+      openCart();
     }
   };
 
@@ -54,7 +59,7 @@ export function FloatingCravBar({
           <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-charcoal-ink/90 border border-charcoal-ink/60">
             <span className="text-base">🛍️</span>
             <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-leaf-green px-1 font-sans text-[11px] font-black text-cream-bg shadow-xs">
-              {itemCount}
+              {effectiveCount}
             </span>
           </div>
 
@@ -63,7 +68,7 @@ export function FloatingCravBar({
               Total Estimado
             </span>
             <span className="font-sans text-base font-black tracking-tight text-cream-bg">
-              ${total.toFixed(2)}
+              ${effectiveTotal.toFixed(2)}
             </span>
           </div>
         </div>

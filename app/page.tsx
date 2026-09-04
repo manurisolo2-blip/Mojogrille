@@ -5,6 +5,7 @@ import { TopMarquee, Navbar, HeroSection } from '../components/hero';
 import { CubanDeconstruction } from '../components/CubanDeconstruction';
 import { CravStyleMenuGrid, FloatingCravBar } from '../components/menu';
 import { Preloader } from '../components/preloader';
+import { CartDrawer } from '../components/CartDrawer';
 
 export default function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -33,6 +34,9 @@ export default function HomePage() {
 
       {/* 5. Barra flotante mobile */}
       <FloatingCravBar />
+
+      {/* 6. Panel lateral transaccional nativo (CartDrawer) */}
+      <CartDrawer />
     </main>
   );
 }

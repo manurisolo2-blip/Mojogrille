@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Plus, Check, Sparkles } from "lucide-react";
 import { useCart } from "./cart";
+import { useCartStore } from "@/store/useCartStore";
 import { type MenuItem } from "@/data/menu";
 
 import chickenImg from "@/assets/mojo-pollo-bowl.jpg";
@@ -181,6 +182,12 @@ export function CravStyleMenuGrid({
         name: item.name,
         price: item.price,
         sides: [],
+      });
+      useCartStore.getState().addItem({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        image: item.imageUrl,
       });
     }
   };
