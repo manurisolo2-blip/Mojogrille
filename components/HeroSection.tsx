@@ -41,18 +41,10 @@ export function HeroSection({
           
           {/* Ficha de Metadato Flotante Superior (Ticket de Comanda) */}
           <div className="flex flex-col items-center text-center space-y-3 max-w-5xl mx-auto">
-            {/* Metadato Crudo del Sistema */}
-            <div className="font-mono text-[11px] uppercase tracking-widest text-charcoal-ink/70 select-none">
-              [SYS: ONLINE // 25.7617° N, 80.1918° W // MIAMI-DADE]
-            </div>
-
             {/* Eyebrow de Comanda y Filosofía */}
-            <div className="inline-flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-surface-sand px-3.5 py-1">
-              <span className="h-1.5 w-1.5 rounded-none bg-brand-fire" aria-hidden="true" />
-              <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-widest text-charcoal-ink">
-                [ 100% MARINADO CRIOLLO // SIN ATAJOS ]
-              </span>
-            </div>
+            <p className="font-mono text-xs sm:text-sm font-bold uppercase tracking-widest text-brand-fire select-none">
+              [ 100% MARINADO CRIOLLO // SIN ATAJOS ]
+            </p>
 
             {/* Titular Central Impactante: HIERRO CALIENTE. AJO TRITURADO. PERNIL ASADO. */}
             <h1 className="font-display text-5xl sm:text-7xl lg:text-[7.5vw] font-black uppercase tracking-tight text-charcoal-ink leading-[0.88] text-center max-w-5xl">
