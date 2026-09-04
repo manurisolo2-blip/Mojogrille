@@ -172,19 +172,19 @@ export function CravStyleMenuGrid() {
     switch (type) {
       case 'signature':
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-[#D95327] px-3 py-1 font-sans text-[11px] font-bold tracking-wide text-white shadow-xs">
+          <span className="inline-flex items-center gap-1 rounded-full bg-brand-fire px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-widest text-cream-bg shadow-sm">
             <span>★</span> {text}
           </span>
         );
       case 'fresh':
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-[#4D7C0F] px-3 py-1 font-sans text-[11px] font-bold tracking-wide text-white shadow-xs">
+          <span className="inline-flex items-center gap-1 rounded-full bg-leaf-green px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-widest text-cream-bg shadow-sm">
             <span>🌿</span> {text}
           </span>
         );
       case 'top_seller':
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-[#F59E0B] px-3 py-1 font-sans text-[11px] font-bold tracking-wide text-[#1C1917] shadow-xs">
+          <span className="inline-flex items-center gap-1 rounded-full bg-mojo-citrus px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-widest text-charcoal-ink shadow-sm">
             <span>⭐</span> {text}
           </span>
         );
@@ -192,25 +192,28 @@ export function CravStyleMenuGrid() {
   };
 
   return (
-    <div className="w-full bg-[#FAF8F5] py-8 sm:py-12">
+    <div className="w-full bg-cream-bg py-10 sm:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado de Sección */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-          <span className="inline-block font-sans text-xs font-bold uppercase tracking-widest text-[#D95327] mb-2">
+          <span className="inline-block font-sans text-xs font-bold uppercase tracking-widest text-brand-fire mb-2">
             Catálogo Criollo Artesanal
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1917]">
-            Hecho a Fuego Lento, Servido Al Momento.
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-charcoal-ink">
+            Hecho a Fuego Lento, Servido <span className="text-brand-fire">Al Momento</span>.
           </h2>
-          <p className="mt-3 font-sans text-sm sm:text-base text-[#78716C]">
+          <p className="mt-2 font-accent italic text-2xl sm:text-3xl text-brand-fire lowercase tracking-normal">
+            sabores criollos cocinados con paciencia y sazón de casa.
+          </p>
+          <p className="mt-2 font-sans text-sm sm:text-base text-charcoal-ink/75 leading-relaxed">
             Elige tu plato favorito preparado con nuestra marinada tradicional de 24 horas y guarniciones caribeñas recién hechas.
           </p>
         </div>
 
         {/* 1. Pestañas de Categorías con deslizador animado estilo CRAV */}
         <div className="relative mb-10 sm:mb-12">
-          <div className="flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar gap-2 p-1.5 rounded-full bg-white/70 backdrop-blur-xs border border-[#EAE5DC] w-full max-w-4xl mx-auto shadow-xs">
+          <div className="flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar gap-2 p-1.5 rounded-full bg-surface-sand border border-charcoal-ink/10 w-full max-w-4xl mx-auto shadow-xs">
             {CATEGORIES.map((category) => {
               const isSelected = selectedCategory === category.id;
               return (
@@ -219,8 +222,8 @@ export function CravStyleMenuGrid() {
                   onClick={() => setSelectedCategory(category.id)}
                   className={`relative z-10 flex-shrink-0 rounded-full px-4 sm:px-6 py-2.5 font-sans text-xs sm:text-sm font-bold tracking-wide transition-colors duration-200 focus:outline-hidden ${
                     isSelected
-                      ? 'text-white'
-                      : 'text-[#1C1917] hover:text-[#D95327]'
+                      ? 'text-cream-bg'
+                      : 'text-charcoal-ink hover:text-brand-fire'
                   }`}
                   role="tab"
                   aria-selected={isSelected}
@@ -229,7 +232,7 @@ export function CravStyleMenuGrid() {
                   {isSelected && (
                     <motion.div
                       layoutId="activeCategoryTab"
-                      className="absolute inset-0 -z-10 rounded-full bg-[#D95327] shadow-md shadow-[#D95327]/30"
+                      className="absolute inset-0 -z-10 rounded-full bg-brand-fire shadow-md shadow-brand-fire/30"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -256,11 +259,11 @@ export function CravStyleMenuGrid() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.94 }}
                   transition={{ duration: 0.28, ease: 'easeOut' }}
-                  className="group relative flex flex-col justify-between rounded-3xl border border-[#EAE5DC] bg-white p-4 sm:p-5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#D95327]/30"
+                  className="group relative flex flex-col justify-between rounded-3xl border border-charcoal-ink/10 bg-surface-sand p-4 sm:p-5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-brand-fire/40"
                 >
                   <div>
                     {/* Contenedor de Fotografía con Zoom Suave en Hover */}
-                    <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl bg-[#FAF8F5]">
+                    <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl bg-cream-bg">
                       <img
                         src={item.imageUrl}
                         alt={item.name}
@@ -275,7 +278,7 @@ export function CravStyleMenuGrid() {
 
                       {/* Tiempo de preparación estimado en esquina superior derecha */}
                       {item.prepTime && (
-                        <div className="absolute top-3 right-3 z-10 rounded-lg bg-[#1C1917]/80 px-2 py-1 text-[10px] font-bold text-white backdrop-blur-xs">
+                        <div className="absolute top-3 right-3 z-10 rounded-lg bg-charcoal-ink/80 px-2 py-1 text-[10px] font-bold text-cream-bg backdrop-blur-xs">
                           ⏱ {item.prepTime}
                         </div>
                       )}
@@ -283,22 +286,22 @@ export function CravStyleMenuGrid() {
 
                     {/* Información del Plato */}
                     <div className="mt-4">
-                      <h3 className="font-serif text-xl font-bold tracking-tight text-[#1C1917] group-hover:text-[#D95327] transition-colors">
+                      <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors">
                         {item.name}
                       </h3>
-                      <p className="mt-2 font-sans text-xs sm:text-sm text-[#78716C] line-clamp-3 leading-relaxed">
+                      <p className="mt-2 font-sans text-xs sm:text-sm text-charcoal-ink/75 line-clamp-3 leading-relaxed">
                         {item.description}
                       </p>
                     </div>
                   </div>
 
                   {/* Fila Inferior: Precio y Botón Táctil de Adición Rápida */}
-                  <div className="mt-6 flex items-center justify-between border-t border-[#EAE5DC]/80 pt-4">
+                  <div className="mt-6 flex items-center justify-between border-t border-charcoal-ink/10 pt-4">
                     <div>
-                      <span className="font-sans text-xs text-[#78716C] block uppercase font-medium">
+                      <span className="font-sans text-[11px] font-bold uppercase tracking-wider text-charcoal-ink/60 block">
                         Precio
                       </span>
-                      <span className="font-sans text-xl font-black text-[#1C1917]">
+                      <span className="font-sans text-2xl font-black text-charcoal-ink">
                         ${item.price.toFixed(2)}
                       </span>
                     </div>
@@ -310,8 +313,8 @@ export function CravStyleMenuGrid() {
                       onClick={() => handleAddItem(item)}
                       className={`relative flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-200 focus:outline-hidden ${
                         count > 0
-                          ? 'bg-[#D95327] text-white border-[#D95327] shadow-md shadow-[#D95327]/30'
-                          : 'bg-[#FAF8F5] text-[#1C1917] border-[#EAE5DC] hover:bg-[#D95327] hover:text-white hover:border-[#D95327]'
+                          ? 'bg-leaf-green text-cream-bg border-leaf-green shadow-md shadow-leaf-green/30'
+                          : 'bg-brand-fire text-cream-bg border-brand-fire hover:bg-brand-fire/90 shadow-md shadow-brand-fire/25'
                       }`}
                       aria-label={`Añadir ${item.name} al pedido`}
                       title="Añadir al pedido"
@@ -319,7 +322,7 @@ export function CravStyleMenuGrid() {
                       {count > 0 ? (
                         <span className="font-sans text-xs font-black">+{count}</span>
                       ) : (
-                        <span className="font-sans text-xl font-bold leading-none">+</span>
+                        <Plus className="h-5 w-5 stroke-[2.5]" />
                       )}
                     </motion.button>
                   </div>

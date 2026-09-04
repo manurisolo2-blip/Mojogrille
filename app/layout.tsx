@@ -1,20 +1,25 @@
 import type { Metadata } from 'next';
-import { Playfair_Display, Plus_Jakarta_Sans } from 'next/font/google';
+import { Bebas_Neue, Plus_Jakarta_Sans, Instrument_Serif } from 'next/font/google';
 import './globals.css';
 import { SmoothScroll } from '../components/scroll/SmoothScroll';
 
-const playfair = Playfair_Display({
+const displayFont = Bebas_Neue({
+  weight: '400',
   subsets: ['latin'],
-  variable: '--font-serif',
-  weight: ['600', '700'],
-  display: 'swap',
+  variable: '--font-display',
 });
 
-const sans = Plus_Jakarta_Sans({
+const bodyFont = Plus_Jakarta_Sans({
+  weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   variable: '--font-sans',
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
+});
+
+const accentFont = Instrument_Serif({
+  weight: '400',
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-accent',
 });
 
 export const metadata: Metadata = {
@@ -23,19 +28,14 @@ export const metadata: Metadata = {
     'Artisanal Cuban bowls, freshly pressed Cubano sandwiches, and party catering in Miami. Marinated 24h in citrus mojo. Fast takeout & delivery al momento.',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${sans.variable}`}>
-      <body
-        className={`${playfair.variable} ${sans.variable} font-sans antialiased bg-[#FAF8F5] text-[#1C1917] min-h-screen`}
-      >
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+    <html
+      lang="es"
+      className={`${displayFont.variable} ${bodyFont.variable} ${accentFont.variable}`}
+    >
+      <body className="bg-cream-bg text-charcoal-ink font-sans antialiased selection:bg-brand-fire selection:text-cream-bg min-h-screen">
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

@@ -3,17 +3,26 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-cream-bg: #F6F1E8;
+    --color-brand-fire: #E52516;
+    --color-charcoal-ink: #141210;
+    --color-surface-sand: #ECE4D5;
+    --color-mojo-citrus: #FFA826;
+    --color-leaf-green: #2F6A4F;
+  }
+
   body {
-    background-color: #FAF8F5;
-    color: #1C1917;
+    background-color: #F6F1E8;
+    color: #141210;
     font-family: var(--font-sans);
   }
 
   h1,
-  h2,
-  h3 {
-    font-family: var(--font-serif);
+  h2 {
+    font-family: var(--font-display);
     letter-spacing: -0.02em;
+    text-transform: uppercase;
   }
 }
 

@@ -81,72 +81,72 @@ function Index() {
 
           <section
             id="catering"
-            className="grain border-y border-[#EAE5DC] bg-[#F4EFEA] px-4 py-14 sm:px-6"
+            className="grain border-y border-charcoal-ink/10 bg-surface-sand px-4 py-14 sm:px-6"
           >
             <div className="mx-auto max-w-3xl text-center">
-              <div className="inline-flex items-center gap-1.5 rounded-full border border-[#4D7C0F]/30 bg-[#F0F6E8] px-3.5 py-1 text-xs font-semibold text-[#4D7C0F] mb-4">
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-leaf-green/30 bg-leaf-green/10 px-3.5 py-1 text-xs font-semibold text-leaf-green mb-4">
                 🎉 Sabor Criollo Para Tus Eventos
               </div>
-              <h2 className="font-serif text-2xl font-bold tracking-tight text-[#1C1917] sm:text-4xl">
+              <h2 className="font-display text-3xl font-bold tracking-tight uppercase text-charcoal-ink sm:text-5xl">
                 Authentic Criollo Catering for your next celebration
               </h2>
-              <p className="mx-auto mt-3 max-w-xl font-sans text-sm text-[#78716C] sm:text-base leading-relaxed">
+              <p className="mx-auto mt-3 max-w-xl font-sans text-sm text-charcoal-ink/70 sm:text-base leading-relaxed">
                 Family-style bandejas, live pressed Cubano stations, and hot cafecito for
                 corporate offices, weddings, and quinces. Booked with 48h notice.
               </p>
               <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <a
                   href="tel:+13055550123"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#D95327] px-7 py-4 font-sans text-base font-bold text-white shadow-[0_12px_24px_-6px_rgba(217,83,39,0.38)] transition-all duration-200 hover:bg-[#B83E16] hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand-fire px-7 py-4 font-sans text-base font-bold text-cream-bg shadow-[0_12px_24px_-6px_rgba(229,37,22,0.38)] transition-all duration-200 hover:bg-brand-fire/90 hover:-translate-y-0.5"
                 >
                   <Phone className="h-5 w-5" />
                   Talk to Catering Team: (305) 555-0123
                 </a>
               </div>
-              <p className="mt-4 font-sans text-xs text-[#78716C]">
+              <p className="mt-4 font-sans text-xs text-charcoal-ink/70">
                 Serving Little Havana, Brickell, Doral &amp; greater Miami-Dade · Cotizaciones al momento
               </p>
             </div>
           </section>
 
-          <footer className="border-t border-[#EAE5DC] bg-[#FAF8F5] py-14">
+          <footer className="border-t border-charcoal-ink/10 bg-cream-bg py-14">
             <div className="mx-auto max-w-6xl px-4 sm:px-6">
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                 <div>
-                  <p className="font-serif text-xl font-bold text-[#1C1917]">MOJO GRILLE</p>
-                  <p className="mt-1 font-sans text-xs uppercase tracking-wider text-[#D95327] font-bold">
+                  <p className="font-display text-2xl font-bold uppercase tracking-tight text-charcoal-ink">MOJO GRILLE</p>
+                  <p className="mt-1 font-sans text-xs uppercase tracking-wider text-brand-fire font-bold">
                     Cuban Kitchen · Miami, FL
                   </p>
-                  <p className="mt-3 font-sans text-xs leading-relaxed text-[#78716C]">
+                  <p className="mt-3 font-sans text-xs leading-relaxed text-charcoal-ink/70">
                     Authentic Cuban bowls, freshly pressed Cubano sandwiches &amp; family recipes made al momento. Marinated 24 hours in citrus mojo.
                   </p>
                 </div>
 
                 {locationsList.map((loc) => (
                   <div key={loc.id} className="font-sans text-sm">
-                    <p className="font-bold text-[#1C1917] flex items-center gap-1.5">
-                      <MapPin className="h-4 w-4 text-[#D95327] shrink-0" />
+                    <p className="font-bold text-charcoal-ink flex items-center gap-1.5">
+                      <MapPin className="h-4 w-4 text-brand-fire shrink-0" />
                       {loc.name} Store
                     </p>
-                    <p className="mt-1.5 text-xs text-[#78716C] leading-relaxed">
+                    <p className="mt-1.5 text-xs text-charcoal-ink/70 leading-relaxed">
                       {loc.address.fullAddress}
                     </p>
                     <a
                       href={`tel:${loc.phone}`}
-                      className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-[#D95327] hover:underline"
+                      className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-brand-fire hover:underline"
                     >
                       <Phone className="h-3 w-3" />
                       {loc.phone}
                     </a>
-                    <p className="mt-1 flex items-center gap-1 text-[11px] text-[#78716C]">
-                      <Clock className="h-3 w-3 text-[#78716C]" />
+                    <p className="mt-1 flex items-center gap-1 text-[11px] text-charcoal-ink/60">
+                      <Clock className="h-3 w-3 text-charcoal-ink/60" />
                       {loc.hours}
                     </p>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-10 border-t border-[#EAE5DC] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#78716C]">
+              <div className="mt-10 border-t border-charcoal-ink/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-charcoal-ink/60">
                 <p>© {new Date().getFullYear()} Mojo Grille Cuban Kitchen. Todos los derechos reservados.</p>
                 <p className="flex items-center gap-3">
                   <span>Little Havana</span>

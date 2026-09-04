@@ -100,18 +100,18 @@ export function Preloader({ onComplete, duration = 1.3 }: PreloaderProps) {
       role="status"
       aria-live="polite"
       aria-label="Cargando experiencia gastronómica de Mojo Grille"
-      className="fixed inset-0 z-50 bg-[#E6421E] text-[#F6F2E9] flex flex-col justify-between p-6 sm:p-10 md:p-14 select-none overflow-hidden will-change-transform shadow-2xl"
+      className="fixed inset-0 z-50 bg-brand-fire text-cream-bg flex flex-col justify-between p-6 sm:p-10 md:p-14 select-none overflow-hidden will-change-transform shadow-2xl"
     >
       {/* Top Bar: Brand, Coordinates and Origin Badge */}
-      <div className="flex items-center justify-between border-b border-white/20 pb-4 sm:pb-6">
+      <div className="flex items-center justify-between border-b border-cream-bg/20 pb-4 sm:pb-6">
         <div className="flex items-center gap-3">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#4D7C0F] ring-4 ring-[#4D7C0F]/30 animate-pulse" />
-          <span className="font-sans text-xs sm:text-sm font-bold tracking-widest uppercase text-[#F6F2E9]">
+          <span className="h-2.5 w-2.5 rounded-full bg-leaf-green ring-4 ring-leaf-green/30 animate-pulse" />
+          <span className="font-sans text-xs sm:text-sm font-bold tracking-widest uppercase text-cream-bg">
             Mojo Grille · Cuban Kitchen
           </span>
         </div>
 
-        <div className="hidden sm:flex items-center gap-4 text-xs font-mono tracking-wider text-[#F6F2E9]/80">
+        <div className="hidden sm:flex items-center gap-4 text-xs font-mono tracking-wider text-cream-bg/80">
           <span>25.7617° N, 80.1918° W</span>
           <span>•</span>
           <span>EST. MIAMI, FL</span>
@@ -120,38 +120,38 @@ export function Preloader({ onComplete, duration = 1.3 }: PreloaderProps) {
 
       {/* Center Visual: Editorial Headline & Sensorial Tagline */}
       <div className="my-auto py-8 text-left max-w-5xl">
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1 text-[11px] font-sans font-semibold uppercase tracking-wider text-[#F6F2E9] mb-4 backdrop-blur-xs">
+        <div className="inline-flex items-center gap-2 rounded-full border border-cream-bg/25 bg-cream-bg/10 px-3.5 py-1 text-[11px] font-sans font-semibold uppercase tracking-wider text-cream-bg mb-4 backdrop-blur-xs">
           <span>🔥</span>
           <span>Fase de Preparación Artesanal</span>
         </div>
 
         <h1
           ref={headlineRef}
-          className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight leading-[1.05] text-[#F6F2E9]"
+          className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold uppercase tracking-tight leading-[0.85] text-cream-bg"
         >
           PREPARANDO LA PLANCHA CRIOLLA · MIAMI FL
         </h1>
 
-        <p className="mt-4 sm:mt-6 font-sans text-sm sm:text-base md:text-lg text-[#F6F2E9]/85 max-w-2xl leading-relaxed">
-          Bowls artesanales y sándwiches prensados al momento. Fuego vivo, ajo tostado y mojo auténtico de naranja agria.
+        <p className="mt-4 sm:mt-6 font-accent italic text-2xl sm:text-3xl md:text-4xl text-cream-bg/90 lowercase tracking-normal max-w-2xl leading-relaxed">
+          lento, crujiente, sazonado al mojo cítrico y hecho al momento.
         </p>
       </div>
 
       {/* Bottom Bar: Progress Bar, Status Microcopy & Large Numeric Counter */}
-      <div className="border-t border-white/20 pt-5 sm:pt-7">
+      <div className="border-t border-cream-bg/20 pt-5 sm:pt-7">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           
           {/* Progress bar track & dynamic preparation microcopy */}
           <div className="w-full sm:max-w-md lg:max-w-lg space-y-2.5">
-            <div className="flex items-center justify-between text-xs sm:text-sm font-sans font-medium text-[#F6F2E9]/90">
+            <div className="flex items-center justify-between text-xs sm:text-sm font-sans font-medium text-cream-bg/90">
               <span className="animate-pulse">{getPhaseText(progress)}</span>
               <span className="font-mono text-xs opacity-75">{progress}%</span>
             </div>
             
             {/* Progress line */}
-            <div className="h-1.5 w-full rounded-full bg-white/20 overflow-hidden">
+            <div className="h-1.5 w-full rounded-full bg-cream-bg/20 overflow-hidden">
               <div
-                className="h-full bg-[#F6F2E9] rounded-full transition-all duration-75 ease-out shadow-[0_0_12px_rgba(246,242,233,0.8)]"
+                className="h-full bg-cream-bg rounded-full transition-all duration-75 ease-out shadow-[0_0_12px_rgba(246,241,232,0.8)]"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -161,7 +161,7 @@ export function Preloader({ onComplete, duration = 1.3 }: PreloaderProps) {
           <div className="flex items-baseline justify-end gap-1">
             <span
               ref={counterRef}
-              className="font-serif text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter tabular-nums leading-none text-[#F6F2E9]"
+              className="font-display text-7xl sm:text-8xl md:text-9xl font-bold tracking-tight tabular-nums leading-none text-cream-bg"
             >
               0%
             </span>

@@ -11,28 +11,36 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cream: '#F6F2E9', // Fondo cálido análogo al #f5e3cd de Crav
-        mojoRed: '#E6421E', // Acento saturado análogo al #f91814 de Crav
-        charcoal: '#181514', // Tipografía principal profunda
-        sand: '#EAE3D2', // Contenedores secundarios y badges
+        'cream-bg': '#F6F1E8',
+        'brand-fire': '#E52516',
+        'charcoal-ink': '#141210',
+        'surface-sand': '#ECE4D5',
+        'mojo-citrus': '#FFA826',
+        'leaf-green': '#2F6A4F',
+        // Backward-compatible semantic aliases
+        cream: '#F6F1E8',
+        mojoRed: '#E52516',
+        charcoal: '#141210',
+        sand: '#ECE4D5',
         terracotta: {
-          DEFAULT: '#D95327',
-          hover: '#B83E16',
-          light: '#FBECE7',
+          DEFAULT: '#E52516',
+          hover: '#C71F12',
+          light: '#FDE9E7',
         },
-        limeGreen: '#4D7C0F',
-        goldStar: '#F59E0B',
-        borderSubtle: '#EAE5DC',
+        limeGreen: '#2F6A4F',
+        goldStar: '#FFA826',
+        borderSubtle: '#ECE4D5',
       },
       fontFamily: {
-        display: ['var(--font-dramatic)', 'sans-serif'], // Fuente ultra-condensada o pesada (Druk / Formula)
-        sans: ['var(--font-neue)', 'sans-serif'], // Sans-serif geométrica limpia (Neue Montreal / Inter)
-        serif: ['var(--font-serif)', 'serif'],
+        display: ['var(--font-display)', 'Bebas Neue', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Plus Jakarta Sans', 'Inter', 'sans-serif'],
+        accent: ['var(--font-accent)', 'Instrument Serif', 'Playfair Display', 'serif'],
+        serif: ['var(--font-accent)', 'Instrument Serif', 'Playfair Display', 'serif'],
       },
       boxShadow: {
-        subtle: '0 2px 10px rgba(28, 25, 23, 0.04)',
-        card: '0 4px 20px rgba(28, 25, 23, 0.06)',
-        floating: '0 10px 30px rgba(217, 83, 39, 0.25)',
+        subtle: '0 2px 10px rgba(20, 18, 16, 0.04)',
+        card: '0 4px 20px rgba(20, 18, 16, 0.06)',
+        floating: '0 10px 30px rgba(229, 37, 22, 0.25)',
       },
     },
   },

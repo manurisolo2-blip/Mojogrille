@@ -2,14 +2,14 @@
 
 import { useState } from 'react';
 import { TopMarquee, Navbar, HeroSection } from '../components/hero';
-import { CravStyleMenuGrid } from '../components/menu';
+import { CravStyleMenuGrid, FloatingCravBar } from '../components/menu';
 import { Preloader } from '../components/preloader';
 
 export default function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <main className="min-h-screen bg-[#FAF8F5] text-[#1C1917]">
+    <main className="min-h-screen bg-cream-bg text-charcoal-ink">
       {/* 0. Preloader Editorial & Inicialización Cinematográfica */}
       <Preloader onComplete={() => setIsLoaded(true)} />
 
@@ -23,9 +23,12 @@ export default function HomePage() {
       <HeroSection />
 
       {/* 4. Catálogo Interactivo de Menú estilo CRAV */}
-      <section id="menu" className="border-t border-[#EAE5DC]">
+      <section id="menu" className="border-t border-charcoal-ink/10">
         <CravStyleMenuGrid />
       </section>
+
+      {/* 5. Barra flotante mobile */}
+      <FloatingCravBar />
     </main>
   );
 }

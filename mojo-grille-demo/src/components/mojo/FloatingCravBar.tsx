@@ -34,37 +34,37 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
             : "translate-y-24 opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex items-center justify-between gap-3 rounded-2xl bg-[#1C1917] p-3 pl-4 text-white shadow-[0_16px_36px_rgba(0,0,0,0.45)] border border-[#292524] backdrop-blur-lg">
+        <div className="flex items-center justify-between gap-3 rounded-2xl bg-charcoal-ink p-3 pl-4 text-cream-bg shadow-[0_16px_36px_rgba(0,0,0,0.45)] border border-charcoal-ink/40 backdrop-blur-lg">
           
           {/* Lado Izquierdo: Contador y Total Acumulado */}
           <div
             className="flex items-center gap-3 cursor-pointer select-none"
             onClick={() => (onOpenFullCart ? onOpenFullCart() : setIsModalOpen(true))}
           >
-            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-stone-800/90 border border-stone-700">
-              <ShoppingBag className="h-5 w-5 text-[#FAF8F5]" />
-              {/* Badge Verde Lima (#4D7C0F) */}
-              <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[#4D7C0F] px-1 font-sans text-[11px] font-black text-white shadow-xs">
+            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-charcoal-ink/90 border border-charcoal-ink/60">
+              <ShoppingBag className="h-5 w-5 text-cream-bg" />
+              {/* Badge Verde Cilantro (leaf-green) */}
+              <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-leaf-green px-1 font-sans text-[11px] font-black text-cream-bg shadow-xs">
                 {count}
               </span>
             </div>
 
             <div className="flex flex-col text-left">
-              <span className="font-sans text-[10px] font-semibold uppercase tracking-wider text-[#FAF8F5]/70">
+              <span className="font-sans text-[10px] font-semibold uppercase tracking-wider text-cream-bg/70">
                 {count > 0 ? `${count} plato${count > 1 ? "s" : ""}` : "Tu Pedido"}
               </span>
-              <span className="font-sans text-base font-black tracking-tight text-white">
+              <span className="font-sans text-base font-black tracking-tight text-cream-bg">
                 {count > 0 ? currency(total) : "$0.00"}
               </span>
             </div>
           </div>
 
-          {/* Lado Derecho: Botón Terracota (#D95327) con pulsación elástica */}
+          {/* Lado Derecho: Botón Rojo Mojo Scarlet (#E52516 / brand-fire) con pulsación elástica */}
           <button
             type="button"
             onClick={() => setIsModalOpen(true)}
             aria-label="Hacer Pedido por WhatsApp"
-            className="group flex items-center justify-center gap-2 rounded-xl bg-[#D95327] px-5 py-3 font-sans text-sm font-bold text-white shadow-md shadow-[#D95327]/30 transition-transform duration-150 hover:bg-[#B83E16] active:scale-95 focus:outline-none"
+            className="group flex items-center justify-center gap-2 rounded-xl bg-brand-fire px-5 py-3 font-sans text-sm font-bold text-cream-bg shadow-md shadow-brand-fire/30 transition-transform duration-150 hover:bg-brand-fire/90 active:scale-95 focus:outline-none"
           >
             <span>Hacer Pedido</span>
             <span className="font-bold text-base transition-transform group-hover:translate-x-1">
@@ -77,24 +77,24 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
 
       {/* Modal Simplificado de Pedido por WhatsApp */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 p-0 sm:p-4 backdrop-blur-xs transition-opacity">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-charcoal-ink/60 p-0 sm:p-4 backdrop-blur-xs transition-opacity">
           <div
-            className="w-full max-w-md rounded-t-3xl sm:rounded-3xl bg-[#FAF8F5] p-5 sm:p-6 shadow-2xl border border-[#EAE5DC] text-[#1C1917] max-h-[85vh] overflow-y-auto"
+            className="w-full max-w-md rounded-t-3xl sm:rounded-3xl bg-cream-bg p-5 sm:p-6 shadow-2xl border border-charcoal-ink/10 text-charcoal-ink max-h-[85vh] overflow-y-auto"
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-order-title"
           >
             {/* Cabecera del Modal */}
-            <div className="flex items-center justify-between border-b border-[#EAE5DC] pb-4">
+            <div className="flex items-center justify-between border-b border-charcoal-ink/10 pb-4">
               <div className="flex items-center gap-2">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#D95327] text-white font-serif font-bold text-sm">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-fire text-cream-bg font-display font-bold text-base">
                   M
                 </span>
                 <div>
-                  <h3 id="modal-order-title" className="font-serif text-lg font-bold text-[#1C1917]">
+                  <h3 id="modal-order-title" className="font-display text-xl font-bold tracking-tight uppercase text-charcoal-ink">
                     Confirmar Pedido WhatsApp
                   </h3>
-                  <p className="font-sans text-xs text-[#78716C]">
+                  <p className="font-sans text-xs text-charcoal-ink/60">
                     Mojo Grille Cuban Kitchen • Miami
                   </p>
                 </div>
@@ -103,7 +103,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="rounded-full p-1.5 text-[#78716C] hover:bg-[#EAE5DC] hover:text-[#1C1917] transition-colors"
+                className="rounded-full p-1.5 text-charcoal-ink/60 hover:bg-surface-sand hover:text-charcoal-ink transition-colors"
                 aria-label="Cerrar modal"
               >
                 <X className="h-5 w-5" />
@@ -111,9 +111,9 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
             </div>
 
             {/* Selector de Sede */}
-            <div className="mt-4 rounded-2xl bg-white p-3 border border-[#EAE5DC]">
-              <div className="flex items-center justify-between mb-2 text-xs font-semibold text-[#78716C]">
-                <span className="flex items-center gap-1.5 text-[#4D7C0F]">
+            <div className="mt-4 rounded-2xl bg-surface-sand p-3 border border-charcoal-ink/10">
+              <div className="flex items-center justify-between mb-2 text-xs font-semibold text-charcoal-ink/70">
+                <span className="flex items-center gap-1.5 text-leaf-green font-bold">
                   <CheckCircle2 className="h-4 w-4" /> Sede Seleccionada
                 </span>
                 <span>Cambiar</span>
@@ -126,8 +126,8 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
                     onClick={() => setLocation(loc.id)}
                     className={`rounded-xl px-3 py-1.5 text-xs font-bold transition-colors ${
                       location.id === loc.id
-                        ? "bg-[#D95327] text-white shadow-xs"
-                        : "bg-[#FAF8F5] text-[#1C1917] border border-[#EAE5DC] hover:bg-[#F4EFEA]"
+                        ? "bg-brand-fire text-cream-bg shadow-xs"
+                        : "bg-cream-bg text-charcoal-ink border border-charcoal-ink/15 hover:bg-surface-sand"
                     }`}
                   >
                     {loc.name}
@@ -138,36 +138,36 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
 
             {/* Desglose de Platos Seleccionados */}
             <div className="mt-4">
-              <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-[#78716C] mb-2">
+              <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink/70 mb-2">
                 Resumen de Platos ({count})
               </h4>
               {lines.length === 0 ? (
-                <div className="rounded-2xl border border-dashed border-[#EAE5DC] bg-white p-6 text-center">
-                  <p className="text-sm font-medium text-[#78716C]">
+                <div className="rounded-2xl border border-dashed border-charcoal-ink/20 bg-surface-sand/50 p-6 text-center">
+                  <p className="text-sm font-medium text-charcoal-ink/70">
                     Aún no has seleccionado ningún plato.
                   </p>
-                  <p className="mt-1 text-xs text-[#D95327] font-semibold">
+                  <p className="mt-1 text-xs text-brand-fire font-semibold">
                     ¡Elige tus bowls y cubanos favoritos arriba!
                   </p>
                 </div>
               ) : (
-                <ul className="space-y-2 max-h-48 overflow-y-auto no-scrollbar rounded-2xl bg-white p-3 border border-[#EAE5DC]">
+                <ul className="space-y-2 max-h-48 overflow-y-auto no-scrollbar rounded-2xl bg-surface-sand p-3 border border-charcoal-ink/10">
                   {lines.map((line) => (
                     <li
                       key={line.key}
-                      className="flex items-start justify-between text-xs py-1.5 border-b border-[#EAE5DC]/60 last:border-none"
+                      className="flex items-start justify-between text-xs py-1.5 border-b border-charcoal-ink/10 last:border-none"
                     >
                       <div>
-                        <span className="font-bold text-[#1C1917]">
+                        <span className="font-bold text-charcoal-ink">
                           {line.qty}x {line.name}
                         </span>
                         {line.sides.length > 0 && (
-                          <p className="text-[10px] text-[#4D7C0F] font-semibold">
+                          <p className="text-[10px] text-leaf-green font-semibold">
                             +{line.sides.join(", ")}
                           </p>
                         )}
                       </div>
-                      <span className="font-bold text-[#1C1917]">
+                      <span className="font-bold text-charcoal-ink">
                         {currency(line.price * line.qty)}
                       </span>
                     </li>
@@ -177,11 +177,11 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
             </div>
 
             {/* Total Estimado */}
-            <div className="mt-4 flex items-center justify-between rounded-2xl bg-[#F4EFEA] p-3.5 border border-[#EAE5DC]">
-              <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#1C1917]">
+            <div className="mt-4 flex items-center justify-between rounded-2xl bg-surface-sand p-3.5 border border-charcoal-ink/10">
+              <span className="font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink">
                 Total Estimado
               </span>
-              <span className="font-sans text-xl font-black text-[#D95327]">
+              <span className="font-sans text-xl font-black text-brand-fire">
                 {currency(total)}
               </span>
             </div>
@@ -193,7 +193,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsModalOpen(false)}
-                className="flex w-full items-center justify-center gap-2.5 rounded-2xl bg-[#4D7C0F] py-3.5 px-4 font-sans text-sm font-bold text-white shadow-lg shadow-[#4D7C0F]/30 transition-all hover:bg-[#3F660C] active:scale-98"
+                className="flex w-full items-center justify-center gap-2.5 rounded-2xl bg-leaf-green py-3.5 px-4 font-sans text-sm font-bold text-cream-bg shadow-lg shadow-leaf-green/30 transition-all hover:bg-leaf-green/90 active:scale-98"
               >
                 <MessageCircle className="h-5 w-5" />
                 <span>Enviar Pedido a WhatsApp</span>
@@ -202,7 +202,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="w-full py-2 text-center font-sans text-xs font-semibold text-[#78716C] hover:text-[#1C1917]"
+                className="w-full py-2 text-center font-sans text-xs font-semibold text-charcoal-ink/60 hover:text-charcoal-ink"
               >
                 Continuar eligiendo platos
               </button>

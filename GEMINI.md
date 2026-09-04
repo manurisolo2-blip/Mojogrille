@@ -44,36 +44,48 @@ Cada vez que el usuario envíe un prompt para crear, modificar, refactorizar o d
 
 ---
 
-## 4. Guía Oficial de Estilos e Identidad Visual (Mojo Grille)
+## 4. Guía Oficial de Estilos e Identidad Visual (Miami-Latin Modernism)
 
 > [!IMPORTANT]
 > **Regla de Oro de Diseño**: Todo cambio de estilo, maquetación, decoraciones o componentes DEBE cumplir estrictamente con los tokens y jerarquías definidos a continuación. Queda prohibido inventar colores o utilizar blanco clínico (`#FFFFFF`) como fondo general.
 
-### 4.1. Paleta Cromática Gastronómica y Tokens Semánticos
+### 4.1. Paleta Cromática y Tokens Semánticos (Mojo Grille)
 
-| Rol del Color | Token Tailwind / CSS | Valor HEX | Uso Específico |
-| :--- | :--- | :--- | :--- |
-| **Lienzo Primario** | `bg-cream` | `#FAF8F5` | Fondo global de la aplicación. Reduce cansancio visual y aporta tono editorial cálido. |
-| **Superficie de Tarjetas** | `surface-white` | `#FFFFFF` | Contenedores de ítems, modales y drawer. Da realce limpio a fotos de producto. |
-| **Acción Principal / CTA** | `mojo-terracotta` | `#D95327` | Botones maestros ("Pedir en Línea", "Añadir"), botones de acción rápida y enlaces destacados. |
-| **CTA Hover / Active** | `mojo-terracotta-dark`| `#B83E16` | Estado interactivo al pasar el cursor o presionar botones principales. |
-| **Texto Maestro** | `text-charcoal` | `#1C1917` | Títulos, subtítulos, nombres de platos y precios. Máximo contraste sin ser negro puro. |
-| **Texto Descriptivo** | `text-muted` | `#78716C` | Ingredientes, metadata de horarios, notas al pie y descripciones secundarias. |
-| **Acento Orgánico** | `mojo-lime` | `#4D7C0F` | Badges de frescura ("Ingrediente del día", "Receta Casera", "Veggie"). |
-| **Acento Social Proof** | `mojo-gold` | `#F59E0B` | Iconografía de estrellas de calificación y sellos de popularidad. |
-| **Bordes y Separadores** | `border-subtle` | `#EAE5DC` | Contornos de tarjetas, divisiones de listas y líneas de navegación secundaria. |
+| Token UI | Nombre Comercial | HEX | RGB | Rol en la Interfaz |
+| :--- | :--- | :--- | :--- | :--- |
+| **`cream-bg`** | Criollo Cream | `#F6F1E8` | 246, 241, 232 | Fondo principal de la web. Elimina el brillo frío del `#FFFFFF` y evoca el pan tostado. |
+| **`brand-fire`** | Mojo Scarlet | `#E52516` | 229, 37, 22 | Color de choque primario (análogo al `#f91814` de Crav). Se usa en CTAs, titulares hero, preloader y acentos de hover. |
+| **`charcoal-ink`** | Pressed Dark | `#141210` | 20, 18, 16 | Tipografía principal, bordes finos divisorios (`border-charcoal-ink/10`) y textos legales. |
+| **`surface-sand`** | Yuca Sand | `#ECE4D5` | 236, 228, 213 | Fondo de tarjetas de producto, badges nutricionales y contenedor del cart drawer. |
+| **`mojo-citrus`** | Citrus Glaze | `#FFA826` | 255, 168, 38 | Tono complementario para etiquetas de picante, badges de tiempo de cocción y microindicadores. |
+| **`leaf-green`** | Cilantro Fresh | `#2F6A4F` | 47, 106, 79 | Acento secundario para elementos "100% Fresco" o ítems vegetarianos. |
 
-### 4.2. Sistema Tipográfico Dual y Escala Modular
+#### Regla de Distribución Cromática (Regla 60-30-10):
+* **60%**: Criollo Cream (`#F6F1E8`) como lienzo constante en todo el scroll.
+* **30%**: Pressed Dark (`#141210`) para textos, bordes de separación y estructuras de navegación.
+* **10%**: Mojo Scarlet (`#E52516`) reservado con máxima saturación para llamar la atención del ojo hacia botones, marcas de agua, precios y marquesinas.
 
-* **Display / Editorial:** `Playfair Display` o `Fraunces` (voz artesanal, caribeña y cálida).
-* **Sans-serif Funcional:** `Inter` o `Plus Jakarta Sans` (lectura ergonómica en móviles).
+---
 
-| Nivel Tipográfico | Familia Sugerida | Peso & Tamaño | Aplicación en Interfaz |
-| :--- | :--- | :--- | :--- |
-| **Heading 1 (Hero Title)** | Playfair Display / Fraunces | Bold (700) \| 36px – 48px | Encabezado principal del banner de inicio. Comunica tradición caribeña y calidez. |
-| **Heading 2 (Secciones)** | Playfair Display / Serif | SemiBold (600) \| 24px – 30px | Títulos de categorías ("Nuestros Bowls", "Sándwiches Prensados"). |
-| **Heading 3 (Platos)** | Inter / Plus Jakarta Sans | Bold (700) \| 18px – 20px | Nombres de platos en tarjetas de catálogo y modales. |
-| **Body Text (Ingredientes)** | Inter / Plus Jakarta Sans | Regular (400) \| 14px – 15px | Descripciones sensoriales de guisados e ingredientes. |
-| **Precios & Acciones** | Inter / Plus Jakarta Sans | SemiBold (600) \| 16px – 18px | Etiquetas de precios y botones ("Añadir", "Pedir"). |
-| **Microcopy & Badges** | Inter / Plus Jakarta Sans | Medium (500) \| 11px – 12px | Badges de categorías, avisos de horarios y etiquetas especiales. |
+### 4.2. Trío Tipográfico y Escala Modular
+
+* **A. Fuente Display (Cinética y Titulares de Choque):** `Bebas Neue` o `Syne` (`--font-display`).
+  * *Tratamiento:* `font-bold uppercase tracking-tight leading-[0.85]`
+* **B. Fuente Sans-Serif (UI, Lectura y Fichas Técnicas):** `Plus Jakarta Sans` o `Inter` (`--font-sans`).
+  * *Tratamiento:* Geometría moderna, alto interletrado en textos pequeños (`tracking-wide text-xs uppercase font-medium`).
+* **C. Fuente Editorial / Accent (Contraste Artesanal):** `Instrument Serif` o `Playfair Display Italic` (`--font-accent`).
+  * *Tratamiento:* `font-serif italic font-normal lowercase tracking-normal text-brand-fire`.
+
+#### Jerarquía y Escala de Tipografías (Type Scale)
+
+| Nivel / Rol | Familia | Tamaño / Leading | Kerning (Tracking) | Transformación y Ejemplo |
+| :--- | :--- | :--- | :--- | :--- |
+| **Monumental (Hero/Ticker)** | Display | `text-[9vw]` / `leading-[0.85]` | `tracking-tight` | uppercase (`"CUBANO PRESS"`) |
+| **H1 (Secciones)** | Display | `text-5xl md:text-7xl` / `leading-none` | `tracking-tight` | uppercase (`"FOUR-HOUR ROASTED"`) |
+| **Accent Subtitle** | Serif Italic | `text-2xl md:text-3xl` / `leading-snug` | `tracking-normal` | lowercase (`"juicy, crispy & fully loaded"`) |
+| **H2 (Nombres de Plato)** | Display | `text-2xl md:text-3xl` / `leading-tight` | `tracking-tight` | uppercase (`"MOJO PORK BOWL"`) |
+| **Badges / Metadatos** | Sans-Serif | `text-[11px]` / `leading-none` | `tracking-widest` | uppercase font-bold (`"42G PROTEIN · 6-8 MIN"`) |
+| **Body (Descripciones)** | Sans-Serif | `text-sm md:text-base` / `leading-relaxed` | `tracking-normal` | normal-case font-normal |
+| **Precios / Acciones** | Sans-Serif | `text-base md:text-lg` / `leading-tight` | `tracking-tight` | font-bold (`"$12.95 · AÑADIR"`) |
+
 
