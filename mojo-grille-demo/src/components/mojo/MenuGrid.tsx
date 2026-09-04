@@ -49,7 +49,7 @@ export function MenuGrid({
               type="button"
               onClick={() => onSelect(item)}
               className="relative block w-full overflow-hidden rounded-2xl bg-[#FAF8F5] text-left focus:outline-none"
-              aria-label={`Ver detalles de ${item.name}`}
+              aria-label={`View details for ${item.name}`}
             >
               <img
                 src={item.image}
@@ -91,7 +91,7 @@ export function MenuGrid({
             <button
               type="button"
               onClick={() => onSelect(item)}
-              aria-label={`Personalizar o añadir ${item.name}`}
+              aria-label={`Personalizar / Añadir ${item.name} (Add)`}
               className="inline-flex items-center gap-2 rounded-full bg-[#D95327] px-4 py-2.5 font-sans text-sm font-bold text-white shadow-md shadow-[#D95327]/25 transition-all duration-200 hover:bg-[#B83E16] active:scale-95"
             >
               <Plus className="h-4 w-4 stroke-[3]" />

@@ -25,13 +25,11 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
 
   return (
     <div
-      className={`fixed bottom-4 left-4 right-4 z-50 md:hidden transition-all duration-500 ease-out transform ${
-        isVisible
-          ? "translate-y-0 opacity-100 pointer-events-auto"
-          : "translate-y-24 opacity-0 pointer-events-none"
+      className={`fixed inset-x-0 bottom-0 z-40 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] md:hidden transition-all duration-500 ease-out transform pointer-events-none ${
+        isVisible ? "translate-y-0 opacity-100" : "translate-y-24 opacity-0"
       }`}
     >
-      <div className="flex items-center justify-between gap-3 rounded-2xl bg-[#1C1917] p-3 pl-4 text-white shadow-[0_16px_36px_rgba(0,0,0,0.45)] border border-[#292524] backdrop-blur-lg">
+      <div className="pointer-events-auto flex items-center justify-between gap-3 rounded-2xl bg-[#1C1917] p-3 pl-4 text-white shadow-[0_16px_36px_rgba(0,0,0,0.45)] border border-[#292524] backdrop-blur-lg">
         {/* Lado Izquierdo: Contador y Total Acumulado */}
         <div
           className="flex items-center gap-3 cursor-pointer select-none"

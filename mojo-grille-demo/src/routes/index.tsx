@@ -10,6 +10,7 @@ import { CravStyleMenuGrid } from "@/components/mojo/CravStyleMenuGrid";
 import { QuickOrderModal } from "@/components/mojo/QuickOrderModal";
 import { CartSheet } from "@/components/mojo/CartSheet";
 import { MobileActionBar } from "@/components/mojo/MobileActionBar";
+import { Preloader } from "@/components/mojo/Preloader";
 import { itemsForCategory, type CategoryId, type MenuItem } from "@/data/menu";
 import { locationsList } from "@/data/locations";
 
@@ -56,15 +57,23 @@ function Index() {
   const [category, setCategory] = useState<CategoryId>("favoritos");
   const [selected, setSelected] = useState<MenuItem | null>(null);
   const [cartOpen, setCartOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const items = itemsForCategory(category);
 
   return (
     <CartProvider>
+      {/* Editorial Preloader & Cinematic Curtain Exit */}
+      <Preloader onComplete={() => setIsLoaded(true)} />
+
       <div className="min-h-dvh bg-[#FAF8F5] text-[#1C1917] pb-24 md:pb-0">
         <TopBar onOpenCart={() => setCartOpen(true)} />
         <main className="bg-[#FAF8F5]">
-          <HeroSection menuAnchorId="menu" cateringHref="#catering" />
+          <HeroSection
+            menuAnchorId="menu"
+            cateringHref="#catering"
+            shouldAnimateIn={isLoaded}
+          />
 
           <section id="menu" className="scroll-mt-32 bg-[#FAF8F5]">
             <CravStyleMenuGrid onSelect={setSelected} />

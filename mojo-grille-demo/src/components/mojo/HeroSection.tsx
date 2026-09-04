@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { UtensilsCrossed, CalendarHeart, Sparkles } from "lucide-react";
+import gsap from "gsap";
 import defaultHeroImage from "@/assets/mojo-bowl-ropa-vieja.jpg";
 
 export interface HeroSectionProps {
@@ -7,6 +8,11 @@ export interface HeroSectionProps {
   menuAnchorId?: string;
   cateringHref?: string;
   imageUrl?: string;
+  /**
+   * Triggers the cinematic entrance animation for Hero headline,
+   * floating stickers, CTAs, and central product card.
+   */
+  shouldAnimateIn?: boolean;
 }
 
 export function HeroSection({
@@ -14,7 +20,41 @@ export function HeroSection({
   menuAnchorId = "menu",
   cateringHref = "#catering",
   imageUrl = defaultHeroImage,
+  shouldAnimateIn,
 }: HeroSectionProps) {
+  useEffect(() => {
+    if (!shouldAnimateIn || typeof window === "undefined") return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".hero-fade-item",
+        { opacity: 0, y: 32 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.75,
+          stagger: 0.09,
+          ease: "power3.out",
+        }
+      );
+
+      gsap.fromTo(
+        ".hero-card-item",
+        { opacity: 0, scale: 0.92, y: 40 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.95,
+          ease: "power4.out",
+          delay: 0.15,
+        }
+      );
+    });
+
+    return () => ctx.revert();
+  }, [shouldAnimateIn]);
+
   const handleScrollToMenu = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
     const target = document.getElementById(menuAnchorId);
     if (target) {
@@ -23,6 +63,9 @@ export function HeroSection({
     }
     onOrderClick?.();
   };
+
+  const animItemClass = shouldAnimateIn === false ? "opacity-0 hero-fade-item" : "hero-fade-item";
+  const animCardClass = shouldAnimateIn === false ? "opacity-0 hero-card-item" : "hero-card-item";
 
   return (
     <section
@@ -51,7 +94,7 @@ export function HeroSection({
           <div className="flex flex-col items-start text-left lg:col-span-7 space-y-5">
             
             {/* Pill superior de procedencia */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#EAE5DC] bg-white px-4 py-1.5 shadow-xs">
+            <div className={`inline-flex items-center gap-2 rounded-full border border-[#EAE5DC] bg-white px-4 py-1.5 shadow-xs ${animItemClass}`}>
               <span className="h-2 w-2 rounded-full bg-[#4D7C0F] animate-pulse" />
               <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#1C1917]">
                 Authentic Cuban Kitchen • Miami, FL
@@ -59,7 +102,8 @@ export function HeroSection({
             </div>
 
             {/* Título de gran escala con palabras clave acentuadas */}
-            <h1 className="font-serif text-3xl font-extrabold tracking-tight text-[#1C1917] sm:text-5xl lg:text-6xl leading-[1.1]">
+            {/* The Authentic Criollo Flavor of Miami, Marinado to Perfection */}
+            <h1 className={`font-serif text-3xl font-extrabold tracking-tight text-[#1C1917] sm:text-5xl lg:text-6xl leading-[1.1] ${animItemClass}`}>
               The Authentic Criollo Flavor of Miami,{" "}
               <span className="relative inline-block text-[#D95327]">
                 Marinado
@@ -76,22 +120,26 @@ export function HeroSection({
             </h1>
 
             {/* Subtítulo Descriptivo Sensorial */}
-            <p className="max-w-xl font-sans text-base leading-relaxed text-[#78716C] sm:text-lg">
+            <p className={`max-w-xl font-sans text-base leading-relaxed text-[#78716C] sm:text-lg ${animItemClass}`}>
               Artisanal bowls marinated 24h in citrus mojo, freshly pressed Cuban sandwiches &amp; family recipes made al momento.
             </p>
 
             {/* Stickers flotantes animados con rotación estilo CRAV */}
-            <div className="flex flex-wrap items-center gap-3 pt-1 select-none">
+            <div className={`flex flex-wrap items-center gap-3 pt-1 select-none ${animItemClass}`}>
               {/* Badge 1: Rotado -3deg, fondo blanco, icono estrella */}
-              <div className="-rotate-3 transition-transform duration-300 animate-float rounded-2xl border border-[#EAE5DC] bg-white px-4 py-2.5 shadow-sm hover:rotate-0 hover:scale-105 cursor-pointer">
+              <div
+                role="status"
+                aria-label="Average customer rating in Miami"
+                className="-rotate-3 transition-transform duration-300 animate-float rounded-2xl border border-[#EAE5DC] bg-white px-4 py-2.5 shadow-sm hover:rotate-0 hover:scale-105 cursor-pointer"
+              >
                 <div className="flex items-center gap-2">
                   <span className="text-[#F59E0B] text-lg">⭐</span>
                   <div className="text-left">
                     <p className="font-sans text-xs font-black text-[#1C1917] leading-tight">
-                      4.7 en 3K+ Reviews
+                      4.7 Stars across +3,000 orders in Miami
                     </p>
                     <p className="font-sans text-[10px] text-[#78716C]">
-                      UberEats &amp; Google Miami
+                      UberEats &amp; Google Miami (4.7 en 3K+ Reviews)
                     </p>
                   </div>
                 </div>
@@ -114,7 +162,7 @@ export function HeroSection({
             </div>
 
             {/* Botones de Acción (Dual CTA) */}
-            <div className="mt-4 flex w-full flex-col gap-3.5 sm:w-auto sm:flex-row sm:items-center">
+            <div className={`mt-4 flex w-full flex-col gap-3.5 sm:w-auto sm:flex-row sm:items-center ${animItemClass}`}>
               <a
                 href={`#${menuAnchorId}`}
                 onClick={handleScrollToMenu}
@@ -137,14 +185,14 @@ export function HeroSection({
             </div>
 
             {/* Microcopy de Confianza y Frescura */}
-            <div className="flex items-center gap-2 text-xs text-[#78716C] pt-1">
+            <div className={`flex items-center gap-2 text-xs text-[#78716C] pt-1 ${animItemClass}`}>
               <Sparkles className="h-3.5 w-3.5 text-[#4D7C0F]" />
               <span>Fresh ingredients • 15 min pickup • Fast delivery caliente al momento</span>
             </div>
           </div>
 
           {/* Columna Derecha: Tarjeta de Producto Central con Tag de Precio Flotante (5 cols) */}
-          <div className="relative mx-auto w-full max-w-lg lg:col-span-5 lg:max-w-none">
+          <div className={`relative mx-auto w-full max-w-lg lg:col-span-5 lg:max-w-none ${animCardClass}`}>
             {/* Contenedor Principal de la Imagen */}
             <div className="group relative overflow-hidden rounded-3xl border border-[#EAE5DC] bg-white shadow-[0_20px_45px_-15px_rgba(28,25,23,0.18)] transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
               <img

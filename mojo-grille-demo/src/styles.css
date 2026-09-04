@@ -166,6 +166,15 @@
 @utility bg-cream {
   background-color: #FAF8F5;
 }
+@utility text-cream {
+  color: #F6F2E9;
+}
+@utility bg-mojoRed {
+  background-color: #E6421E;
+}
+@utility text-mojoRed {
+  color: #E6421E;
+}
 @utility surface-white {
   background-color: #FFFFFF;
 }
