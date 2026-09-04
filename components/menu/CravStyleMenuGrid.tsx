@@ -204,9 +204,6 @@ export function CravStyleMenuGrid() {
         
         {/* Encabezado de Sección */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-          <span className="inline-block font-sans text-xs font-bold uppercase tracking-widest text-brand-fire mb-2">
-            Catálogo Criollo Artesanal
-          </span>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-charcoal-ink">
             Hecho a Fuego Lento, Servido <span className="text-brand-fire">Al Momento</span>.
           </h2>

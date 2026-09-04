@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Check, Sparkles } from "lucide-react";
+import { Plus, Check } from "lucide-react";
 import { useCart } from "./cart";
 import { useCartStore } from "@/store/useCartStore";
 import { type MenuItem } from "@/data/menu";
@@ -226,10 +226,6 @@ export function CravStyleMenuGrid({
         
         {/* Encabezado con tipografía monumental y acento editorial */}
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 rounded-full border border-charcoal-ink/10 bg-surface-sand px-4 py-1.5 text-xs font-bold text-brand-fire uppercase tracking-wider mb-3 shadow-xs">
-            <Sparkles className="h-4 w-4 text-brand-fire" />
-            <span>Catálogo Criollo Artesanal • Miami, FL</span>
-          </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-charcoal-ink">
             Hecho a Fuego Lento, Servido <span className="text-brand-fire">Al Momento</span>.
           </h2>
