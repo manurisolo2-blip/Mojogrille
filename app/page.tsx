@@ -5,6 +5,7 @@ import { TopMarquee, Navbar, HeroSection } from '../components/hero';
 import { CubanDeconstruction } from '../components/CubanDeconstruction';
 import { CuratedMenu } from '../components/CuratedMenu';
 import { CravStyleMenuGrid, FloatingCravBar } from '../components/menu';
+import { DistrictsCatering } from '../components/DistrictsCatering';
 import { Preloader } from '../components/preloader';
 import { CartDrawer } from '../components/CartDrawer';
 
@@ -35,6 +36,9 @@ export default function HomePage() {
       <section id="menu" className="border-t border-charcoal-ink/10">
         <CravStyleMenuGrid />
       </section>
+
+      {/* 4.5. Packaging Térmico de Autor & Catering para Distritos */}
+      <DistrictsCatering />
 
       {/* 5. Barra flotante mobile */}
       <FloatingCravBar />

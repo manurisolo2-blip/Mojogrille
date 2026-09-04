@@ -14,6 +14,7 @@ import { MobileActionBar } from "@/components/mojo/MobileActionBar";
 import { Preloader } from "@/components/mojo/Preloader";
 import { CubanDeconstruction } from "@/components/mojo/CubanDeconstruction";
 import { CuratedMenu } from "@/components/mojo/CuratedMenu";
+import { DistrictsCatering } from "@/components/mojo/DistrictsCatering";
 import { itemsForCategory, type CategoryId, type MenuItem } from "@/data/menu";
 import { locationsList } from "@/data/locations";
 
@@ -87,6 +88,9 @@ function Index() {
           <section id="menu" className="scroll-mt-32 bg-cream-bg">
             <CravStyleMenuGrid onSelect={setSelected} />
           </section>
+
+          {/* Packaging Térmico de Autor & Catering para Distritos */}
+          <DistrictsCatering />
 
           <section
             id="catering"
