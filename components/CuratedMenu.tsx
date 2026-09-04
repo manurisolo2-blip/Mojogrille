@@ -11,10 +11,10 @@ export interface CuratedMenuItem {
   id: string;
   name: string;
   price: number;
-  protein: string;
+  protein?: string;
   feature: string;
-  calories: string;
-  cookTime: string;
+  calories?: string;
+  cookTime?: string;
   description: string;
   imageUrl: string;
   authorNote?: string;
@@ -26,85 +26,61 @@ export const CURATED_ITEMS: CuratedMenuItem[] = [
     id: 'mojo-pork-bowl',
     name: 'Mojo Pork Bowl',
     price: 13.5,
-    protein: '42g Proteína',
     feature: '4h Braised',
-    calories: '560 kcal',
-    cookTime: '8-10 MIN',
     description:
       'Pernil de cerdo asado lentamente por 4 horas al mojo cítrico criollo, servido sobre arroz moro y cebollas caramelizadas al calor de la plancha.',
     imageUrl: '/assets/mojo-bowl-ropa-vieja.jpg',
     authorNote: 'slow-roasted pernil & caramelized onions',
-    techSpecs: '42G PROTEIN / MARINADO 4H / ROASTED',
   },
   {
     id: 'classic-cubano-press',
     name: 'Classic Cubano Press',
     price: 12.95,
-    protein: '38g Proteína',
     feature: 'Plancha Crunch',
-    calories: '610 kcal',
-    cookTime: '6-8 MIN',
     description:
       'Pan cubano prensado con mantequilla tostada, lechón asado, jamón dulce, queso suizo fundido, pepinillos encurtidos y mostaza criolla.',
     imageUrl: '/assets/mojo-cubano.jpg',
     authorNote: 'crispy golden crust & sweet ham fold',
-    techSpecs: '38G PROTEIN / PLANCHA PRESS / SWISS CRUNCH',
   },
   {
     id: 'picadillo-meltadilla',
     name: 'Picadillo Meltadilla',
     price: 11.5,
-    protein: '34g Proteína',
     feature: 'Queso Fundido',
-    calories: '520 kcal',
-    cookTime: '6-8 MIN',
     description:
       'Picadillo de res sazonado al sofrito cubano con aceitunas y pimientos, prensado en plancha con queso suizo derretido y aliño de ajo.',
     imageUrl: '/assets/mojo-cubano.jpg',
     authorNote: 'seasoned ground beef & melted swiss',
-    techSpecs: '34G PROTEIN / SOFRITO CRIOLLO / QUESO FUNDIDO',
   },
   {
     id: 'loaded-pork-tostones',
     name: 'Loaded Pork Tostones',
     price: 10.75,
-    protein: '28g Proteína',
     feature: 'Doble Fritura',
-    calories: '480 kcal',
-    cookTime: '5-7 MIN',
     description:
       'Tostones crujientes de plátano verde con doble fritura artesanal, coronados con pernil al mojo, cebolla caramelizada y cilantro fresco.',
     imageUrl: '/assets/mojo-tostones.jpg',
     authorNote: 'double-fried plantain & crushed garlic',
-    techSpecs: '28G PROTEIN / DOBLE FRITURA / CRIOLLO TOPPED',
   },
   {
     id: 'chicken-fresco-bowl',
     name: 'Chicken Fresco Bowl',
     price: 13.0,
-    protein: '44g Proteína',
     feature: 'Pechuga Marinada',
-    calories: '510 kcal',
-    cookTime: '8-10 MIN',
     description:
       'Pechuga tierna a la plancha marinada 24 horas en naranja agria y ajo, con arroz blanco, frijoles negros sazonados y aguacate hass.',
     imageUrl: '/assets/mojo-pollo-bowl.jpg',
     authorNote: '24h citrus mojo & grilled hass avocado',
-    techSpecs: '44G PROTEIN / CITRUS MARINADE / FLAME SEARED',
   },
   {
     id: 'pepper-steak-platter',
     name: 'Pepper Steak Platter',
     price: 14.5,
-    protein: '40g Proteína',
     feature: 'Salteado Criollo',
-    calories: '580 kcal',
-    cookTime: '8-10 MIN',
     description:
       'Tiras tiernas de res salteadas al fuego vivo con pimientos y cebolla en reducción de sofrito criollo, acompañadas de yuca con mojo.',
     imageUrl: '/assets/mojo-bowl-ropa-vieja.jpg',
     authorNote: 'flame-seared wok beef & tender yuca',
-    techSpecs: '40G PROTEIN / WOK SALTEADO / YUCA CON MOJO',
   },
 ];
 
@@ -210,13 +186,10 @@ export function CuratedMenu() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal-ink/90 via-transparent to-charcoal-ink/20" />
           
-          {/* Metadatos superiores de previsualización */}
-          <div className="absolute top-2 left-2.5 right-2.5 flex items-center justify-between">
-            <span className="font-mono text-[9px] uppercase tracking-widest text-cream-bg bg-charcoal-ink px-1.5 py-0.5 border border-cream-bg/20 font-bold">
-              PREVIEW // {activeItem.cookTime}
-            </span>
-            <span className="font-mono text-[9px] uppercase tracking-widest text-cream-bg/90 font-bold">
-              {activeItem.calories}
+          {/* Metadato superior de previsualización */}
+          <div className="absolute top-2.5 left-3 flex items-center">
+            <span className="font-mono text-[9px] uppercase tracking-widest text-cream-bg bg-charcoal-ink px-2 py-0.5 border border-cream-bg/20 font-bold">
+              HECHO AL MOMENTO // FRESCO
             </span>
           </div>
 
@@ -291,8 +264,8 @@ export function CuratedMenu() {
                 </div>
               </div>
 
-              {/* Miniatura fija visible únicamente en móviles/tablets (lg:hidden) */}
-              <div className="flex lg:hidden items-center gap-3 my-1">
+              {/* Miniatura fija visible únicamente en móviles (md:hidden) */}
+              <div className="flex md:hidden items-center gap-3 my-1">
                 <img
                   src={item.imageUrl}
                   alt={item.name}
@@ -304,11 +277,11 @@ export function CuratedMenu() {
                 </p>
               </div>
 
-              {/* Centro: Datos técnicos en fuente mono */}
-              <div className="flex items-center md:justify-center lg:w-[30%]">
-                <span className="font-mono text-xs sm:text-[13px] uppercase tracking-wider text-charcoal-ink/75 group-hover:text-charcoal-ink transition-colors">
-                  {item.techSpecs}
-                </span>
+              {/* Centro: Descripción sensorial criolla (En escritorio) */}
+              <div className="hidden md:flex items-center lg:w-[32%] px-2">
+                <p className="font-sans text-xs sm:text-[13px] text-charcoal-ink/75 leading-relaxed text-left line-clamp-2 group-hover:text-charcoal-ink transition-colors">
+                  {item.description}
+                </p>
               </div>
 
               {/* Derecha: Precio en gran escala y botón de corte limpio + ADD */}

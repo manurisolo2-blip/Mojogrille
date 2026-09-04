@@ -16,7 +16,6 @@ export function HeroProductCard({
   title = 'Signature Mojo Bowl • Ropa Vieja Criolla',
   category = 'Top Seller #1 en Miami',
   price = '$15.50',
-  calories = '480 kcal',
 }: HeroProductCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -97,13 +96,7 @@ export function HeroProductCard({
             </span>
           </motion.div>
 
-          {/* Tag de Calorías / Frescura en esquina inferior derecha */}
-          <div
-            className="absolute bottom-3 right-3 z-20 rounded-lg bg-white/90 px-2.5 py-1 text-[11px] font-bold text-[#1C1917] backdrop-blur-xs shadow-xs border border-[#EAE5DC]"
-            style={{ transform: 'translateZ(35px)' }}
-          >
-            {calories}
-          </div>
+
         </div>
 
         {/* Detalles del Producto */}

@@ -434,7 +434,7 @@ export function CubanDeconstruction() {
               </div>
             </div>
 
-            {/* Ficha Técnica Integrada (Sin pastillas redondeadas) */}
+            {/* Ficha Técnica Integrada (Sin pastillas redondeadas ni conteos de fitness) */}
             <div className="mt-3.5 pt-2.5 border-t border-charcoal-ink/15 flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1 rounded-none border border-charcoal-ink/20 bg-surface-sand/50 px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-charcoal-ink">
                 <Clock className="h-2.5 w-2.5 text-brand-fire" aria-hidden="true" />
@@ -442,7 +442,7 @@ export function CubanDeconstruction() {
               </span>
               <span className="inline-flex items-center gap-1 rounded-none border border-charcoal-ink/20 bg-surface-sand/50 px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-charcoal-ink">
                 <Award className="h-2.5 w-2.5 text-leaf-green" aria-hidden="true" />
-                42G PROTEIN
+                LECHÓN CRIOLLO
               </span>
               <span className="inline-flex items-center gap-1 rounded-none border border-leaf-green/30 bg-leaf-green/10 px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-leaf-green">
                 <Sparkles className="h-2.5 w-2.5" aria-hidden="true" />
