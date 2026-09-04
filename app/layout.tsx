@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Bebas_Neue, Plus_Jakarta_Sans, Instrument_Serif } from 'next/font/google';
 import './globals.css';
 import { SmoothScroll } from '../components/SmoothScroll';
+import { NoiseOverlay } from '../components/NoiseOverlay';
 
 const displayFont = Bebas_Neue({
   weight: '400',
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${displayFont.variable} ${bodyFont.variable} ${accentFont.variable}`}
     >
       <body className="bg-cream-bg text-charcoal-ink font-sans antialiased selection:bg-brand-fire selection:text-cream-bg min-h-screen">
+        <NoiseOverlay />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

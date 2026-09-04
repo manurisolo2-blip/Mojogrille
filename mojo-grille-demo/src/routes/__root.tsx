@@ -15,6 +15,7 @@ import { generateRestaurantSchema, generateMenuSchema } from "../lib/seo";
 import { locationsList } from "../data/locations";
 import { categories, menu } from "../data/menu";
 import { SmoothScroll } from "../components/mojo/SmoothScroll";
+import { NoiseOverlay } from "../components/mojo/NoiseOverlay";
 
 
 function NotFoundComponent() {
@@ -189,6 +190,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <NoiseOverlay />
       <SmoothScroll>
         <Outlet />
       </SmoothScroll>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Plus } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
+import { MagneticButton } from "./MagneticButton";
 
 export interface CuratedMenuItem {
   id: string;
@@ -186,8 +187,9 @@ export function CuratedMenu() {
                   </p>
                 </div>
 
-                {/* Interacción de Compra: Botón Inferior Ancho */}
-                <button
+                {/* Interacción de Compra: Botón Inferior Ancho con Efecto Magnético GSAP */}
+                <MagneticButton
+                  as="button"
                   type="button"
                   onClick={() => handleAddToCart(item)}
                   className="w-full py-3.5 px-4 font-sans font-bold uppercase tracking-wider text-xs sm:text-sm bg-charcoal-ink text-cream-bg group-hover:bg-brand-fire transition-colors duration-300 rounded-xl flex items-center justify-center gap-2 shadow-sm active:scale-[0.98] cursor-pointer"
@@ -195,7 +197,7 @@ export function CuratedMenu() {
                 >
                   <Plus className="h-4 w-4 stroke-[2.5]" aria-hidden="true" />
                   <span>AGREGAR A LA ORDEN</span>
-                </button>
+                </MagneticButton>
               </div>
             </article>
           ))}
