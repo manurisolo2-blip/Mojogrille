@@ -4,23 +4,22 @@ import { currency, type MenuItem } from "@/data/menu";
 function Badge({ label }: { label: NonNullable<MenuItem["badge"]> }) {
   if (label === "Mojo Signature") {
     return (
-      <span className="absolute left-3 top-3 rounded-full bg-[#D95327] px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-white shadow-sm">
-        {label}
+      <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-[#D95327] px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-white shadow-md">
+        <span>★</span> {label}
       </span>
     );
   }
   if (label === "Popular" || label === "Top Seller") {
     return (
-      <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full border border-[#F59E0B]/40 bg-[#FEF3C7] px-2.5 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-[#B45309] shadow-sm">
-        <span className="text-[#F59E0B]" aria-hidden="true">★</span>
-        <span>{label}</span>
+      <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-[#F59E0B] px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-[#1C1917] shadow-md">
+        <span>⭐</span> {label}
       </span>
     );
   }
   if (label === "Fresco del día") {
     return (
-      <span className="absolute left-3 top-3 rounded-full bg-[#4D7C0F] px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-white shadow-sm">
-        {label}
+      <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-[#4D7C0F] px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-white shadow-md">
+        <span>🌿</span> {label}
       </span>
     );
   }
@@ -39,60 +38,70 @@ export function MenuGrid({
   onSelect: (item: MenuItem) => void;
 }) {
   return (
-    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((item) => (
         <article
           key={item.id}
-          className="group flex flex-col overflow-hidden rounded-2xl border border-[#EAE5DC] bg-white shadow-[0_1px_3px_rgba(28,25,23,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_32px_-8px_rgba(28,25,23,0.14)]"
+          className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-[#EAE5DC] bg-white p-4 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#D95327]/30"
         >
-          <button
-            type="button"
-            onClick={() => onSelect(item)}
-            className="relative block text-left"
-            aria-label={`View details for ${item.name}`}
-          >
-            <img
-              src={item.image}
-              alt={item.name}
-              loading="lazy"
-              width={1024}
-              height={768}
-              className="aspect-4/3 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-            />
-            {item.badge && <Badge label={item.badge} />}
-          </button>
+          <div>
+            <button
+              type="button"
+              onClick={() => onSelect(item)}
+              className="relative block w-full overflow-hidden rounded-2xl bg-[#FAF8F5] text-left focus:outline-none"
+              aria-label={`Ver detalles de ${item.name}`}
+            >
+              <img
+                src={item.image}
+                alt={item.name}
+                loading="lazy"
+                width={1024}
+                height={768}
+                className="aspect-4/3 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              {item.badge && <Badge label={item.badge} />}
+            </button>
 
-          <div className="flex flex-1 flex-col p-5">
-            <h3 className="font-sans text-lg font-bold leading-snug text-[#1C1917]">
-              <button
-                type="button"
-                onClick={() => onSelect(item)}
-                className="text-left hover:text-[#D95327] transition-colors focus:outline-none focus-visible:underline"
-              >
-                {item.name}
-              </button>
-            </h3>
-            <p className="mt-2 flex-1 font-sans text-sm leading-relaxed text-[#78716C]">
-              {item.description}
-            </p>
+            <div className="mt-4 px-1">
+              <h3 className="font-serif text-xl font-bold leading-snug text-[#1C1917] transition-colors group-hover:text-[#D95327]">
+                <button
+                  type="button"
+                  onClick={() => onSelect(item)}
+                  className="text-left focus:outline-none focus-visible:underline"
+                >
+                  {item.name}
+                </button>
+              </h3>
+              <p className="mt-2 font-sans text-xs sm:text-sm leading-relaxed text-[#78716C] line-clamp-3">
+                {item.description}
+              </p>
+            </div>
+          </div>
 
-            <div className="mt-5 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-t border-[#EAE5DC]/60 pt-4">
-              <p className="truncate font-sans text-base font-bold text-[#1C1917]">
+          <div className="mt-5 flex items-center justify-between border-t border-[#EAE5DC]/80 px-1 pt-4">
+            <div>
+              <span className="font-sans text-[11px] font-semibold uppercase tracking-wider text-[#78716C] block">
+                Precio
+              </span>
+              <p className="font-sans text-xl font-black text-[#1C1917]">
                 {currency(item.price)}
               </p>
-              <button
-                type="button"
-                onClick={() => onSelect(item)}
-                aria-label={`Personalizar / Añadir ${item.name} (Add)`}
-                className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#D95327] px-4 py-2 font-sans text-sm font-bold text-white transition-all duration-200 hover:bg-[#B83E16] hover:shadow-sm active:translate-y-0.5"
-              >
-                <Plus className="h-4 w-4 stroke-[2.5]" />
-                <span>{item.sidesAllowed ? "Personalizar / Añadir" : "Añadir"}</span>
-              </button>
             </div>
+
+            <button
+              type="button"
+              onClick={() => onSelect(item)}
+              aria-label={`Personalizar o añadir ${item.name}`}
+              className="inline-flex items-center gap-2 rounded-full bg-[#D95327] px-4 py-2.5 font-sans text-sm font-bold text-white shadow-md shadow-[#D95327]/25 transition-all duration-200 hover:bg-[#B83E16] active:scale-95"
+            >
+              <Plus className="h-4 w-4 stroke-[3]" />
+              <span>{item.sidesAllowed ? "Personalizar" : "Añadir"}</span>
+            </button>
           </div>
         </article>
       ))}
     </div>
   );
 }
+
+export default MenuGrid;

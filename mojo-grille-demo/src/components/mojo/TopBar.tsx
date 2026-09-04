@@ -29,8 +29,27 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
 
   return (
     <header className="sticky top-0 z-40">
-      <div className="bg-[#1C1917] px-4 py-2 text-center font-sans text-[11px] font-medium tracking-wide text-[#FAF8F5] sm:text-xs">
-        📍 Miami, FL • Little Havana · Brickell · Doral • Open today until 10:00 PM • Fast Takeout &amp; Delivery Caliente al Momento
+      <div className="relative overflow-hidden bg-[#D95327] py-2 text-white border-b border-[#B83E16] shadow-xs select-none">
+        <div className="flex overflow-x-hidden">
+          <div className="animate-marquee flex gap-8 whitespace-nowrap text-[11px] sm:text-xs font-black uppercase tracking-widest">
+            <span>★ 24H CITRUS MARINATED MOJO</span>
+            <span className="text-white/60 font-serif">✦</span>
+            <span>★ FRESH LOCAL INGREDIENTS</span>
+            <span className="text-white/60 font-serif">✦</span>
+            <span>★ 4.7 STARS (+3,000 MIAMI REVIEWS)</span>
+            <span className="text-white/60 font-serif">✦</span>
+            <span>★ HANDCRAFTED BOWLS &amp; CUBAN SANDWICHES</span>
+            <span className="text-white/60 font-serif">✦</span>
+            <span>★ 24H CITRUS MARINATED MOJO</span>
+            <span className="text-white/60 font-serif">✦</span>
+            <span>★ FRESH LOCAL INGREDIENTS</span>
+            <span className="text-white/60 font-serif">✦</span>
+            <span>★ 4.7 STARS (+3,000 MIAMI REVIEWS)</span>
+            <span className="text-white/60 font-serif">✦</span>
+            <span>★ HANDCRAFTED BOWLS &amp; CUBAN SANDWICHES</span>
+            <span className="text-white/60 font-serif">✦</span>
+          </div>
+        </div>
       </div>
 
       <div className="border-b border-[#EAE5DC] bg-white/95 backdrop-blur-md">

@@ -19,12 +19,12 @@ export function CategoryTabs({
   };
 
   return (
-    <div className="sticky top-[58px] sm:top-[64px] z-30 border-b border-[#EAE5DC] bg-[#FAF8F5]/95 backdrop-blur-md">
-      <div className="mx-auto max-w-6xl">
+    <div className="sticky top-[52px] sm:top-[58px] z-30 border-b border-[#EAE5DC] bg-[#FAF8F5]/90 backdrop-blur-md py-2.5">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div
           role="tablist"
           aria-label="Menu Categories"
-          className="no-scrollbar flex gap-2.5 overflow-x-auto px-4 py-3 sm:px-6"
+          className="no-scrollbar flex items-center justify-start sm:justify-center gap-2 overflow-x-auto p-1.5 rounded-full bg-white/80 border border-[#EAE5DC] shadow-xs"
         >
           {categories.map((cat) => {
             const isActive = cat.id === active;
@@ -37,10 +37,10 @@ export function CategoryTabs({
                 type="button"
                 onClick={() => handleSelect(cat.id)}
                 className={
-                  "shrink-0 rounded-full border px-4 py-2 font-sans text-sm transition-all duration-200 " +
+                  "relative shrink-0 rounded-full px-5 py-2 font-sans text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 focus:outline-none " +
                   (isActive
-                    ? "border-[#D95327] bg-[#D95327] font-bold text-white shadow-sm"
-                    : "border-[#EAE5DC] bg-white font-medium text-[#78716C] hover:border-[#D6CFBF] hover:bg-[#F4EFEA] hover:text-[#1C1917]")
+                    ? "bg-[#D95327] text-white shadow-md shadow-[#D95327]/30 scale-[1.02]"
+                    : "text-[#1C1917] hover:text-[#D95327] hover:bg-[#FAF8F5]")
                 }
               >
                 {cat.label}
@@ -52,3 +52,5 @@ export function CategoryTabs({
     </div>
   );
 }
+
+export default CategoryTabs;
