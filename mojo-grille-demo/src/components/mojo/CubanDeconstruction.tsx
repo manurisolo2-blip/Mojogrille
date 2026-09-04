@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Flame, Clock, Award, Sparkles } from "lucide-react";
+import { TapeLabel } from "./TapeLabel";
+import { InkStamp } from "./InkStamp";
 
 export function CubanDeconstruction() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -242,6 +244,16 @@ export function CubanDeconstruction() {
         ref={pinRef}
         className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-visible px-4 sm:px-8"
       >
+        {/* Etiqueta tipo cinta adhesiva en la esquina de la deconstrucción */}
+        <div className="absolute top-4 left-4 sm:top-6 sm:left-8 z-30 pointer-events-none">
+          <TapeLabel>SPEC // 24H_CITRUS_MARINADE</TapeLabel>
+        </div>
+
+        {/* Sello de Tinta Real Artesanal */}
+        <div className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 z-30 hidden md:inline-flex">
+          <InkStamp size={135} />
+        </div>
+
         {/* Encabezado Superior de Sección */}
         <div className="absolute top-4 sm:top-8 left-0 right-0 text-center px-4 pointer-events-none z-10">
           <span className="font-sans text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-brand-fire">

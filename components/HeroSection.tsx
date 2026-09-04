@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { UtensilsCrossed, CalendarHeart, Sparkles } from 'lucide-react';
 import { MagneticButton } from './hero/MagneticButton';
+import { InkStamp } from './InkStamp';
 
 export interface HeroSectionProps {
   onOrderClick?: () => void;
@@ -97,11 +98,9 @@ export function HeroSection({
                 </span>
               </div>
 
-              {/* Sello Cuadrado de Imprenta / Comanda */}
-              <div className="absolute bottom-3 right-3 z-20 hidden sm:flex h-16 w-28 items-center justify-center rounded-none bg-brand-fire text-cream-bg p-2 text-center border border-cream-bg select-none">
-                <div className="font-sans text-[9px] font-black uppercase tracking-wider leading-tight">
-                  ★ AUTÉNTICO ★<br />SABOR MIAMI
-                </div>
+              {/* Sello de Tinta Real Artesanal */}
+              <div className="absolute -bottom-6 -right-6 z-20 hidden sm:flex">
+                <InkStamp size={125} className="bg-cream-bg/95 p-1" />
               </div>
             </div>
 

@@ -2,6 +2,7 @@ import React from "react";
 import { Plus } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
 import { MagneticButton } from "./MagneticButton";
+import { TapeLabel } from "./TapeLabel";
 
 export interface CuratedMenuItem {
   id: string;
@@ -139,6 +140,13 @@ export function CuratedMenu() {
               key={item.id}
               className="group relative flex flex-col justify-between rounded-none bg-surface-sand/40 hover:bg-surface-sand border-r border-b border-charcoal-ink/20 transition-colors duration-200"
             >
+              {/* Etiqueta tipo cinta adhesiva de cocina en la primera tarjeta */}
+              {index === 0 && (
+                <div className="absolute -top-3.5 right-4 z-30 pointer-events-none">
+                  <TapeLabel>CHEF'S SIGNATURE // #001</TapeLabel>
+                </div>
+              )}
+
               {/* Contenedor de Imagen con Marco de Corte */}
               <div className="relative h-56 sm:h-64 w-full overflow-hidden bg-cream-bg/40 border-b border-charcoal-ink/20">
                 <img
