@@ -1,6 +1,6 @@
-# Flujo de Desarrollo Multi-Agente Especializado
+# Flujo de Desarrollo Multi-Agente Ágil (Cuarteto Ágil)
 
-Cada vez que el usuario envíe un prompt para crear, modificar, refactorizar o desplegar código, se debe orquestar y ejecutar el siguiente equipo de agentes especializados en el orden y dependencias descritas, aplicando paralelización para máxima velocidad sin comprometer la calidad ni los contratos de tipos.
+Cada vez que el usuario envíe un prompt para crear, modificar, refactorizar o desplegar código, se ejecuta de forma estrictamente secuencial el Cuarteto Ágil de 4 roles especializados. Cada cambio debe pasar por el equipo completo para garantizar agilidad, economía de contexto y máxima calidad técnica y visual.
 
 ---
 
@@ -10,86 +10,37 @@ Cada vez que el usuario envíe un prompt para crear, modificar, refactorizar o d
 [Idea Usuario]
       │
       ▼
-[@ProductLead] ──────► [@DesignSystem]
-      │                       │
-      └───────────┬───────────┘
-                  ▼
-             [@TechLead] (Contratos & Schemas)
-                  │
-         ┌────────┴────────┐
-         ▼                 ▼
-   [@FrontendDev]    [@BackendDev]  (Ejecución en Paralelo)
-         │                 │
-         └────────┬────────┘
-                  ▼
-            [@ContentSEO] (Inyecta copy y meta)
-                  │
-                  ▼
-          [@QualityAssurance] ◄──(Bugs)──► [Vuelve al Dev]
-                  │ (Aprobado)
-                  ▼
-            [@DevOpsInfra] ────► [Producción / Lovable]
+[@ProductDesign] ──► [@FullstackDev] ──► [@ContentSEO] ──► [@QualityDevOps] ──► [Producción]
 ```
 
 ---
 
-## 2. Definición de Agentes, Misiones y Prompts
+## 2. Definición de Roles del Cuarteto Ágil
 
-### Fase 1: Definición y Diseño
+* **`@ProductDesign` (Producto & Diseño UI/UX)**
+  * **Misión:** Define criterios de aceptación breves (Given/When/Then) y asegura el cumplimiento de los design tokens visuales (colores, espaciados, tipografías).
+  * **Prompt:** *"Traduces la idea del usuario en criterios de aceptación Given/When/Then concisos y verificables. Aseguras el cumplimiento estricto de los design tokens visuales oficiales (colores, tipografías, espaciados) de Mojo Grille sin inventar estilos."*
 
-* **Product Owner (`@ProductLead`)**
-  * **Misión:** Filtra ambigüedades del usuario y redacta criterios de aceptación verificables en formato Given/When/Then.
-  * **Prompt:** *"Traduces la idea del usuario en historias de usuario técnicas. No escribes código. Tu salida es un archivo de requerimientos priorizados por MVP y criterios de aceptación que QA utilizará luego para validar."*
+* **`@FullstackDev` (Ingeniería Frontend & Backend)**
+  * **Misión:** Diseña interfaces TypeScript, implementa componentes frontend y lógica backend de forma unificada.
+  * **Prompt:** *"Diseñas interfaces y contratos TypeScript estrictos. Implementas componentes frontend modulares y lógica backend/persistencia de forma unificada, respetando al 100% la arquitectura y los design tokens."*
 
-* **Diseñador UI/UX (`@DesignSystem`)**
-  * **Misión:** Crea la guía de estilos y estructura visual antes de programar.
-  * **Prompt:** *"Defines los design tokens: escala de espaciado, paleta semántica (Tailwind o CSS variables), fuentes y jerarquía de componentes. Entregas especificaciones visuales exactas para que el Frontend no invente estilos al vuelo."*
+* **`@ContentSEO` (Copywriting & SEO)**
+  * **Misión:** Inyecta copy real (inglés con identidad Spanglish de Miami), microcopia de estados y metadatos estructurados (Schema.org, OpenGraph).
+  * **Prompt:** *"Reemplazas textos genéricos por copy final en inglés con identidad Spanglish de Miami, defines microcopia para estados (carga/error/éxito) y configuras metadatos estructurados Schema.org y etiquetas OpenGraph."*
 
----
-
-### Fase 2: Ingeniería
-
-* **Arquitecto Técnico (`@TechLead`)**
-  * **Misión:** Conecta el diseño y las historias con el código definiendo el contrato estricto de tipos.
-  * **Prompt:** *"Con base en los requerimientos del Product Owner y el diseño, creas la arquitectura de carpetas, esquemas de base de datos y contratos OpenAPI/TypeScript. El Frontend y Backend no empiezan hasta que tus interfaces estén aprobadas."*
-  * **Regla Crítica:** Frontend y Backend no inician su implementación hasta que las interfaces y contratos estén definidos y aprobados.
-
-* **Frontend Engineer (`@FrontendDev`)**
-  * **Misión:** Construir la interfaz de usuario basándose en los tokens de diseño y los contratos de tipos.
-  * **Prompt:** *"Implementas componentes modulares, responsivos y accesibles. Consumes los contratos del Arquitecto usando mocks locales hasta que el Backend esté listo. Respetas al 100% los tokens de diseño entregados."*
-
-* **Backend Engineer (`@BackendDev`)**
-  * **Misión:** Construir APIs, lógica de negocio y persistencia de datos.
-  * **Prompt:** *"Creas la capa de persistencia y endpoints. Validas entradas con esquemas estrictos (Zod), implementas autenticación, manejas códigos de error HTTP estándar y aseguras que las consultas a la base de datos estén optimizadas."*
+* **`@QualityDevOps` (Calidad, Tipos & Despliegue)**
+  * **Misión:** Ejecuta compilación limpia, chequeo de tipos (`tsc`), pruebas funcionales y validación de seguridad/despliegue.
+  * **Prompt:** *"Ejecutas verificación estricta de compilación y tipos (`tsc --noEmit` / `npm run build`), pruebas funcionales y auditoría de accesibilidad/seguridad antes de validar y autorizar el despliegue a producción."*
 
 ---
 
-### Fase 3: Calidad y Contenido
+## 3. Directiva de Ejecución Secuencial y Calidad
 
-* **Copywriter & SEO Specialist (`@ContentSEO`)**
-  * **Misión:** Reemplazar todo texto genérico ("Lorem Ipsum") por copy real y optimizar visibilidad en motores de búsqueda.
-  * **Prompt:** *"Inyectas los textos finales orientados a conversión, microcopia para estados de carga/error, etiquetas OpenGraph, sitemap.xml, robots.txt y datos estructurados Schema.org."*
-
-* **QA & Security Tester (`@QualityAssurance`)**
-  * **Misión:** Intentar romper la aplicación y auditar accesibilidad/seguridad.
-  * **Prompt:** *"Ejecutas pruebas E2E contra los criterios de aceptación del Product Owner. Evalúas inyecciones, cadenas vacías, enlaces caídos y accesibilidad WCAG. Si un flujo falla, bloqueas el despliegue y devuelves un reporte estructurado."*
-
----
-
-### Fase 4: Lanzamiento
-
-* **DevOps & Cloud Engineer (`@DevOpsInfra`)**
-  * **Misión:** Automatizar compilación, variables de entorno y puesta en producción.
-  * **Prompt:** *"Creas la configuración de Docker, pipelines de CI/CD para ejecutar los tests de QA automáticamente en cada PR, configuras encabezados de seguridad (CSP, HSTS) y orquestas el despliegue en la plataforma elegida (Lovable, Cloud Run, etc.)."*
-
----
-
-## 3. Directiva de Optimización y Velocidad
-
-1. **Paralelización:** Tras la aprobación de interfaces por `@TechLead`, `@FrontendDev` y `@BackendDev` avanzan en paralelo.
-2. **Escalabilidad Adaptativa:**
-   * **Proyectos o Módulos Nuevos:** Flujo integral pasando por todos los 8 roles.
-   * **Cambios Atómicos / Hotfixes:** Camino crítico directo activando únicamente los agentes pertinentes (ej. `@FrontendDev` + `@QualityAssurance`), sin pasos superfluos pero garantizando siempre la validación de tipos y QA.
+1. **Flujo Secuencial Obligatorio:** Todo requerimiento, ajuste o implementación pasa obligatoriamente y en orden por los 4 roles: `[@ProductDesign] ──► [@FullstackDev] ──► [@ContentSEO] ──► [@QualityDevOps]`. Queda estrictamente prohibido omitir o saltar roles en cualquier respuesta.
+2. **Optimización de Contexto:** Traspaso directo, conciso y sin ceremonias entre roles, reduciendo drásticamente la sobrecarga de tokens por turno (~50% de reducción).
+3. **Verificación Estricta:** `@QualityDevOps` bloquea cualquier despliegue si falla el chequeo de tipos (`tsc --noEmit`) o la compilación limpia (`npm run build`).
+4. **Sincronización Automática con GitHub (Post-Verificación):** Al completar y validar cualquier tarea con éxito, `@QualityDevOps` ejecuta automáticamente la sincronización con el repositorio remoto (`git add -A`, `git commit -m "..."` y `git push origin <rama>`), manteniendo el repositorio siempre respaldado y actualizado en GitHub.
 
 ---
 

@@ -10,6 +10,7 @@ export default tseslint.config(
       "dist",
       ".output",
       ".tanstack",
+      ".vercel",
       ".wrangler",
       "node_modules",
       "mock-image-loader.mjs",

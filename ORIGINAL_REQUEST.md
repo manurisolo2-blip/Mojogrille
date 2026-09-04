@@ -67,3 +67,40 @@ La interfaz debe implementar de forma estricta los tokens semánticos oficiales:
 - [ ] El modal de pedido permite añadir/quitar guarniciones actualizando el precio total de forma instantánea.
 - [ ] El carrito permite sumar platos, ver el total estimado y abrir WhatsApp con el pedido desglosado.
 - [ ] La barra móvil inferior sincroniza en tiempo real la cantidad de productos y el total.
+
+---
+
+## 2026-09-04T18:08:30Z
+
+This is a single self-contained fix; keep it small and focused.
+Reestructurar y optimizar el flujo de desarrollo multi-agente de `GEMINI.md`, reduciendo los 8 roles actuales a un Cuarteto Ágil de 4 roles especializados para ahorrar tiempo y tokens en cada interacción, garantizando que cada cambio pase siempre por el equipo completo sin comprometer la calidad ni el Design System de Mojo Grille.
+
+Working directory: c:/PaginasWeb/MojoGrille
+Integrity mode: development
+
+## Requirements
+
+### R1. Consolidación a Cuarteto Ágil (4 Roles)
+Reemplazar los 8 roles actuales por los siguientes 4 roles coordinados y concisos:
+1. **`@ProductDesign`**: Define los criterios de aceptación breves y asegura el cumplimiento de los design tokens visuales (colores, espaciados, tipografías).
+2. **`@FullstackDev`**: Diseña interfaces TypeScript, implementa componentes frontend y lógica backend de forma unificada.
+3. **`@ContentSEO`**: Inyecta copy real (inglés con identidad Spanglish de Miami), microcopia de estados y metadatos estructurados (Schema.org, OpenGraph).
+4. **`@QualityDevOps`**: Ejecuta compilación limpia, chequeo de tipos (`tsc`), pruebas funcionales y validación de seguridad/despliegue.
+
+### R2. Optimización de Tokens y Flujo Secuencial
+- Reducir la verbosidad de los prompts de cada rol en `GEMINI.md` para evitar sobrecarga de contexto.
+- Mantener la regla de que cada cambio pase por los 4 roles secuencialmente, asegurando una transición rápida sin pasos ceremoniales redundantes.
+
+### R3. Preservación Intacta del Design System
+Conservar íntegra la Sección 4 ("Guía Oficial de Estilos e Identidad Visual") de `GEMINI.md`, asegurando que los tokens de color (`bg-cream` #FAF8F5, `mojo-terracotta` #D95327, `text-charcoal` #1C1917) y tipografías (`Playfair Display` + `Plus Jakarta Sans`) sigan siendo estrictamente obligatorios.
+
+## Acceptance Criteria
+
+### Estructura y Concisión
+- [ ] `GEMINI.md` contiene únicamente los 4 roles definidos, con misiones y directivas directas y sin redundancias.
+- [ ] El diagrama de flujo ASCII refleja con claridad la secuencia lineal: `[@ProductDesign] ──► [@FullstackDev] ──► [@ContentSEO] ──► [@QualityDevOps]`.
+- [ ] El tamaño y verbosidad del documento se optimizan para ahorrar ~50% de tokens de contexto por turno.
+
+### Fidelidad de Diseño y Reglas
+- [ ] La tabla de paleta cromática gastronómica y la escala tipográfica dual se mantienen idénticas y vinculantes.
+- [ ] La directiva de verificación estricta de compilación y tipos (`tsc --noEmit` / build) se mantiene en `@QualityDevOps`.
