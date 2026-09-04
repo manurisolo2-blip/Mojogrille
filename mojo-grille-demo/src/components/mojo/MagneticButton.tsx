@@ -22,8 +22,8 @@ export function MagneticButton({
   as,
   href,
   className = "",
-  proximityThreshold = 40,
-  magneticStrength = 0.3,
+  proximityThreshold = 20,
+  magneticStrength = 0.12,
   type = "button",
   onClick,
   onMouseLeave,
@@ -47,7 +47,7 @@ export function MagneticButton({
       const dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom);
       const distanceToEdge = Math.hypot(dx, dy);
 
-      // Si el cursor entra a menos de 40px del botón (o está sobre el botón)
+      // Si el cursor entra a menos del umbral de proximidad (o está sobre el botón)
       if (distanceToEdge < proximityThreshold) {
         isMagnetic = true;
         const buttonCenterX = rect.left + rect.width / 2;
@@ -55,21 +55,25 @@ export function MagneticButton({
         const deltaX = e.clientX - buttonCenterX;
         const deltaY = e.clientY - buttonCenterY;
 
+        // Limitar la traslación máxima a ±8px para evitar desplazamientos bruscos
+        const clampedX = Math.max(-8, Math.min(8, deltaX * magneticStrength));
+        const clampedY = Math.max(-8, Math.min(8, deltaY * magneticStrength));
+
         gsap.to(button, {
-          x: deltaX * magneticStrength,
-          y: deltaY * magneticStrength,
-          duration: 0.3,
+          x: clampedX,
+          y: clampedY,
+          duration: 0.25,
           ease: "power2.out",
           overwrite: "auto",
         });
       } else if (isMagnetic) {
-        // Al alejarse a más del umbral, regresa elásticamente a reposo
+        // Al alejarse a más del umbral, regresa suavemente a reposo
         isMagnetic = false;
         gsap.to(button, {
           x: 0,
           y: 0,
-          duration: 0.7,
-          ease: "elastic.out(1, 0.3)",
+          duration: 0.5,
+          ease: "power2.out",
           overwrite: "auto",
         });
       }
@@ -80,8 +84,8 @@ export function MagneticButton({
       gsap.to(button, {
         x: 0,
         y: 0,
-        duration: 0.7,
-        ease: "elastic.out(1, 0.3)",
+        duration: 0.5,
+        ease: "power2.out",
         overwrite: "auto",
       });
     };
@@ -101,8 +105,8 @@ export function MagneticButton({
       gsap.to(buttonRef.current, {
         x: 0,
         y: 0,
-        duration: 0.7,
-        ease: "elastic.out(1, 0.3)",
+        duration: 0.5,
+        ease: "power2.out",
         overwrite: "auto",
       });
     }
