@@ -50,7 +50,7 @@ export function Navbar() {
             href="#menu"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-fire px-5 py-2.5 font-sans text-sm font-bold text-cream-bg shadow-md shadow-brand-fire/25 transition-all duration-200 hover:scale-105 hover:bg-brand-fire/90 active:scale-95 focus:outline-hidden focus:ring-2 focus:ring-brand-fire focus:ring-offset-2"
           >
-            <span>Ordenar Ahora</span>
+            <span>ORDENAR CALIENTE</span>
             <span className="flex h-2 w-2 rounded-full bg-cream-bg animate-pulse" />
           </a>
         </div>

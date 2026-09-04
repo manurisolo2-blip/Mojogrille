@@ -325,7 +325,13 @@ export function CuratedMenu() {
                   aria-label={`Agregar ${item.name} a la orden por $${item.price.toFixed(2)}`}
                 >
                   <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[3]" aria-hidden="true" />
-                  <span>ADD</span>
+                  <span>
+                    {item.id.includes("bowl")
+                      ? "AGARRAR ESTE BOWL"
+                      : item.id.includes("tostones")
+                        ? "ORDENAR CALIENTE"
+                        : "A LA PLANCHA"}
+                  </span>
                 </MagneticButton>
               </div>
             </div>

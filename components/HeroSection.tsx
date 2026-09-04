@@ -46,29 +46,27 @@ export function HeroSection({
               [SYS: ONLINE // 25.7617° N, 80.1918° W // MIAMI-DADE]
             </div>
 
+            {/* Eyebrow de Comanda y Filosofía */}
             <div className="inline-flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-surface-sand px-3.5 py-1">
               <span className="h-1.5 w-1.5 rounded-none bg-brand-fire" aria-hidden="true" />
-              <span className="font-sans text-[11px] font-bold uppercase tracking-widest text-charcoal-ink">
-                EST. MIAMI · 100% ARTISANAL MOJO
+              <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-widest text-charcoal-ink">
+                [ 100% MARINADO CRIOLLO // SIN ATAJOS ]
               </span>
             </div>
 
-            {/* Titular Central Impactante: CRISP. JUICY. LOADED. */}
-            <h1 className="font-display text-[10vw] sm:text-[11vw] lg:text-[11.5vw] font-black uppercase tracking-tight text-charcoal-ink leading-[0.85] text-center">
-              CRISP.{' '}
+            {/* Titular Central Impactante: HIERRO CALIENTE. AJO TRITURADO. PERNIL ASADO. */}
+            <h1 className="font-display text-5xl sm:text-7xl lg:text-[7.5vw] font-black uppercase tracking-tight text-charcoal-ink leading-[0.88] text-center max-w-5xl">
+              HIERRO CALIENTE.{' '}
               <span className="font-accent font-serif italic font-normal lowercase tracking-normal text-brand-fire">
-                juicy.
+                ajo triturado.
               </span>{' '}
-              LOADED.
+              PERNIL ASADO.
             </h1>
 
-            {/* Subtítulo Narrativo con Metadatos Clave & SEO */}
-            <p className="mt-2 max-w-2xl font-sans text-sm sm:text-base md:text-lg leading-relaxed text-charcoal-ink/85 text-center">
-              <span className="font-bold text-charcoal-ink">
-                The Authentic Criollo Flavor of Miami, Marinado to Perfection
-              </span>
-              . Slow-roasted citrus pork, artisanal pressed Cuban sandwiches and fresh bowls prepared{' '}
-              <span className="font-bold text-brand-fire">al momento</span>.
+            {/* Subtítulo Narrativo Visceral */}
+            <p className="mt-3 max-w-3xl font-sans text-sm sm:text-base md:text-lg leading-relaxed text-charcoal-ink/90 text-center">
+              No hacemos bowls corporativos. Cocinamos recetas familiares de cerdo macerado durante 4 horas en naranja agria, prensadas{' '}
+              <span className="font-bold text-brand-fire">al momento</span> en el corazón de Brownsville.
             </p>
           </div>
 
@@ -79,13 +77,23 @@ export function HeroSection({
             <div className="group relative overflow-hidden rounded-none border-2 border-charcoal-ink bg-surface-sand">
               <img
                 src="/assets/mojo-bowl-ropa-vieja.jpg"
-                alt="Signature Mojo Grille dish: Artisanal Cuban bowl marinated in citrus mojo"
+                alt="Signature Mojo Grille dish: The Authentic Criollo Flavor of Miami, Marinado to Perfection - Artisanal Cuban bowl marinated in citrus mojo"
                 width={1024}
                 height={768}
                 loading="eager"
                 className="aspect-16/10 w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
+
+              {/* Botón rápido sobre el plato: AGARRAR ESTE BOWL */}
+              <button
+                type="button"
+                onClick={onOrderClick}
+                className="absolute bottom-4 left-4 z-20 inline-flex items-center gap-2 rounded-none bg-charcoal-ink text-cream-bg px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-widest border border-cream-bg/20 hover:bg-brand-fire transition-colors cursor-pointer select-none"
+              >
+                <span>AGARRAR ESTE BOWL</span>
+                <span>→</span>
+              </button>
 
               {/* Tag de Precio en formato ticket */}
               <div className="absolute top-4 left-4 z-20 flex items-center gap-2 rounded-none bg-charcoal-ink px-3.5 py-1.5 border border-cream-bg/20 text-cream-bg">
@@ -144,7 +152,7 @@ export function HeroSection({
 
           </div>
 
-          {/* Botón Primario de Acción 'ORDENAR AHORA' estilo sello de imprenta */}
+          {/* Botón Primario de Acción: A LA PLANCHA */}
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <MagneticButton
               href={menuAnchorId ? `#${menuAnchorId}` : '#menu'}
@@ -152,7 +160,7 @@ export function HeroSection({
               className="group relative inline-flex items-center justify-center gap-3 rounded-none border-2 border-brand-fire bg-brand-fire px-9 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none"
             >
               <UtensilsCrossed className="h-4 w-4 transition-transform group-hover:rotate-12" aria-hidden="true" />
-              <span>ORDENAR AHORA</span>
+              <span>A LA PLANCHA</span>
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 font-bold">
                 →
               </span>

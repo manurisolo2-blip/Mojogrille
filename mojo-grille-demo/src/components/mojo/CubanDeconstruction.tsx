@@ -256,11 +256,11 @@ export function CubanDeconstruction() {
 
         {/* Encabezado Superior de Sección */}
         <div className="absolute top-4 sm:top-8 left-0 right-0 text-center px-4 pointer-events-none z-10">
-          <span className="font-sans text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-brand-fire">
-            ✦ Arquitectura Gastronómica Artesanal ✦
+          <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-brand-fire">
+            ✦ RADIOGRAFÍA DE UN CLÁSICO ✦
           </span>
-          <h3 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-charcoal-ink mt-0.5 sm:mt-1">
-            Anatomía del Cubano Prensado
+          <h3 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-charcoal-ink mt-0.5 sm:mt-1">
+            EL CUBANO QUE NO PERDONA
           </h3>
           <p className="font-accent italic text-base sm:text-xl lg:text-2xl text-charcoal-ink/80 lowercase mt-0.5">
             desplaza para deconstruir cada capa de sabor criollo al momento
@@ -366,45 +366,81 @@ export function CubanDeconstruction() {
           {/* Tarjeta de información editorial (lateral en escritorio, inferior al 90% en móviles) */}
           <div
             ref={sideCardRef}
-            className="w-[90%] max-w-sm lg:max-w-xs rounded-2xl lg:rounded-3xl bg-surface-sand/95 backdrop-blur-md p-4 sm:p-5 lg:p-6 border border-charcoal-ink/10 shadow-[0_16px_36px_-10px_rgba(20,18,16,0.18)] will-change-transform z-30 transition-shadow hover:shadow-2xl mt-1 sm:mt-2 lg:mt-0"
+            className="w-[90%] max-w-sm lg:max-w-xs rounded-none bg-surface-sand/95 backdrop-blur-md p-4 sm:p-5 lg:p-6 border-2 border-charcoal-ink shadow-[0_16px_36px_-10px_rgba(20,18,16,0.18)] will-change-transform z-30 transition-shadow hover:shadow-2xl mt-1 sm:mt-2 lg:mt-0"
           >
-            {/* Etiqueta roja CRAV Style */}
-            <div className="inline-flex items-center gap-1.5 rounded-md bg-brand-fire px-2.5 py-1 text-[10px] font-sans font-bold uppercase tracking-widest text-cream-bg shadow-xs">
+            {/* Etiqueta roja de comanda */}
+            <div className="inline-flex items-center gap-1.5 rounded-none bg-brand-fire px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-widest text-cream-bg shadow-xs">
               <Flame className="h-3 w-3" />
-              <span>ANATOMÍA DEL CLÁSICO</span>
+              <span>RADIOGRAFÍA DE UN CLÁSICO</span>
             </div>
 
             {/* Título Display */}
-            <h4 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold uppercase tracking-tight text-charcoal-ink mt-2 sm:mt-3 leading-none">
-              PERNIL AL MOJO CRIOLLO
+            <h4 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-charcoal-ink mt-2 sm:mt-3 leading-none">
+              EL CUBANO QUE NO PERDONA
             </h4>
 
             {/* Subtítulo Cursivo */}
-            <p className="font-accent italic text-sm sm:text-base lg:text-lg text-brand-fire lowercase mt-0.5 sm:mt-1">
-              slow-roasted pork &amp; swiss melt
+            <p className="font-accent italic text-sm sm:text-base text-brand-fire lowercase mt-0.5 sm:mt-1">
+              pan prensado, pernil bañado en mojo y acidez milimétrica
             </p>
 
-            {/* Descripción Sensorial Compacta */}
-            <p className="font-sans text-[11px] sm:text-xs lg:text-sm text-charcoal-ink/80 mt-1.5 sm:mt-2 leading-relaxed line-clamp-3 sm:line-clamp-none">
-              Carne de cerdo marinada durante 24 horas en naranja agria, ajo confitado, comino y orégano silvestre. Horneada 4 horas hasta deshebrarse sobre jamón glaseado, queso suizo fundido y pepinillos crujientes en pan prensado al momento.
-            </p>
+            {/* Puntos Clave Viscerales */}
+            <div className="mt-3 space-y-2.5 border-t border-charcoal-ink/15 pt-3">
+              <div className="text-left">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-charcoal-ink bg-cream-bg px-1.5 py-0.5 border border-charcoal-ink/20 mr-1.5 inline-block">
+                  PAN
+                </span>
+                <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/90 leading-tight mt-0.5">
+                  Corteza quebradiza, miga densa. Prensado hasta crujir.
+                </p>
+              </div>
+
+              <div className="text-left">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-cream-bg bg-brand-fire px-1.5 py-0.5 mr-1.5 inline-block">
+                  CARNE
+                </span>
+                <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/90 leading-tight mt-0.5">
+                  Pernil bañado en grasa de mojo y ajo dorado en plancha de hierro fundido.
+                </p>
+              </div>
+
+              <div className="text-left">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-charcoal-ink bg-cream-bg px-1.5 py-0.5 border border-charcoal-ink/20 mr-1.5 inline-block">
+                  ENCURTIDO
+                </span>
+                <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/90 leading-tight mt-0.5">
+                  Acidez milimétrica para cortar la grasa del cerdo asado.
+                </p>
+              </div>
+            </div>
 
             {/* Badges de Cocción y Nutricionales */}
             <div className="mt-3 sm:mt-4 flex flex-wrap items-center gap-1.5 sm:gap-2 pt-2.5 sm:pt-3 border-t border-charcoal-ink/10">
-              <span className="inline-flex items-center gap-1 sm:gap-1.5 rounded-full bg-charcoal-ink/10 px-2.5 sm:px-3 py-0.5 sm:py-1 font-sans text-[10px] sm:text-xs font-bold text-charcoal-ink">
+              <span className="inline-flex items-center gap-1 sm:gap-1.5 rounded-none bg-charcoal-ink/10 px-2.5 py-0.5 font-mono text-[10px] font-bold text-charcoal-ink border border-charcoal-ink/20">
                 <Clock className="h-3 w-3 text-brand-fire" />
                 4-HOUR ROASTED
               </span>
 
-              <span className="inline-flex items-center gap-1 sm:gap-1.5 rounded-full bg-charcoal-ink/10 px-2.5 sm:px-3 py-0.5 sm:py-1 font-sans text-[10px] sm:text-xs font-bold text-charcoal-ink">
+              <span className="inline-flex items-center gap-1 sm:gap-1.5 rounded-none bg-charcoal-ink/10 px-2.5 py-0.5 font-mono text-[10px] font-bold text-charcoal-ink border border-charcoal-ink/20">
                 <Award className="h-3 w-3 text-leaf-green" />
                 42G PROTEIN
               </span>
 
-              <span className="inline-flex items-center gap-1 rounded-full bg-leaf-green/15 px-2.5 sm:px-3 py-0.5 sm:py-1 font-sans text-[10px] sm:text-[11px] font-bold text-leaf-green">
+              <span className="inline-flex items-center gap-1 rounded-none bg-leaf-green/15 px-2.5 py-0.5 font-mono text-[10px] font-bold text-leaf-green border border-leaf-green/20">
                 <Sparkles className="h-3 w-3" />
                 100% ARTESANAL
               </span>
+            </div>
+
+            {/* Botón CTA: ORDENAR CALIENTE */}
+            <div className="mt-3.5 pt-2 border-t border-charcoal-ink/10">
+              <a
+                href="#curated-menu"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-none bg-charcoal-ink text-cream-bg hover:bg-brand-fire py-2.5 px-3 font-sans text-xs font-bold uppercase tracking-wider border border-charcoal-ink transition-colors"
+              >
+                <span>ORDENAR CALIENTE</span>
+                <span>→</span>
+              </a>
             </div>
           </div>
 
