@@ -110,12 +110,12 @@ export function CuratedMenu() {
     <section
       id="curated-menu"
       aria-label="Selección de la plancha - Platos estelares de Mojo Grille"
-      className="relative bg-cream-bg py-16 sm:py-24 border-b border-charcoal-ink/10 select-none overflow-hidden"
+      className="relative bg-cream-bg py-16 sm:py-24 border-b border-charcoal-ink/20 select-none overflow-hidden"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16 text-center">
-        {/* Badge Superior */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-charcoal-ink/15 bg-surface-sand px-3.5 py-1 text-[11px] font-sans font-bold uppercase tracking-widest text-charcoal-ink mb-4 shadow-xs">
-          <span className="h-2 w-2 rounded-full bg-brand-fire animate-pulse" aria-hidden="true" />
+        {/* Badge Superior Tipo Sello Editorial */}
+        <div className="inline-flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-surface-sand px-3.5 py-1 text-[11px] font-sans font-bold uppercase tracking-widest text-charcoal-ink mb-4">
+          <span className="h-1.5 w-1.5 rounded-none bg-brand-fire" aria-hidden="true" />
           <span>Platos Insignia · Plancha Caliente</span>
         </div>
 
@@ -128,16 +128,16 @@ export function CuratedMenu() {
         </p>
       </div>
 
-      {/* Grid de las 6 Tarjetas Estelares */}
+      {/* Retícula de Periódico Impreso (Shared 1px Grid) */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-charcoal-ink/20 bg-cream-bg">
           {CURATED_ITEMS.map((item) => (
             <article
               key={item.id}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-surface-sand border border-charcoal-ink/10 shadow-xs hover:shadow-xl transition-all duration-300"
+              className="group relative flex flex-col justify-between rounded-none bg-surface-sand/40 hover:bg-surface-sand border-r border-b border-charcoal-ink/20 transition-colors duration-200"
             >
-              {/* Contenedor de Imagen con Efecto Hover de Escala Suave */}
-              <div className="relative h-56 sm:h-64 w-full overflow-hidden bg-cream-bg/40 border-b border-charcoal-ink/5">
+              {/* Contenedor de Imagen con Marco de Corte */}
+              <div className="relative h-56 sm:h-64 w-full overflow-hidden bg-cream-bg/40 border-b border-charcoal-ink/20">
                 <img
                   src={item.imageUrl}
                   alt={item.name}
@@ -146,29 +146,29 @@ export function CuratedMenu() {
                 />
 
                 {/* Tag de Especialidad / Feature */}
-                <div className="absolute top-3.5 left-3.5">
-                  <span className="inline-flex items-center rounded-md bg-charcoal-ink/90 backdrop-blur-xs px-2.5 py-1 text-[10px] font-sans font-bold tracking-widest uppercase text-cream-bg shadow-sm">
+                <div className="absolute top-3 left-3">
+                  <span className="inline-flex items-center rounded-none bg-charcoal-ink px-2.5 py-1 text-[10px] font-sans font-bold tracking-widest uppercase text-cream-bg border border-cream-bg/20">
                     {item.feature}
                   </span>
                 </div>
 
                 {/* Tag de Calorías */}
-                <div className="absolute top-3.5 right-3.5">
-                  <span className="inline-flex items-center rounded-md bg-cream-bg/90 backdrop-blur-xs px-2.5 py-1 text-[10px] font-mono font-bold tracking-wider uppercase text-charcoal-ink shadow-sm">
+                <div className="absolute top-3 right-3">
+                  <span className="inline-flex items-center rounded-none bg-cream-bg px-2.5 py-1 text-[10px] font-mono font-bold tracking-wider uppercase text-charcoal-ink border border-charcoal-ink/20">
                     {item.calories}
                   </span>
                 </div>
               </div>
 
-              {/* Cuerpo de la Tarjeta */}
+              {/* Cuerpo de la Ficha */}
               <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
                 <div>
-                  {/* Fila de Badges Técnicos */}
+                  {/* Fila de Badges Técnicos Rectangulares */}
                   <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="inline-flex items-center rounded-full bg-cream-bg text-charcoal-ink text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 border border-charcoal-ink/5">
+                    <span className="inline-flex items-center rounded-none bg-cream-bg text-charcoal-ink text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 border border-charcoal-ink/20">
                       ⏱️ {item.cookTime}
                     </span>
-                    <span className="inline-flex items-center rounded-full bg-cream-bg text-charcoal-ink text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 border border-charcoal-ink/5">
+                    <span className="inline-flex items-center rounded-none bg-cream-bg text-charcoal-ink text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 border border-charcoal-ink/20">
                       💪 {item.protein.toUpperCase()}
                     </span>
                   </div>
@@ -189,12 +189,12 @@ export function CuratedMenu() {
                   </p>
                 </div>
 
-                {/* Interacción de Compra: Botón Inferior Ancho con Efecto Magnético GSAP */}
+                {/* Interacción de Compra: Botón estilo comanda de plancha */}
                 <MagneticButton
                   as="button"
                   type="button"
                   onClick={() => handleAddToCart(item)}
-                  className="w-full py-3.5 px-4 font-sans font-bold uppercase tracking-wider text-xs sm:text-sm bg-charcoal-ink text-cream-bg group-hover:bg-brand-fire transition-colors duration-300 rounded-xl flex items-center justify-center gap-2 shadow-sm active:scale-[0.98] cursor-pointer"
+                  className="w-full py-3.5 px-4 font-sans font-bold uppercase tracking-wider text-xs sm:text-sm bg-charcoal-ink text-cream-bg group-hover:bg-brand-fire transition-colors duration-200 rounded-none border border-charcoal-ink flex items-center justify-center gap-2 cursor-pointer"
                   aria-label={`Agregar ${item.name} a la orden por $${item.price.toFixed(2)}`}
                 >
                   <Plus className="h-4 w-4 stroke-[2.5]" aria-hidden="true" />

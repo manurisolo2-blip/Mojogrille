@@ -131,18 +131,8 @@ export function DistrictsCatering() {
     <section
       id="districts-catering"
       aria-label="Packaging Térmico de Autor y Catering para Distritos de Miami"
-      className="relative bg-charcoal-ink text-cream-bg py-24 px-6 md:px-12 select-none overflow-hidden border-t border-charcoal-ink/30"
+      className="relative bg-charcoal-ink text-cream-bg py-24 px-4 sm:px-6 lg:px-8 select-none overflow-hidden border-t border-charcoal-ink/30"
     >
-      {/* Fondo con Textura de Gradientes Sutiles */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-40 right-0 h-96 w-96 rounded-full bg-brand-fire/10 blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 left-0 h-96 w-96 rounded-full bg-mojo-citrus/5 blur-3xl"
-      />
-
       <div className="relative mx-auto max-w-7xl">
         {/* Encabezado Editorial */}
         <div className="text-center max-w-4xl mx-auto mb-16 sm:mb-20">
@@ -157,82 +147,84 @@ export function DistrictsCatering() {
           </p>
         </div>
 
-        {/* Grid de Packaging Minimalista de los 4 Distritos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {DISTRICT_PACKAGES.map((pkg) => (
-            <article
-              key={pkg.id}
-              className="group relative flex flex-col justify-between rounded-2xl bg-[#1A1815] border border-cream-bg/10 p-6 sm:p-7 shadow-xl hover:border-brand-fire/50 hover:shadow-[0_20px_40px_-15px_rgba(229,37,22,0.18)] transition-all duration-300 hover:-translate-y-1"
-            >
-              {/* Parte Superior: Serial & Badges */}
-              <div>
-                <div className="flex items-center justify-between border-b border-cream-bg/10 pb-3.5 mb-5">
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-cream-bg/50">
-                    {pkg.serialNumber}
-                  </span>
-                  <span
-                    className="inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[9px] font-sans font-bold uppercase tracking-wider text-cream-bg border border-cream-bg/10"
-                    style={{ backgroundColor: `${pkg.accentColor}20` }}
-                  >
-                    <Sparkles className="h-2.5 w-2.5" style={{ color: pkg.accentColor }} />
-                    <span style={{ color: pkg.accentColor }}>{pkg.badge}</span>
-                  </span>
-                </div>
-
-                {/* Mockup Gráfico Estilizado del Packaging */}
-                <div className="relative my-4 h-32 rounded-xl bg-charcoal-ink/90 border border-cream-bg/10 flex flex-col items-center justify-center p-4 overflow-hidden group-hover:border-cream-bg/25 transition-colors">
-                  {/* Código de barras decorativo */}
-                  <div className="absolute top-3 left-3 opacity-30 font-mono text-[8px] tracking-tighter select-none">
-                    ||| | |||| | || ||| ||
-                  </div>
-                  {/* Indicador de retención de calor */}
-                  <div className="absolute top-3 right-3 flex items-center gap-1 text-[9px] font-mono font-bold text-cream-bg/60">
-                    <ShieldCheck className="h-3 w-3 text-leaf-green" />
-                    <span>{pkg.thermalRetention}</span>
-                  </div>
-
-                  <Package className="h-12 w-12 text-cream-bg/80 group-hover:text-brand-fire group-hover:scale-110 transition-all duration-300 stroke-[1.3]" />
-                  
-                  <span className="mt-2 font-mono text-[10px] tracking-widest uppercase text-cream-bg/60">
-                    {pkg.district.toUpperCase()} · THERMAL BOX
-                  </span>
-                </div>
-
-                {/* Título & Tagline */}
-                <h3 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-cream-bg group-hover:text-brand-fire transition-colors leading-tight mb-2">
-                  {pkg.editionName}
-                </h3>
-                <p className="font-sans text-xs text-cream-bg/70 leading-relaxed mb-4">
-                  {pkg.tagline}
-                </p>
-
-                {/* Especificaciones Técnicas */}
-                <div className="space-y-1.5 border-t border-cream-bg/10 pt-3.5 mb-6">
-                  <div className="flex items-center gap-1.5 text-[11px] font-sans font-semibold text-cream-bg/90 mb-2">
-                    <Users className="h-3.5 w-3.5 text-brand-fire shrink-0" />
-                    <span>Capacidad: {pkg.capacity}</span>
-                  </div>
-                  {pkg.specs.map((spec, i) => (
-                    <div key={i} className="flex items-start gap-2 text-[11px] font-sans text-cream-bg/65">
-                      <Check className="h-3 w-3 text-brand-fire shrink-0 mt-0.5" />
-                      <span className="leading-tight">{spec}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Botón de Acción Inferior: Cotizar Catering */}
-              <button
-                type="button"
-                onClick={() => handleOpenModal(pkg)}
-                className="w-full py-3.5 px-4 rounded-xl font-sans font-bold uppercase tracking-wider text-xs bg-cream-bg text-charcoal-ink group-hover:bg-brand-fire group-hover:text-cream-bg transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-95"
-                aria-label={`Cotizar catering para ${pkg.editionName}`}
+        {/* Retícula de Packaging Impreso (Shared 1px Grid) */}
+        <div className="border-t border-l border-cream-bg/20 bg-charcoal-ink">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+            {DISTRICT_PACKAGES.map((pkg) => (
+              <article
+                key={pkg.id}
+                className="group relative flex flex-col justify-between rounded-none bg-charcoal-ink border-r border-b border-cream-bg/20 p-6 sm:p-7 hover:bg-[#1C1A17] transition-colors duration-200"
               >
-                <span>COTIZAR CATERING</span>
-                <ArrowRight className="h-3.5 w-3.5" />
-              </button>
-            </article>
-          ))}
+                {/* Parte Superior: Serial & Badges */}
+                <div>
+                  <div className="flex items-center justify-between border-b border-cream-bg/10 pb-3.5 mb-5">
+                    <span className="font-mono text-[11px] uppercase tracking-widest text-cream-bg/50">
+                      {pkg.serialNumber}
+                    </span>
+                    <span
+                      className="inline-flex items-center gap-1 rounded-none px-2 py-0.5 text-[9px] font-sans font-bold uppercase tracking-wider text-cream-bg border border-cream-bg/20"
+                      style={{ backgroundColor: `${pkg.accentColor}20` }}
+                    >
+                      <Sparkles className="h-2.5 w-2.5" style={{ color: pkg.accentColor }} />
+                      <span style={{ color: pkg.accentColor }}>{pkg.badge}</span>
+                    </span>
+                  </div>
+
+                  {/* Mockup Gráfico Estilizado del Packaging */}
+                  <div className="relative my-4 h-32 rounded-none bg-[#11100E] border border-cream-bg/20 flex flex-col items-center justify-center p-4 overflow-hidden group-hover:border-cream-bg/40 transition-colors">
+                    {/* Código de barras decorativo */}
+                    <div className="absolute top-3 left-3 opacity-30 font-mono text-[8px] tracking-tighter select-none">
+                      ||| | |||| | || ||| ||
+                    </div>
+                    {/* Indicador de retención de calor */}
+                    <div className="absolute top-3 right-3 flex items-center gap-1 text-[9px] font-mono font-bold text-cream-bg/60">
+                      <ShieldCheck className="h-3 w-3 text-leaf-green" />
+                      <span>{pkg.thermalRetention}</span>
+                    </div>
+
+                    <Package className="h-12 w-12 text-cream-bg/80 group-hover:text-brand-fire group-hover:scale-105 transition-all duration-300 stroke-[1.3]" />
+                    
+                    <span className="mt-2 font-mono text-[10px] tracking-widest uppercase text-cream-bg/60">
+                      {pkg.district.toUpperCase()} · THERMAL BOX
+                    </span>
+                  </div>
+
+                  {/* Título & Tagline */}
+                  <h3 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-cream-bg group-hover:text-brand-fire transition-colors leading-tight mb-2">
+                    {pkg.editionName}
+                  </h3>
+                  <p className="font-sans text-xs text-cream-bg/70 leading-relaxed mb-4">
+                    {pkg.tagline}
+                  </p>
+
+                  {/* Especificaciones Técnicas */}
+                  <div className="space-y-1.5 border-t border-cream-bg/10 pt-3.5 mb-6">
+                    <div className="flex items-center gap-1.5 text-[11px] font-sans font-semibold text-cream-bg/90 mb-2">
+                      <Users className="h-3.5 w-3.5 text-brand-fire shrink-0" />
+                      <span>Capacidad: {pkg.capacity}</span>
+                    </div>
+                    {pkg.specs.map((spec, i) => (
+                      <div key={i} className="flex items-start gap-2 text-[11px] font-sans text-cream-bg/65">
+                        <Check className="h-3 w-3 text-brand-fire shrink-0 mt-0.5" />
+                        <span className="leading-tight">{spec}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Botón de Acción Inferior: Cotizar Catering */}
+                <button
+                  type="button"
+                  onClick={() => handleOpenModal(pkg)}
+                  className="w-full py-3.5 px-4 rounded-none font-sans font-bold uppercase tracking-wider text-xs bg-cream-bg text-charcoal-ink hover:bg-brand-fire hover:text-cream-bg border border-cream-bg hover:border-brand-fire transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
+                  aria-label={`Cotizar catering para ${pkg.editionName}`}
+                >
+                  <span>COTIZAR CATERING</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </button>
+              </article>
+            ))}
+          </div>
         </div>
 
         {/* Garantía y Teléfono Directo */}
@@ -251,20 +243,20 @@ export function DistrictsCatering() {
         </div>
       </div>
 
-      {/* Modal de Cotización de Catering de Autor */}
+      {/* Modal de Cotización de Catering de Autor (Estilo Comanda Física) */}
       {selectedPkg && (
         <div
           role="dialog"
           aria-modal="true"
           aria-labelledby="catering-modal-title"
-          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-charcoal-ink/80 backdrop-blur-sm animate-in fade-in duration-200"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-charcoal-ink/80 backdrop-blur-xs animate-in fade-in duration-200"
         >
-          <div className="relative w-full max-w-lg rounded-2xl bg-surface-sand text-charcoal-ink p-6 sm:p-8 shadow-2xl border border-charcoal-ink/15">
+          <div className="relative w-full max-w-lg rounded-none bg-surface-sand text-charcoal-ink p-6 sm:p-8 border-2 border-charcoal-ink">
             {/* Botón Cerrar */}
             <button
               type="button"
               onClick={handleCloseModal}
-              className="absolute top-5 right-5 p-1.5 rounded-full text-charcoal-ink/70 hover:text-charcoal-ink hover:bg-charcoal-ink/10 transition-colors"
+              className="absolute top-5 right-5 p-1.5 rounded-none text-charcoal-ink/70 hover:text-charcoal-ink hover:bg-charcoal-ink/10 transition-colors"
               aria-label="Cerrar modal de cotización"
             >
               <X className="h-5 w-5" />
@@ -285,7 +277,7 @@ export function DistrictsCatering() {
 
             {isSubmitted ? (
               <div className="py-8 text-center space-y-3">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-leaf-green/20 text-leaf-green">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-none bg-leaf-green/20 text-leaf-green border border-leaf-green/30">
                   <Check className="h-6 w-6" />
                 </div>
                 <h4 className="font-display text-2xl font-bold uppercase tracking-tight text-charcoal-ink">
@@ -297,7 +289,7 @@ export function DistrictsCatering() {
                 <button
                   type="button"
                   onClick={handleCloseModal}
-                  className="mt-4 px-6 py-2.5 rounded-xl bg-charcoal-ink text-cream-bg font-sans text-xs font-bold uppercase tracking-wider hover:bg-brand-fire transition-colors"
+                  className="mt-4 px-6 py-2.5 rounded-none bg-charcoal-ink text-cream-bg font-sans text-xs font-bold uppercase tracking-wider hover:bg-brand-fire transition-colors"
                 >
                   Cerrar
                 </button>
@@ -315,7 +307,7 @@ export function DistrictsCatering() {
                     placeholder="Ej. Estudio Creativo Wynwood / Carlos Mendoza"
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
-                    className="w-full rounded-xl border border-charcoal-ink/20 bg-cream-bg px-4 py-2.5 font-sans text-sm text-charcoal-ink placeholder:text-charcoal-ink/40 focus:border-brand-fire focus:outline-hidden"
+                    className="w-full rounded-none border border-charcoal-ink/30 bg-cream-bg px-4 py-2.5 font-sans text-sm text-charcoal-ink placeholder:text-charcoal-ink/40 focus:border-brand-fire focus:outline-hidden"
                   />
                 </div>
 
@@ -328,7 +320,7 @@ export function DistrictsCatering() {
                       id="guest-count"
                       value={guestCount}
                       onChange={(e) => setGuestCount(e.target.value)}
-                      className="w-full rounded-xl border border-charcoal-ink/20 bg-cream-bg px-3 py-2.5 font-sans text-sm text-charcoal-ink focus:border-brand-fire focus:outline-hidden"
+                      className="w-full rounded-none border border-charcoal-ink/30 bg-cream-bg px-3 py-2.5 font-sans text-sm text-charcoal-ink focus:border-brand-fire focus:outline-hidden"
                     >
                       <option value="15-20">15 a 20 personas</option>
                       <option value="25-35">25 a 35 personas</option>
@@ -345,18 +337,18 @@ export function DistrictsCatering() {
                       type="date"
                       value={eventDate}
                       onChange={(e) => setEventDate(e.target.value)}
-                      className="w-full rounded-xl border border-charcoal-ink/20 bg-cream-bg px-3 py-2.5 font-sans text-sm text-charcoal-ink focus:border-brand-fire focus:outline-hidden"
+                      className="w-full rounded-none border border-charcoal-ink/30 bg-cream-bg px-3 py-2.5 font-sans text-sm text-charcoal-ink focus:border-brand-fire focus:outline-hidden"
                     />
                   </div>
                 </div>
 
-                <div className="rounded-xl bg-charcoal-ink/5 p-3 text-[11px] font-sans text-charcoal-ink/70">
+                <div className="rounded-none border border-charcoal-ink/20 bg-charcoal-ink/5 p-3 text-[11px] font-sans text-charcoal-ink/70">
                   ⚡ <strong>Confirmación Rápida:</strong> Se enviará un mensaje estructurado directo al WhatsApp de nuestro equipo de catering para cotizar al momento.
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-4 rounded-xl font-sans font-bold uppercase tracking-wider text-xs bg-brand-fire text-cream-bg hover:bg-brand-fire/90 transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                  className="w-full py-3.5 px-4 rounded-none font-sans font-bold uppercase tracking-wider text-xs bg-brand-fire text-cream-bg hover:bg-charcoal-ink transition-colors border-2 border-brand-fire hover:border-charcoal-ink flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>COTIZAR POR WHATSAPP</span>
                   <ArrowRight className="h-4 w-4" />
