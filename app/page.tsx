@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { TopMarquee, Navbar, HeroSection } from '../components/hero';
-import { ScrollLayerAssembly } from '../components/sandwich';
+import { CubanDeconstruction } from '../components/CubanDeconstruction';
 import { CravStyleMenuGrid, FloatingCravBar } from '../components/menu';
 import { Preloader } from '../components/preloader';
 
@@ -23,8 +23,8 @@ export default function HomePage() {
       {/* 3. Hero Section (Composición interactiva inspirada en CRAV + Producto Central) */}
       <HeroSection />
 
-      {/* 3.5. Fase 5: El Elemento Estrella — Deconstrucción en Scroll */}
-      <ScrollLayerAssembly />
+      {/* 3.5. Fase 5: El Elemento Estrella — Deconstrucción en Scroll (CubanDeconstruction) */}
+      <CubanDeconstruction />
 
       {/* 4. Catálogo Interactivo de Menú estilo CRAV */}
       <section id="menu" className="border-t border-charcoal-ink/10">

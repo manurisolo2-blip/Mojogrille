@@ -11,7 +11,7 @@ import { QuickOrderModal } from "@/components/mojo/QuickOrderModal";
 import { CartSheet } from "@/components/mojo/CartSheet";
 import { MobileActionBar } from "@/components/mojo/MobileActionBar";
 import { Preloader } from "@/components/mojo/Preloader";
-import { ScrollLayerAssembly } from "@/components/mojo/ScrollLayerAssembly";
+import { CubanDeconstruction } from "@/components/mojo/CubanDeconstruction";
 import { itemsForCategory, type CategoryId, type MenuItem } from "@/data/menu";
 import { locationsList } from "@/data/locations";
 
@@ -76,8 +76,8 @@ function Index() {
             shouldAnimateIn={isLoaded}
           />
 
-          {/* Fase 5: El Elemento Estrella — Deconstrucción en Scroll (Scroll-Driven Layer Assembly) */}
-          <ScrollLayerAssembly />
+          {/* Fase 5: El Elemento Estrella — Deconstrucción en Scroll (CubanDeconstruction) */}
+          <CubanDeconstruction />
 
           <section id="menu" className="scroll-mt-32 bg-cream-bg">
             <CravStyleMenuGrid onSelect={setSelected} />
