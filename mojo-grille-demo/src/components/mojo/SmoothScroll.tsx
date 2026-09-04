@@ -29,6 +29,9 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
     });
 
     lenisRef.current = lenis;
+    if (typeof window !== "undefined") {
+      (window as unknown as { lenis: Lenis }).lenis = lenis;
+    }
 
     // 2. Vincular el evento scroll de Lenis a ScrollTrigger.update()
     lenis.on("scroll", ScrollTrigger.update);
@@ -46,6 +49,9 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
       gsap.ticker.remove(updateTicker);
       lenis.destroy();
       lenisRef.current = null;
+      if (typeof window !== "undefined") {
+        delete (window as unknown as { lenis?: Lenis }).lenis;
+      }
     };
   }, []);
 

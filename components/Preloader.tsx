@@ -1,5 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+'use client';
+
+import React, { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
 
 export interface PreloaderProps {
   /**
@@ -21,11 +23,11 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === 'undefined') return;
 
     // Bloquear scroll nativo e inercial de Lenis durante la precarga
     const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
     if ((window as unknown as { lenis?: { stop: () => void } }).lenis) {
       (window as unknown as { lenis: { stop: () => void } }).lenis.stop();
     }
@@ -37,7 +39,7 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
     tl.to(counter, {
       val: 100,
       duration: duration,
-      ease: "power2.inOut",
+      ease: 'power2.inOut',
       onUpdate: () => {
         const currentVal = Math.round(counter.val);
         if (counterRef.current) {
@@ -53,7 +55,7 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
     tl.to(containerRef.current, {
       yPercent: -100,
       duration: 0.9,
-      ease: "power4.inOut",
+      ease: 'power4.inOut',
       onComplete: () => {
         setIsLoaded(true);
         setIsVisible(false);
