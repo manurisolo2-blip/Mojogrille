@@ -14,6 +14,7 @@ import { CuratedMenu } from '../components/CuratedMenu';
 import { DistrictsCatering } from '../components/DistrictsCatering';
 import { EditorialFooter } from '../components/EditorialFooter';
 import { FloatingCravBar } from '../components/menu/FloatingCravBar';
+import { NoiseOverlay } from '../components/NoiseOverlay';
 
 export default function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -75,6 +76,9 @@ export default function HomePage() {
 
       {/* 2. Cart Drawer: Panel lateral transaccional nativo */}
       <CartDrawer />
+
+      {/* Textura de grano de papel artesanal editorial */}
+      <NoiseOverlay />
 
       {/* Barra de navegación superior fija translúcida con blur */}
       <Navbar />

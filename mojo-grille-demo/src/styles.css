@@ -125,9 +125,16 @@
 
   body {
     background-color: var(--color-background);
+    background-image: url('/assets/noise.png');
+    background-repeat: repeat;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+  }
+
+  .grain {
+    background-image: url('/assets/noise.png');
+    background-repeat: repeat;
   }
 
   /* Dual Typography Hierarchy */

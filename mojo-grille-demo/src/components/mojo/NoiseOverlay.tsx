@@ -3,13 +3,34 @@ import React from "react";
 export function NoiseOverlay() {
   return (
     <div
-      className="fixed inset-0 pointer-events-none z-[90] opacity-[0.035] mix-blend-multiply"
-      style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        backgroundRepeat: "repeat",
-      }}
+      className="fixed inset-0 pointer-events-none z-[90] select-none"
       aria-hidden="true"
-    />
+    >
+      {/* 1. Grano vectorial de alta resolución con feTurbulence nativo en el DOM */}
+      <svg
+        className="absolute inset-0 h-full w-full opacity-[0.15] mix-blend-multiply"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <filter id="craft-noise-filter">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.8"
+            numOctaves="4"
+            stitchTiles="stitch"
+          />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#craft-noise-filter)" />
+      </svg>
+
+      {/* 2. Textura fotomecánica de imprenta artesanal (/assets/noise.png) */}
+      <div
+        className="absolute inset-0 h-full w-full opacity-[0.12] mix-blend-multiply bg-repeat"
+        style={{
+          backgroundImage: "url('/assets/noise.png')",
+        }}
+      />
+    </div>
   );
 }
 

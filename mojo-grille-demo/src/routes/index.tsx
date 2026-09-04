@@ -19,6 +19,7 @@ import { CubanDeconstruction } from "@/components/mojo/CubanDeconstruction";
 import { CuratedMenu } from "@/components/mojo/CuratedMenu";
 import { DistrictsCatering } from "@/components/mojo/DistrictsCatering";
 import { EditorialFooter } from "@/components/mojo/EditorialFooter";
+import { NoiseOverlay } from "@/components/mojo/NoiseOverlay";
 import { itemsForCategory, type CategoryId, type MenuItem } from "@/data/menu";
 import { locationsList } from "@/data/locations";
 
@@ -119,6 +120,9 @@ function Index() {
     <CartProvider>
       {/* Editorial Preloader & Cinematic Curtain Exit */}
       <Preloader onComplete={() => setIsLoaded(true)} />
+
+      {/* Textura de grano de papel artesanal editorial */}
+      <NoiseOverlay />
 
       <div className="min-h-dvh bg-[#FAF8F5] text-[#1C1917] pb-24 md:pb-0">
         <TopBar onOpenCart={() => setCartOpen(true)} />

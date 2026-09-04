@@ -14,8 +14,15 @@
 
   body {
     background-color: #F6F1E8;
+    background-image: url('/assets/noise.png');
+    background-repeat: repeat;
     color: #141210;
     font-family: var(--font-sans);
+  }
+
+  .grain {
+    background-image: url('/assets/noise.png');
+    background-repeat: repeat;
   }
 
   h1,
