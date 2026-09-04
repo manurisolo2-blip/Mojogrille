@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { generateRestaurantSchema, generateMenuSchema } from "../lib/seo";
 import { locationsList } from "../data/locations";
 import { categories, menu } from "../data/menu";
+import { SmoothScroll } from "../components/mojo/SmoothScroll";
 
 
 function NotFoundComponent() {
@@ -188,7 +189,9 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <SmoothScroll>
+        <Outlet />
+      </SmoothScroll>
     </QueryClientProvider>
   );
 }
