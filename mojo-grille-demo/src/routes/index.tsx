@@ -15,6 +15,7 @@ import { Preloader } from "@/components/mojo/Preloader";
 import { CubanDeconstruction } from "@/components/mojo/CubanDeconstruction";
 import { CuratedMenu } from "@/components/mojo/CuratedMenu";
 import { DistrictsCatering } from "@/components/mojo/DistrictsCatering";
+import { EditorialFooter } from "@/components/mojo/EditorialFooter";
 import { itemsForCategory, type CategoryId, type MenuItem } from "@/data/menu";
 import { locationsList } from "@/data/locations";
 
@@ -122,55 +123,8 @@ function Index() {
             </div>
           </section>
 
-          <footer className="border-t border-charcoal-ink/10 bg-cream-bg py-14">
-            <div className="mx-auto max-w-6xl px-4 sm:px-6">
-              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                <div>
-                  <p className="font-display text-2xl font-bold uppercase tracking-tight text-charcoal-ink">MOJO GRILLE</p>
-                  <p className="mt-1 font-sans text-xs uppercase tracking-wider text-brand-fire font-bold">
-                    Cuban Kitchen · Miami, FL
-                  </p>
-                  <p className="mt-3 font-sans text-xs leading-relaxed text-charcoal-ink/70">
-                    Authentic Cuban bowls, freshly pressed Cubano sandwiches &amp; family recipes made al momento. Marinated 24 hours in citrus mojo.
-                  </p>
-                </div>
-
-                {locationsList.map((loc) => (
-                  <div key={loc.id} className="font-sans text-sm">
-                    <p className="font-bold text-charcoal-ink flex items-center gap-1.5">
-                      <MapPin className="h-4 w-4 text-brand-fire shrink-0" />
-                      {loc.name} Store
-                    </p>
-                    <p className="mt-1.5 text-xs text-charcoal-ink/70 leading-relaxed">
-                      {loc.address.fullAddress}
-                    </p>
-                    <a
-                      href={`tel:${loc.phone}`}
-                      className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-brand-fire hover:underline"
-                    >
-                      <Phone className="h-3 w-3" />
-                      {loc.phone}
-                    </a>
-                    <p className="mt-1 flex items-center gap-1 text-[11px] text-charcoal-ink/60">
-                      <Clock className="h-3 w-3 text-charcoal-ink/60" />
-                      {loc.hours}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-10 border-t border-charcoal-ink/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-charcoal-ink/60">
-                <p>© {new Date().getFullYear()} Mojo Grille Cuban Kitchen. Todos los derechos reservados.</p>
-                <p className="flex items-center gap-3">
-                  <span>Little Havana</span>
-                  <span>•</span>
-                  <span>Brickell</span>
-                  <span>•</span>
-                  <span>Doral</span>
-                </p>
-              </div>
-            </div>
-          </footer>
+          {/* Editorial Footer de Alto Impacto */}
+          <EditorialFooter onOpenCart={() => setCartOpen(true)} />
         </main>
 
         <QuickOrderModal item={selected} onClose={() => setSelected(null)} />
