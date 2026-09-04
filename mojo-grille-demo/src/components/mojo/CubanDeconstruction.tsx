@@ -29,11 +29,10 @@ export function CubanDeconstruction() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Configurar inclinación inicial 3D en las tapas de los panes
+      // Configurar inclinación inicial en las tapas de los panes manteniendo el orden z-index
       gsap.set([topBreadRef.current, bottomBreadRef.current], {
         rotateX: 20,
         transformPerspective: 1000,
-        transformStyle: "preserve-3d",
       });
 
       const tl = gsap.timeline({
@@ -156,7 +155,7 @@ export function CubanDeconstruction() {
           
           {/* Contenedor central cuadrado de capas apiladas con perspectiva CSS */}
           <div
-            className="relative w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] md:w-[500px] md:h-[500px] flex items-center justify-center [perspective:1000px] [transform-style:preserve-3d]"
+            className="relative w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] md:w-[500px] md:h-[500px] flex items-center justify-center [perspective:1000px]"
             style={{ perspective: "1000px" }}
           >
             
@@ -164,7 +163,7 @@ export function CubanDeconstruction() {
             <div
               ref={topBreadRef}
               className="absolute inset-0 flex items-center justify-center will-change-transform z-50 pointer-events-none"
-              style={{ willChange: "transform", transform: "rotateX(20deg)", transformStyle: "preserve-3d" }}
+              style={{ willChange: "transform", transform: "rotateX(20deg)" }}
             >
               <img
                 src="/sandwich/01-top-bread.webp"
@@ -181,7 +180,7 @@ export function CubanDeconstruction() {
             <div
               ref={picklesRef}
               className="absolute inset-0 flex items-center justify-center will-change-transform z-40 pointer-events-none"
-              style={{ willChange: "transform", transformStyle: "preserve-3d" }}
+              style={{ willChange: "transform" }}
             >
               <img
                 src="/sandwich/02-pickles.webp"
@@ -198,7 +197,7 @@ export function CubanDeconstruction() {
             <div
               ref={cheeseRef}
               className="absolute inset-0 flex items-center justify-center will-change-transform z-30 pointer-events-none"
-              style={{ willChange: "transform", transformStyle: "preserve-3d" }}
+              style={{ willChange: "transform" }}
             >
               <img
                 src="/sandwich/03-melted-cheese.webp"
@@ -215,7 +214,7 @@ export function CubanDeconstruction() {
             <div
               ref={mojoPorkRef}
               className="absolute inset-0 flex items-center justify-center will-change-transform z-20 pointer-events-none"
-              style={{ willChange: "transform", transformStyle: "preserve-3d" }}
+              style={{ willChange: "transform" }}
             >
               <img
                 src="/sandwich/04-mojo-pork.webp"
@@ -232,7 +231,7 @@ export function CubanDeconstruction() {
             <div
               ref={bottomBreadRef}
               className="absolute inset-0 flex items-center justify-center will-change-transform z-10 pointer-events-none"
-              style={{ willChange: "transform", transform: "rotateX(20deg)", transformStyle: "preserve-3d" }}
+              style={{ willChange: "transform", transform: "rotateX(20deg)" }}
             >
               <img
                 src="/sandwich/05-bottom-bread.webp"
