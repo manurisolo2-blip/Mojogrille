@@ -6,6 +6,7 @@ import { TopBar } from "@/components/mojo/TopBar";
 import { HeroSection } from "@/components/mojo/HeroSection";
 import { CategoryTabs } from "@/components/mojo/CategoryTabs";
 import { MenuGrid } from "@/components/mojo/MenuGrid";
+import { CravStyleMenuGrid } from "@/components/mojo/CravStyleMenuGrid";
 import { QuickOrderModal } from "@/components/mojo/QuickOrderModal";
 import { CartSheet } from "@/components/mojo/CartSheet";
 import { MobileActionBar } from "@/components/mojo/MobileActionBar";
@@ -66,18 +67,7 @@ function Index() {
           <HeroSection menuAnchorId="menu" cateringHref="#catering" />
 
           <section id="menu" className="scroll-mt-32 bg-[#FAF8F5]">
-            <CategoryTabs active={category} onChange={setCategory} />
-            <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-              <h2 className="font-serif text-2xl font-bold tracking-tight text-[#1C1917] sm:text-3xl">
-                Our Menu • El Menú Criollo
-              </h2>
-              <p className="mt-1.5 font-sans text-sm text-[#78716C]">
-                Prepared fresh al momento con auténtico mojo criollo. 15-min pickup or fast delivery caliente in Miami.
-              </p>
-              <div className="mt-6">
-                <MenuGrid items={items} onSelect={setSelected} />
-              </div>
-            </div>
+            <CravStyleMenuGrid onSelect={setSelected} />
           </section>
 
           <section
