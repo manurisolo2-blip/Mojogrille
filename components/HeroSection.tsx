@@ -1,34 +1,23 @@
-import React, { useEffect } from "react";
-import { UtensilsCrossed, CalendarHeart, Sparkles } from "lucide-react";
-import gsap from "gsap";
-import defaultHeroImage from "@/assets/mojo-bowl-ropa-vieja.jpg";
-import { MagneticButton } from "./MagneticButton";
+'use client';
 
-export interface HeroSectionProps {
-  onOrderClick?: () => void;
-  menuAnchorId?: string;
-  cateringHref?: string;
-  imageUrl?: string;
-  /**
-   * Triggers the cinematic entrance animation for Hero headline,
-   * floating stickers, CTAs, and central product card.
-   */
-  shouldAnimateIn?: boolean;
-}
+import React from 'react';
+import { motion } from 'framer-motion';
+import { UtensilsCrossed, CalendarHeart, Sparkles } from 'lucide-react';
+import { MagneticButton } from './hero/MagneticButton';
 
 const TICKER_TEXT =
-  "MOJO GRILLE · SLOW ROASTED PORK · CITRUS MARINATED · PRESSED TO PERFECTION · MIAMI FL";
+  'MOJO GRILLE · SLOW ROASTED PORK · CITRUS MARINATED · PRESSED TO PERFECTION · MIAMI FL';
 
 function TickerBar({
-  variant = "brand",
+  variant = 'brand',
 }: {
-  variant?: "brand" | "charcoal";
+  variant?: 'brand' | 'charcoal';
 }) {
-  const isBrand = variant === "brand";
+  const isBrand = variant === 'brand';
   return (
     <div
       className={`overflow-hidden border-y border-charcoal-ink/10 select-none py-3 shadow-xs ${
-        isBrand ? "bg-brand-fire text-cream-bg" : "bg-charcoal-ink text-cream-bg"
+        isBrand ? 'bg-brand-fire text-cream-bg' : 'bg-charcoal-ink text-cream-bg'
       }`}
     >
       <div className="flex overflow-x-hidden whitespace-nowrap">
@@ -48,7 +37,7 @@ function TickerBar({
             ))}
           </div>
 
-          {/* Bloque 2 duplicado para scroll continuo infinito */}
+          {/* Bloque 2 duplicado para scroll infinito continuo */}
           <div
             className="flex shrink-0 items-center gap-8 pr-8 whitespace-nowrap"
             aria-hidden="true"
@@ -71,73 +60,41 @@ function TickerBar({
   );
 }
 
+export interface HeroSectionProps {
+  onOrderClick?: () => void;
+  menuAnchorId?: string;
+  cateringHref?: string;
+}
+
 export function HeroSection({
   onOrderClick,
-  menuAnchorId = "menu",
-  cateringHref = "#catering",
-  imageUrl = defaultHeroImage,
-  shouldAnimateIn,
+  menuAnchorId = 'menu',
+  cateringHref = '#catering',
 }: HeroSectionProps) {
-  useEffect(() => {
-    if (!shouldAnimateIn || typeof window === "undefined") return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".hero-fade-item",
-        { opacity: 0, y: 36 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.75,
-          stagger: 0.08,
-          ease: "power3.out",
-        }
-      );
-
-      gsap.fromTo(
-        ".hero-card-item",
-        { opacity: 0, scale: 0.9, y: 44 },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.95,
-          ease: "power4.out",
-          delay: 0.15,
-        }
-      );
-    });
-
-    return () => ctx.revert();
-  }, [shouldAnimateIn]);
-
-  const handleScrollToMenu = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+  const handleScrollToMenu = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const target = document.getElementById(menuAnchorId);
     if (target) {
       e.preventDefault();
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     onOrderClick?.();
   };
 
-  const animItemClass = shouldAnimateIn === false ? "opacity-0 hero-fade-item" : "hero-fade-item";
-  const animCardClass = shouldAnimateIn === false ? "opacity-0 hero-card-item" : "hero-card-item";
-
   return (
     <section
       id="top"
-      aria-label="Welcome to Mojo Grille Cuban Kitchen"
+      aria-label="Hero Section Mojo Grille"
       className="relative overflow-hidden bg-cream-bg border-b border-charcoal-ink/10 select-none"
     >
       {/* 1. Marquesina Tipográfica Infinita Superior (Ticker) */}
       <TickerBar variant="brand" />
 
       {/* 2. Bloque Principal Hero */}
-      <div className="relative pt-10 pb-16 md:pt-16 md:pb-24">
+      <div className="relative pt-10 pb-16 sm:pt-16 sm:pb-24">
         {/* Destellos / Gradientes Circulares Difuminados en Bordes (CRAV style) */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -top-24 -left-20 h-96 w-96 rounded-full bg-leaf-green/10 blur-3xl"
+          className="pointer-events-none absolute -top-20 -left-20 h-96 w-96 rounded-full bg-leaf-green/10 blur-3xl"
         />
         <div
           aria-hidden="true"
@@ -150,11 +107,9 @@ export function HeroSection({
 
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           
-          {/* Encabezado Monumental Centrado */}
+          {/* Ficha de Metadato Flotante Superior */}
           <div className="flex flex-col items-center text-center space-y-4 max-w-5xl mx-auto">
-            
-            {/* Ficha de Metadato Flotante Superior */}
-            <div className={`inline-flex items-center gap-2 rounded-full border border-charcoal-ink/15 bg-surface-sand px-4 py-1.5 shadow-xs ${animItemClass}`}>
+            <div className="inline-flex items-center gap-2 rounded-full border border-charcoal-ink/15 bg-surface-sand px-4 py-1.5 shadow-xs">
               <span className="h-2 w-2 rounded-full bg-brand-fire animate-pulse" aria-hidden="true" />
               <span className="font-sans text-[11px] font-bold uppercase tracking-widest text-charcoal-ink">
                 EST. MIAMI · 100% ARTISANAL MOJO
@@ -162,31 +117,31 @@ export function HeroSection({
             </div>
 
             {/* Titular Central Impactante: CRISP. JUICY. LOADED. */}
-            <h1 className={`font-display text-[10vw] sm:text-[11vw] lg:text-[11.5vw] font-black uppercase tracking-tight text-charcoal-ink leading-[0.85] text-center ${animItemClass}`}>
-              CRISP.{" "}
+            <h1 className="font-display text-[10vw] sm:text-[11vw] lg:text-[11.5vw] font-black uppercase tracking-tight text-charcoal-ink leading-[0.85] text-center">
+              CRISP.{' '}
               <span className="font-accent font-serif italic font-normal lowercase tracking-normal text-brand-fire">
                 juicy.
-              </span>{" "}
+              </span>{' '}
               LOADED.
             </h1>
 
             {/* Subtítulo Narrativo con Metadatos Clave & SEO */}
-            <p className={`mt-2 max-w-2xl font-sans text-sm sm:text-base md:text-lg leading-relaxed text-charcoal-ink/85 text-center ${animItemClass}`}>
+            <p className="mt-2 max-w-2xl font-sans text-sm sm:text-base md:text-lg leading-relaxed text-charcoal-ink/85 text-center">
               <span className="font-bold text-charcoal-ink">
                 The Authentic Criollo Flavor of Miami, Marinado to Perfection
               </span>
-              . Slow-roasted citrus pork, artisanal pressed Cuban sandwiches and fresh bowls prepared{" "}
+              . Slow-roasted citrus pork, artisanal pressed Cuban sandwiches and fresh bowls prepared{' '}
               <span className="font-bold text-brand-fire">al momento</span>.
             </p>
           </div>
 
-          {/* Elemento Fotográfico Central y Stickers Interactivos */}
-          <div className={`relative mx-auto mt-10 w-full max-w-2xl ${animCardClass}`}>
+          {/* Elemento Fotográfico Central con Badges Flotantes */}
+          <div className="relative mx-auto mt-10 w-full max-w-2xl">
             
             {/* Contenedor Fotográfico con Profundidad 3D y Sombra Volumétrica */}
             <div className="group relative overflow-hidden rounded-3xl border border-charcoal-ink/10 bg-surface-sand shadow-[0_24px_50px_-12px_rgba(20,18,16,0.22)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_32px_64px_-16px_rgba(20,18,16,0.28)]">
               <img
-                src={imageUrl}
+                src="/assets/mojo-bowl-ropa-vieja.jpg"
                 alt="Signature Mojo Grille dish: Artisanal Cuban bowl marinated in citrus mojo"
                 width={1024}
                 height={768}
@@ -214,11 +169,12 @@ export function HeroSection({
               </div>
             </div>
 
-            {/* Badge Izquierdo: Social Proof Rating (WCAG & Test Invariant) */}
-            <div
+            {/* Badge Izquierdo: Social Proof Rating (Invariante QA) */}
+            <motion.div
               role="status"
               aria-label="Average customer rating in Miami"
-              className="absolute -top-4 -left-4 sm:-top-5 sm:-left-6 z-20 -rotate-3 transition-transform duration-300 animate-float rounded-2xl border border-charcoal-ink/10 bg-surface-sand px-4 py-2.5 shadow-md hover:rotate-0 hover:scale-105 select-none cursor-pointer"
+              whileHover={{ scale: 1.06, rotate: 0 }}
+              className="absolute -top-4 -left-4 sm:-top-5 sm:-left-6 z-20 -rotate-3 transition-transform duration-300 rounded-2xl border border-charcoal-ink/10 bg-surface-sand px-4 py-2.5 shadow-md select-none cursor-pointer"
             >
               <div className="flex items-center gap-2">
                 <span className="text-mojo-citrus text-lg" aria-hidden="true">⭐</span>
@@ -231,10 +187,13 @@ export function HeroSection({
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Badge Derecho: Ficha de Metadato Flotante */}
-            <div className="absolute -bottom-4 -right-3 sm:-bottom-5 sm:-right-4 z-20 rotate-2 transition-transform duration-300 animate-float-reverse rounded-2xl bg-leaf-green px-4 py-2.5 text-cream-bg shadow-md shadow-leaf-green/20 hover:rotate-0 hover:scale-105 select-none cursor-pointer">
+            <motion.div
+              whileHover={{ scale: 1.06, rotate: 0 }}
+              className="absolute -bottom-4 -right-3 sm:-bottom-5 sm:-right-4 z-20 rotate-2 transition-transform duration-300 rounded-2xl bg-leaf-green px-4 py-2.5 text-cream-bg shadow-md shadow-leaf-green/20 select-none cursor-pointer"
+            >
               <div className="flex items-center gap-2">
                 <span className="text-lg" aria-hidden="true">🌿</span>
                 <div className="text-left">
@@ -246,14 +205,14 @@ export function HeroSection({
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
           </div>
 
-          {/* Botón de Llamada a la Acción Primario con Efecto Magnético (GSAP) */}
-          <div className={`mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row ${animItemClass}`}>
+          {/* Botón Primario de Acción 'ORDENAR AHORA' con Efecto Magnético GSAP */}
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <MagneticButton
-              href={`#${menuAnchorId}`}
+              href={menuAnchorId ? `#${menuAnchorId}` : '#menu'}
               onClick={handleScrollToMenu}
               className="group relative inline-flex items-center justify-center gap-3 rounded-full bg-brand-fire px-9 py-4.5 font-sans text-base sm:text-lg font-bold text-cream-bg shadow-[0_16px_32px_-8px_rgba(229,37,22,0.42)] transition-all duration-300 hover:bg-brand-fire/90 hover:shadow-[0_20px_38px_-6px_rgba(199,31,18,0.52)] cursor-pointer select-none"
             >
@@ -274,7 +233,7 @@ export function HeroSection({
           </div>
 
           {/* Microcopia de Confianza y Rapidez */}
-          <div className={`mt-4 flex items-center justify-center gap-2 text-xs text-charcoal-ink/70 ${animItemClass}`}>
+          <div className="mt-4 flex items-center justify-center gap-2 text-xs text-charcoal-ink/70">
             <Sparkles className="h-3.5 w-3.5 text-leaf-green" aria-hidden="true" />
             <span>Fresh ingredients • 15 min pickup • Fast delivery caliente al momento</span>
           </div>
