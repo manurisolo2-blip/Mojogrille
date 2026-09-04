@@ -1,54 +1,104 @@
 'use client';
 
-import { useState } from 'react';
-import { TopMarquee, Navbar, HeroSection } from '../components/hero';
+import React, { useState, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+import { Preloader } from '../components/Preloader';
+import { CartDrawer } from '../components/CartDrawer';
+import { Navbar } from '../components/hero/Navbar';
+import { HeroSection } from '../components/HeroSection';
+import { MarqueeTicker } from '../components/MarqueeTicker';
 import { CubanDeconstruction } from '../components/CubanDeconstruction';
 import { CuratedMenu } from '../components/CuratedMenu';
-import { CravStyleMenuGrid, FloatingCravBar } from '../components/menu';
 import { DistrictsCatering } from '../components/DistrictsCatering';
 import { EditorialFooter } from '../components/EditorialFooter';
-import { Preloader } from '../components/preloader';
-import { CartDrawer } from '../components/CartDrawer';
+import { FloatingCravBar } from '../components/menu/FloatingCravBar';
 
 export default function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Refresco de ScrollTrigger al completar la carga de todas las imágenes del DOM
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 1. Refresco inicial
+    ScrollTrigger.refresh();
+
+    // 2. Monitorear carga individual de todas las imágenes del DOM
+    const images = Array.from(document.querySelectorAll('img'));
+    let loadedCount = 0;
+    const totalImages = images.length;
+
+    const handleImageComplete = () => {
+      loadedCount++;
+      if (loadedCount >= totalImages) {
+        ScrollTrigger.refresh();
+      }
+    };
+
+    if (totalImages === 0) {
+      ScrollTrigger.refresh();
+    } else {
+      images.forEach((img) => {
+        if (img.complete) {
+          handleImageComplete();
+        } else {
+          img.addEventListener('load', handleImageComplete, { once: true });
+          img.addEventListener('error', handleImageComplete, { once: true });
+        }
+      });
+    }
+
+    // 3. Listener global a la carga completa de ventana y fallback de seguridad
+    const handleWindowLoad = () => {
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener('load', handleWindowLoad);
+
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 450);
+
+    return () => {
+      window.removeEventListener('load', handleWindowLoad);
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
-    <main className="min-h-screen bg-cream-bg text-charcoal-ink">
-      {/* 0. Preloader Editorial & Inicialización Cinematográfica */}
+    <main className="min-h-screen bg-cream-bg text-charcoal-ink select-none overflow-x-hidden">
+      {/* 1. Preloader Editorial con salida de cortina cinematográfica GSAP */}
       <Preloader onComplete={() => setIsLoaded(true)} />
 
-      {/* 1. Top Marquee (Ticker continuo infinito) */}
-      <TopMarquee variant="terracotta" />
+      {/* 2. Cart Drawer: Panel lateral transaccional nativo */}
+      <CartDrawer />
 
-      {/* 2. Navbar Dinámico Translúcido con Blur */}
+      {/* Barra de navegación superior fija translúcida con blur */}
       <Navbar />
 
-      {/* 3. Hero Section (Composición interactiva inspirada en CRAV + Producto Central) */}
-      <HeroSection />
+      {/* 3. Hero Section interactivo con magnetic CTAs y producto insignia */}
+      <HeroSection shouldAnimateIn={isLoaded} />
 
-      {/* 3.5. Fase 5: El Elemento Estrella — Deconstrucción en Scroll (CubanDeconstruction) */}
+      {/* 4. Marquee Ticker: Marquesina cinética continua de choque */}
+      <MarqueeTicker variant="brand" />
+
+      {/* 5. Cuban Deconstruction: Deconstrucción en scroll de 5 capas con scrub GSAP */}
       <CubanDeconstruction />
 
-      {/* 3.8. Selección de la Plancha — 6 Platos Estelares Curados */}
+      {/* 6. Curated Menu: Selección de la plancha con 6 platos estelares y badges técnicos */}
       <CuratedMenu />
 
-      {/* 4. Catálogo Interactivo de Menú estilo CRAV */}
-      <section id="menu" className="border-t border-charcoal-ink/10">
-        <CravStyleMenuGrid />
-      </section>
-
-      {/* 4.5. Packaging Térmico de Autor & Catering para Distritos */}
+      {/* 7. Districts Catering: Packaging térmico de autor y catering por distritos */}
       <DistrictsCatering />
 
-      {/* 4.8. Pie de Página Editorial */}
+      {/* 8. Editorial Footer: Titular monumental, 3 columnas y botón magnético 'Volver Arriba' */}
       <EditorialFooter />
 
-      {/* 5. Barra flotante mobile */}
+      {/* Barra flotante mobile para conversión rápida */}
       <FloatingCravBar />
-
-      {/* 6. Panel lateral transaccional nativo (CartDrawer) */}
-      <CartDrawer />
     </main>
   );
 }

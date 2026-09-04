@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Clock, MapPin, Phone } from "lucide-react";
 import { CartProvider } from "@/components/mojo/cart";
 import { TopBar } from "@/components/mojo/TopBar";
 import { HeroSection } from "@/components/mojo/HeroSection";
+import { MarqueeTicker } from "@/components/mojo/MarqueeTicker";
 import { CategoryTabs } from "@/components/mojo/CategoryTabs";
 import { MenuGrid } from "@/components/mojo/MenuGrid";
 import { CravStyleMenuGrid } from "@/components/mojo/CravStyleMenuGrid";
@@ -64,6 +67,52 @@ function Index() {
   const [cartOpen, setCartOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Refresco de ScrollTrigger al completar la carga de todas las imágenes del DOM
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.refresh();
+
+    const images = Array.from(document.querySelectorAll("img"));
+    let loadedCount = 0;
+    const totalImages = images.length;
+
+    const handleImageComplete = () => {
+      loadedCount++;
+      if (loadedCount >= totalImages) {
+        ScrollTrigger.refresh();
+      }
+    };
+
+    if (totalImages === 0) {
+      ScrollTrigger.refresh();
+    } else {
+      images.forEach((img) => {
+        if (img.complete) {
+          handleImageComplete();
+        } else {
+          img.addEventListener("load", handleImageComplete, { once: true });
+          img.addEventListener("error", handleImageComplete, { once: true });
+        }
+      });
+    }
+
+    const handleWindowLoad = () => {
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener("load", handleWindowLoad);
+
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 450);
+
+    return () => {
+      window.removeEventListener("load", handleWindowLoad);
+      clearTimeout(timer);
+    };
+  }, []);
+
   const items = itemsForCategory(category);
 
   return (
@@ -79,6 +128,9 @@ function Index() {
             cateringHref="#catering"
             shouldAnimateIn={isLoaded}
           />
+
+          {/* Marquesina Cinética Continua */}
+          <MarqueeTicker variant="brand" />
 
           {/* Fase 5: El Elemento Estrella — Deconstrucción en Scroll (CubanDeconstruction) */}
           <CubanDeconstruction />
