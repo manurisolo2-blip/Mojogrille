@@ -1,0 +1,135 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Mojo Grille design system.
+ * Warm cream base, toasted terracotta accents, citrus-green freshness badges.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-citrus: var(--citrus);
+  --color-citrus-foreground: var(--citrus-foreground);
+  --color-citrus-soft: var(--citrus-soft);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --shadow-soft: 0 1px 2px oklch(0.25 0.03 40 / 6%), 0 8px 24px -12px oklch(0.25 0.03 40 / 12%);
+  --shadow-lift: 0 2px 4px oklch(0.25 0.03 40 / 8%), 0 18px 40px -18px oklch(0.25 0.03 40 / 22%);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* #FAF8F5 */
+  --background: oklch(0.98 0.005 80);
+  /* #1C1917 */
+  --foreground: oklch(0.21 0.006 45);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.006 45);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.006 45);
+
+  /* #D95327 / #B83E16 */
+  --primary: oklch(0.6 0.176 39.5);
+  --primary-hover: oklch(0.52 0.171 38);
+  --primary-foreground: oklch(0.99 0.004 80);
+
+  --secondary: oklch(0.96 0.009 78);
+  --secondary-foreground: oklch(0.21 0.006 45);
+  --muted: oklch(0.955 0.008 78);
+  /* #78716C */
+  --muted-foreground: oklch(0.55 0.012 60);
+  --accent: oklch(0.94 0.02 60);
+  --accent-foreground: oklch(0.32 0.06 40);
+
+  /* #4D7C0F */
+  --citrus: oklch(0.52 0.14 128);
+  --citrus-foreground: oklch(0.99 0.004 120);
+  --citrus-soft: oklch(0.95 0.04 128);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.99 0.004 80);
+
+  /* #EAE5DC */
+  --border: oklch(0.92 0.013 85);
+  --input: oklch(0.92 0.013 85);
+  --ring: oklch(0.6 0.176 39.5);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Subtle paper grain for the warm cream canvas */
+@utility grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    background-image: radial-gradient(
+      oklch(0.55 0.04 60 / 8%) 0.5px,
+      transparent 0.5px
+    );
+    background-size: 4px 4px;
+  }
+}
