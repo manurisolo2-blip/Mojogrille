@@ -366,83 +366,98 @@ export function CubanDeconstruction() {
 
           </div>
 
-          {/* Tarjeta de información editorial (lateral en escritorio, inferior al 90% en móviles) */}
+          {/* Bloque editorial integrado al fondo crema (sin marco rígido ni elementos redondeados) */}
           <div
             ref={sideCardRef}
-            className="w-[90%] max-w-sm lg:max-w-xs rounded-none bg-surface-sand/95 backdrop-blur-md p-4 sm:p-5 lg:p-6 border-2 border-charcoal-ink shadow-[0_16px_36px_-10px_rgba(20,18,16,0.18)] will-change-transform z-30 transition-shadow hover:shadow-2xl mt-1 sm:mt-2 lg:mt-0"
+            className="w-[90%] max-w-sm lg:max-w-xs bg-transparent border-l-2 border-brand-fire pl-5 lg:pl-6 py-2 will-change-transform z-30 select-none mt-1 sm:mt-2 lg:mt-0"
           >
-            {/* Etiqueta roja de comanda */}
-            <div className="inline-flex items-center gap-1.5 rounded-none bg-brand-fire px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-widest text-cream-bg shadow-xs">
-              <Flame className="h-3 w-3" />
-              <span>RADIOGRAFÍA DE UN CLÁSICO</span>
+            {/* Etiqueta de corte editorial */}
+            <div className="flex items-center gap-2 mb-1.5">
+              <span className="h-1.5 w-1.5 rounded-none bg-brand-fire" aria-hidden="true" />
+              <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-brand-fire">
+                RADIOGRAFÍA DE UN CLÁSICO
+              </span>
             </div>
 
-            {/* Título Display */}
-            <h4 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-charcoal-ink mt-2 sm:mt-3 leading-none">
+            {/* Título Display Monumental */}
+            <h4 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-charcoal-ink leading-[0.9]">
               EL CUBANO QUE NO PERDONA
             </h4>
 
-            {/* Subtítulo Cursivo */}
-            <p className="font-accent italic text-sm sm:text-base text-brand-fire lowercase mt-0.5 sm:mt-1">
-              pan prensado, pernil bañado en mojo y acidez milimétrica
+            {/* Subtítulo Cursivo Editorial */}
+            <p className="font-accent font-serif italic text-sm sm:text-base text-charcoal-ink/70 lowercase mt-1 mb-3">
+              pan prensado, pernil al mojo &amp; acidez milimétrica
             </p>
 
-            {/* Puntos Clave Viscerales */}
-            <div className="mt-3 space-y-2.5 border-t border-charcoal-ink/15 pt-3">
-              <div className="text-left">
-                <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-charcoal-ink bg-cream-bg px-1.5 py-0.5 border border-charcoal-ink/20 mr-1.5 inline-block">
-                  PAN
-                </span>
-                <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/90 leading-tight mt-0.5">
-                  Corteza quebradiza, miga densa. Prensado hasta crujir.
+            {/* Puntos Clave de Calle / Comanda */}
+            <div className="space-y-2.5 border-t border-charcoal-ink/15 pt-3">
+              <div>
+                <div className="flex items-center gap-1.5">
+                  <span className="font-mono text-[9.5px] font-bold uppercase tracking-wider text-charcoal-ink bg-surface-sand px-1.5 py-0.5 border border-charcoal-ink/20">
+                    PAN
+                  </span>
+                  <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
+                    Corteza Quebradiza
+                  </span>
+                </div>
+                <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/80 leading-snug mt-0.5">
+                  Miga densa. Prensado en plancha de hierro hasta crujir.
                 </p>
               </div>
 
-              <div className="text-left">
-                <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-cream-bg bg-brand-fire px-1.5 py-0.5 mr-1.5 inline-block">
-                  CARNE
-                </span>
-                <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/90 leading-tight mt-0.5">
-                  Pernil bañado en grasa de mojo y ajo dorado en plancha de hierro fundido.
+              <div>
+                <div className="flex items-center gap-1.5">
+                  <span className="font-mono text-[9.5px] font-bold uppercase tracking-wider text-cream-bg bg-brand-fire px-1.5 py-0.5">
+                    CARNE
+                  </span>
+                  <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
+                    Pernil al Mojo Fuego Vivo
+                  </span>
+                </div>
+                <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/80 leading-snug mt-0.5">
+                  Bañado en grasa de mojo y ajo dorado en plancha caliente.
                 </p>
               </div>
 
-              <div className="text-left">
-                <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-charcoal-ink bg-cream-bg px-1.5 py-0.5 border border-charcoal-ink/20 mr-1.5 inline-block">
-                  ENCURTIDO
-                </span>
-                <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/90 leading-tight mt-0.5">
-                  Acidez milimétrica para cortar la grasa del cerdo asado.
+              <div>
+                <div className="flex items-center gap-1.5">
+                  <span className="font-mono text-[9.5px] font-bold uppercase tracking-wider text-charcoal-ink bg-surface-sand px-1.5 py-0.5 border border-charcoal-ink/20">
+                    ENCURTIDO
+                  </span>
+                  <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
+                    Acidez Milimétrica
+                  </span>
+                </div>
+                <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/80 leading-snug mt-0.5">
+                  Pepinillo dill para cortar con precisión la grasa del cerdo asado.
                 </p>
               </div>
             </div>
 
-            {/* Badges de Cocción y Nutricionales */}
-            <div className="mt-3 sm:mt-4 flex flex-wrap items-center gap-1.5 sm:gap-2 pt-2.5 sm:pt-3 border-t border-charcoal-ink/10">
-              <span className="inline-flex items-center gap-1 sm:gap-1.5 rounded-none bg-charcoal-ink/10 px-2.5 py-0.5 font-mono text-[10px] font-bold text-charcoal-ink border border-charcoal-ink/20">
-                <Clock className="h-3 w-3 text-brand-fire" />
-                4-HOUR ROASTED
+            {/* Ficha Técnica Integrada (Sin pastillas redondeadas) */}
+            <div className="mt-3.5 pt-2.5 border-t border-charcoal-ink/15 flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1 rounded-none border border-charcoal-ink/20 bg-surface-sand/50 px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-charcoal-ink">
+                <Clock className="h-2.5 w-2.5 text-brand-fire" aria-hidden="true" />
+                4H ROASTED
               </span>
-
-              <span className="inline-flex items-center gap-1 sm:gap-1.5 rounded-none bg-charcoal-ink/10 px-2.5 py-0.5 font-mono text-[10px] font-bold text-charcoal-ink border border-charcoal-ink/20">
-                <Award className="h-3 w-3 text-leaf-green" />
+              <span className="inline-flex items-center gap-1 rounded-none border border-charcoal-ink/20 bg-surface-sand/50 px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-charcoal-ink">
+                <Award className="h-2.5 w-2.5 text-leaf-green" aria-hidden="true" />
                 42G PROTEIN
               </span>
-
-              <span className="inline-flex items-center gap-1 rounded-none bg-leaf-green/15 px-2.5 py-0.5 font-mono text-[10px] font-bold text-leaf-green border border-leaf-green/20">
-                <Sparkles className="h-3 w-3" />
+              <span className="inline-flex items-center gap-1 rounded-none border border-leaf-green/30 bg-leaf-green/10 px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-leaf-green">
+                <Sparkles className="h-2.5 w-2.5" aria-hidden="true" />
                 100% ARTESANAL
               </span>
             </div>
 
-            {/* Botón CTA: ORDENAR CALIENTE */}
-            <div className="mt-3.5 pt-2 border-t border-charcoal-ink/10">
+            {/* Enlace CTA sutil */}
+            <div className="mt-3.5 pt-1">
               <a
                 href="#curated-menu"
-                className="w-full inline-flex items-center justify-center gap-2 rounded-none bg-charcoal-ink text-cream-bg hover:bg-brand-fire py-2.5 px-3 font-sans text-xs font-bold uppercase tracking-wider border border-charcoal-ink transition-colors"
+                className="inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-wider text-brand-fire hover:text-charcoal-ink transition-colors group cursor-pointer"
               >
                 <span>ORDENAR CALIENTE</span>
-                <span>→</span>
+                <span className="transition-transform group-hover:translate-x-1">→</span>
               </a>
             </div>
           </div>
