@@ -14,6 +14,7 @@ import { CartSheet } from "@/components/mojo/CartSheet";
 import { CartDrawer } from "@/components/mojo/CartDrawer";
 import { MobileActionBar } from "@/components/mojo/MobileActionBar";
 import { Preloader } from "@/components/mojo/Preloader";
+import { BowlDeconstruction } from "@/components/mojo/BowlDeconstruction";
 import { CubanDeconstruction } from "@/components/mojo/CubanDeconstruction";
 import { CuratedMenu } from "@/components/mojo/CuratedMenu";
 import { DistrictsCatering } from "@/components/mojo/DistrictsCatering";
@@ -132,8 +133,8 @@ function Index() {
             shouldAnimateIn={isLoaded}
           />
 
-          {/* Fase 5: El Elemento Estrella: Deconstrucción en Scroll (CubanDeconstruction) */}
-          <CubanDeconstruction />
+          {/* Deconstrucción de Capas CRAV Burgers: Mojo Grille Bowl */}
+          <BowlDeconstruction />
 
           {/* Selección de la Plancha: 6 Platos Estelares Curados */}
           <CuratedMenu />
