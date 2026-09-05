@@ -103,7 +103,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
         <div className="flex flex-col sm:flex-row items-center justify-between mt-3 text-xs sm:text-sm font-sans uppercase tracking-widest text-charcoal-ink/70">
           <p className="font-semibold">CUBAN KITCHEN &amp; ARTISANAL PLANCHA MIAMI, FL</p>
           <p className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-brand-fire mt-1 sm:mt-0">
-            AUTHENTIC CRIOLLO FLAVOR 24-HOUR CITRUS MOJO
+            AUTHENTIC CRIOLLO FLAVOR 24 HOUR CITRUS MOJO
           </p>
         </div>
       </div>
@@ -225,7 +225,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
           </form>
 
           <p className="text-[11px] font-sans text-charcoal-ink/50 pt-1">
-            No spam. Pure plancha heat, culture, and high-craft criollo food.
+            No spam. Pure plancha heat, culture, and high craft criollo food.
           </p>
         </div>
 
@@ -233,7 +233,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
 
       {/* 3. Barra Inferior Legal & Marca de Agua */}
       <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-charcoal-ink/60">
-        <p>© {new Date().getFullYear()} MOJO GRILLE LLC ALL RIGHTS RESERVED MIAMI-LATIN MODERNISM</p>
+        <p>© {new Date().getFullYear()} MOJO GRILLE LLC ALL RIGHTS RESERVED MIAMI LATIN MODERNISM</p>
         <div className="flex items-center gap-4">
           <span>25.7617° N, 80.1918° W</span>
           <span className="inline-flex items-center gap-1">
@@ -250,8 +250,6 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
         aria-label="Back to top of page"
         className="fixed bottom-6 right-6 z-40 h-12 w-12 rounded-none bg-charcoal-ink text-cream-bg shadow-none flex items-center justify-center hover:bg-brand-fire hover:text-cream-bg transition-colors duration-200 cursor-pointer border-2 border-charcoal-ink active:scale-95 group"
       >
-        <ArrowUp className="h-5 w-5 stroke-[2.5] group-hover:-translate-y-0.5 transition-transform duration-200" />
-      </button>
         <ArrowUp className="h-5 w-5 stroke-[2.5] group-hover:-translate-y-0.5 transition-transform duration-200" />
       </button>
     </footer>

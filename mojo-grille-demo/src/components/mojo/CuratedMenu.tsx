@@ -26,9 +26,9 @@ export const CURATED_ITEMS: CuratedMenuItem[] = [
     price: 13.5,
     feature: "4h Braised",
     description:
-      "Slow-roasted pork shoulder braised for 4 hours in Seville citrus mojo, served over moro rice and plancha-caramelized sweet onions.",
+      "Slow roasted pork shoulder braised for 4 hours in Seville citrus mojo, served over moro rice and plancha caramelized sweet onions.",
     imageUrl: "/assets/mojo-bowl-ropa-vieja.jpg",
-    authorNote: "slow-roasted pernil & caramelized onions",
+    authorNote: "slow roasted pernil & caramelized onions",
   },
   {
     id: "classic-cubano-press",
@@ -36,7 +36,7 @@ export const CURATED_ITEMS: CuratedMenuItem[] = [
     price: 12.95,
     feature: "Plancha Crunch",
     description:
-      "Pressed Cuban bread with toasted butter, slow-roasted lechón, sweet smoked ham, melted Swiss, crisp pickles & yellow mustard.",
+      "Pressed Cuban bread with toasted butter, slow roasted lechón, sweet smoked ham, melted Swiss, crisp pickles & yellow mustard.",
     imageUrl: "/assets/mojo-cubano.jpg",
     authorNote: "crispy golden crust & sweet ham fold",
   },
@@ -46,7 +46,7 @@ export const CURATED_ITEMS: CuratedMenuItem[] = [
     price: 11.5,
     feature: "Queso Fundido",
     description:
-      "Ground beef seasoned with Cuban sofrito, Spanish olives & sweet peppers, plancha-pressed with melted Swiss cheese and garlic mojo.",
+      "Ground beef seasoned with Cuban sofrito, Spanish olives & sweet peppers, plancha pressed with melted Swiss cheese and garlic mojo.",
     imageUrl: "/assets/mojo-cubano.jpg",
     authorNote: "seasoned ground beef & melted swiss",
   },
@@ -56,9 +56,9 @@ export const CURATED_ITEMS: CuratedMenuItem[] = [
     price: 10.75,
     feature: "Doble Fritura",
     description:
-      "Handcrafted double-fried crispy green plantain tostones, topped with mojo roasted pernil, caramelized onions & fresh cilantro.",
+      "Handcrafted double fried crispy green plantain tostones, topped with mojo roasted pernil, caramelized onions & fresh cilantro.",
     imageUrl: "/assets/mojo-tostones.jpg",
-    authorNote: "double-fried plantain & crushed garlic",
+    authorNote: "double fried plantain & crushed garlic",
   },
   {
     id: "chicken-fresco-bowl",
@@ -66,7 +66,7 @@ export const CURATED_ITEMS: CuratedMenuItem[] = [
     price: 13.0,
     feature: "Pechuga Marinada",
     description:
-      "Tender plancha-grilled chicken breast marinated 24 hours in sour orange & garlic, served with white rice, black beans & Hass avocado.",
+      "Tender plancha grilled chicken breast marinated 24 hours in sour orange & garlic, served with white rice, black beans & Hass avocado.",
     imageUrl: "/assets/mojo-pollo-bowl.jpg",
     authorNote: "24h citrus mojo & grilled hass avocado",
   },
@@ -76,9 +76,9 @@ export const CURATED_ITEMS: CuratedMenuItem[] = [
     price: 14.5,
     feature: "Salteado Criollo",
     description:
-      "Tender beef strips wok-seared over live flame with peppers and onions in rich criollo sofrito reduction, served with yuca con mojo.",
+      "Tender beef strips wok seared over live flame with peppers and onions in rich criollo sofrito reduction, served with yuca con mojo.",
     imageUrl: "/assets/mojo-bowl-ropa-vieja.jpg",
-    authorNote: "flame-seared wok beef & tender yuca",
+    authorNote: "flame seared wok beef & tender yuca",
   },
 ];
 

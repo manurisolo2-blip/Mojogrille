@@ -47,7 +47,7 @@ const MENU_ITEMS: MenuItem[] = [
       'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=800&q=80',
     badgeType: 'fresh',
     badgeText: 'Fresh / Gluten Friendly',
-    prepTime: '5-8 min',
+    prepTime: '5 to 8 min',
   },
   {
     id: 'traditional-pressed-cuban',
@@ -56,12 +56,12 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: true,
     price: 13.95,
     description:
-      'Sweet cured ham, shredded slow-roasted lechón in its juices, melted Swiss cheese, crisp pickles & yellow mustard on butter-crusted pressed Cuban bread.',
+      'Sweet cured ham, shredded slow roasted lechón in its juices, melted Swiss cheese, crisp pickles & yellow mustard on butter crusted pressed Cuban bread.',
     imageUrl:
       'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80',
     badgeType: 'top_seller',
     badgeText: 'Top Seller',
-    prepTime: '6-9 min',
+    prepTime: '6 to 9 min',
   },
   {
     id: 'mojo-pulled-pork-bowl',
@@ -70,12 +70,12 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: true,
     price: 15.95,
     description:
-      'Shredded pork shoulder slow-braised in Seville sour orange and roasted garlic with cumin. Served with moro rice and crispy tostones.',
+      'Shredded pork shoulder slow braised in Seville sour orange and roasted garlic with cumin. Served with moro rice and crispy tostones.',
     imageUrl:
       'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
     badgeType: 'signature',
     badgeText: 'Signature Mojo',
-    prepTime: '6-10 min',
+    prepTime: '6 to 10 min',
   },
   {
     id: 'ropa-vieja-bowl',
@@ -84,12 +84,12 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: false,
     price: 16.5,
     description:
-      'Tender shredded flank steak slow-braised in red pepper, sweet onion & olive sofrito. Served over moro rice and sweet maduros.',
+      'Tender shredded flank steak slow braised in red pepper, sweet onion & olive sofrito. Served over moro rice and sweet maduros.',
     imageUrl:
       'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80',
     badgeType: 'top_seller',
     badgeText: 'Top Seller',
-    prepTime: '7-10 min',
+    prepTime: '7 to 10 min',
   },
   {
     id: 'yuca-frita-mojo',
@@ -103,7 +103,7 @@ const MENU_ITEMS: MenuItem[] = [
       'https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=800&q=80',
     badgeType: 'fresh',
     badgeText: 'Fresh / Gluten Friendly',
-    prepTime: '4-6 min',
+    prepTime: '4 to 6 min',
   },
   {
     id: 'tostones-crunch',
@@ -112,12 +112,12 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: false,
     price: 6.0,
     description:
-      'Twice-fried green plantains prepared traditional Miami style with sea salt flakes and house garlic dip.',
+      'Twice fried green plantains prepared traditional Miami style with sea salt flakes and house garlic dip.',
     imageUrl:
       'https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=800&q=80',
     badgeType: 'fresh',
     badgeText: 'Fresh / Gluten Friendly',
-    prepTime: '4-6 min',
+    prepTime: '4 to 6 min',
   },
   {
     id: 'cafecito-cubano-colada',
@@ -131,7 +131,7 @@ const MENU_ITEMS: MenuItem[] = [
       'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80',
     badgeType: 'signature',
     badgeText: 'Signature Mojo',
-    prepTime: '2-4 min',
+    prepTime: '2 to 4 min',
   },
   {
     id: 'guayaba-lemonade',
@@ -208,13 +208,13 @@ export function CravStyleMenuGrid() {
             100% FRESH CRIOLLO PRESSED HOT
           </div>
           <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-charcoal-ink leading-none">
-            SLOW ROASTED, SERVED <span className="text-brand-fire">AL MOMENTO</span>.
+            SLOW ROASTED, SERVED <span className="text-brand-fire">AL MOMENTO</span>
           </h2>
           <p className="mt-2 font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-brand-fire">
             AUTHENTIC CRIOLLO FLAVORS GENERATIONAL RECIPES
           </p>
           <p className="mt-3 font-sans text-sm sm:text-base text-charcoal-ink/80 leading-relaxed max-w-2xl mx-auto">
-            Choose your favorite signature dish prepared with our 24-hour citrus mojo marinade and handcrafted Caribbean sides.
+            Choose your favorite signature dish prepared with our 24 hour citrus mojo marinade and handcrafted Caribbean sides.
           </p>
         </div>
 

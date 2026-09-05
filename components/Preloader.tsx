@@ -113,14 +113,14 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
           </span>
         </div>
         <p className="mt-6 sm:mt-8 font-sans text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest text-cream-bg/90">
-          HEATING UP THE CRIOLLO PLANCHA...
+          HEATING UP THE CRIOLLO PLANCHA
         </p>
       </div>
 
       {/* Barra Inferior Editorial */}
       <div className="border-t border-cream-bg/20 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2">
         <p className="font-sans text-xs sm:text-sm font-medium tracking-widest uppercase text-cream-bg/80">
-          SLOW ROASTED CITRUS MARINATED EST. MIAMI
+          SLOW ROASTED CITRUS MARINATED EST MIAMI
         </p>
         <div className="hidden sm:flex items-center gap-2">
           <span className="h-2 w-2 rounded-none bg-cream-bg animate-pulse" aria-hidden="true" />

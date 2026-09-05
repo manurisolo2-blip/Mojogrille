@@ -12,7 +12,7 @@ const LAYERS_INFO: LayerInfo[] = [
   {
     tag: "Top Bun",
     title: "Pressed Cuban Bread",
-    desc: "Golden crusty exterior with melted butter pressed crisp under live-fire cast iron.",
+    desc: "Golden crusty exterior with melted butter pressed crisp under live fire cast iron.",
   },
   {
     tag: "Tangy Crunch",
@@ -22,17 +22,17 @@ const LAYERS_INFO: LayerInfo[] = [
   {
     tag: "Melted Comfort",
     title: "Melted Swiss Cheese",
-    desc: "Gooey, golden ribbons hugging the savory, slow-cooked layers.",
+    desc: "Gooey, golden ribbons hugging the savory, slow cooked layers.",
   },
   {
     tag: "Flavor Core",
-    title: "4-Hour Slow-Roasted Mojo Pork",
+    title: "4 Hour Slow Roasted Mojo Pork",
     desc: "Marinated in Seville sour orange, garlic confit, and wild oregano with sweet ham.",
   },
   {
     tag: "Solid Base",
     title: "Artisanal Cuban Bread Base",
-    desc: "Tender crumb and plancha-pressed foundation absorbing all savory criollo drippings.",
+    desc: "Tender crumb and plancha pressed foundation absorbing all savory criollo drippings.",
   },
 ];
 
@@ -132,7 +132,7 @@ export function ScrollLayerAssembly() {
 
   const currentInfo: LayerInfo = LAYERS_INFO[activeStep] ?? {
     tag: "Flavor Core",
-    title: "4-Hour Slow-Roasted Mojo Pork",
+    title: "4 Hour Slow Roasted Mojo Pork",
     desc: "Marinated in Seville sour orange, garlic confit, and wild oregano with sweet ham.",
   };
 
@@ -190,7 +190,7 @@ export function ScrollLayerAssembly() {
           <img
             ref={porkRef}
             src="/layers/mojo-pork.webp"
-            alt="4-hour slow-roasted citrus mojo pork and sweet ham"
+            alt="4 hour slow roasted citrus mojo pork and sweet ham"
             className="absolute w-full object-contain pointer-events-none drop-shadow-xl will-change-transform z-20"
           />
 

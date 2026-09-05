@@ -58,7 +58,7 @@ export function InkStamp({ className = '', size = 130 }: InkStampProps) {
           SLOW ROAST
         </span>
         <span className="mt-1 font-sans text-[7.5px] font-bold text-brand-fire/80 tracking-wider uppercase">
-          EST. BROWNSVILLE
+          EST BROWNSVILLE
         </span>
       </div>
     </div>

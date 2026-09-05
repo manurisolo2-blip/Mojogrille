@@ -59,7 +59,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: true,
     price: 13.95,
     description:
-      "Sweet cured ham, shredded slow-roasted lechón in its juices, melted Swiss cheese, crisp pickles & yellow mustard on butter-crusted pressed Cuban bread.",
+      "Sweet cured ham, shredded slow roasted lechón in its juices, melted Swiss cheese, crisp pickles & yellow mustard on butter crusted pressed Cuban bread.",
     imageUrl: cubanImg,
     badgeType: "top_seller",
     badgeText: "Top Seller",
@@ -72,7 +72,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: true,
     price: 15.95,
     description:
-      "Shredded pork shoulder slow-braised in Seville sour orange and roasted garlic with cumin. Served with moro rice and crispy tostones.",
+      "Shredded pork shoulder slow braised in Seville sour orange and roasted garlic with cumin. Served with moro rice and crispy tostones.",
     imageUrl: porkImg,
     badgeType: "signature",
     badgeText: "Signature Mojo",
@@ -85,7 +85,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: false,
     price: 16.5,
     description:
-      "Tender shredded flank steak slow-braised in red pepper, sweet onion & olive sofrito. Served over moro rice and sweet maduros.",
+      "Tender shredded flank steak slow braised in red pepper, sweet onion & olive sofrito. Served over moro rice and sweet maduros.",
     imageUrl: porkImg,
     badgeType: "top_seller",
     badgeText: "Top Seller",
@@ -111,7 +111,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: false,
     price: 6.0,
     description:
-      "Twice-fried green plantains prepared traditional Miami style with sea salt flakes and house garlic dip.",
+      "Twice fried green plantains prepared traditional Miami style with sea salt flakes and house garlic dip.",
     imageUrl: tostonesImg,
     badgeType: "fresh",
     badgeText: "Fresh / Gluten Friendly",
@@ -225,7 +225,7 @@ export function CravStyleMenuGrid({
             100% FRESH CRIOLLO PRESSED HOT
           </div>
           <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-charcoal-ink leading-none">
-            SLOW ROASTED, SERVED <span className="text-brand-fire">AL MOMENTO</span>.
+            SLOW ROASTED, SERVED <span className="text-brand-fire">AL MOMENTO</span>
           </h2>
           <p className="mt-2 font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-brand-fire">
             AUTHENTIC CRIOLLO FLAVORS GENERATIONAL RECIPES

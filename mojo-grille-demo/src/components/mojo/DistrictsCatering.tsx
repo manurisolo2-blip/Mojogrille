@@ -22,12 +22,12 @@ export const DISTRICT_PACKAGES: DistrictPackage[] = [
     editionName: "Wynwood Arts Edition",
     tagline: "High-contrast graphic packaging for creative event catering",
     serialNumber: "WYNWOOD PKG 01",
-    capacity: "15 - 35 Guests",
+    capacity: "15 to 35 Guests",
     thermalRetention: "90 MIN ACTIVE HEAT",
     badge: "Limited Graphic Run",
     accentColor: "#FFA826", // citrus
     description:
-      "Custom two-tone screenprinted Kraft box with multi-layer thermal insulation. Built for creative agencies, art gallery shows, and photo shoots in Wynwood.",
+      "Custom two tone screenprinted Kraft box with multi layer thermal insulation. Built for creative agencies, art gallery shows, and photo shoots in Wynwood.",
     specs: [
       "Crisp mini pressed Cubanos",
       "Criollo ham & pernil croquetas",
@@ -49,7 +49,7 @@ export const DISTRICT_PACKAGES: DistrictPackage[] = [
       "Airtight sealed compartments preserving plancha sizzle without steam condensation. Ultra-portable executive lunch format for corporate boardrooms.",
     specs: [
       "Criollo Bowl of choice (Lechón, Pollo, or Ropa Vieja)",
-      "Plancha-pressed mini golden cubano",
+      "Plancha pressed mini golden cubano",
       "Green plantain chips with citrus mojo aioli",
       "Artisanal guava & cream cheese dessert",
     ],
@@ -60,14 +60,14 @@ export const DISTRICT_PACKAGES: DistrictPackage[] = [
     editionName: "Design District Curated",
     tagline: "Premium presentation box with dedicated mojo flight compartments",
     serialNumber: "DESIGN DISTRICT PKG 03",
-    capacity: "20 - 40 Guests",
+    capacity: "20 to 40 Guests",
     thermalRetention: "100 MIN GOURMET LOCK",
-    badge: "Multi-Slot Gourmet",
+    badge: "Multi Slot Gourmet",
     accentColor: "#E52516", // brand-fire
     description:
-      "Matte charcoal black box with precision die-cut slots. 6 compartments featuring signature mojo pairings and artisanal citrus emulsions.",
+      "Matte charcoal black box with precision die cut slots. 6 compartments featuring signature mojo pairings and artisanal citrus emulsions.",
     specs: [
-      "Bite-size 4-hour braised mojo pernil",
+      "Bite size 4 hour braised mojo pernil",
       "Tasting flight of 4 signature mojo sauces",
       "Crispy yuca fries & caramelized maduros",
       "Biodegradable tasting cups for mojo pairings",
@@ -79,15 +79,15 @@ export const DISTRICT_PACKAGES: DistrictPackage[] = [
     editionName: "Coral Gables Family Feast",
     tagline: "Tostones platters and heaping pernil trays for big gatherings",
     serialNumber: "CORAL GABLES PKG 04",
-    capacity: "25 - 60 Guests",
+    capacity: "25 to 60 Guests",
     thermalRetention: "180 MIN REINFORCED THERMAL",
     badge: "Family Mega Feast",
     accentColor: "#FFA826", // citrus
     description:
       "Heavy-gauge anodized aluminum party trays with rigid thermal covers designed for family celebrations, quinces, and milestones criollo style.",
     specs: [
-      "XL trays of slow-roasted mojo criollo pernil",
-      "Massive platters of twice-fried tostones",
+      "XL trays of slow roasted mojo criollo pernil",
+      "Massive platters of twice fried tostones",
       "Deep trays of moro rice and black beans",
       "Thermos jugs of piping hot brewed Cuban coffee",
     ],

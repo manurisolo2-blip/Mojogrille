@@ -74,18 +74,18 @@ export function HeroSection({
               100% FRESH CRIOLLO SLOW ROASTED
             </p>
 
-            {/* Titular Central Impactante: HOT CAST IRON. CRUSHED GARLIC. SLOW-ROASTED PERNIL. */}
+            {/* Titular Central Impactante: HOT CAST IRON CRUSHED GARLIC SLOW ROASTED PERNIL */}
             <h1 className={`font-display text-5xl sm:text-7xl lg:text-[7.5vw] font-black uppercase tracking-tight text-charcoal-ink leading-[0.88] text-center max-w-5xl ${animItemClass}`}>
-              HOT CAST IRON.{" "}
+              HOT CAST IRON{" "}
               <span className="text-brand-fire">
-                CRUSHED GARLIC.
+                CRUSHED GARLIC
               </span>{" "}
-              SLOW-ROASTED PERNIL.
+              SLOW ROASTED PERNIL
             </h1>
 
             {/* Subtítulo Narrativo Visceral */}
             <p className={`mt-3 max-w-3xl font-sans text-sm sm:text-base md:text-lg leading-relaxed text-charcoal-ink/90 text-center ${animItemClass}`}>
-              No corporate bowls. We cook generational family recipes of slow-roasted pork marinated for 4 hours in Seville sour orange, pressed{" "}
+              No corporate bowls. We cook generational family recipes of slow roasted pork marinated for 4 hours in Seville sour orange, pressed{" "}
               <span className="font-bold text-brand-fire">al momento</span> in the heart of Brownsville.
             </p>
           </div>
@@ -155,7 +155,7 @@ export function HeroSection({
               <div className="flex items-center gap-2">
                 <div className="text-left">
                   <p className="font-sans text-xs font-black text-cream-bg leading-tight uppercase tracking-wide">
-                    EST. MIAMI 100% ARTISANAL MOJO
+                    EST MIAMI 100% ARTISANAL MOJO
                   </p>
                   <p className="font-sans text-[10px] text-cream-bg/85">
                     Made Fresh Al Momento

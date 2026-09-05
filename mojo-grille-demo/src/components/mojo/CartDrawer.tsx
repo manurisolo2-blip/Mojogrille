@@ -168,7 +168,7 @@ export function CartDrawer() {
                   Your cart is empty. Start with our signature favorites!
                 </p>
                 <p className="font-sans text-xs sm:text-sm text-charcoal-ink/70 mt-1 max-w-xs">
-                  Explore our slow-roasted Criollo Bowls and plancha-pressed Cubanos made fresh al momento.
+                  Explore our slow roasted Criollo Bowls and plancha pressed Cubanos made fresh al momento.
                 </p>
               </div>
               <button

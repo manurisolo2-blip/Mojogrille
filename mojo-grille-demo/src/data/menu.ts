@@ -38,7 +38,7 @@ export const menu: MenuItem[] = [
     id: "ropa-vieja-bowl",
     name: "Ropa Vieja Bowl",
     description:
-      "Tender shredded flank steak slow-cooked in rich criollo sofrito with bell peppers, onions & Spanish olives after 24h citrus mojo marinade, over savory arroz moro with sweet maduros & fresh cilantro.",
+      "Tender shredded flank steak slow cooked in rich criollo sofrito with bell peppers, onions & Spanish olives after 24h citrus mojo marinade, over savory arroz moro with sweet maduros & fresh cilantro.",
     price: 16.95,
     image: ropaVieja,
     category: "bowls",
@@ -50,7 +50,7 @@ export const menu: MenuItem[] = [
     id: "lechon-asado-bowl",
     name: "Lechón Asado al Mojo Criollo",
     description:
-      "Authentic slow-roasted pork shoulder marinated for 24 hours in our signature sour orange, garlic & oregano mojo criollo, crisped on the plancha with sweet caramelized onions over moro rice.",
+      "Authentic slow roasted pork shoulder marinated for 24 hours in our signature sour orange, garlic & oregano mojo criollo, crisped on the plancha with sweet caramelized onions over moro rice.",
     price: 15.95,
     image: ropaVieja,
     category: "bowls",
@@ -87,7 +87,7 @@ export const menu: MenuItem[] = [
     id: "cubano-prensado",
     name: "Cuban Sandwich Tradicional (El Cubano Prensado)",
     description:
-      "Authentic pressed Cuban sandwich with slow-roasted lechón asado, sweet smoked ham, melted Swiss cheese, tangy dill pickles & yellow mustard on crusty buttered Cuban bread.",
+      "Authentic pressed Cuban sandwich with slow roasted lechón asado, sweet smoked ham, melted Swiss cheese, tangy dill pickles & yellow mustard on crusty buttered Cuban bread.",
     price: 14.95,
     image: cubano,
     category: "sandwiches",
@@ -99,7 +99,7 @@ export const menu: MenuItem[] = [
     id: "media-noche",
     name: "Media Noche Especial",
     description:
-      "The legendary Havana midnight sandwich: 24h mojo-roasted pork, sweet cured ham, Swiss cheese and pickles, pressed hot on soft, slightly sweet egg challah bread.",
+      "The legendary Havana midnight sandwich: 24h mojo roasted pork, sweet cured ham, Swiss cheese and pickles, pressed hot on soft, slightly sweet egg challah bread.",
     price: 14.5,
     image: cubano,
     category: "sandwiches",
@@ -123,7 +123,7 @@ export const menu: MenuItem[] = [
     id: "tostones-mojo",
     name: "Crispy Tostones con Mojo",
     description:
-      "Twice-fried golden green plantain discs smashed and crisped to order, sprinkled with sea salt flakes and served with our zesty garlic-lime mojo dipping sauce.",
+      "Twice fried golden green plantain discs smashed and crisped to order, sprinkled with sea salt flakes and served with our zesty garlic lime mojo dipping sauce.",
     price: 7.25,
     image: tostones,
     category: "sides",
@@ -146,7 +146,7 @@ export const menu: MenuItem[] = [
     id: "platanos-maduros",
     name: "Sweet Plátanos Maduros",
     description:
-      "Golden caramelized sweet ripe plantains, pan-fried to sweet melting tenderness with crispy caramelized outer edges.",
+      "Golden caramelized sweet ripe plantains, pan fried to sweet melting tenderness with crispy caramelized outer edges.",
     price: 6.5,
     image: tostones,
     category: "sides",
@@ -216,7 +216,7 @@ export const menu: MenuItem[] = [
     id: "bandeja-familiar",
     name: "Bandeja Criolla Familiar (Catering Feast)",
     description:
-      "Feeds 8 to 10 people: Slow-roasted lechón asado, seasoned yellow rice, black beans, yuca con mojo & sweet maduros. Ready to serve con todo for celebrations.",
+      "Feeds 8 to 10 people: Slow roasted lechón asado, seasoned yellow rice, black beans, yuca con mojo & sweet maduros. Ready to serve con todo for celebrations.",
     price: 129,
     image: catering,
     category: "catering",
@@ -228,7 +228,7 @@ export const menu: MenuItem[] = [
     id: "cubano-party-platter",
     name: "Cuban Sandwich Party Platter (12 Quarters)",
     description:
-      "Twelve 4-inch pressed Cuban sandwich portions and Media Noches served with garlic mojo and house cilantro dipping sauce. Perfect for events and corporate gatherings.",
+      "Twelve 4 inch pressed Cuban sandwich portions and Media Noches served with garlic mojo and house cilantro dipping sauce. Perfect for events and corporate gatherings.",
     price: 89,
     image: catering,
     category: "catering",

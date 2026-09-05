@@ -358,7 +358,7 @@ export function CubanDeconstruction() {
             >
               <img
                 src="/sandwich/04-mojo-pork.webp"
-                alt="Slow-roasted 4-hour citrus mojo pork and sweet cured ham"
+                alt="Slow roasted 4 hour citrus mojo pork and sweet cured ham"
                 width={1000}
                 height={545}
                 loading="eager"
@@ -375,7 +375,7 @@ export function CubanDeconstruction() {
             >
               <img
                 src="/sandwich/05-bottom-bread.webp"
-                alt="Bottom crust of plancha-pressed Cuban bread"
+                alt="Bottom crust of plancha pressed Cuban bread"
                 width={1000}
                 height={545}
                 loading="eager"
@@ -414,7 +414,7 @@ export function CubanDeconstruction() {
                   </span>
                 </div>
                 <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/80 leading-snug mt-0.5">
-                  Dense crumb. Plancha-pressed on hot cast iron until crackling crisp.
+                  Dense crumb. Plancha pressed on hot cast iron until crackling crisp.
                 </p>
               </div>
 
@@ -425,7 +425,7 @@ export function CubanDeconstruction() {
                     PERNIL AL MOJO
                   </span>
                   <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
-                    Live-Fire Criollo Roast
+                    Live Fire Criollo Roast
                   </span>
                   <span className="font-sans text-[9px] font-bold uppercase tracking-wider text-brand-fire bg-brand-fire/10 px-1.5 py-0.5 border border-brand-fire/30">
                     24H MARINADE
@@ -443,11 +443,11 @@ export function CubanDeconstruction() {
                     BASE CRUJIENTE
                   </span>
                   <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
-                    Cast-Iron Foundation
+                    Cast Iron Foundation
                   </span>
                 </div>
                 <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/80 leading-snug mt-0.5">
-                  Plancha-toasted bottom crust infused with savory rendered pork drippings.
+                  Plancha toasted bottom crust infused with savory rendered pork drippings.
                 </p>
               </div>
             </div>
