@@ -1,12 +1,43 @@
-import { useEffect, useRef, useState } from "react";
-import { ChevronDown, MapPin } from "lucide-react";
-import { LatinMarketBagIcon } from "./LatinMarketBagIcon";
-import { useCart } from "./cart";
+'use client';
 
-export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
-  const { count, location, setLocation, availableLocations } = useCart();
+import React, { useEffect, useRef, useState } from 'react';
+import { ChevronDown, MapPin } from 'lucide-react';
+import { LatinMarketBagIcon } from './LatinMarketBagIcon';
+
+export interface LocationItem {
+  id: string;
+  name: string;
+  address: { street: string };
+}
+
+export interface TopBarProps {
+  onOpenCart?: () => void;
+  count?: number;
+  currentLocation?: LocationItem;
+  locations?: LocationItem[];
+  onSelectLocation?: (id: string) => void;
+}
+
+const DEFAULT_LOCATIONS: LocationItem[] = [
+  { id: 'little-havana', name: 'Little Havana', address: { street: '1234 SW 8th St' } },
+  { id: 'brickell', name: 'Brickell', address: { street: '901 S Miami Ave' } },
+  { id: 'doral', name: 'Doral', address: { street: '8400 NW 36th St' } },
+];
+
+export function TopBar({
+  onOpenCart,
+  count = 0,
+  currentLocation = DEFAULT_LOCATIONS[0],
+  locations = DEFAULT_LOCATIONS,
+  onSelectLocation,
+}: TopBarProps) {
   const [open, setOpen] = useState(false);
+  const [selectedLoc, setSelectedLoc] = useState<LocationItem>(currentLocation);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setSelectedLoc(currentLocation);
+  }, [currentLocation]);
 
   useEffect(() => {
     if (!open) return;
@@ -16,15 +47,15 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
       }
     };
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         setOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, [open]);
 
@@ -54,12 +85,12 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                 onClick={() => setOpen((v) => !v)}
                 aria-haspopup="listbox"
                 aria-expanded={open}
-                aria-label={`Select location, currently ${location.name}`}
+                aria-label={`Select location, currently ${selectedLoc.name}`}
                 className="flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-cream-bg px-3 py-2 font-mono text-[11px] uppercase tracking-wider font-semibold text-charcoal-ink transition-colors hover:border-charcoal-ink hover:bg-surface-sand sm:px-3.5 sm:py-2 select-none shadow-none cursor-pointer"
               >
                 <MapPin className="h-3.5 w-3.5 text-brand-fire stroke-[2.2]" />
-                <span className="max-w-[95px] truncate sm:max-w-none font-bold">{location.name}</span>
-                <ChevronDown className={`h-3.5 w-3.5 text-charcoal-ink/60 transition-transform ${open ? "rotate-180" : ""}`} />
+                <span className="max-w-[95px] truncate sm:max-w-none font-bold">{selectedLoc.name}</span>
+                <ChevronDown className={`h-3.5 w-3.5 text-charcoal-ink/60 transition-transform ${open ? 'rotate-180' : ''}`} />
               </button>
               {open && (
                 <ul
@@ -67,16 +98,17 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                   aria-label="Miami restaurant locations"
                   className="absolute right-0 mt-2 w-48 overflow-hidden rounded-none border-2 border-charcoal-ink bg-surface-sand shadow-none z-50"
                 >
-                  {availableLocations.map((loc) => (
-                    <li key={loc.id} role="option" aria-selected={loc.id === location.id}>
+                  {locations.map((loc) => (
+                    <li key={loc.id} role="option" aria-selected={loc.id === selectedLoc.id}>
                       <button
                         type="button"
                         onClick={() => {
-                          setLocation(loc.id);
+                          setSelectedLoc(loc);
+                          onSelectLocation?.(loc.id);
                           setOpen(false);
                         }}
                         className={`block w-full px-4 py-2.5 text-left font-sans text-sm transition-colors hover:bg-cream-bg ${
-                          loc.id === location.id ? "font-bold text-brand-fire bg-cream-bg" : "text-charcoal-ink"
+                          loc.id === selectedLoc.id ? 'font-bold text-brand-fire bg-cream-bg' : 'text-charcoal-ink'
                         }`}
                       >
                         <div className="font-semibold">{loc.name}</div>
@@ -111,3 +143,5 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
     </header>
   );
 }
+
+export default TopBar;
