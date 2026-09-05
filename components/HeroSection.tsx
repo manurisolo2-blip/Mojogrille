@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { UtensilsCrossed, CalendarHeart, Sparkles } from 'lucide-react';
+import { UtensilsCrossed, CalendarHeart } from 'lucide-react';
 import { MagneticButton } from './hero/MagneticButton';
 import { InkStamp } from './InkStamp';
 
@@ -164,13 +163,6 @@ export function HeroSection({
               <span>Catering &amp; Events</span>
             </a>
           </div>
-
-          {/* Microcopia de Confianza y Rapidez */}
-          <div className="mt-4 flex items-center justify-center gap-2 text-xs text-charcoal-ink/70">
-            <Sparkles className="h-3.5 w-3.5 text-leaf-green" aria-hidden="true" />
-            <span>Fresh ingredients • 15 min pickup • Fast delivery caliente al momento</span>
-          </div>
-
         </div>
       </div>
     </section>
