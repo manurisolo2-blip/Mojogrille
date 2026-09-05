@@ -17,6 +17,9 @@ export function CubanDeconstruction() {
   const mojoPorkRef = useRef<HTMLDivElement>(null);
   const bottomBreadRef = useRef<HTMLDivElement>(null);
   const sideCardRef = useRef<HTMLDivElement>(null);
+  const stepBreadRef = useRef<HTMLDivElement>(null);
+  const stepMeatRef = useRef<HTMLDivElement>(null);
+  const stepBaseRef = useRef<HTMLDivElement>(null);
 
   const loadedImagesCountRef = useRef(0);
   const TOTAL_LAYERS = 5;
@@ -42,6 +45,9 @@ export function CubanDeconstruction() {
           transformPerspective: 1000,
         });
 
+        gsap.set(stepBreadRef.current, { opacity: 1 });
+        gsap.set([stepMeatRef.current, stepBaseRef.current], { opacity: 0.4 });
+
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: containerRef.current,
@@ -55,7 +61,7 @@ export function CubanDeconstruction() {
         tl.to(
           topBreadRef.current,
           {
-            y: -220,
+            y: -240,
             rotate: -3,
             rotateX: 20,
             ease: 'power1.out',
@@ -65,7 +71,7 @@ export function CubanDeconstruction() {
           .to(
             picklesRef.current,
             {
-              y: -110,
+              y: -120,
               rotate: 4,
               ease: 'power1.out',
             },
@@ -74,7 +80,7 @@ export function CubanDeconstruction() {
           .to(
             cheeseRef.current,
             {
-              y: -30,
+              y: -35,
               rotate: -1,
               ease: 'power1.out',
             },
@@ -83,7 +89,7 @@ export function CubanDeconstruction() {
           .to(
             mojoPorkRef.current,
             {
-              y: 50,
+              y: 55,
               scale: 1.08,
               ease: 'power1.out',
             },
@@ -92,7 +98,7 @@ export function CubanDeconstruction() {
           .to(
             bottomBreadRef.current,
             {
-              y: 190,
+              y: 210,
               rotate: 1,
               rotateX: 20,
               ease: 'power1.out',
@@ -111,7 +117,11 @@ export function CubanDeconstruction() {
               ease: 'power2.out',
             },
             0
-          );
+          )
+          .to(stepBreadRef.current, { opacity: 0.4, ease: 'power1.out' }, 0.3)
+          .to(stepMeatRef.current, { opacity: 1, ease: 'power1.out' }, 0.3)
+          .to(stepMeatRef.current, { opacity: 0.4, ease: 'power1.out' }, 0.7)
+          .to(stepBaseRef.current, { opacity: 1, ease: 'power1.out' }, 0.7);
 
         return () => {
           tl.kill();
@@ -125,6 +135,9 @@ export function CubanDeconstruction() {
           transformPerspective: 1000,
         });
 
+        gsap.set(stepBreadRef.current, { opacity: 1 });
+        gsap.set([stepMeatRef.current, stepBaseRef.current], { opacity: 0.4 });
+
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: containerRef.current,
@@ -135,11 +148,10 @@ export function CubanDeconstruction() {
           },
         });
 
-        // Desplazamientos reducidos 40% (-220 -> -132, -110 -> -66, -30 -> -18, 50 -> 30, 190 -> 114)
         tl.to(
           topBreadRef.current,
           {
-            y: -132,
+            y: -140,
             rotate: -2,
             rotateX: 16,
             ease: 'power1.out',
@@ -149,7 +161,7 @@ export function CubanDeconstruction() {
           .to(
             picklesRef.current,
             {
-              y: -66,
+              y: -70,
               rotate: 3,
               ease: 'power1.out',
             },
@@ -158,7 +170,7 @@ export function CubanDeconstruction() {
           .to(
             cheeseRef.current,
             {
-              y: -18,
+              y: -20,
               rotate: -1,
               ease: 'power1.out',
             },
@@ -167,7 +179,7 @@ export function CubanDeconstruction() {
           .to(
             mojoPorkRef.current,
             {
-              y: 30,
+              y: 35,
               scale: 1.05,
               ease: 'power1.out',
             },
@@ -176,7 +188,7 @@ export function CubanDeconstruction() {
           .to(
             bottomBreadRef.current,
             {
-              y: 114,
+              y: 125,
               rotate: 1,
               rotateX: 16,
               ease: 'power1.out',
@@ -195,7 +207,11 @@ export function CubanDeconstruction() {
               ease: 'power2.out',
             },
             0
-          );
+          )
+          .to(stepBreadRef.current, { opacity: 0.4, ease: 'power1.out' }, 0.3)
+          .to(stepMeatRef.current, { opacity: 1, ease: 'power1.out' }, 0.3)
+          .to(stepMeatRef.current, { opacity: 0.4, ease: 'power1.out' }, 0.7)
+          .to(stepBaseRef.current, { opacity: 1, ease: 'power1.out' }, 0.7);
 
         return () => {
           tl.kill();
@@ -245,8 +261,16 @@ export function CubanDeconstruction() {
     >
       <div
         ref={pinRef}
-        className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-visible px-4 sm:px-8"
+        className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-visible px-4 sm:px-8 relative"
       >
+        {/* Texto Monumental de Fondo (Watermark Depth) */}
+        <div
+          aria-hidden="true"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[22vw] sm:text-[18vw] lg:text-[16vw] text-charcoal-ink/[0.04] leading-none tracking-tighter uppercase pointer-events-none select-none -z-10 whitespace-nowrap"
+        >
+          PRENSADO
+        </div>
+
         {/* Etiqueta tipo cinta adhesiva en la esquina de la deconstrucción */}
         <div className="absolute top-4 left-4 sm:top-6 sm:left-8 z-30 pointer-events-none">
           <TapeLabel>24H CITRUS MARINADE · SLOW ROASTED</TapeLabel>
@@ -273,9 +297,9 @@ export function CubanDeconstruction() {
         {/* Contenedor central y tarjeta lateral/inferior con layout adaptable */}
         <div className="relative w-full max-w-[1600px] px-4 sm:px-8 flex flex-col lg:flex-row items-center justify-center gap-4 sm:gap-6 lg:gap-14 pt-12 sm:pt-16 lg:pt-0">
           
-          {/* Contenedor central de capas apiladas con perspectiva CSS y overflow visible */}
+          {/* Contenedor central de capas apiladas con escala ampliada 25% y perspectiva CSS */}
           <div
-            className="relative w-[260px] h-[210px] sm:w-[340px] sm:h-[280px] md:w-[420px] md:h-[360px] lg:w-[480px] lg:h-[460px] flex items-center justify-center overflow-visible [perspective:1000px]"
+            className="relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] md:w-[560px] md:h-[560px] flex items-center justify-center overflow-visible [perspective:1000px]"
             style={{ perspective: '1000px' }}
           >
             
@@ -371,6 +395,16 @@ export function CubanDeconstruction() {
             ref={sideCardRef}
             className="w-[90%] max-w-sm lg:max-w-xs bg-transparent border-l-2 border-brand-fire pl-5 lg:pl-6 py-2 will-change-transform z-30 select-none mt-1 sm:mt-2 lg:mt-0"
           >
+            {/* Indicador de Capas Superior */}
+            <div className="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-charcoal-ink/15">
+              <span className="font-sans text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-charcoal-ink/80">
+                CAPAS: 05 / ARTESANAL
+              </span>
+              <span className="inline-flex items-center gap-1 font-sans text-[9px] font-bold uppercase tracking-wider text-brand-fire bg-brand-fire/10 px-2 py-0.5 rounded-full border border-brand-fire/20">
+                HOT PLANCHA
+              </span>
+            </div>
+
             {/* Etiqueta de corte editorial */}
             <div className="flex items-center gap-2 mb-1.5">
               <span className="h-1.5 w-1.5 rounded-none bg-brand-fire" aria-hidden="true" />
@@ -389,12 +423,13 @@ export function CubanDeconstruction() {
               PRESSED BREAD · MOJO PERNIL · CALIBRATED TANG
             </p>
 
-            {/* Puntos Clave de Calle / Comanda */}
-            <div className="space-y-2.5 border-t border-charcoal-ink/15 pt-3">
-              <div>
+            {/* Puntos Clave de Calle / Comanda sincronizados con el scroll */}
+            <div className="space-y-3 border-t border-charcoal-ink/15 pt-3">
+              {/* Capa 1: Pan Superior */}
+              <div ref={stepBreadRef} className="transition-opacity duration-200">
                 <div className="flex items-center gap-1.5">
                   <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink bg-surface-sand px-2 py-0.5 border border-charcoal-ink/20">
-                    BREAD
+                    PAN SUPERIOR
                   </span>
                   <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
                     Crusty &amp; Golden
@@ -405,13 +440,17 @@ export function CubanDeconstruction() {
                 </p>
               </div>
 
-              <div>
-                <div className="flex items-center gap-1.5">
+              {/* Capa 2: Pernil al Mojo Criollo */}
+              <div ref={stepMeatRef} className="transition-opacity duration-200">
+                <div className="flex items-center gap-1.5 flex-wrap">
                   <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-cream-bg bg-brand-fire px-2 py-0.5">
-                    MEAT
+                    PERNIL AL MOJO
                   </span>
                   <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
-                    Live-Fire Mojo Pernil
+                    Live-Fire Criollo Roast
+                  </span>
+                  <span className="font-sans text-[9px] font-bold uppercase tracking-wider text-brand-fire bg-brand-fire/10 px-1.5 py-0.5 border border-brand-fire/30 rounded-full">
+                    24H MARINADE
                   </span>
                 </div>
                 <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/80 leading-snug mt-0.5">
@@ -419,17 +458,18 @@ export function CubanDeconstruction() {
                 </p>
               </div>
 
-              <div>
+              {/* Capa 3: Base Crujiente */}
+              <div ref={stepBaseRef} className="transition-opacity duration-200">
                 <div className="flex items-center gap-1.5">
                   <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink bg-surface-sand px-2 py-0.5 border border-charcoal-ink/20">
-                    PICKLES
+                    BASE CRUJIENTE
                   </span>
                   <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
-                    Calibrated Tang
+                    Cast-Iron Foundation
                   </span>
                 </div>
                 <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/80 leading-snug mt-0.5">
-                  Crisp dill pickles calibrated to cut through the rich roasted pork.
+                  Plancha-toasted bottom crust infused with savory rendered pork drippings.
                 </p>
               </div>
             </div>
@@ -450,16 +490,19 @@ export function CubanDeconstruction() {
               </span>
             </div>
 
-            {/* Enlace CTA sutil */}
-            <div className="mt-3.5 pt-1">
-              <a
-                href="#curated-menu"
-                className="inline-flex items-center gap-2 font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire hover:text-charcoal-ink transition-colors group cursor-pointer"
-              >
-                <span>ORDER HOT</span>
-                <span className="transition-transform group-hover:translate-x-1">→</span>
-              </a>
-            </div>
+            {/* Botón Sólido de Compra */}
+            <a
+              href="#curated-menu"
+              className="bg-charcoal-ink hover:bg-brand-fire text-cream-bg py-3 px-6 text-xs font-bold uppercase tracking-widest transition-colors flex items-center justify-between w-full mt-6 rounded-none cursor-pointer group shadow-none"
+            >
+              <span className="flex items-center gap-2">
+                <span>ORDENAR AL FUEGO</span>
+                <span className="transition-transform group-hover:translate-x-1">➔</span>
+              </span>
+              <span className="font-sans text-xs font-black tracking-tight text-cream-bg">
+                $12.95
+              </span>
+            </a>
           </div>
 
         </div>
