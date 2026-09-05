@@ -19,12 +19,12 @@ export function CategoryTabs({
   };
 
   return (
-    <div className="sticky top-[52px] sm:top-[58px] z-30 border-b border-[#EAE5DC] bg-[#FAF8F5]/90 backdrop-blur-md py-2.5">
+    <div className="sticky top-[52px] sm:top-[58px] z-30 border-b border-charred-iron/15 bg-toasted-cream/90 backdrop-blur-md py-2.5">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div
           role="tablist"
           aria-label="Menu Categories"
-          className="no-scrollbar flex items-center justify-start sm:justify-center gap-2 overflow-x-auto p-1.5 rounded-full bg-white/80 border border-[#EAE5DC] shadow-xs"
+          className="no-scrollbar flex items-center justify-start sm:justify-center gap-2 overflow-x-auto p-1.5 rounded-full bg-surface-sand/80 border border-charred-iron/15 shadow-xs"
         >
           {categories.map((cat) => {
             const isActive = cat.id === active;

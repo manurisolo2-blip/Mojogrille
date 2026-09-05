@@ -18,13 +18,13 @@ function Badge({ label }: { label: NonNullable<MenuItem["badge"]> }) {
   }
   if (label === "Fresco del día") {
     return (
-      <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-[#4D7C0F] px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-white shadow-md">
+      <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-leaf-green px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-cream-bg shadow-md">
         {label}
       </span>
     );
   }
   return (
-    <span className="absolute left-3 top-3 rounded-full border border-[#EAE5DC] bg-white px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-[#D95327] shadow-sm">
+    <span className="absolute left-3 top-3 rounded-full border border-charred-iron/15 bg-toasted-cream px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-mojo-orange shadow-sm">
       {label}
     </span>
   );
@@ -42,13 +42,13 @@ export function MenuGrid({
       {items.map((item) => (
         <article
           key={item.id}
-          className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-[#EAE5DC] bg-white p-4 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#D95327]/30"
+          className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-charred-iron/15 bg-surface-sand p-4 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-mojo-orange/30"
         >
           <div>
             <button
               type="button"
               onClick={() => onSelect(item)}
-              className="relative block w-full overflow-hidden rounded-2xl bg-[#FAF8F5] text-left focus:outline-none"
+              className="relative block w-full overflow-hidden rounded-2xl bg-toasted-cream text-left focus:outline-none"
               aria-label={`View details for ${item.name}`}
             >
               <img

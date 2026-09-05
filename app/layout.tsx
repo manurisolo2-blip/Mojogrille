@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Bebas_Neue, Plus_Jakarta_Sans, Instrument_Serif, Space_Mono } from 'next/font/google';
+import { Syne, Plus_Jakarta_Sans, Instrument_Serif, Space_Mono } from 'next/font/google';
 import './globals.css';
 import { SmoothScroll } from '../components/SmoothScroll';
 import { NoiseOverlay } from '../components/NoiseOverlay';
 
-const displayFont = Bebas_Neue({
-  weight: '400',
+const displayFont = Syne({
+  weight: ['700', '800'],
   subsets: ['latin'],
   variable: '--font-display',
 });
@@ -13,7 +13,7 @@ const displayFont = Bebas_Neue({
 const bodyFont = Plus_Jakarta_Sans({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
-  variable: '--font-sans',
+  variable: '--font-body',
 });
 
 const accentFont = Instrument_Serif({
@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="es"
       className={`${displayFont.variable} ${bodyFont.variable} ${accentFont.variable} ${monoFont.variable}`}
     >
-      <body className="bg-cream-bg text-charcoal-ink font-sans antialiased selection:bg-brand-fire selection:text-cream-bg min-h-screen">
+      <body className="bg-toasted-cream text-charred-iron font-body antialiased selection:bg-mojo-orange selection:text-toasted-cream min-h-screen">
         <NoiseOverlay />
         <SmoothScroll>{children}</SmoothScroll>
       </body>

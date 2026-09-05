@@ -4,27 +4,49 @@
 
 @layer base {
   :root {
-    --color-cream-bg: #F6F1E8;
-    --color-brand-fire: #E52516;
-    --color-charcoal-ink: #141210;
+    /* 3 Key Colors Requested */
+    --color-toasted-cream: #F7EFE2;
+    --color-charred-iron: #1C1917;
+    --color-mojo-orange: #EA580C;
+
+    /* Canonical Tokens */
+    --color-cream-bg: #F7EFE2;
+    --color-brand-fire: #EA580C;
+    --color-charcoal-ink: #1C1917;
     --color-surface-sand: #ECE4D5;
-    --color-mojo-citrus: #FFA826;
-    --color-leaf-green: #2F6A4F;
+    --color-mojo-citrus: #EAB308;
+    --color-leaf-green: #15803D;
   }
 
   body {
-    background-color: #F6F1E8;
-    color: #141210;
-    font-family: var(--font-sans);
+    background-color: #F7EFE2;
+    color: #1C1917;
+    font-family: var(--font-body, var(--font-sans));
+  }
+
+  .bg-toasted-cream {
+    background-color: #F7EFE2;
+  }
+
+  .text-charred-iron {
+    color: #1C1917;
+  }
+
+  .bg-mojo-orange {
+    background-color: #EA580C;
+  }
+
+  .text-mojo-orange {
+    color: #EA580C;
   }
 
   .bg-cream-bg {
-    background-color: #F6F1E8;
+    background-color: #F7EFE2;
   }
 
   .grain,
   .bg-cream-canvas {
-    background-color: #F6F1E8;
+    background-color: #F7EFE2;
   }
 
   h1,

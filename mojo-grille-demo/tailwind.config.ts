@@ -2,11 +2,7 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
-    './mojo-grille-demo/src/**/*.{js,ts,jsx,tsx}',
+    './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -45,11 +41,6 @@ const config: Config = {
         accent: ['var(--font-accent)', 'Instrument Serif', 'Playfair Display', 'serif'],
         serif: ['var(--font-accent)', 'Instrument Serif', 'Playfair Display', 'serif'],
         mono: ['var(--font-mono)', 'Space Mono', 'monospace'],
-      },
-      boxShadow: {
-        subtle: '0 2px 10px rgba(20, 18, 16, 0.04)',
-        card: '0 4px 20px rgba(20, 18, 16, 0.06)',
-        floating: '0 10px 30px rgba(229, 37, 22, 0.25)',
       },
     },
   },

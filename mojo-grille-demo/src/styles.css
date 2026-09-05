@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=general-sans@400,500,600,700&display=swap');
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -7,7 +8,7 @@
 
 /*
  * Mojo Grille Miami-Latin Modernism design system.
- * Warm Criollo Cream base, Mojo Scarlet fire, Pressed Dark ink, Yuca Sand surfaces.
+ * Warm Criollo Cream base, Mojo Seville Orange fire, Pressed Charred Iron ink, Yuca Sand surfaces.
  */
 
 @theme inline {
@@ -19,32 +20,38 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  /* Miami-Latin Modernism Typographic Trio + Monospace Engine */
-  --font-display: "Bebas Neue", "Playfair Display", Georgia, sans-serif;
-  --font-sans: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Miami-Latin Modernism Typographic Trio (Syne / Clash Display + General Sans) */
+  --font-display: "Syne", "Clash Display", "Bebas Neue", sans-serif;
+  --font-body: "General Sans", "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "General Sans", "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-accent: "Instrument Serif", "Playfair Display", Georgia, serif;
   --font-serif: "Instrument Serif", "Playfair Display", Georgia, serif;
   --font-mono: "Space Mono", monospace;
 
-  /* Miami-Latin Modernism Color Palette */
-  --color-cream-bg: #F6F1E8;
-  --color-brand-fire: #E52516;
-  --color-charcoal-ink: #141210;
+  /* 3 Key Colors Requested */
+  --color-toasted-cream: #F7EFE2;
+  --color-charred-iron: #1C1917;
+  --color-mojo-orange: #EA580C;
+
+  /* Miami-Latin Modernism Canonical Tokens */
+  --color-cream-bg: #F7EFE2;
+  --color-brand-fire: #EA580C;
+  --color-charcoal-ink: #1C1917;
   --color-surface-sand: #ECE4D5;
-  --color-mojo-citrus: #FFA826;
-  --color-leaf-green: #2F6A4F;
+  --color-mojo-citrus: #EAB308;
+  --color-leaf-green: #15803D;
 
   /* Backward Compatibility Aliases */
-  --color-cream: #F6F1E8;
-  --color-surface-white: #FFFFFF;
-  --color-mojo-terracotta: #E52516;
-  --color-mojo-terracotta-dark: #C71F12;
-  --color-charcoal: #141210;
-  --color-text-charcoal: #141210;
+  --color-cream: #F7EFE2;
+  --color-surface-white: #ECE4D5;
+  --color-mojo-terracotta: #EA580C;
+  --color-mojo-terracotta-dark: #C2410C;
+  --color-charcoal: #1C1917;
+  --color-text-charcoal: #1C1917;
   --color-text-muted: #78716C;
-  --color-mojo-lime: #2F6A4F;
-  --color-mojo-gold: #FFA826;
-  --color-mojo-red: #E52516;
+  --color-mojo-lime: #15803D;
+  --color-mojo-gold: #EAB308;
+  --color-mojo-red: #EA580C;
   --color-sand: #ECE4D5;
   --color-subtle: #ECE4D5;
   --color-border-subtle: #ECE4D5;
@@ -76,47 +83,47 @@
   --color-ring-offset-background: var(--background);
 
   --shadow-soft: 0 1px 3px rgba(28, 25, 23, 0.05), 0 8px 24px -12px rgba(28, 25, 23, 0.1);
-  --shadow-lift: 0 4px 6px -1px rgba(217, 83, 39, 0.12), 0 16px 32px -8px rgba(28, 25, 23, 0.18);
+  --shadow-lift: 0 4px 6px -1px rgba(234, 88, 12, 0.12), 0 16px 32px -8px rgba(28, 25, 23, 0.18);
 }
 
 :root {
   --radius: 0.875rem;
 
-  /* Lienzo Primario (#FAF8F5) */
-  --background: #FAF8F5;
-  /* Texto Maestro (#1C1917) */
+  /* Lienzo Primario (#F7EFE2 toasted-cream) */
+  --background: #F7EFE2;
+  /* Texto Maestro (#1C1917 charred-iron) */
   --foreground: #1C1917;
-  /* Superficie de Tarjetas (#FFFFFF) */
-  --card: #FFFFFF;
+  /* Superficie de Tarjetas (#ECE4D5 surface-sand) */
+  --card: #ECE4D5;
   --card-foreground: #1C1917;
-  --popover: #FFFFFF;
+  --popover: #ECE4D5;
   --popover-foreground: #1C1917;
 
-  /* Acción Principal / CTA (#D95327 / #B83E16) */
-  --primary: #D95327;
-  --primary-hover: #B83E16;
-  --primary-foreground: #FFFFFF;
+  /* Acción Principal / CTA (#EA580C mojo-orange) */
+  --primary: #EA580C;
+  --primary-hover: #C2410C;
+  --primary-foreground: #F7EFE2;
 
-  --secondary: #F4EFEA;
+  --secondary: #ECE4D5;
   --secondary-foreground: #1C1917;
-  --muted: #F4EFEA;
+  --muted: #ECE4D5;
   /* Texto Descriptivo (#78716C) */
   --muted-foreground: #78716C;
-  --accent: #F4EFEA;
+  --accent: #ECE4D5;
   --accent-foreground: #1C1917;
 
-  /* Acento Orgánico (#4D7C0F) */
-  --citrus: #4D7C0F;
-  --citrus-foreground: #FFFFFF;
-  --citrus-soft: #F0F6E8;
+  /* Acento Orgánico (#15803D / #EAB308) */
+  --citrus: #EAB308;
+  --citrus-foreground: #1C1917;
+  --citrus-soft: #ECE4D5;
 
   --destructive: #DC2626;
-  --destructive-foreground: #FFFFFF;
+  --destructive-foreground: #F7EFE2;
 
-  /* Bordes y Separadores (#EAE5DC) */
-  --border: #EAE5DC;
-  --input: #EAE5DC;
-  --ring: #D95327;
+  /* Bordes y Separadores */
+  --border: rgba(28, 25, 23, 0.15);
+  --input: rgba(28, 25, 23, 0.15);
+  --ring: #EA580C;
 }
 
 @layer base {
@@ -125,14 +132,14 @@
   }
 
   body {
-    background-color: #F6F1E8;
-    color: var(--color-foreground);
-    font-family: var(--font-sans);
+    background-color: #F7EFE2;
+    color: #1C1917;
+    font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
   }
 
   .grain {
-    background-color: #F6F1E8;
+    background-color: #F7EFE2;
   }
 
   /* Dual Typography Hierarchy */
@@ -176,33 +183,65 @@
   }
 }
 
+/* 3 Key Color Utilities Requested */
+@utility bg-toasted-cream {
+  background-color: #F7EFE2;
+}
+@utility text-toasted-cream {
+  color: #F7EFE2;
+}
+@utility border-toasted-cream {
+  border-color: #F7EFE2;
+}
+@utility bg-charred-iron {
+  background-color: #1C1917;
+}
+@utility text-charred-iron {
+  color: #1C1917;
+}
+@utility border-charred-iron {
+  border-color: #1C1917;
+}
+@utility bg-mojo-orange {
+  background-color: #EA580C;
+}
+@utility text-mojo-orange {
+  color: #EA580C;
+}
+@utility border-mojo-orange {
+  border-color: #EA580C;
+}
+@utility font-body {
+  font-family: var(--font-body);
+}
+
 /* Official Miami-Latin Modernism Design Token Utilities */
 @utility bg-cream-bg {
-  background-color: #F6F1E8;
+  background-color: #F7EFE2;
 }
 @utility bg-cream-canvas {
-  background-color: #F6F1E8;
+  background-color: #F7EFE2;
 }
 @utility text-cream-bg {
-  color: #F6F1E8;
+  color: #F7EFE2;
 }
 @utility bg-brand-fire {
-  background-color: #E52516;
+  background-color: #EA580C;
 }
 @utility text-brand-fire {
-  color: #E52516;
+  color: #EA580C;
 }
 @utility border-brand-fire {
-  border-color: #E52516;
+  border-color: #EA580C;
 }
 @utility bg-charcoal-ink {
-  background-color: #141210;
+  background-color: #1C1917;
 }
 @utility text-charcoal-ink {
-  color: #141210;
+  color: #1C1917;
 }
 @utility border-charcoal-ink {
-  border-color: #141210;
+  border-color: #1C1917;
 }
 @utility bg-surface-sand {
   background-color: #ECE4D5;
@@ -214,16 +253,16 @@
   border-color: #ECE4D5;
 }
 @utility bg-mojo-citrus {
-  background-color: #FFA826;
+  background-color: #EAB308;
 }
 @utility text-mojo-citrus {
-  color: #FFA826;
+  color: #EAB308;
 }
 @utility bg-leaf-green {
-  background-color: #2F6A4F;
+  background-color: #15803D;
 }
 @utility text-leaf-green {
-  color: #2F6A4F;
+  color: #15803D;
 }
 @utility font-display {
   font-family: var(--font-display);
@@ -237,19 +276,19 @@
 
 /* Explicit Mojo Grille Design Token Utility Classes (Legacy Aliases) */
 @utility bg-cream {
-  background-color: #F6F1E8;
+  background-color: #F7EFE2;
 }
 @utility text-cream {
-  color: #F6F1E8;
+  color: #F7EFE2;
 }
 @utility bg-mojoRed {
-  background-color: #E6421E;
+  background-color: #EA580C;
 }
 @utility text-mojoRed {
-  color: #E6421E;
+  color: #EA580C;
 }
 @utility surface-white {
-  background-color: #FFFFFF;
+  background-color: #ECE4D5;
 }
 @utility text-charcoal {
   color: #1C1917;
