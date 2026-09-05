@@ -47,33 +47,42 @@ Cada vez que el usuario envíe un prompt para crear, modificar, refactorizar o d
 ## 4. Guía Oficial de Estilos e Identidad Visual (Miami-Latin Modernism)
 
 > [!IMPORTANT]
-> **Regla de Oro de Diseño**: Todo cambio de estilo, maquetación, decoraciones o componentes DEBE cumplir estrictamente con los tokens y jerarquías definidos a continuación. Queda prohibido inventar colores o utilizar blanco clínico (`#FFFFFF`) como fondo general.
+> **Regla de Oro de Diseño**: Todo cambio de estilo, maquetación, decoraciones o componentes DEBE cumplir estrictamente con los tokens y directivas definidos a continuación. Queda estrictamente prohibido inventar colores, usar blanco clínico o violar las directivas de marca.
 
-### 4.1. Paleta Cromática y Tokens Semánticos (Mojo Grille)
+### 4.0. Directivas Estrictas y Prohibiciones (Strictly Forbidden Defaults)
+1. **Prohibido Blanco Clínico y Grises Fríos**: Queda estrictamente prohibido usar fondos blancos puros (`bg-white`), grises fríos (`bg-gray-50`, `bg-slate-100`, `text-gray-400`) y bordes genéricos de utilidad (`border-gray-200`).
+2. **Prohibidas Sombras Suaves Genéricas**: Queda prohibido usar sombras difuminadas genéricas (`shadow-md`, `shadow-lg`). Usar exclusivamente bordes finos sólidos (`border border-[#1C1917]/15` o `border-charcoal-ink/15`).
+3. **Prohibidas Retículas Simétricas de 3 Columnas**: Queda prohibido usar retículas tradicionales simétricas de 3 columnas para productos o menús; los layouts deben ser asimétricos, táctiles y editoriales estilo CRAV Burgers.
+4. **Prohibido Copy Corporativo Genérico**: Evitar clichés corporativos ("fresh ingredients", "fuel your day"). Usar exclusivamente microcopia directa, auténtica y con identidad Spanglish de Miami.
+5. **Cero Puntos y Guiones Decorativos**: No usar puntos medios (`·`), viñetas (`•`) ni guiones (`—`, `–`) en encabezados, tickers, badges ni enlaces de navegación.
+
+---
+
+### 4.1. Sistema Cromático Oficial (Tokens Semánticos)
 
 | Token UI | Nombre Comercial | HEX | RGB | Rol en la Interfaz |
 | :--- | :--- | :--- | :--- | :--- |
-| **`cream-bg`** | Criollo Cream | `#F6F1E8` | 246, 241, 232 | Fondo principal de la web. Elimina el brillo frío del `#FFFFFF` y evoca el pan tostado. |
-| **`brand-fire`** | Mojo Scarlet | `#E52516` | 229, 37, 22 | Color de choque primario (análogo al `#f91814` de Crav). Se usa en CTAs, titulares hero, preloader y acentos de hover. |
-| **`charcoal-ink`** | Pressed Dark | `#141210` | 20, 18, 16 | Tipografía principal, bordes finos divisorios (`border-charcoal-ink/10`) y textos legales. |
-| **`surface-sand`** | Yuca Sand | `#ECE4D5` | 236, 228, 213 | Fondo de tarjetas de producto, badges nutricionales y contenedor del cart drawer. |
-| **`mojo-citrus`** | Citrus Glaze | `#FFA826` | 255, 168, 38 | Tono complementario para etiquetas de picante, badges de tiempo de cocción y microindicadores. |
-| **`leaf-green`** | Cilantro Fresh | `#2F6A4F` | 47, 106, 79 | Acento secundario para elementos "100% Fresco" o ítems vegetarianos. |
+| **`cream-bg`** | Toasted Cream | `#F7EFE2` | 247, 239, 226 | Canvas principal de toda la web. Elimina el blanco frío y evoca pan tostado. |
+| **`charcoal-ink`** | Charred Cast Iron | `#1C1917` | 28, 25, 23 | Tipografía principal, bordes finos divisorios (`border-[#1C1917]/15`) y textos legales. |
+| **`brand-fire`** | Mojo Seville Orange | `#EA580C` | 234, 88, 12 | Color de choque primario (CTAs, titulares hero, preloader y acentos de hover). |
+| **`surface-sand`** | Yuca Sand | `#ECE4D5` | 236, 228, 213 | Fondo de tarjetas de producto, módulos y contenedor del cart drawer. |
+| **`mojo-citrus`** | Crispy Plantain | `#EAB308` | 234, 179, 8 | Tono complementario para etiquetas de tostado, badges y microindicadores. |
+| **`leaf-green`** | Cilantro Green | `#15803D` | 21, 128, 61 | Acento secundario para elementos frescos, hierbas y opciones vegetarianas. |
 
 #### Regla de Distribución Cromática (Regla 60-30-10):
-* **60%**: Criollo Cream (`#F6F1E8`) como lienzo constante en todo el scroll.
-* **30%**: Pressed Dark (`#141210`) para textos, bordes de separación y estructuras de navegación.
-* **10%**: Mojo Scarlet (`#E52516`) reservado con máxima saturación para llamar la atención del ojo hacia botones, marcas de agua, precios y marquesinas.
+* **60%**: Toasted Cream (`#F7EFE2`) como lienzo constante en todo el scroll.
+* **30%**: Charred Cast Iron (`#1C1917`) para textos, bordes de separación y estructuras de navegación.
+* **10%**: Mojo Seville Orange (`#EA580C`) reservado para captar atención en botones, precios, badges y marquesinas.
 
 ---
 
 ### 4.2. Trío Tipográfico y Escala Modular
 
-* **A. Fuente Display (Cinética y Titulares de Choque):** `Bebas Neue` o `Syne` (`--font-display`).
+* **A. Fuente Display (Cinética y Titulares de Choque):** Clash Display, Syne, Bebas Neue o Druk style (`--font-display`).
   * *Tratamiento:* `font-bold uppercase tracking-tight leading-[0.85]`
-* **B. Fuente Sans-Serif (UI, Lectura y Fichas Técnicas):** `Plus Jakarta Sans` o `Inter` (`--font-sans`).
+* **B. Fuente Sans-Serif (UI, Lectura y Fichas Técnicas):** General Sans, Satoshi, Plus Jakarta Sans o Inter (`--font-sans`).
   * *Tratamiento:* Geometría moderna, alto interletrado en textos pequeños (`tracking-wide text-xs uppercase font-medium`).
-* **C. Fuente Editorial / Accent (Contraste Artesanal):** `Instrument Serif` o `Playfair Display Italic` (`--font-accent`).
+* **C. Fuente Editorial / Accent (Contraste Artesanal):** Fraunces, Instrument Serif o Playfair Display Italic (`--font-accent`).
   * *Tratamiento:* `font-serif italic font-normal lowercase tracking-normal text-brand-fire`.
 
 #### Jerarquía y Escala de Tipografías (Type Scale)
@@ -82,10 +91,16 @@ Cada vez que el usuario envíe un prompt para crear, modificar, refactorizar o d
 | :--- | :--- | :--- | :--- | :--- |
 | **Monumental (Hero/Ticker)** | Display | `text-[9vw]` / `leading-[0.85]` | `tracking-tight` | uppercase (`"CUBANO PRESS"`) |
 | **H1 (Secciones)** | Display | `text-5xl md:text-7xl` / `leading-none` | `tracking-tight` | uppercase (`"FOUR-HOUR ROASTED"`) |
-| **Accent Subtitle** | Serif Italic | `text-2xl md:text-3xl` / `leading-snug` | `tracking-normal` | lowercase (`"juicy, crispy & fully loaded"`) |
+| **Accent Subtitle** | Serif Italic | `text-2xl md:text-3xl` / `leading-snug` | `tracking-normal` | lowercase (`"juicy, crispy and fully loaded"`) |
 | **H2 (Nombres de Plato)** | Display | `text-2xl md:text-3xl` / `leading-tight` | `tracking-tight` | uppercase (`"MOJO PORK BOWL"`) |
-| **Badges / Metadatos** | Sans-Serif | `text-[11px]` / `leading-none` | `tracking-widest` | uppercase font-bold (`"42G PROTEIN · 6-8 MIN"`) |
+| **Badges / Metadatos** | Sans-Serif | `text-[11px]` / `leading-none` | `tracking-widest` | uppercase font-bold (`"42G PROTEIN 6-8 MIN"`) |
 | **Body (Descripciones)** | Sans-Serif | `text-sm md:text-base` / `leading-relaxed` | `tracking-normal` | normal-case font-normal |
-| **Precios / Acciones** | Sans-Serif | `text-base md:text-lg` / `leading-tight` | `tracking-tight` | font-bold (`"$12.95 · AÑADIR"`) |
+| **Precios / Acciones** | Sans-Serif | `text-base md:text-lg` / `leading-tight` | `tracking-tight` | font-bold (`"$12.95 AÑADIR"`) |
+
+---
+
+### 4.3. Estructura UI, Tono y Animación Cinética
+* **Maquetación Asimétrica & Editorial**: Evitar retículas simétricas de tarjeta estándar. Componer layouts asimétricos, de estética editorial y textura táctil con referencias a benchmarks como CRAV Burgers.
+* **Animaciones Cinéticas**: Implementar Framer Motion o GSAP para transiciones de scroll suaves (scrub con desaceleración gradual, sin saltos abruptos), hover previews interactivos y deconstrucción de capas.
 
 
