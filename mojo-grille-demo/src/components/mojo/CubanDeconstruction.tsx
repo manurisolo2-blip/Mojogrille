@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Flame, Clock, Award, Sparkles } from "lucide-react";
 import { TapeLabel } from "./TapeLabel";
 import { InkStamp } from "./InkStamp";
 
@@ -35,7 +34,7 @@ export function CubanDeconstruction() {
 
     // ScrollTrigger.matchMedia para adaptar la animación según el ancho de viewport
     ScrollTrigger.matchMedia({
-      // 1. Escritorio (min-width: 1024px): separación completa con tarjeta lateral flotante a la derecha
+      // 1. Escritorio (min-width: 1024px): separación suave con tarjeta lateral flotante a la derecha
       "(min-width: 1024px)": function () {
         gsap.set([topBreadRef.current, bottomBreadRef.current], {
           rotateX: 20,
@@ -51,7 +50,7 @@ export function CubanDeconstruction() {
             pin: pinRef.current,
             start: "top top",
             end: "bottom bottom",
-            scrub: 1,
+            scrub: 1.5,
           },
         });
 
@@ -61,7 +60,7 @@ export function CubanDeconstruction() {
             y: -240,
             rotate: -3,
             rotateX: 20,
-            ease: "power1.out",
+            ease: "power1.inOut",
           },
           0
         )
@@ -70,7 +69,7 @@ export function CubanDeconstruction() {
             {
               y: -120,
               rotate: 4,
-              ease: "power1.out",
+              ease: "power1.inOut",
             },
             0
           )
@@ -79,7 +78,7 @@ export function CubanDeconstruction() {
             {
               y: -35,
               rotate: -1,
-              ease: "power1.out",
+              ease: "power1.inOut",
             },
             0
           )
@@ -88,7 +87,7 @@ export function CubanDeconstruction() {
             {
               y: 55,
               scale: 1.08,
-              ease: "power1.out",
+              ease: "power1.inOut",
             },
             0
           )
@@ -98,7 +97,7 @@ export function CubanDeconstruction() {
               y: 210,
               rotate: 1,
               rotateX: 20,
-              ease: "power1.out",
+              ease: "power1.inOut",
             },
             0
           )
@@ -106,19 +105,19 @@ export function CubanDeconstruction() {
             sideCardRef.current,
             {
               opacity: 0,
-              x: 80,
+              x: 60,
             },
             {
               opacity: 1,
               x: 0,
-              ease: "power2.out",
+              ease: "power1.out",
             },
             0
           )
-          .to(stepBreadRef.current, { opacity: 0.4, ease: "power1.out" }, 0.3)
-          .to(stepMeatRef.current, { opacity: 1, ease: "power1.out" }, 0.3)
-          .to(stepMeatRef.current, { opacity: 0.4, ease: "power1.out" }, 0.7)
-          .to(stepBaseRef.current, { opacity: 1, ease: "power1.out" }, 0.7);
+          .to(stepBreadRef.current, { opacity: 0.4, ease: "power1.inOut" }, 0.25)
+          .to(stepMeatRef.current, { opacity: 1, ease: "power1.inOut" }, 0.25)
+          .to(stepMeatRef.current, { opacity: 0.4, ease: "power1.inOut" }, 0.65)
+          .to(stepBaseRef.current, { opacity: 1, ease: "power1.inOut" }, 0.65);
 
         return () => {
           tl.kill();
@@ -141,7 +140,7 @@ export function CubanDeconstruction() {
             pin: pinRef.current,
             start: "top top",
             end: "bottom bottom",
-            scrub: 1,
+            scrub: 1.5,
           },
         });
 
@@ -151,7 +150,7 @@ export function CubanDeconstruction() {
             y: -140,
             rotate: -2,
             rotateX: 16,
-            ease: "power1.out",
+            ease: "power1.inOut",
           },
           0
         )
@@ -160,7 +159,7 @@ export function CubanDeconstruction() {
             {
               y: -70,
               rotate: 3,
-              ease: "power1.out",
+              ease: "power1.inOut",
             },
             0
           )
@@ -169,7 +168,7 @@ export function CubanDeconstruction() {
             {
               y: -20,
               rotate: -1,
-              ease: "power1.out",
+              ease: "power1.inOut",
             },
             0
           )
@@ -178,7 +177,7 @@ export function CubanDeconstruction() {
             {
               y: 35,
               scale: 1.05,
-              ease: "power1.out",
+              ease: "power1.inOut",
             },
             0
           )
@@ -188,7 +187,7 @@ export function CubanDeconstruction() {
               y: 125,
               rotate: 1,
               rotateX: 16,
-              ease: "power1.out",
+              ease: "power1.inOut",
             },
             0
           )
@@ -201,14 +200,14 @@ export function CubanDeconstruction() {
             {
               opacity: 1,
               y: 0,
-              ease: "power2.out",
+              ease: "power1.out",
             },
             0
           )
-          .to(stepBreadRef.current, { opacity: 0.4, ease: "power1.out" }, 0.3)
-          .to(stepMeatRef.current, { opacity: 1, ease: "power1.out" }, 0.3)
-          .to(stepMeatRef.current, { opacity: 0.4, ease: "power1.out" }, 0.7)
-          .to(stepBaseRef.current, { opacity: 1, ease: "power1.out" }, 0.7);
+          .to(stepBreadRef.current, { opacity: 0.4, ease: "power1.inOut" }, 0.25)
+          .to(stepMeatRef.current, { opacity: 1, ease: "power1.inOut" }, 0.25)
+          .to(stepMeatRef.current, { opacity: 0.4, ease: "power1.inOut" }, 0.65)
+          .to(stepBaseRef.current, { opacity: 1, ease: "power1.inOut" }, 0.65);
 
         return () => {
           tl.kill();
@@ -254,7 +253,7 @@ export function CubanDeconstruction() {
       ref={containerRef}
       id="cuban-deconstruction"
       aria-label="Deconstrucción interactiva del Sándwich Cubano Mojo Grille"
-      className="relative h-[300vh] bg-transparent border-b border-charcoal-ink/10 select-none overflow-x-clip"
+      className="relative h-[180vh] bg-transparent border-b border-charcoal-ink/10 select-none overflow-x-clip"
     >
       <div
         ref={pinRef}
@@ -281,7 +280,7 @@ export function CubanDeconstruction() {
         {/* Encabezado Superior de Sección */}
         <div className="absolute top-4 sm:top-8 left-0 right-0 text-center px-4 pointer-events-none z-10">
           <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire">
-            ANATOMY OF A CLASSIC PRESSED HOT
+            100% FRESH CRIOLLO PRESSED HOT
           </span>
           <h3 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-charcoal-ink mt-0.5 sm:mt-1">
             THE UNFORGIVING CUBANO
@@ -392,24 +391,6 @@ export function CubanDeconstruction() {
             ref={sideCardRef}
             className="w-[90%] max-w-sm lg:max-w-xs bg-transparent border-l-2 border-brand-fire pl-5 lg:pl-6 py-2 will-change-transform z-30 select-none mt-1 sm:mt-2 lg:mt-0"
           >
-            {/* Indicador de Capas Superior */}
-            <div className="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-charcoal-ink/15">
-              <span className="font-sans text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-charcoal-ink/80">
-                CAPAS: 05 / ARTESANAL
-              </span>
-              <span className="inline-flex items-center gap-1 font-sans text-[9px] font-bold uppercase tracking-wider text-brand-fire bg-brand-fire/10 px-2 py-0.5 rounded-full border border-brand-fire/20">
-                HOT PLANCHA
-              </span>
-            </div>
-
-            {/* Etiqueta de corte editorial */}
-            <div className="flex items-center gap-2 mb-1.5">
-              <span className="h-1.5 w-1.5 rounded-none bg-brand-fire" aria-hidden="true" />
-              <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire">
-                ANATOMY OF A CLASSIC
-              </span>
-            </div>
-
             {/* Título Display Monumental */}
             <h4 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-charcoal-ink leading-[0.9]">
               THE UNFORGIVING CUBANO
@@ -446,7 +427,7 @@ export function CubanDeconstruction() {
                   <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
                     Live-Fire Criollo Roast
                   </span>
-                  <span className="font-sans text-[9px] font-bold uppercase tracking-wider text-brand-fire bg-brand-fire/10 px-1.5 py-0.5 border border-brand-fire/30 rounded-full">
+                  <span className="font-sans text-[9px] font-bold uppercase tracking-wider text-brand-fire bg-brand-fire/10 px-1.5 py-0.5 border border-brand-fire/30">
                     24H MARINADE
                   </span>
                 </div>
@@ -469,22 +450,6 @@ export function CubanDeconstruction() {
                   Plancha-toasted bottom crust infused with savory rendered pork drippings.
                 </p>
               </div>
-            </div>
-
-            {/* Ficha Técnica Integrada con Píldoras Estilo Crav */}
-            <div className="mt-3.5 pt-2.5 border-t border-charcoal-ink/15 flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-charcoal-ink/5 border border-charcoal-ink/10 text-charcoal-ink text-xs font-bold uppercase tracking-wider rounded-full">
-                <Clock className="h-3 w-3 text-brand-fire" aria-hidden="true" />
-                4H ROASTED
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-charcoal-ink/5 border border-charcoal-ink/10 text-charcoal-ink text-xs font-bold uppercase tracking-wider rounded-full">
-                <Award className="h-3 w-3 text-leaf-green" aria-hidden="true" />
-                LECHÓN CRIOLLO
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-leaf-green/10 border border-leaf-green/30 text-leaf-green text-xs font-bold uppercase tracking-wider rounded-full">
-                <Sparkles className="h-3 w-3 text-leaf-green" aria-hidden="true" />
-                100% ARTISANAL
-              </span>
             </div>
 
             {/* Botón Sólido de Compra */}

@@ -158,7 +158,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 href="#cuban-deconstruction"
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex transition-transform duration-200"
               >
-                Anatomy of the Pressed Cubano
+                Deconstruction of the Pressed Cubano
               </a>
             </li>
             <li>
