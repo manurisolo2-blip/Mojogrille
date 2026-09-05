@@ -52,7 +52,7 @@ export function InkStamp({ className = "", size = 130 }: InkStampProps) {
       {/* Núcleo central en tipografía condensada negrita */}
       <div className="relative z-10 flex flex-col items-center justify-center px-4 text-center leading-none">
         <span className="text-[10px] text-brand-fire font-sans font-bold tracking-widest uppercase mb-0.5">
-          ★ ★ ★
+          · · ·
         </span>
         <span className="font-display font-black text-brand-fire text-base sm:text-lg uppercase tracking-tight leading-[0.9]">
           CERTIFIED

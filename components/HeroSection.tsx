@@ -112,7 +112,6 @@ export function HeroSection({
               className="absolute -top-4 -left-4 sm:-top-5 sm:-left-6 z-20 rounded-none border-2 border-charcoal-ink bg-surface-sand px-4 py-2.5 select-none cursor-pointer"
             >
               <div className="flex items-center gap-2">
-                <span className="text-mojo-citrus text-lg" aria-hidden="true">⭐</span>
                 <div className="text-left">
                   <p className="font-sans text-xs font-black text-charcoal-ink leading-tight">
                     4.7 Stars across +3,000 orders in Miami
@@ -130,7 +129,6 @@ export function HeroSection({
               className="absolute -bottom-4 -right-3 sm:-bottom-5 sm:-right-4 z-20 rounded-none border border-charcoal-ink/20 bg-leaf-green px-4 py-2.5 text-cream-bg select-none cursor-pointer"
             >
               <div className="flex items-center gap-2">
-                <span className="text-lg" aria-hidden="true">🌿</span>
                 <div className="text-left">
                   <p className="font-sans text-xs font-black text-cream-bg leading-tight uppercase tracking-wide">
                     EST. MIAMI · 100% ARTISANAL MOJO

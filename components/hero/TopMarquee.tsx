@@ -32,7 +32,7 @@ export function TopMarquee({ variant = 'terracotta' }: TopMarqueeProps) {
             {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((phrase, index) => (
               <span key={`marq-1-${index}`} className="inline-flex items-center gap-6">
                 <span>{phrase}</span>
-                <span className="text-mojo-citrus font-serif text-base select-none">✦</span>
+                <span className="text-mojo-citrus text-base select-none">·</span>
               </span>
             ))}
           </div>
@@ -42,7 +42,7 @@ export function TopMarquee({ variant = 'terracotta' }: TopMarqueeProps) {
             {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((phrase, index) => (
               <span key={`marq-2-${index}`} className="inline-flex items-center gap-6">
                 <span>{phrase}</span>
-                <span className="text-mojo-citrus font-serif text-base select-none">✦</span>
+                <span className="text-mojo-citrus text-base select-none">·</span>
               </span>
             ))}
           </div>

@@ -205,17 +205,6 @@ export function CuratedMenu() {
 
       {/* Encabezado Editorial Monumental */}
       <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16 text-center">
-        {/* Etiqueta Limpia de Catálogo */}
-        <div className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire mb-2">
-          SLOW ROASTED · EST. MIAMI
-        </div>
-
-        {/* Badge Superior Tipo Sello Editorial */}
-        <div className="inline-flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-surface-sand px-3.5 py-1 text-[11px] font-sans font-bold uppercase tracking-widest text-charcoal-ink mb-4">
-          <span className="h-1.5 w-1.5 rounded-none bg-brand-fire" aria-hidden="true" />
-          <span>Signature Dishes · Hot Plancha</span>
-        </div>
-
         {/* Título Monumental & Subtítulo Editorial */}
         <h2 className="font-display text-5xl md:text-7xl uppercase tracking-tight text-charcoal-ink leading-none">
           HOT PLANCHA SELECTION

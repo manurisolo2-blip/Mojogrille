@@ -226,7 +226,7 @@ export function ScrollLayerAssembly() {
           </p>
 
           <div className="mt-3 flex items-center gap-1.5 pt-2 border-t border-charcoal-ink/10 text-[10px] font-bold text-leaf-green">
-            <span>🌿 100% Fresh Ingredients</span>
+            <span>100% Fresh Ingredients</span>
             <span>•</span>
             <span>Made al momento</span>
           </div>

@@ -41,7 +41,7 @@ export function MarqueeTicker({
               <span key={`ticker-a-${idx}`} className="inline-flex items-center gap-8">
                 <span>{text}</span>
                 <span className="text-mojo-citrus font-serif text-xl sm:text-2xl select-none" aria-hidden="true">
-                  ✦
+                  ·
                 </span>
               </span>
             ))}
@@ -53,7 +53,7 @@ export function MarqueeTicker({
               <span key={`ticker-b-${idx}`} className="inline-flex items-center gap-8">
                 <span>{text}</span>
                 <span className="text-mojo-citrus font-serif text-xl sm:text-2xl select-none">
-                  ✦
+                  ·
                 </span>
               </span>
             ))}

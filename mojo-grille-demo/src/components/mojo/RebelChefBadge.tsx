@@ -25,9 +25,9 @@ export function RebelChefBadge({
         }}
       >
         <span className="font-sans text-[10px] sm:text-[11px] font-black tracking-wider text-charcoal-ink uppercase flex items-center gap-1">
-          <span className="text-brand-fire">⚡</span>
+          <span className="text-brand-fire">·</span>
           <span>{badgeText}</span>
-          <span className="text-brand-fire">⚡</span>
+          <span className="text-brand-fire">·</span>
         </span>
         <span className="h-3 w-px bg-charcoal-ink/40" />
         <span className="font-sans text-[9px] sm:text-[9.5px] font-black uppercase tracking-wider text-brand-fire">

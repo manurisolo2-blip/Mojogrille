@@ -5,21 +5,21 @@ function Badge({ label }: { label: NonNullable<MenuItem["badge"]> }) {
   if (label === "Mojo Signature") {
     return (
       <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-[#D95327] px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-white shadow-md">
-        <span>★</span> {label}
+        {label}
       </span>
     );
   }
   if (label === "Popular" || label === "Top Seller") {
     return (
       <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-[#F59E0B] px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-[#1C1917] shadow-md">
-        <span>⭐</span> {label}
+        {label}
       </span>
     );
   }
   if (label === "Fresco del día") {
     return (
       <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-[#4D7C0F] px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-white shadow-md">
-        <span>🌿</span> {label}
+        {label}
       </span>
     );
   }

@@ -57,7 +57,6 @@ export function FloatingCravBar({
         {/* Lado Izquierdo: Contador y Total */}
         <div className="flex items-center gap-3">
           <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-none bg-charcoal-ink/90 border border-cream-bg/20">
-            <span className="text-base">🛍️</span>
             <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-none bg-leaf-green px-1 font-sans text-[10px] font-black text-cream-bg border border-charcoal-ink">
               {effectiveCount}
             </span>

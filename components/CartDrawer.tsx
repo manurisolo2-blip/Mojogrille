@@ -212,7 +212,7 @@ export function CartDrawer() {
                         />
                       ) : (
                         <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-none bg-surface-sand font-display text-xl text-brand-fire border border-charcoal-ink/20">
-                          ✦
+                          M
                         </div>
                       )}
 

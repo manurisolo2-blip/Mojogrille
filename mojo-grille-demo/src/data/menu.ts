@@ -17,12 +17,12 @@ import type {
 export type { Category, CategoryId, MenuItem, BadgeType, SideOption };
 
 export const categories: Category[] = [
-  { id: "favoritos", label: "🔥 Must-Tries / Favoritos" },
-  { id: "bowls", label: "🥗 Bowls Criollos" },
-  { id: "sandwiches", label: "🥪 Pressed Cubano Sandwiches" },
-  { id: "sides", label: "🥟 Pa' Picar / Sides" },
-  { id: "bebidas", label: "🥤 Cafecito & Drinks" },
-  { id: "catering", label: "🎉 Party Catering" },
+  { id: "favoritos", label: "Must-Tries / Favoritos" },
+  { id: "bowls", label: "Bowls Criollos" },
+  { id: "sandwiches", label: "Pressed Cubano Sandwiches" },
+  { id: "sides", label: "Pa' Picar / Sides" },
+  { id: "bebidas", label: "Cafecito & Drinks" },
+  { id: "catering", label: "Party Catering" },
 ];
 
 export const sideOptions: SideOption[] = [

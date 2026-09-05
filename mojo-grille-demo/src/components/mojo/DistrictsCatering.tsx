@@ -339,7 +339,7 @@ export function DistrictsCatering() {
                 </div>
 
                 <div className="rounded-none border border-charcoal-ink/20 bg-charcoal-ink/5 p-3 text-[11px] font-sans text-charcoal-ink/70">
-                  ⚡ <strong>Instant Confirmation:</strong> Sends a structured message directly to our catering WhatsApp team for an instant quote.
+                  <strong>Instant Confirmation:</strong> Sends a structured message directly to our catering WhatsApp team for an instant quote.
                 </div>
 
                 <button

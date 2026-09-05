@@ -27,11 +27,11 @@ export interface MenuItem {
 }
 
 const CATEGORIES: CategoryOption[] = [
-  { id: 'favorites', label: '🔥 Favorites' },
-  { id: 'bowls', label: '🥗 Criollo Bowls' },
-  { id: 'sandwiches', label: '🥪 Pressed Cubanos' },
-  { id: 'sides', label: "🥟 Sides / Pa' Picar" },
-  { id: 'drinks', label: '🥤 Cafecito & Drinks' },
+  { id: 'favorites', label: 'Favorites' },
+  { id: 'bowls', label: 'Criollo Bowls' },
+  { id: 'sandwiches', label: 'Pressed Cubanos' },
+  { id: 'sides', label: "Sides / Pa' Picar" },
+  { id: 'drinks', label: 'Cafecito & Drinks' },
 ];
 
 const MENU_ITEMS: MenuItem[] = [
@@ -180,19 +180,19 @@ export function CravStyleMenuGrid() {
       case 'signature':
         return (
           <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-fire/10 border border-brand-fire/30 text-brand-fire text-xs font-bold uppercase tracking-wider rounded-full">
-            <span>★</span> {text}
+            {text}
           </span>
         );
       case 'fresh':
         return (
           <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-leaf-green/10 border border-leaf-green/30 text-leaf-green text-xs font-bold uppercase tracking-wider rounded-full">
-            <span>🌿</span> {text}
+            {text}
           </span>
         );
       case 'top_seller':
         return (
           <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-charcoal-ink/5 border border-charcoal-ink/10 text-charcoal-ink text-xs font-bold uppercase tracking-wider rounded-full">
-            <span>⭐</span> {text}
+            {text}
           </span>
         );
     }

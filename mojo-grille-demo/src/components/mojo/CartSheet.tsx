@@ -126,7 +126,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
             Order via WhatsApp
           </a>
           <p className="mt-2 text-center font-sans text-[11px] text-charcoal-ink/60">
-            📲 Instant order confirmation directly with our {location.name} kitchen
+            Instant order confirmation directly with our {location.name} kitchen
           </p>
           {count > 0 && (
             <button

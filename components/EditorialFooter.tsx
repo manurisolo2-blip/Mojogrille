@@ -152,7 +152,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 href="#menu"
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex transition-transform duration-200"
               >
-                ✦ Full Menu &amp; Criollo Bowls
+                — Full Menu &amp; Criollo Bowls
               </a>
             </li>
             <li>
@@ -160,7 +160,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 href="#cuban-deconstruction"
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex transition-transform duration-200"
               >
-                ✦ Anatomy of the Pressed Cubano
+                — Anatomy of the Pressed Cubano
               </a>
             </li>
             <li>
@@ -168,7 +168,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 href="#curated-menu"
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex transition-transform duration-200"
               >
-                ✦ Plancha Selection (Signature Dishes)
+                — Plancha Selection (Signature Dishes)
               </a>
             </li>
             <li>
@@ -176,7 +176,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 href="#districts-catering"
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex transition-transform duration-200"
               >
-                ✦ Thermal Packaging &amp; Corporate Catering
+                — Thermal Packaging &amp; Corporate Catering
               </a>
             </li>
             <li>
@@ -185,7 +185,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 onClick={onOpenCart}
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex items-center gap-1.5 transition-transform duration-200 cursor-pointer text-left"
               >
-                ✦ View Order / Order Drawer
+                — View Order / Order Drawer
               </button>
             </li>
           </ul>
