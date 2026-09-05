@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 
 export interface RebelChefBadgeProps {
   className?: string;
@@ -24,13 +24,13 @@ export function RebelChefBadge({
             'polygon(0% 8%, 4% 0%, 96% 0%, 100% 8%, 97% 25%, 100% 50%, 96% 75%, 100% 100%, 96% 92%, 4% 100%, 0% 92%, 3% 75%, 0% 50%, 4% 25%)',
         }}
       >
-        <span className="font-mono text-[10px] sm:text-[11px] font-black tracking-tight text-charcoal-ink uppercase flex items-center gap-1">
+        <span className="font-sans text-[10px] sm:text-[11px] font-black tracking-wider text-charcoal-ink uppercase flex items-center gap-1">
           <span className="text-brand-fire">⚡</span>
           <span>{badgeText}</span>
           <span className="text-brand-fire">⚡</span>
         </span>
         <span className="h-3 w-px bg-charcoal-ink/40" />
-        <span className="font-mono text-[9px] sm:text-[9.5px] font-black uppercase tracking-widest text-brand-fire">
+        <span className="font-sans text-[9px] sm:text-[9.5px] font-black uppercase tracking-wider text-brand-fire">
           {tag}
         </span>
       </div>

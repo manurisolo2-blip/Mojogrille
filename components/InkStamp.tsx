@@ -43,7 +43,7 @@ export function InkStamp({ className = '', size = 130 }: InkStampProps) {
         />
 
         {/* Texto perimetral circular */}
-        <text className="fill-brand-fire font-mono text-[8.5px] font-bold uppercase tracking-[0.18em]">
+        <text className="fill-brand-fire font-sans text-[8.5px] font-bold uppercase tracking-[0.18em]">
           <textPath href={`#${pathId}`} startOffset="50%" textAnchor="middle">
             AUTHENTIC CRIOLLO RECIPE · MIAMI FL ·
           </textPath>
@@ -52,7 +52,7 @@ export function InkStamp({ className = '', size = 130 }: InkStampProps) {
 
       {/* Núcleo central en tipografía condensada negrita */}
       <div className="relative z-10 flex flex-col items-center justify-center px-4 text-center leading-none">
-        <span className="text-[10px] text-brand-fire font-mono font-bold tracking-widest uppercase mb-0.5">
+        <span className="text-[10px] text-brand-fire font-sans font-bold tracking-widest uppercase mb-0.5">
           ★ ★ ★
         </span>
         <span className="font-display font-black text-brand-fire text-base sm:text-lg uppercase tracking-tight leading-[0.9]">
@@ -60,7 +60,7 @@ export function InkStamp({ className = '', size = 130 }: InkStampProps) {
           <br />
           SLOW ROAST
         </span>
-        <span className="mt-1 font-mono text-[7.5px] font-bold text-brand-fire/80 tracking-tighter uppercase">
+        <span className="mt-1 font-sans text-[7.5px] font-bold text-brand-fire/80 tracking-wider uppercase">
           EST. BROWNSVILLE
         </span>
       </div>

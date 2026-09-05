@@ -16,7 +16,7 @@ export function Navbar() {
           <span className="font-display text-3xl font-bold tracking-tight text-charcoal-ink">
             MOJO<span className="text-brand-fire">GRILLE</span>
           </span>
-          <span className="hidden sm:inline-block rounded-none border border-leaf-green/30 bg-leaf-green/15 px-2 py-0.5 font-mono text-[10px] font-bold tracking-widest text-leaf-green uppercase">
+          <span className="hidden sm:inline-block rounded-none border border-leaf-green/30 bg-leaf-green/15 px-2 py-0.5 font-sans text-[10px] font-bold tracking-[0.18em] text-leaf-green uppercase">
             Miami
           </span>
         </Link>

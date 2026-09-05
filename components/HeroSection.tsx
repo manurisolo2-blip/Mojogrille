@@ -42,15 +42,15 @@ export function HeroSection({
           {/* Ficha de Metadato Flotante Superior (Ticket de Comanda) */}
           <div className="flex flex-col items-center text-center space-y-3 max-w-5xl mx-auto">
             {/* Eyebrow de Comanda y Filosofía */}
-            <p className="font-mono text-xs sm:text-sm font-bold uppercase tracking-widest text-brand-fire select-none">
-              [ 100% CRIOLLO MARINADE // NO SHORTCUTS ]
+            <p className="font-sans text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-brand-fire select-none">
+              100% FRESH CRIOLLO · SLOW ROASTED
             </p>
 
             {/* Titular Central Impactante: HOT CAST IRON. CRUSHED GARLIC. SLOW-ROASTED PERNIL. */}
             <h1 className="font-display text-5xl sm:text-7xl lg:text-[7.5vw] font-black uppercase tracking-tight text-charcoal-ink leading-[0.88] text-center max-w-5xl">
               HOT CAST IRON.{' '}
-              <span className="font-accent font-serif italic font-normal lowercase tracking-normal text-brand-fire">
-                crushed garlic.
+              <span className="text-brand-fire">
+                CRUSHED GARLIC.
               </span>{' '}
               SLOW-ROASTED PERNIL.
             </h1>
@@ -81,7 +81,7 @@ export function HeroSection({
               <button
                 type="button"
                 onClick={onOrderClick}
-                className="absolute bottom-4 left-4 z-20 inline-flex items-center gap-2 rounded-none bg-charcoal-ink text-cream-bg px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-widest border border-cream-bg/20 hover:bg-brand-fire transition-colors cursor-pointer select-none"
+                className="absolute bottom-4 left-4 z-20 inline-flex items-center gap-2 rounded-none bg-charcoal-ink text-cream-bg px-4 py-2 font-sans text-[11px] font-bold uppercase tracking-[0.18em] border border-cream-bg/20 hover:bg-brand-fire transition-colors cursor-pointer select-none"
               >
                 <span>GRAB THIS BOWL</span>
                 <span>→</span>

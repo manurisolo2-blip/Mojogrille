@@ -123,7 +123,7 @@ function Index() {
       {/* Textura de grano de papel artesanal editorial */}
       <NoiseOverlay />
 
-      <div className="min-h-dvh bg-cream-canvas text-charcoal-ink pb-24 md:pb-0">
+      <div className="min-h-dvh bg-cream-bg text-charcoal-ink pb-24 md:pb-0">
         <TopBar onOpenCart={() => setCartOpen(true)} />
         <main className="bg-transparent">
           <HeroSection

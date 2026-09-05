@@ -97,7 +97,7 @@ export function CartDrawer() {
               dismissToast();
               openCart();
             }}
-            className="rounded-none bg-cream-bg/20 border border-cream-bg/30 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-cream-bg hover:bg-brand-fire transition-colors cursor-pointer"
+            className="rounded-none bg-cream-bg/20 border border-cream-bg/30 px-2.5 py-1 font-sans text-[10px] font-bold uppercase tracking-wider text-cream-bg hover:bg-brand-fire transition-colors cursor-pointer"
           >
             View
           </button>
@@ -140,7 +140,7 @@ export function CartDrawer() {
               <h2 className="font-display text-2xl font-bold uppercase tracking-tight text-charcoal-ink leading-none">
                 Your Criollo Order
               </h2>
-              <span className="font-mono text-xs font-semibold uppercase tracking-wider text-charcoal-ink/70">
+              <span className="font-sans text-xs font-semibold uppercase tracking-wider text-charcoal-ink/70">
                 {itemCount} {itemCount === 1 ? "item" : "items"} added
               </span>
             </div>
@@ -229,7 +229,7 @@ export function CartDrawer() {
                     >
                       <Minus className="h-3 w-3" />
                     </button>
-                    <span className="w-6 text-center font-mono text-xs font-black text-charcoal-ink">
+                    <span className="w-6 text-center font-sans text-xs font-black text-charcoal-ink">
                       {item.quantity}
                     </span>
                     <button

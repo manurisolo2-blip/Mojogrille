@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export function NoiseOverlay() {
   return (
@@ -8,9 +8,10 @@ export function NoiseOverlay() {
     >
       {/* Textura sutil fotomecánica de papel artesanal exclusivamente en el fondo (-z-10) */}
       <div
-        className="absolute inset-0 h-full w-full bg-repeat opacity-40"
+        className="absolute inset-0 h-full w-full bg-repeat opacity-[0.012]"
         style={{
           backgroundImage: "url('/assets/noise.png')",
+          opacity: 0.012,
         }}
       />
     </div>

@@ -125,17 +125,14 @@
   }
 
   body {
-    background-color: var(--color-background);
-    background-image: url('/assets/noise.png');
-    background-repeat: repeat;
+    background-color: #F6F1E8;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
 
   .grain {
-    background-image: url('/assets/noise.png');
-    background-repeat: repeat;
+    background-color: #F6F1E8;
   }
 
   /* Dual Typography Hierarchy */
@@ -185,8 +182,6 @@
 }
 @utility bg-cream-canvas {
   background-color: #F6F1E8;
-  background-image: url('/assets/noise.png');
-  background-repeat: repeat;
 }
 @utility text-cream-bg {
   color: #F6F1E8;

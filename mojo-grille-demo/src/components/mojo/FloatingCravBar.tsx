@@ -44,13 +44,13 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
             <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-none bg-charcoal-ink/90 border border-cream-bg/20">
               <ShoppingBag className="h-5 w-5 text-cream-bg" />
               {/* Badge Verde Cilantro (leaf-green) */}
-              <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-none bg-leaf-green px-1 font-mono text-[10px] font-black text-cream-bg border border-charcoal-ink">
+              <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-none bg-leaf-green px-1 font-sans text-[10px] font-black text-cream-bg border border-charcoal-ink">
                 {count}
               </span>
             </div>
 
             <div className="flex flex-col text-left">
-              <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-cream-bg/70">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-cream-bg/70">
                 {count > 0 ? `${count} item${count > 1 ? "s" : ""}` : "Your Order"}
               </span>
               <span className="font-display text-lg font-bold tracking-tight text-cream-bg leading-tight">
@@ -116,7 +116,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
                 <span className="flex items-center gap-1.5 text-leaf-green font-bold">
                   <CheckCircle2 className="h-4 w-4" /> Selected Location
                 </span>
-                <span className="font-mono text-[10px] uppercase">Change</span>
+                <span className="font-sans text-[10px] uppercase">Change</span>
               </div>
               <div className="flex gap-1.5 overflow-x-auto no-scrollbar">
                 {availableLocations.map((loc) => (
@@ -138,7 +138,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
 
             {/* Desglose de Platos Seleccionados */}
             <div className="mt-4">
-              <h4 className="font-mono text-[11px] font-bold uppercase tracking-wider text-charcoal-ink/70 mb-2">
+              <h4 className="font-sans text-[11px] font-bold uppercase tracking-wider text-charcoal-ink/70 mb-2">
                 Order Summary ({count})
               </h4>
               {lines.length === 0 ? (
@@ -178,7 +178,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
 
             {/* Total Estimado */}
             <div className="mt-4 flex items-center justify-between rounded-none bg-surface-sand p-3.5 border border-charcoal-ink/20">
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-charcoal-ink">
+              <span className="font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink">
                 Estimated Total
               </span>
               <span className="font-display text-xl font-bold text-brand-fire">
@@ -202,7 +202,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="w-full py-2 text-center font-mono text-[11px] uppercase tracking-wider font-semibold text-charcoal-ink/60 hover:text-brand-fire"
+                className="w-full py-2 text-center font-sans text-[11px] uppercase tracking-wider font-semibold text-charcoal-ink/60 hover:text-brand-fire"
               >
                 Continue browsing menu
               </button>

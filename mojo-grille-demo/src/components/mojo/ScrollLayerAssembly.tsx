@@ -149,14 +149,14 @@ export function ScrollLayerAssembly() {
       >
         {/* Encabezado Superior de Sección */}
         <div className="absolute top-8 md:top-12 left-0 right-0 text-center px-4 pointer-events-none z-10">
-          <span className="font-sans text-[11px] font-bold uppercase tracking-widest text-brand-fire">
-            ✦ Artisanal Gastronomic Anatomy ✦
+          <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire">
+            ARTISANAL GASTRONOMIC ANATOMY · PRESSED HOT
           </span>
           <h3 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tight text-charcoal-ink mt-1">
-            Anatomy of the Pressed Cubano
+            ANATOMY OF THE PRESSED CUBANO
           </h3>
-          <p className="font-accent italic text-lg sm:text-2xl text-charcoal-ink/80 lowercase mt-0.5">
-            scroll to deconstruct each layer of criollo flavor
+          <p className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-charcoal-ink/75 mt-1">
+            SCROLL TO DECONSTRUCT EACH LAYER OF CRIOLLO FLAVOR
           </p>
         </div>
 

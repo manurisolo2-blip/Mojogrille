@@ -42,7 +42,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
               <span className="ml-1.5 hidden text-charcoal-ink/60 sm:inline">• {location.address.street}</span>
             </div>
           </div>
-          <span className="shrink-0 rounded-none border border-charcoal-ink/30 bg-cream-bg px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-charcoal-ink">
+          <span className="shrink-0 rounded-none border border-charcoal-ink/30 bg-cream-bg px-2 py-0.5 font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink">
             Pickup
           </span>
         </div>
@@ -54,8 +54,8 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
               <p className="mt-3 font-sans text-sm text-charcoal-ink/70">
                 Your cart is empty. Start with our signature favorites!
               </p>
-              <p className="mt-1.5 font-accent italic text-base font-medium text-brand-fire">
-                Order your hot lechón asado, criollo bowl, or cafecito al momento!
+              <p className="mt-1.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-brand-fire">
+                HOT LECHÓN ASADO · CRIOLLO BOWLS · CAFECITO AL MOMENTO
               </p>
             </div>
           ) : (
@@ -87,7 +87,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
                     >
                       <Minus className="h-3.5 w-3.5" />
                     </button>
-                    <span className="min-w-[18px] text-center font-mono text-xs font-bold text-charcoal-ink">
+                    <span className="min-w-[18px] text-center font-sans text-xs font-bold text-charcoal-ink">
                       {line.qty}
                     </span>
                     <button

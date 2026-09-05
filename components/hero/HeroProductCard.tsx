@@ -83,11 +83,11 @@ export function HeroProductCard({
             className="absolute top-3 left-3 z-20 flex items-center gap-2 rounded-none bg-charcoal-ink px-3.5 py-1.5 border border-cream-bg/20 text-cream-bg"
             style={{ transform: 'translateZ(45px)' }}
           >
-            <span className="font-mono text-base font-black text-mojo-citrus tracking-tight">
+            <span className="font-sans text-base font-black text-mojo-citrus tracking-tight">
               {price}
             </span>
             <span className="h-3 w-px bg-cream-bg/20" />
-            <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-cream-bg">
+            <span className="font-sans text-[11px] font-semibold uppercase tracking-wider text-cream-bg">
               Al Momento
             </span>
           </div>
@@ -100,7 +100,7 @@ export function HeroProductCard({
               <span className="h-2 w-2 rounded-none bg-leaf-green animate-pulse" />
               {category}
             </span>
-            <span className="font-mono text-[10px] uppercase">24h Marinade</span>
+            <span className="font-sans text-[10px] font-bold uppercase tracking-wider">24h Marinade</span>
           </div>
 
           <h3 className="mt-2 font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-charcoal-ink leading-tight">
@@ -116,7 +116,7 @@ export function HeroProductCard({
             {['Moro Rice', 'Tostones', 'Garlic Mojo', 'Pickled Onions'].map((side, i) => (
               <span
                 key={i}
-                className="rounded-none bg-cream-bg border border-charcoal-ink/20 px-2 py-0.5 font-mono text-[10px] font-semibold text-charcoal-ink"
+                className="rounded-none bg-cream-bg border border-charcoal-ink/20 px-2 py-0.5 font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink"
               >
                 +{side}
               </span>

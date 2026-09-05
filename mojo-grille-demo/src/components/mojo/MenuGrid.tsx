@@ -63,7 +63,7 @@ export function MenuGrid({
             </button>
 
             <div className="mt-4 px-1">
-              <h3 className="font-serif text-xl font-bold leading-snug text-[#1C1917] transition-colors group-hover:text-[#D95327]">
+              <h3 className="font-display uppercase tracking-tight text-2xl font-bold leading-tight text-[#1C1917] transition-colors group-hover:text-brand-fire">
                 <button
                   type="button"
                   onClick={() => onSelect(item)}

@@ -102,8 +102,8 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
         </h1>
         <div className="flex flex-col sm:flex-row items-center justify-between mt-3 text-xs sm:text-sm font-sans uppercase tracking-widest text-charcoal-ink/70">
           <p className="font-semibold">CUBAN KITCHEN &amp; ARTISANAL PLANCHA · MIAMI, FL</p>
-          <p className="font-accent italic text-base sm:text-lg text-brand-fire normal-case mt-1 sm:mt-0">
-            authentic criollo flavor marinated 24 hours in citrus mojo
+          <p className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-brand-fire mt-1 sm:mt-0">
+            AUTHENTIC CRIOLLO FLAVOR · 24-HOUR CITRUS MOJO
           </p>
         </div>
       </div>

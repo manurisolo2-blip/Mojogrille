@@ -188,8 +188,8 @@ export function CuratedMenu() {
           
           {/* Metadato superior de previsualización */}
           <div className="absolute top-2.5 left-3 flex items-center">
-            <span className="font-mono text-[9px] uppercase tracking-widest text-cream-bg bg-charcoal-ink px-2 py-0.5 border border-cream-bg/20 font-bold">
-              MADE AL MOMENTO // FRESH
+            <span className="font-sans text-[9px] font-bold uppercase tracking-[0.18em] text-cream-bg bg-charcoal-ink px-2 py-0.5 border border-cream-bg/20">
+              MADE AL MOMENTO · 100% FRESH
             </span>
           </div>
 
@@ -198,7 +198,7 @@ export function CuratedMenu() {
             <span className="font-display text-lg uppercase tracking-tight text-cream-bg font-black">
               {activeItem.name}
             </span>
-            <span className="font-accent font-serif italic font-bold text-xs text-brand-fire lowercase">
+            <span className="font-sans font-bold uppercase text-[11px] tracking-wider text-brand-fire">
               {activeItem.authorNote}
             </span>
           </div>
@@ -207,9 +207,9 @@ export function CuratedMenu() {
 
       {/* Encabezado Editorial Monumental */}
       <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16 text-center">
-        {/* Metadato Técnico de Catálogo */}
-        <div className="font-mono text-[11px] uppercase tracking-widest text-charcoal-ink/70 mb-2">
-          CATALOG_REV. 2026 // BATCH NO. 14
+        {/* Etiqueta Limpia de Catálogo */}
+        <div className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire mb-2">
+          SLOW ROASTED · EST. MIAMI
         </div>
 
         {/* Badge Superior Tipo Sello Editorial */}
@@ -222,8 +222,8 @@ export function CuratedMenu() {
         <h2 className="font-display text-5xl md:text-7xl uppercase tracking-tight text-charcoal-ink leading-none">
           HOT PLANCHA SELECTION
         </h2>
-        <p className="mt-2 sm:mt-3 font-accent italic text-brand-fire text-2xl md:text-3xl lowercase tracking-normal">
-          made al momento, seasoned with mojo
+        <p className="mt-2 sm:mt-3 font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-brand-fire">
+          MADE AL MOMENTO · SEASONED WITH MOJO
         </p>
       </div>
 
@@ -251,7 +251,7 @@ export function CuratedMenu() {
                     <RebelChefBadge />
                   )}
                 </div>
-                <span className="font-serif italic font-bold text-base sm:text-lg text-charcoal-ink/85 mt-0.5 group-hover:text-charcoal-ink transition-colors leading-snug">
+                <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-charcoal-ink/70 mt-0.5 group-hover:text-charcoal-ink transition-colors leading-snug">
                   {item.authorNote}
                 </span>
               </div>

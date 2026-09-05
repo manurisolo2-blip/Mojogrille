@@ -86,7 +86,7 @@ export function TopBar({
                 aria-haspopup="listbox"
                 aria-expanded={open}
                 aria-label={`Select location, currently ${selectedLoc.name}`}
-                className="flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-cream-bg px-3 py-2 font-mono text-[11px] uppercase tracking-wider font-semibold text-charcoal-ink transition-colors hover:border-charcoal-ink hover:bg-surface-sand sm:px-3.5 sm:py-2 select-none shadow-none cursor-pointer"
+                className="flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-cream-bg px-3 py-2 font-sans text-[11px] uppercase tracking-wider font-bold text-charcoal-ink transition-colors hover:border-charcoal-ink hover:bg-surface-sand sm:px-3.5 sm:py-2 select-none shadow-none cursor-pointer"
               >
                 <MapPin className="h-3.5 w-3.5 text-brand-fire stroke-[2.2]" />
                 <span className="max-w-[95px] truncate sm:max-w-none font-bold">{selectedLoc.name}</span>
@@ -129,7 +129,7 @@ export function TopBar({
             >
               <LatinMarketBagIcon className="h-5 w-5 stroke-[2] text-cream-bg" />
               {count > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full border border-cream-bg bg-leaf-green px-1 font-mono text-[10px] font-bold text-cream-bg shadow-xs">
+                <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full border border-cream-bg bg-leaf-green px-1 font-sans text-[10px] font-black text-cream-bg shadow-xs">
                   {count}
                 </span>
               )}

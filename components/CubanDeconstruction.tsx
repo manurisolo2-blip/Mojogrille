@@ -249,7 +249,7 @@ export function CubanDeconstruction() {
       >
         {/* Etiqueta tipo cinta adhesiva en la esquina de la deconstrucción */}
         <div className="absolute top-4 left-4 sm:top-6 sm:left-8 z-30 pointer-events-none">
-          <TapeLabel>SPEC // 24H_CITRUS_MARINADE</TapeLabel>
+          <TapeLabel>24H CITRUS MARINADE · SLOW ROASTED</TapeLabel>
         </div>
 
         {/* Sello de Tinta Real Artesanal */}
@@ -259,14 +259,14 @@ export function CubanDeconstruction() {
 
         {/* Encabezado Superior de Sección */}
         <div className="absolute top-4 sm:top-8 left-0 right-0 text-center px-4 pointer-events-none z-10">
-          <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-brand-fire">
-            ✦ ANATOMY OF A CLASSIC ✦
+          <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire">
+            ANATOMY OF A CLASSIC · PRESSED HOT
           </span>
           <h3 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-charcoal-ink mt-0.5 sm:mt-1">
             THE UNFORGIVING CUBANO
           </h3>
-          <p className="font-accent italic text-base sm:text-xl lg:text-2xl text-charcoal-ink/80 lowercase mt-0.5">
-            scroll to deconstruct every layer of criollo flavor al momento
+          <p className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-charcoal-ink/75 mt-1">
+            SCROLL TO DECONSTRUCT EVERY LAYER · PRESSED AL MOMENTO
           </p>
         </div>
 
@@ -374,7 +374,7 @@ export function CubanDeconstruction() {
             {/* Etiqueta de corte editorial */}
             <div className="flex items-center gap-2 mb-1.5">
               <span className="h-1.5 w-1.5 rounded-none bg-brand-fire" aria-hidden="true" />
-              <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-brand-fire">
+              <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire">
                 ANATOMY OF A CLASSIC
               </span>
             </div>
@@ -384,16 +384,16 @@ export function CubanDeconstruction() {
               THE UNFORGIVING CUBANO
             </h4>
 
-            {/* Subtítulo Cursivo Editorial */}
-            <p className="font-accent font-serif italic text-sm sm:text-base text-charcoal-ink/70 lowercase mt-1 mb-3">
-              pressed bread, mojo pork &amp; calibrated tang
+            {/* Subtítulo Editorial */}
+            <p className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.12em] text-charcoal-ink/70 mt-1 mb-3">
+              PRESSED BREAD · MOJO PERNIL · CALIBRATED TANG
             </p>
 
             {/* Puntos Clave de Calle / Comanda */}
             <div className="space-y-2.5 border-t border-charcoal-ink/15 pt-3">
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="font-mono text-[9.5px] font-bold uppercase tracking-wider text-charcoal-ink bg-surface-sand px-1.5 py-0.5 border border-charcoal-ink/20">
+                  <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink bg-surface-sand px-2 py-0.5 border border-charcoal-ink/20">
                     BREAD
                   </span>
                   <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
@@ -407,7 +407,7 @@ export function CubanDeconstruction() {
 
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="font-mono text-[9.5px] font-bold uppercase tracking-wider text-cream-bg bg-brand-fire px-1.5 py-0.5">
+                  <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-cream-bg bg-brand-fire px-2 py-0.5">
                     MEAT
                   </span>
                   <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
@@ -421,7 +421,7 @@ export function CubanDeconstruction() {
 
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="font-mono text-[9.5px] font-bold uppercase tracking-wider text-charcoal-ink bg-surface-sand px-1.5 py-0.5 border border-charcoal-ink/20">
+                  <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink bg-surface-sand px-2 py-0.5 border border-charcoal-ink/20">
                     PICKLES
                   </span>
                   <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
@@ -434,18 +434,18 @@ export function CubanDeconstruction() {
               </div>
             </div>
 
-            {/* Ficha Técnica Integrada */}
+            {/* Ficha Técnica Integrada con Píldoras Estilo Crav */}
             <div className="mt-3.5 pt-2.5 border-t border-charcoal-ink/15 flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1 rounded-none border border-charcoal-ink/20 bg-surface-sand/50 px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-charcoal-ink">
-                <Clock className="h-2.5 w-2.5 text-brand-fire" aria-hidden="true" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-charcoal-ink/5 border border-charcoal-ink/10 text-charcoal-ink text-xs font-bold uppercase tracking-wider rounded-full">
+                <Clock className="h-3 w-3 text-brand-fire" aria-hidden="true" />
                 4H ROASTED
               </span>
-              <span className="inline-flex items-center gap-1 rounded-none border border-charcoal-ink/20 bg-surface-sand/50 px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-charcoal-ink">
-                <Award className="h-2.5 w-2.5 text-leaf-green" aria-hidden="true" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-charcoal-ink/5 border border-charcoal-ink/10 text-charcoal-ink text-xs font-bold uppercase tracking-wider rounded-full">
+                <Award className="h-3 w-3 text-leaf-green" aria-hidden="true" />
                 LECHÓN CRIOLLO
               </span>
-              <span className="inline-flex items-center gap-1 rounded-none border border-leaf-green/30 bg-leaf-green/10 px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-leaf-green">
-                <Sparkles className="h-2.5 w-2.5" aria-hidden="true" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-leaf-green/10 border border-leaf-green/30 text-leaf-green text-xs font-bold uppercase tracking-wider rounded-full">
+                <Sparkles className="h-3 w-3 text-leaf-green" aria-hidden="true" />
                 100% ARTISANAL
               </span>
             </div>
@@ -454,7 +454,7 @@ export function CubanDeconstruction() {
             <div className="mt-3.5 pt-1">
               <a
                 href="#curated-menu"
-                className="inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-wider text-brand-fire hover:text-charcoal-ink transition-colors group cursor-pointer"
+                className="inline-flex items-center gap-2 font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire hover:text-charcoal-ink transition-colors group cursor-pointer"
               >
                 <span>ORDER HOT</span>
                 <span className="transition-transform group-hover:translate-x-1">→</span>

@@ -196,19 +196,19 @@ export function CravStyleMenuGrid({
     switch (type) {
       case "signature":
         return (
-          <span className="inline-flex items-center gap-1 rounded-none border border-charcoal-ink bg-brand-fire px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-widest text-cream-bg">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-fire/10 border border-brand-fire/30 text-brand-fire text-xs font-bold uppercase tracking-wider rounded-full">
             <span>★</span> {text}
           </span>
         );
       case "fresh":
         return (
-          <span className="inline-flex items-center gap-1 rounded-none border border-charcoal-ink bg-leaf-green px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-widest text-cream-bg">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-leaf-green/10 border border-leaf-green/30 text-leaf-green text-xs font-bold uppercase tracking-wider rounded-full">
             <span>🌿</span> {text}
           </span>
         );
       case "top_seller":
         return (
-          <span className="inline-flex items-center gap-1 rounded-none border border-charcoal-ink bg-mojo-citrus px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-widest text-charcoal-ink">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-charcoal-ink/5 border border-charcoal-ink/10 text-charcoal-ink text-xs font-bold uppercase tracking-wider rounded-full">
             <span>⭐</span> {text}
           </span>
         );
@@ -221,14 +221,14 @@ export function CravStyleMenuGrid({
         
         {/* Encabezado con tipografía monumental y acento editorial */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-          <div className="font-mono text-[11px] uppercase tracking-widest text-charcoal-ink/70 mb-2">
-            CATALOG // SECTION B
+          <div className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire mb-2">
+            100% FRESH CRIOLLO · PRESSED HOT
           </div>
           <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-charcoal-ink leading-none">
             SLOW ROASTED, SERVED <span className="text-brand-fire">AL MOMENTO</span>.
           </h2>
-          <p className="mt-2 font-accent italic text-2xl sm:text-3xl text-brand-fire lowercase tracking-normal">
-            authentic criollo flavors prepared with patience and generational recipes.
+          <p className="mt-2 font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-brand-fire">
+            AUTHENTIC CRIOLLO FLAVORS · GENERATIONAL RECIPES
           </p>
           <p className="mt-3 font-sans text-sm sm:text-base text-charcoal-ink/80 leading-relaxed max-w-2xl mx-auto">
             Prepared fresh in Little Havana, Brickell, and Doral with 24 hours of marinade in Seville sour orange, crushed garlic, and fresh oregano.
@@ -251,7 +251,7 @@ export function CravStyleMenuGrid({
                   aria-selected={isSelected}
                   type="button"
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`relative shrink-0 rounded-none px-5 py-2.5 font-mono text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none border ${
+                  className={`relative shrink-0 rounded-none px-5 py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none border ${
                     isSelected
                       ? "bg-charcoal-ink text-cream-bg border-charcoal-ink"
                       : "bg-transparent text-charcoal-ink hover:text-brand-fire hover:bg-cream-bg/80 border-transparent"
@@ -315,7 +315,7 @@ export function CravStyleMenuGrid({
                 {/* Fila Inferior de Precio y Botón Táctil */}
                 <div className="mt-6 flex items-center justify-between border-t border-charcoal-ink/15 pt-4">
                   <div>
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-charcoal-ink/60 block">
+                    <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/60 block">
                       PRICE
                     </span>
                     <span className="font-display text-3xl font-black text-charcoal-ink">
@@ -329,7 +329,7 @@ export function CravStyleMenuGrid({
                     onClick={() => handleQuickAdd(item)}
                     aria-label={`Add ${item.name} to order`}
                     title="Add to order"
-                    className={`relative inline-flex items-center gap-1.5 rounded-none px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider border transition-colors cursor-pointer select-none ${
+                    className={`relative inline-flex items-center gap-1.5 rounded-none px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-wider border transition-colors cursor-pointer select-none ${
                       isAdded
                         ? "bg-leaf-green text-cream-bg border-leaf-green"
                         : "bg-charcoal-ink text-cream-bg border-charcoal-ink hover:bg-brand-fire hover:border-brand-fire"

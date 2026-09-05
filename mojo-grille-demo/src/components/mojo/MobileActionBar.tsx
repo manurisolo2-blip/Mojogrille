@@ -41,13 +41,13 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
           <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-none bg-charcoal-ink/90 border border-cream-bg/20">
             <ShoppingBag className="h-5 w-5 text-cream-bg" />
             {/* Badge Verde Cilantro (#2F6A4F / leaf-green) */}
-            <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-none bg-leaf-green px-1 font-mono text-[10px] font-black text-cream-bg border border-charcoal-ink">
+            <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-none bg-leaf-green px-1 font-sans text-[10px] font-black text-cream-bg border border-charcoal-ink">
               {count}
             </span>
           </div>
 
           <div className="flex flex-col text-left">
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-cream-bg/70">
+            <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-cream-bg/70">
               {count > 0 ? `${count} item${count > 1 ? "s" : ""}` : "Your Order"}
             </span>
             <span className="font-display text-lg font-bold tracking-tight text-cream-bg leading-tight">
