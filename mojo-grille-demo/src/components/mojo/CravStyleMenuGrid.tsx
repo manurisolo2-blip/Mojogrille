@@ -1,4 +1,6 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import { Plus, Check } from "lucide-react";
 import { useCart } from "./cart";
 import { useCartStore } from "@/store/useCartStore";
@@ -46,7 +48,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: true,
     price: 14.5,
     description:
-      "Tender chicken breast marinated in citrus mojo for 24h, white rice, seasoned black beans, sweet ripe maduros & fresh green mojo.",
+      "Tender chicken breast marinated in citrus mojo for 24h, white rice, seasoned black beans, sweet ripe maduros and fresh green mojo",
     imageUrl: chickenImg,
     badgeType: "fresh",
     badgeText: "Fresh / Gluten Friendly",
@@ -59,7 +61,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: true,
     price: 13.95,
     description:
-      "Sweet cured ham, shredded slow roasted lechón in its juices, melted Swiss cheese, crisp pickles & yellow mustard on butter crusted pressed Cuban bread.",
+      "Sweet cured ham, shredded slow roasted lechón in its juices, melted Swiss cheese, crisp pickles and yellow mustard on butter crusted pressed Cuban bread",
     imageUrl: cubanImg,
     badgeType: "top_seller",
     badgeText: "Top Seller",
@@ -72,7 +74,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: true,
     price: 15.95,
     description:
-      "Shredded pork shoulder slow braised in Seville sour orange and roasted garlic with cumin. Served with moro rice and crispy tostones.",
+      "Shredded pork shoulder slow braised in Seville sour orange and roasted garlic with cumin, served with moro rice and crispy tostones",
     imageUrl: porkImg,
     badgeType: "signature",
     badgeText: "Signature Mojo",
@@ -85,7 +87,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: false,
     price: 16.5,
     description:
-      "Tender shredded flank steak slow braised in red pepper, sweet onion & olive sofrito. Served over moro rice and sweet maduros.",
+      "Tender shredded flank steak slow braised in red pepper, sweet onion and olive sofrito, served over moro rice and sweet maduros",
     imageUrl: porkImg,
     badgeType: "top_seller",
     badgeText: "Top Seller",
@@ -98,50 +100,141 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: true,
     price: 6.5,
     description:
-      "Golden crispy yuca batons, fluffy on the inside, drenched in roasted garlic mojo with fresh cilantro and key lime.",
+      "Crispy fried cassava batons served with house made warm crushed garlic, lime and cilantro mojo dipping sauce",
     imageUrl: tostonesImg,
-    badgeType: "fresh",
-    badgeText: "Fresh / Gluten Friendly",
+    badgeType: "signature",
+    badgeText: "Criollo Side",
     sidesAllowed: false,
   },
   {
     id: "tostones-crunch",
-    name: "Tostones Crujientes con Ajo Dip",
+    name: "Tostones Crujientes",
     category: "sides",
     isFavorite: false,
-    price: 6.0,
+    price: 5.95,
     description:
-      "Twice fried green plantains prepared traditional Miami style with sea salt flakes and house garlic dip.",
+      "Double fried green plantain rounds, smashed flat and salted to order with homemade mojo alioli",
     imageUrl: tostonesImg,
     badgeType: "fresh",
-    badgeText: "Fresh / Gluten Friendly",
+    badgeText: "Freshly Fried",
     sidesAllowed: false,
   },
   {
-    id: "cafecito-cubano-colada",
-    name: "Cafecito Cubano Doble & Colada",
+    id: "maduros-caramelized",
+    name: "Maduros Glaseados",
+    category: "sides",
+    isFavorite: false,
+    price: 5.5,
+    description:
+      "Naturally sweet ripe black plantains, slow caramelized on the flat top with golden crisp edges",
+    imageUrl: tostonesImg,
+    badgeType: "top_seller",
+    badgeText: "Sweet & Savory",
+    sidesAllowed: false,
+  },
+  {
+    id: "cafecito-cubano",
+    name: "Cafecito Cubano (Espuma Dorada)",
     category: "drinks",
     isFavorite: true,
-    price: 3.5,
+    price: 2.75,
     description:
-      "Dark roast Cuban espresso whipped with sweet demerara sugar to create thick golden espumita. Brewed to share al momento.",
+      "Dark espresso brewed fresh with whipped cane sugar espumita, served hot in traditional tacita",
     imageUrl: cafecitoImg,
     badgeType: "signature",
-    badgeText: "Signature Mojo",
+    badgeText: "3PM Energy",
     sidesAllowed: false,
   },
   {
-    id: "guayaba-lemonade",
-    name: "Limonada Helada de Guayaba",
+    id: "colada-miami",
+    name: "Colada Para Compartir",
     category: "drinks",
     isFavorite: false,
-    price: 4.5,
+    price: 3.5,
     description:
-      "Chilled pink guava nectar blended with freshly squeezed key lime juice and raw cane sugar. Intensely refreshing.",
-    imageUrl: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80",
+      "Four shots of dark Cuban espresso with rich brown sugar froth, accompanied by demitasse cups to share",
+    imageUrl: cafecitoImg,
     badgeType: "top_seller",
-    badgeText: "Top Seller",
+    badgeText: "Miami Classic",
     sidesAllowed: false,
+  },
+  {
+    id: "materva-soda",
+    name: "Materva Yerba Mate Soda",
+    category: "drinks",
+    isFavorite: false,
+    price: 3.25,
+    description:
+      "Authentic sparkling herbal yerba mate Cuban soda served chilled with fresh lime wedge",
+    imageUrl: cafecitoImg,
+    badgeType: "fresh",
+    badgeText: "Chilled Soda",
+    sidesAllowed: false,
+  },
+  {
+    id: "ironbeer-soda",
+    name: "Ironbeer Classic",
+    category: "drinks",
+    isFavorite: false,
+    price: 3.25,
+    description:
+      "Heritage Cuban carbonated soft drink with notes of fruit and caramel, served ice cold",
+    imageUrl: cafecitoImg,
+    badgeType: "fresh",
+    badgeText: "Chilled Soda",
+    sidesAllowed: false,
+  },
+  {
+    id: "croquetas-artesanales",
+    name: "Croquetas de Jamón y Lechón",
+    category: "sides",
+    isFavorite: true,
+    price: 7.5,
+    description:
+      "Hand rolled béchamel croquettes stuffed with cured ham and mojo pork, golden fried to crunchy perfection",
+    imageUrl: tostonesImg,
+    badgeType: "signature",
+    badgeText: "Warm & Creamy",
+    sidesAllowed: false,
+  },
+  {
+    id: "pan-con-lechon",
+    name: "Pan con Lechón Criollo",
+    category: "sandwiches",
+    isFavorite: false,
+    price: 13.5,
+    description:
+      "Mojo roasted shredded pork shoulder piled high on warm pressed Cuban bread with plancha sweet onions and garlic glaze",
+    imageUrl: cubanImg,
+    badgeType: "signature",
+    badgeText: "House Specialty",
+    sidesAllowed: true,
+  },
+  {
+    id: "media-noche-sandwich",
+    name: "Medianoche Sandwich",
+    category: "sandwiches",
+    isFavorite: false,
+    price: 13.75,
+    description:
+      "Slow roasted pork, sweet ham, melted Swiss cheese, dill pickles and mustard on sweet egg brioche loaf",
+    imageUrl: cubanImg,
+    badgeType: "top_seller",
+    badgeText: "Late Night Classic",
+    sidesAllowed: true,
+  },
+  {
+    id: "mojo-shrimp-bowl",
+    name: "Garlic Lime Shrimp Bowl",
+    category: "bowls",
+    isFavorite: false,
+    price: 17.5,
+    description:
+      "Jumbo Atlantic shrimp wok tossed with fresh garlic, Seville lime and sweet bell peppers, served over moro rice",
+    imageUrl: chickenImg,
+    badgeType: "fresh",
+    badgeText: "Wild Caught",
+    sidesAllowed: true,
   },
 ];
 
@@ -152,7 +245,20 @@ export function CravStyleMenuGrid({
 }) {
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("favorites");
   const [clickedItemId, setClickedItemId] = useState<string | null>(null);
+  const [hoveredItem, setHoveredItem] = useState<CravMenuItem | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const [offsetX, setOffsetX] = useState(24);
+
+  const mouseX = useMotionValue(-1000);
+  const mouseY = useMotionValue(-1000);
+  const smoothX = useSpring(mouseX, { damping: 28, stiffness: 220, mass: 0.5 });
+  const smoothY = useSpring(mouseY, { damping: 28, stiffness: 220, mass: 0.5 });
+
   const cart = useCart();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const filteredItems = CRAV_MENU_ITEMS.filter((item) => {
     if (selectedCategory === "favorites") {
@@ -160,6 +266,35 @@ export function CravStyleMenuGrid({
     }
     return item.category === selectedCategory;
   });
+
+  const handleRowMouseEnter = (item: CravMenuItem, e: React.MouseEvent) => {
+    setHoveredItem(item);
+    mouseX.set(e.clientX);
+    mouseY.set(e.clientY);
+    if (typeof window !== "undefined") {
+      if (e.clientX > window.innerWidth - 380) {
+        setOffsetX(-350);
+      } else {
+        setOffsetX(28);
+      }
+    }
+  };
+
+  const handleRowMouseMove = (e: React.MouseEvent) => {
+    mouseX.set(e.clientX);
+    mouseY.set(e.clientY);
+    if (typeof window !== "undefined") {
+      if (e.clientX > window.innerWidth - 380) {
+        setOffsetX(-350);
+      } else {
+        setOffsetX(28);
+      }
+    }
+  };
+
+  const handleRowMouseLeave = () => {
+    setHoveredItem(null);
+  };
 
   const handleQuickAdd = (item: CravMenuItem) => {
     setClickedItemId(item.id);
@@ -192,33 +327,44 @@ export function CravStyleMenuGrid({
     }
   };
 
-  const renderBadge = (type: CravMenuItem["badgeType"], text: string) => {
-    switch (type) {
-      case "signature":
-        return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-fire/10 border border-brand-fire/30 text-brand-fire text-xs font-bold uppercase tracking-wider rounded-full">
-            {text}
-          </span>
-        );
-      case "fresh":
-        return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-leaf-green/10 border border-leaf-green/30 text-leaf-green text-xs font-bold uppercase tracking-wider rounded-full">
-            {text}
-          </span>
-        );
-      case "top_seller":
-        return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-charcoal-ink/5 border border-charcoal-ink/10 text-charcoal-ink text-xs font-bold uppercase tracking-wider rounded-full">
-            {text}
-          </span>
-        );
-    }
-  };
-
   return (
-    <section className="relative w-full bg-transparent py-10 sm:py-16 overflow-hidden border-b border-charcoal-ink/20">
+    <section className="relative w-full bg-transparent py-10 sm:py-16 overflow-hidden border-b border-[#1C1917]/15">
+      {/* Portal con la fotografía recortada del plato siguiendo al cursor */}
+      {mounted && typeof document !== "undefined" && createPortal(
+        <AnimatePresence>
+          {hoveredItem && (
+            <motion.div
+              key={hoveredItem.id}
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+              style={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                x: smoothX,
+                y: smoothY,
+                translateX: offsetX,
+                translateY: "-50%",
+                pointerEvents: "none",
+                zIndex: 9999,
+              }}
+              className="pointer-events-none hidden lg:block w-72 h-48 xl:w-80 xl:h-52 overflow-hidden rounded-none border border-[#1C1917]/15 bg-surface-sand select-none"
+            >
+              <img
+                src={hoveredItem.imageUrl}
+                alt={hoveredItem.name}
+                loading="lazy"
+                className="h-full w-full object-cover object-center"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+
       <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
-        
         {/* Encabezado con tipografía monumental y acento editorial */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <div className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire mb-2">
@@ -240,7 +386,7 @@ export function CravStyleMenuGrid({
           <div
             role="tablist"
             aria-label="Menu Categories"
-            className="no-scrollbar flex items-center justify-start sm:justify-center gap-1.5 overflow-x-auto p-1.5 rounded-none bg-surface-sand border border-charcoal-ink/20 max-w-4xl mx-auto"
+            className="no-scrollbar flex items-center justify-start sm:justify-center gap-1.5 overflow-x-auto p-1.5 rounded-none bg-surface-sand border border-[#1C1917]/15 max-w-4xl mx-auto"
           >
             {CATEGORIES.map((category) => {
               const isSelected = selectedCategory === category.id;
@@ -264,19 +410,19 @@ export function CravStyleMenuGrid({
           </div>
         </div>
 
-        {/* 2. Retícula Editorial Continua de 1px (Newspaper Grid) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-charcoal-ink/20">
+        {/* 2. Lista Editorial Minimalista: Filas horizontales contorneadas con border-b border-[#1C1917]/15 */}
+        <div className="flex flex-col border-t border-[#1C1917]/15">
           {filteredItems.map((item) => {
             const isAdded = clickedItemId === item.id;
             return (
               <article
                 key={item.id}
-                className="group relative flex flex-col justify-between rounded-none border-r border-b border-charcoal-ink/20 bg-surface-sand p-5 sm:p-6 transition-colors duration-200 hover:bg-cream-bg"
-              >
-                <div>
-                  {/* Contenedor de Fotografía con Marco Nítido */}
-                  <div
-                    onClick={() => onSelect && onSelect({
+                onMouseEnter={(e) => handleRowMouseEnter(item, e)}
+                onMouseMove={handleRowMouseMove}
+                onMouseLeave={handleRowMouseLeave}
+                onClick={() => {
+                  if (onSelect) {
+                    onSelect({
                       id: item.id,
                       name: item.name,
                       category: item.category as any,
@@ -285,76 +431,72 @@ export function CravStyleMenuGrid({
                       image: item.imageUrl,
                       badge: item.badgeText as any,
                       sidesAllowed: Boolean(item.sidesAllowed),
-                    })}
-                    className="relative aspect-4/3 w-full overflow-hidden rounded-none border border-charcoal-ink/20 bg-cream-bg cursor-pointer"
-                  >
-                    <img
-                      src={item.imageUrl}
-                      alt={item.name}
-                      loading="lazy"
-                      className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                    />
-
-                    {/* Tag de color semántico */}
-                    <div className="absolute top-3 left-3 z-10">
-                      {renderBadge(item.badgeType, item.badgeText)}
-                    </div>
-                  </div>
-
-                  {/* Información del Plato */}
-                  <div className="mt-4">
-                    <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors">
+                    });
+                  } else {
+                    handleQuickAdd(item);
+                  }
+                }}
+                className="group relative flex flex-col justify-center border-b border-[#1C1917]/15 py-6 sm:py-7 px-2 sm:px-4 transition-colors duration-200 hover:bg-surface-sand/50 cursor-pointer select-none"
+              >
+                {/* Fila Horizontal: Nombre del plato y Precio monoespaciado */}
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-6 w-full">
+                  <div className="flex items-baseline gap-3 flex-wrap">
+                    <h3 className="font-display text-3xl font-bold uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors">
                       {item.name}
                     </h3>
-                    <p className="mt-2 font-sans text-xs sm:text-sm text-charcoal-ink/75 line-clamp-3 leading-relaxed">
-                      {item.description}
-                    </p>
+                    {item.badgeText && (
+                      <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-brand-fire">
+                        {item.badgeText}
+                      </span>
+                    )}
                   </div>
-                </div>
 
-                {/* Fila Inferior de Precio y Botón Táctil */}
-                <div className="mt-6 flex items-center justify-between border-t border-charcoal-ink/15 pt-4">
-                  <div>
-                    <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/60 block">
-                      PRICE
-                    </span>
-                    <span className="font-display text-3xl font-black text-charcoal-ink">
+                  <div className="flex items-center justify-between sm:justify-end gap-5 shrink-0">
+                    <span className="font-mono text-2xl font-bold text-charcoal-ink tracking-tight">
                       ${item.price.toFixed(2)}
                     </span>
-                  </div>
 
-                  {/* Botón Ortogonal Nítido con Feedback */}
-                  <button
-                    type="button"
-                    onClick={() => handleQuickAdd(item)}
-                    aria-label={`Add ${item.name} to order`}
-                    title="Add to order"
-                    className={`relative inline-flex items-center gap-1.5 rounded-none px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-wider border transition-colors cursor-pointer select-none ${
-                      isAdded
-                        ? "bg-leaf-green text-cream-bg border-leaf-green"
-                        : "bg-charcoal-ink text-cream-bg border-charcoal-ink hover:bg-brand-fire hover:border-brand-fire"
-                    }`}
-                  >
-                    {isAdded ? (
-                      <>
-                        <Check className="h-4 w-4 stroke-[3]" />
-                        <span>ADDED</span>
-                      </>
-                    ) : (
-                      <>
-                        <Plus className="h-4 w-4 stroke-[3]" />
-                        <span>+ ADD TO ORDER</span>
-                      </>
-                    )}
-                  </button>
+                    {/* Botón táctil para añadir o personalizar */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleQuickAdd(item);
+                      }}
+                      aria-label={`Personalizar / Añadir ${item.name} (Add)`}
+                      title="Add to order"
+                      className={`relative inline-flex items-center gap-1.5 rounded-none px-4 py-2 font-sans text-xs font-bold uppercase tracking-wider border transition-colors cursor-pointer select-none ${
+                        isAdded
+                          ? "bg-leaf-green text-cream-bg border-leaf-green"
+                          : "bg-charcoal-ink text-cream-bg border-charcoal-ink group-hover:bg-brand-fire group-hover:border-brand-fire"
+                      }`}
+                    >
+                      {isAdded ? (
+                        <>
+                          <Check className="h-3.5 w-3.5 stroke-[3]" />
+                          <span>ADDED</span>
+                        </>
+                      ) : (
+                        <>
+                          <Plus className="h-3.5 w-3.5 stroke-[3]" />
+                          <span>{item.sidesAllowed ? "CUSTOMIZE" : "ADD"}</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
+
+                {/* Línea fina con la descripción de los ingredientes */}
+                <p className="mt-2 font-sans text-xs sm:text-sm text-charcoal-ink/75 leading-relaxed max-w-3xl">
+                  {item.description}
+                </p>
               </article>
             );
           })}
         </div>
 
         {/* Bloque editorial de consulta personalizada */}
-        <div className="mt-14 rounded-none bg-surface-sand p-6 sm:p-8 border-2 border-charcoal-ink text-center">
+        <div className="mt-14 rounded-none bg-surface-sand p-6 sm:p-8 border border-[#1C1917]/15 text-center">
           <p className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-charcoal-ink font-bold">
             NEED INGREDIENT DETAILS OR A CUSTOM ORDER?
           </p>
@@ -366,14 +508,13 @@ export function CravStyleMenuGrid({
               href="https://wa.me/13055550123"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg border-2 border-brand-fire hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none"
+              className="inline-flex items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg border border-brand-fire hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none"
             >
               <span>Inquire via WhatsApp</span>
               <span>➔</span>
             </a>
           </div>
         </div>
-
       </div>
     </section>
   );

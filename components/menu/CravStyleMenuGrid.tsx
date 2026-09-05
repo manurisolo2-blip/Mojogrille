@@ -1,7 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
+import { Plus, Check } from 'lucide-react';
 import { useCartStore } from '../../store/useCartStore';
 
 export type CategoryId = 'favorites' | 'bowls' | 'sandwiches' | 'sides' | 'drinks';
@@ -42,7 +44,7 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: true,
     price: 14.5,
     description:
-      'Tender chicken breast marinated in citrus mojo for 24h, white rice, seasoned black beans, sweet ripe maduros & fresh green mojo.',
+      'Tender chicken breast marinated in citrus mojo for 24h, white rice, seasoned black beans, sweet ripe maduros and fresh green mojo',
     imageUrl:
       'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=800&q=80',
     badgeType: 'fresh',
@@ -56,12 +58,12 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: true,
     price: 13.95,
     description:
-      'Sweet cured ham, shredded slow roasted lechón in its juices, melted Swiss cheese, crisp pickles & yellow mustard on butter crusted pressed Cuban bread.',
+      'Sweet cured ham, shredded slow roasted lechón in its juices, melted Swiss cheese, crisp pickles and yellow mustard on butter crusted pressed Cuban bread',
     imageUrl:
-      'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80',
     badgeType: 'top_seller',
     badgeText: 'Top Seller',
-    prepTime: '6 to 9 min',
+    prepTime: '6 to 8 min',
   },
   {
     id: 'mojo-pulled-pork-bowl',
@@ -70,12 +72,12 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: true,
     price: 15.95,
     description:
-      'Shredded pork shoulder slow braised in Seville sour orange and roasted garlic with cumin. Served with moro rice and crispy tostones.',
+      'Shredded pork shoulder slow braised in Seville sour orange and roasted garlic with cumin, served with moro rice and crispy tostones',
     imageUrl:
-      'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
     badgeType: 'signature',
     badgeText: 'Signature Mojo',
-    prepTime: '6 to 10 min',
+    prepTime: '4 to 6 min',
   },
   {
     id: 'ropa-vieja-bowl',
@@ -84,12 +86,12 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: false,
     price: 16.5,
     description:
-      'Tender shredded flank steak slow braised in red pepper, sweet onion & olive sofrito. Served over moro rice and sweet maduros.',
+      'Tender shredded flank steak slow braised in red pepper, sweet onion and olive sofrito, served over moro rice and sweet maduros',
     imageUrl:
-      'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80',
     badgeType: 'top_seller',
     badgeText: 'Top Seller',
-    prepTime: '7 to 10 min',
+    prepTime: '4 to 6 min',
   },
   {
     id: 'yuca-frita-mojo',
@@ -98,39 +100,67 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: true,
     price: 6.5,
     description:
-      'Golden crispy yuca batons, fluffy on the inside, drenched in roasted garlic mojo with fresh cilantro and key lime.',
+      'Crispy fried cassava batons served with house made warm crushed garlic, lime and cilantro mojo dipping sauce',
     imageUrl:
       'https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=800&q=80',
-    badgeType: 'fresh',
-    badgeText: 'Fresh / Gluten Friendly',
-    prepTime: '4 to 6 min',
+    badgeType: 'signature',
+    badgeText: 'Criollo Side',
+    prepTime: '3 to 5 min',
   },
   {
     id: 'tostones-crunch',
-    name: 'Tostones Crujientes con Ajo Dip',
+    name: 'Tostones Crujientes',
     category: 'sides',
     isFavorite: false,
-    price: 6.0,
+    price: 5.95,
     description:
-      'Twice fried green plantains prepared traditional Miami style with sea salt flakes and house garlic dip.',
+      'Double fried green plantain rounds, smashed flat and salted to order with homemade mojo alioli',
     imageUrl:
-      'https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80',
     badgeType: 'fresh',
-    badgeText: 'Fresh / Gluten Friendly',
+    badgeText: 'Freshly Fried',
     prepTime: '4 to 6 min',
   },
   {
-    id: 'cafecito-cubano-colada',
-    name: 'Cafecito Cubano Doble & Colada',
+    id: 'maduros-caramelized',
+    name: 'Maduros Glaseados',
+    category: 'sides',
+    isFavorite: false,
+    price: 5.5,
+    description:
+      'Naturally sweet ripe black plantains, slow caramelized on the flat top with golden crisp edges',
+    imageUrl:
+      'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80',
+    badgeType: 'top_seller',
+    badgeText: 'Sweet & Savory',
+    prepTime: '3 to 5 min',
+  },
+  {
+    id: 'cafecito-cubano',
+    name: 'Cafecito Cubano (Espuma Dorada)',
     category: 'drinks',
     isFavorite: true,
-    price: 3.5,
+    price: 2.75,
     description:
-      'Dark roast Cuban espresso whipped with sweet demerara sugar to create thick golden espumita. Brewed to share al momento.',
+      'Dark espresso brewed fresh with whipped cane sugar espumita, served hot in traditional tacita',
     imageUrl:
       'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80',
     badgeType: 'signature',
-    badgeText: 'Signature Mojo',
+    badgeText: '3PM Energy',
+    prepTime: '2 to 3 min',
+  },
+  {
+    id: 'colada-miami',
+    name: 'Colada Para Compartir',
+    category: 'drinks',
+    isFavorite: false,
+    price: 3.5,
+    description:
+      'Four shots of dark Cuban espresso with rich brown sugar froth, accompanied by demitasse cups to share',
+    imageUrl:
+      'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80',
+    badgeType: 'top_seller',
+    badgeText: 'Miami Classic',
     prepTime: '2 to 4 min',
   },
   {
@@ -140,26 +170,66 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: false,
     price: 4.5,
     description:
-      'Chilled pink guava nectar blended with freshly squeezed key lime juice and raw cane sugar. Intensely refreshing.',
+      'Chilled pink guava nectar blended with freshly squeezed key lime juice and raw cane sugar, intensely refreshing',
     imageUrl:
       'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80',
     badgeType: 'top_seller',
     badgeText: 'Top Seller',
-    prepTime: '2-3 min',
+    prepTime: '2 to 3 min',
   },
 ];
 
 export function CravStyleMenuGrid() {
   const [selectedCategory, setSelectedCategory] = useState<CategoryId>('favorites');
   const [addedItems, setAddedItems] = useState<Record<string, number>>({});
+  const [hoveredItem, setHoveredItem] = useState<MenuItem | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const [offsetX, setOffsetX] = useState(24);
 
-  // Filtrado de elementos
+  const mouseX = useMotionValue(-1000);
+  const mouseY = useMotionValue(-1000);
+  const smoothX = useSpring(mouseX, { damping: 28, stiffness: 220, mass: 0.5 });
+  const smoothY = useSpring(mouseY, { damping: 28, stiffness: 220, mass: 0.5 });
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const filteredItems = MENU_ITEMS.filter((item) => {
     if (selectedCategory === 'favorites') {
       return item.isFavorite === true;
     }
     return item.category === selectedCategory;
   });
+
+  const handleMouseEnter = (item: MenuItem, e: React.MouseEvent) => {
+    setHoveredItem(item);
+    mouseX.set(e.clientX);
+    mouseY.set(e.clientY);
+    if (typeof window !== 'undefined') {
+      if (e.clientX > window.innerWidth - 380) {
+        setOffsetX(-350);
+      } else {
+        setOffsetX(28);
+      }
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    mouseX.set(e.clientX);
+    mouseY.set(e.clientY);
+    if (typeof window !== 'undefined') {
+      if (e.clientX > window.innerWidth - 380) {
+        setOffsetX(-350);
+      } else {
+        setOffsetX(28);
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredItem(null);
+  };
 
   const handleAddItem = (item: MenuItem) => {
     setAddedItems((prev) => ({
@@ -174,34 +244,44 @@ export function CravStyleMenuGrid() {
     });
   };
 
-  // Renderizado del badge con estilo minimalista pill Crav
-  const renderBadge = (type: BadgeType, text: string) => {
-    switch (type) {
-      case 'signature':
-        return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-fire/10 border border-brand-fire/30 text-brand-fire text-xs font-bold uppercase tracking-wider rounded-full">
-            {text}
-          </span>
-        );
-      case 'fresh':
-        return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-leaf-green/10 border border-leaf-green/30 text-leaf-green text-xs font-bold uppercase tracking-wider rounded-full">
-            {text}
-          </span>
-        );
-      case 'top_seller':
-        return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-charcoal-ink/5 border border-charcoal-ink/10 text-charcoal-ink text-xs font-bold uppercase tracking-wider rounded-full">
-            {text}
-          </span>
-        );
-    }
-  };
-
   return (
-    <div className="w-full bg-transparent py-10 sm:py-16 border-b border-charcoal-ink/20">
+    <div className="w-full bg-transparent py-10 sm:py-16 border-b border-[#1C1917]/15">
+      {/* Portal con la fotografía recortada del plato siguiendo suavemente al cursor */}
+      {mounted && typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {hoveredItem && (
+            <motion.div
+              key={hoveredItem.id}
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ duration: 0.18, ease: 'easeOut' }}
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                x: smoothX,
+                y: smoothY,
+                translateX: offsetX,
+                translateY: '-50%',
+                pointerEvents: 'none',
+                zIndex: 9999,
+              }}
+              className="pointer-events-none hidden lg:block w-72 h-48 xl:w-80 xl:h-52 overflow-hidden rounded-none border border-[#1C1917]/15 bg-surface-sand select-none"
+            >
+              <img
+                src={hoveredItem.imageUrl}
+                alt={hoveredItem.name}
+                loading="lazy"
+                className="h-full w-full object-cover object-center"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+
       <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
-        
         {/* Encabezado de Sección */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <div className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire mb-2">
@@ -220,7 +300,7 @@ export function CravStyleMenuGrid() {
 
         {/* 1. Pestañas de Categorías con Retícula de Ángulo Recto */}
         <div className="sticky top-[56px] sm:top-[64px] z-30 mb-10 py-2 backdrop-blur-md bg-cream-bg/90">
-          <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-1.5 p-1.5 rounded-none bg-surface-sand border border-charcoal-ink/20 max-w-4xl mx-auto">
+          <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-1.5 p-1.5 rounded-none bg-surface-sand border border-[#1C1917]/15 max-w-4xl mx-auto">
             {CATEGORIES.map((category) => {
               const isSelected = selectedCategory === category.id;
               return (
@@ -242,81 +322,77 @@ export function CravStyleMenuGrid() {
           </div>
         </div>
 
-        {/* 2. Grid Continuo de 1px (Newspaper Grid) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-charcoal-ink/20">
+        {/* 2. Lista Editorial Minimalista: Filas horizontales contorneadas con border-b border-[#1C1917]/15 */}
+        <div className="flex flex-col border-t border-[#1C1917]/15">
           {filteredItems.map((item) => {
             const count = addedItems[item.id] || 0;
             return (
               <article
                 key={item.id}
-                className="group relative flex flex-col justify-between rounded-none border-r border-b border-charcoal-ink/20 bg-surface-sand p-5 sm:p-6 transition-colors duration-200 hover:bg-cream-bg"
+                onMouseEnter={(e) => handleMouseEnter(item, e)}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleAddItem(item)}
+                className="group relative flex flex-col justify-center border-b border-[#1C1917]/15 py-6 sm:py-7 px-2 sm:px-4 transition-colors duration-200 hover:bg-surface-sand/50 cursor-pointer select-none"
               >
-                <div>
-                  {/* Contenedor de Fotografía con Marco Nítido */}
-                  <div className="relative aspect-4/3 w-full overflow-hidden rounded-none border border-charcoal-ink/20 bg-cream-bg">
-                    <img
-                      src={item.imageUrl}
-                      alt={item.name}
-                      loading="lazy"
-                      className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                    />
-
-                    {/* Tag semántico de color en la esquina superior izquierda */}
-                    <div className="absolute top-3 left-3 z-10">
-                      {renderBadge(item.badgeType, item.badgeText)}
-                    </div>
-                  </div>
-
-                  {/* Información del Plato */}
-                  <div className="mt-4">
-                    <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors">
+                {/* Fila Horizontal: Nombre en caja alta y Precio en tipografía monoespaciada */}
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-6 w-full">
+                  <div className="flex items-baseline gap-3 flex-wrap">
+                    <h3 className="font-display text-3xl font-bold uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors">
                       {item.name}
                     </h3>
-                    <p className="mt-2 font-sans text-xs sm:text-sm text-charcoal-ink/75 line-clamp-3 leading-relaxed">
-                      {item.description}
-                    </p>
+                    {item.badgeText && (
+                      <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-brand-fire">
+                        {item.badgeText}
+                      </span>
+                    )}
                   </div>
-                </div>
 
-                {/* Fila Inferior: Precio y Botón Táctil de Adición Rápida */}
-                <div className="mt-6 flex items-center justify-between border-t border-charcoal-ink/15 pt-4">
-                  <div>
-                    <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/60 block">
-                      PRICE
-                    </span>
-                    <span className="font-display text-3xl font-black text-charcoal-ink">
+                  <div className="flex items-center justify-between sm:justify-end gap-5 shrink-0">
+                    <span className="font-mono text-2xl font-bold text-charcoal-ink tracking-tight">
                       ${item.price.toFixed(2)}
                     </span>
-                  </div>
 
-                  {/* Botón Ortogonal Nítido */}
-                  <button
-                    onClick={() => handleAddItem(item)}
-                    className={`relative inline-flex items-center gap-1.5 rounded-none px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-wider border transition-colors cursor-pointer select-none ${
-                      count > 0
-                        ? 'bg-leaf-green text-cream-bg border-leaf-green'
-                        : 'bg-charcoal-ink text-cream-bg border-charcoal-ink hover:bg-brand-fire hover:border-brand-fire'
-                    }`}
-                    aria-label={`Add ${item.name} to order`}
-                    title="Add to order"
-                  >
-                    {count > 0 ? (
-                      <span className="font-sans text-xs font-black">+{count} ADDED</span>
-                    ) : (
-                      <>
-                        <Plus className="h-4 w-4 stroke-[3]" />
-                        <span>+ ADD TO ORDER</span>
-                      </>
-                    )}
-                  </button>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAddItem(item);
+                      }}
+                      className={`relative inline-flex items-center gap-1.5 rounded-none px-4 py-2 font-sans text-xs font-bold uppercase tracking-wider border transition-colors cursor-pointer select-none ${
+                        count > 0
+                          ? 'bg-leaf-green text-cream-bg border-leaf-green'
+                          : 'bg-charcoal-ink text-cream-bg border-charcoal-ink group-hover:bg-brand-fire group-hover:border-brand-fire'
+                      }`}
+                      aria-label={`Add ${item.name} to order`}
+                      title="Add to order"
+                    >
+                      {count > 0 ? (
+                        <>
+                          <Check className="h-3.5 w-3.5 stroke-[3]" />
+                          <span className="font-sans text-xs font-black">+{count} ADDED</span>
+                        </>
+                      ) : (
+                        <>
+                          <Plus className="h-3.5 w-3.5 stroke-[3]" />
+                          <span>+ ADD TO ORDER</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
+
+                {/* Descripción de los ingredientes en una línea fina debajo */}
+                <p className="mt-2 font-sans text-xs sm:text-sm text-charcoal-ink/75 leading-relaxed max-w-3xl">
+                  {item.description}
+                </p>
               </article>
             );
           })}
         </div>
 
         {/* Mensaje editorial de pie de catálogo */}
-        <div className="mt-14 rounded-none bg-surface-sand p-6 sm:p-8 border-2 border-charcoal-ink text-center">
+        <div className="mt-14 rounded-none bg-surface-sand p-6 sm:p-8 border border-[#1C1917]/15 text-center">
           <p className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-charcoal-ink font-bold">
             NEED INGREDIENT DETAILS OR A CUSTOM ORDER?
           </p>
@@ -326,7 +402,7 @@ export function CravStyleMenuGrid() {
           <div className="mt-5">
             <a
               href="#catering"
-              className="inline-flex items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg border-2 border-brand-fire hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none"
+              className="inline-flex items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg border border-brand-fire hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none"
             >
               <span>Inquire via WhatsApp</span>
               <span>➔</span>
