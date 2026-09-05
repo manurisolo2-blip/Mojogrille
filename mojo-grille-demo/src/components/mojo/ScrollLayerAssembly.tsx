@@ -206,7 +206,7 @@ export function ScrollLayerAssembly() {
         {/* Ficha descriptiva de ingredientes sincronizada con el scroll */}
         <div
           ref={infoCardRef}
-          className="absolute bottom-10 sm:bottom-12 md:bottom-auto md:right-12 lg:right-20 max-w-xs sm:max-w-sm rounded-2xl bg-surface-sand p-5 border border-charcoal-ink/10 shadow-[0_16px_36px_rgba(20,18,16,0.14)] backdrop-blur-md transition-all duration-300 z-30"
+          className="absolute bottom-10 sm:bottom-12 md:bottom-auto md:right-12 lg:right-20 max-w-xs sm:max-w-sm rounded-none bg-surface-sand p-5 border-2 border-charcoal-ink shadow-none transition-all duration-300 z-30"
         >
           <div className="flex items-center justify-between mb-1.5">
             <span className="font-sans text-[11px] uppercase tracking-widest text-brand-fire font-bold">

@@ -241,13 +241,13 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
         </div>
       </div>
 
-      {/* 4. Botonera Flotante 'Volver Arriba' Circular Magnética */}
+      {/* 4. Botonera Flotante 'Volver Arriba' Cuadrada Magnética */}
       <button
         ref={backToTopRef}
         type="button"
         onClick={handleScrollToTop}
         aria-label="Volver arriba al inicio de la página"
-        className="fixed bottom-6 right-6 z-40 h-13 w-13 rounded-full bg-charcoal-ink text-cream-bg shadow-2xl flex items-center justify-center hover:bg-brand-fire hover:text-cream-bg transition-colors duration-200 cursor-pointer border border-cream-bg/20 active:scale-95 group"
+        className="fixed bottom-6 right-6 z-40 h-12 w-12 rounded-none bg-charcoal-ink text-cream-bg shadow-none flex items-center justify-center hover:bg-brand-fire hover:text-cream-bg transition-colors duration-200 cursor-pointer border-2 border-charcoal-ink active:scale-95 group"
       >
         <ArrowUp className="h-5 w-5 stroke-[2.5] group-hover:-translate-y-0.5 transition-transform duration-200" />
       </button>

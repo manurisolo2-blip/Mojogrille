@@ -47,7 +47,7 @@ export function QuickOrderModal({
         onClick={onClose}
         className="absolute inset-0 bg-charcoal-ink/60 backdrop-blur-sm"
       />
-      <div className="relative max-h-[92dvh] w-full max-w-lg overflow-y-auto rounded-t-3xl border border-charcoal-ink/10 bg-cream-bg shadow-[0_25px_50px_-12px_rgba(20,18,16,0.25)] sm:rounded-3xl">
+      <div className="relative max-h-[92dvh] w-full max-w-lg overflow-y-auto rounded-none border-2 border-charcoal-ink bg-cream-bg shadow-none sm:rounded-none">
         <div className="relative">
           <img
             src={item.image}
@@ -55,30 +55,30 @@ export function QuickOrderModal({
             loading="lazy"
             width={1024}
             height={768}
-            className="aspect-4/3 w-full object-cover"
+            className="aspect-4/3 w-full object-cover border-b-2 border-charcoal-ink"
           />
           <button
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="absolute right-3 top-3 grid h-10 w-10 place-items-center rounded-full border border-charcoal-ink/15 bg-cream-bg/90 text-charcoal-ink shadow-sm transition-colors hover:bg-cream-bg"
+            className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-none border-2 border-charcoal-ink bg-cream-bg text-charcoal-ink transition-colors hover:bg-brand-fire hover:text-cream-bg hover:border-brand-fire cursor-pointer"
           >
             <X className="h-5 w-5" />
           </button>
         </div>
 
         <div className="p-6">
-          <h3 id="modal-dish-title" className="font-display text-2xl font-bold uppercase tracking-tight text-charcoal-ink">
+          <h3 id="modal-dish-title" className="font-display text-3xl font-bold uppercase tracking-tight text-charcoal-ink leading-none">
             {item.name}
           </h3>
-          <p className="mt-2 font-sans text-sm leading-relaxed text-charcoal-ink/70">
+          <p className="mt-2 font-sans text-sm leading-relaxed text-charcoal-ink/80">
             {item.description}
           </p>
 
           {item.sidesAllowed ? (
             <>
-              <p className="mt-6 font-sans text-xs font-bold uppercase tracking-[0.14em] text-charcoal-ink/70">
-                Choose Your Sides (Guarniciones)
+              <p className="mt-6 font-mono text-xs font-bold uppercase tracking-widest text-charcoal-ink/80 border-b border-charcoal-ink/15 pb-2">
+                CHOOSE SIDES // GUARNICIONES
               </p>
               <ul className="mt-3 space-y-2">
                 {sideOptions.map((side) => {
@@ -89,18 +89,18 @@ export function QuickOrderModal({
                         type="button"
                         onClick={() => toggle(side.id)}
                         className={
-                          "grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-xl border px-4 py-3 text-left font-sans transition-all duration-200 " +
+                          "grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-none border px-4 py-3 text-left font-sans transition-colors cursor-pointer " +
                           (selected
-                            ? "border-brand-fire bg-surface-sand text-charcoal-ink"
-                            : "border-charcoal-ink/10 bg-surface-sand/50 text-charcoal-ink hover:border-charcoal-ink/25 hover:bg-surface-sand")
+                            ? "border-brand-fire bg-surface-sand text-charcoal-ink font-bold"
+                            : "border-charcoal-ink/20 bg-surface-sand/40 text-charcoal-ink hover:border-charcoal-ink hover:bg-surface-sand")
                         }
                       >
                         <span
                           className={
-                            "grid h-5 w-5 shrink-0 place-items-center rounded-md border transition-colors " +
+                            "grid h-5 w-5 shrink-0 place-items-center rounded-none border transition-colors " +
                             (selected
                               ? "border-brand-fire bg-brand-fire text-cream-bg"
-                              : "border-charcoal-ink/20 bg-cream-bg")
+                              : "border-charcoal-ink/30 bg-cream-bg")
                           }
                         >
                           {selected && <Check className="h-3.5 w-3.5 stroke-[3]" />}
@@ -108,8 +108,8 @@ export function QuickOrderModal({
                         <span className="min-w-0 truncate text-sm font-semibold text-charcoal-ink">
                           {side.name}
                         </span>
-                        <span className="shrink-0 text-sm font-medium text-charcoal-ink/60">
-                          {side.price === 0 ? "Included" : `+${currency(side.price)}`}
+                        <span className="shrink-0 font-mono text-xs font-bold text-charcoal-ink/70">
+                          {side.price === 0 ? "INCLUDED" : `+${currency(side.price)}`}
                         </span>
                       </button>
                     </li>
@@ -118,8 +118,8 @@ export function QuickOrderModal({
               </ul>
             </>
           ) : (
-            <p className="mt-6 rounded-xl border border-leaf-green/20 bg-leaf-green/10 px-4 py-3 font-sans text-sm font-medium text-leaf-green">
-              Freshly prepared al momento with authentic Miami ingredients.
+            <p className="mt-6 rounded-none border border-leaf-green/30 bg-leaf-green/10 px-4 py-3 font-mono text-xs font-bold uppercase text-leaf-green">
+              HECHO AL MOMENTO // 100% ARTESANAL MIAMI
             </p>
           )}
 
@@ -134,10 +134,10 @@ export function QuickOrderModal({
               });
               onClose();
             }}
-            className="mt-6 flex w-full items-center justify-between gap-2 rounded-full bg-brand-fire px-6 py-4 font-sans text-base font-bold text-cream-bg shadow-soft transition-all duration-200 hover:bg-brand-fire/90 active:translate-y-0.5"
+            className="mt-6 flex w-full items-center justify-between gap-2 rounded-none border-2 border-brand-fire bg-brand-fire px-6 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none shadow-none"
           >
-            <span className="truncate">Add to Order</span>
-            <span className="shrink-0 font-bold">• {currency(total)}</span>
+            <span className="truncate">AGREGAR AL PEDIDO</span>
+            <span className="shrink-0 font-display text-xl">• {currency(total)}</span>
           </button>
         </div>
       </div>

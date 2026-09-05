@@ -19,22 +19,22 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
         role="dialog"
         aria-label="Your Order Shopping Cart"
         aria-modal="true"
-        className="relative flex h-full w-full max-w-sm flex-col border-l border-charcoal-ink/10 bg-cream-bg shadow-[0_25px_50px_-12px_rgba(20,18,16,0.25)]"
+        className="relative flex h-full w-full max-w-sm flex-col border-l-2 border-charcoal-ink bg-cream-bg shadow-none"
       >
-        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-charcoal-ink/10 px-5 py-4">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-charcoal-ink/20 px-5 py-4">
           <h2 className="truncate font-display text-2xl font-bold uppercase tracking-tight text-charcoal-ink">Your Order</h2>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-charcoal-ink transition-colors hover:bg-surface-sand"
+            className="grid h-8 w-8 shrink-0 place-items-center rounded-none border border-charcoal-ink text-charcoal-ink transition-colors hover:bg-brand-fire hover:text-cream-bg hover:border-brand-fire cursor-pointer"
           >
             <X className="h-5 w-5" />
           </button>
         </div>
 
         {/* Selected Store Location Banner */}
-        <div className="flex items-center justify-between gap-2 border-b border-charcoal-ink/10 bg-surface-sand px-5 py-2.5">
+        <div className="flex items-center justify-between gap-2 border-b border-charcoal-ink/20 bg-surface-sand px-5 py-2.5">
           <div className="flex min-w-0 items-center gap-2 text-xs">
             <MapPin className="h-4 w-4 shrink-0 text-brand-fire" />
             <div className="min-w-0">
@@ -42,7 +42,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
               <span className="ml-1.5 hidden text-charcoal-ink/60 sm:inline">• {location.address.street}</span>
             </div>
           </div>
-          <span className="shrink-0 rounded-full bg-charcoal-ink/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-charcoal-ink/70">
+          <span className="shrink-0 rounded-none border border-charcoal-ink/30 bg-cream-bg px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-charcoal-ink">
             Pickup
           </span>
         </div>
@@ -63,7 +63,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
               {lines.map((line) => (
                 <li
                   key={line.key}
-                  className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 rounded-xl border border-charcoal-ink/10 bg-surface-sand p-3.5"
+                  className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 rounded-none border border-charcoal-ink/20 bg-surface-sand p-3.5"
                 >
                   <div className="min-w-0">
                     <p className="truncate font-sans text-sm font-bold text-charcoal-ink">
@@ -83,11 +83,11 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
                       type="button"
                       onClick={() => remove(line.key)}
                       aria-label={`Decrease quantity of ${line.name}`}
-                      className="grid h-8 w-8 place-items-center rounded-full border border-charcoal-ink/15 bg-cream-bg text-charcoal-ink transition-colors hover:bg-surface-sand active:scale-95"
+                      className="grid h-7 w-7 place-items-center rounded-none border border-charcoal-ink bg-cream-bg text-charcoal-ink transition-colors hover:bg-charcoal-ink hover:text-cream-bg cursor-pointer"
                     >
                       <Minus className="h-3.5 w-3.5" />
                     </button>
-                    <span className="min-w-[18px] text-center font-sans text-xs font-bold text-charcoal-ink">
+                    <span className="min-w-[18px] text-center font-mono text-xs font-bold text-charcoal-ink">
                       {line.qty}
                     </span>
                     <button
@@ -101,7 +101,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
                         })
                       }
                       aria-label={`Increase quantity of ${line.name}`}
-                      className="grid h-8 w-8 place-items-center rounded-full border border-charcoal-ink/15 bg-cream-bg text-charcoal-ink transition-colors hover:bg-surface-sand active:scale-95"
+                      className="grid h-7 w-7 place-items-center rounded-none border border-charcoal-ink bg-cream-bg text-charcoal-ink transition-colors hover:bg-charcoal-ink hover:text-cream-bg cursor-pointer"
                     >
                       <Plus className="h-3.5 w-3.5" />
                     </button>
@@ -112,7 +112,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
           )}
         </div>
 
-        <div className="border-t border-charcoal-ink/10 px-5 py-4">
+        <div className="border-t-2 border-charcoal-ink px-5 py-4 bg-surface-sand">
           <div className="flex items-center justify-between font-sans text-sm font-semibold">
             <span className="text-charcoal-ink/70">Estimated Total</span>
             <span className="text-base font-bold text-charcoal-ink">{currency(total)}</span>
@@ -121,7 +121,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
             href={whatsappHref(location, lines, total)}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 block rounded-full bg-brand-fire px-6 py-3.5 text-center font-sans text-base font-bold text-cream-bg shadow-soft transition-all duration-200 hover:bg-brand-fire/90"
+            className="mt-3 block rounded-none border-2 border-brand-fire bg-brand-fire px-6 py-3.5 text-center font-sans text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none shadow-none"
           >
             Order via WhatsApp
           </a>

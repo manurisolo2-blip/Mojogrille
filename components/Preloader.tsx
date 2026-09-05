@@ -90,7 +90,7 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
       aria-live="polite"
       aria-label="Cargando experiencia artesanal Mojo Grille"
       data-loaded={isLoaded}
-      className="fixed inset-0 z-[9999] bg-brand-fire text-cream-bg flex flex-col justify-between p-6 md:p-12 overflow-hidden select-none will-change-transform shadow-2xl"
+      className="fixed inset-0 z-[9999] bg-brand-fire text-cream-bg flex flex-col justify-between p-6 md:p-12 overflow-hidden select-none will-change-transform shadow-none"
     >
       {/* Barra Superior Editorial */}
       <div className="flex items-center justify-between border-b border-cream-bg/20 pb-4">
@@ -123,7 +123,7 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
           SLOW ROASTED · CITRUS MARINATED · EST. MIAMI
         </p>
         <div className="hidden sm:flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-cream-bg animate-pulse" aria-hidden="true" />
+          <span className="h-2 w-2 rounded-none bg-cream-bg animate-pulse" aria-hidden="true" />
           <span className="font-sans text-[11px] font-bold uppercase tracking-widest text-cream-bg/70">
             100% ARTISANAL MOJO
           </span>

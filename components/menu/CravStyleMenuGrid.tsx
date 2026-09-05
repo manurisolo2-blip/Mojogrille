@@ -179,19 +179,19 @@ export function CravStyleMenuGrid() {
     switch (type) {
       case 'signature':
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-brand-fire px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-widest text-cream-bg shadow-sm">
+          <span className="inline-flex items-center gap-1 rounded-none border border-charcoal-ink bg-brand-fire px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-widest text-cream-bg">
             <span>★</span> {text}
           </span>
         );
       case 'fresh':
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-leaf-green px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-widest text-cream-bg shadow-sm">
+          <span className="inline-flex items-center gap-1 rounded-none border border-charcoal-ink bg-leaf-green px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-widest text-cream-bg">
             <span>🌿</span> {text}
           </span>
         );
       case 'top_seller':
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-mojo-citrus px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-widest text-charcoal-ink shadow-sm">
+          <span className="inline-flex items-center gap-1 rounded-none border border-charcoal-ink bg-mojo-citrus px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-widest text-charcoal-ink">
             <span>⭐</span> {text}
           </span>
         );
@@ -199,47 +199,42 @@ export function CravStyleMenuGrid() {
   };
 
   return (
-    <div className="w-full bg-cream-bg py-10 sm:py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="w-full bg-cream-bg py-10 sm:py-16 border-b border-charcoal-ink/20">
+      <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado de Sección */}
-        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-charcoal-ink">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          <div className="font-mono text-[11px] uppercase tracking-widest text-charcoal-ink/70 mb-2">
+            CATALOG // SECTION B
+          </div>
+          <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-charcoal-ink leading-none">
             Hecho a Fuego Lento, Servido <span className="text-brand-fire">Al Momento</span>.
           </h2>
           <p className="mt-2 font-accent italic text-2xl sm:text-3xl text-brand-fire lowercase tracking-normal">
             sabores criollos cocinados con paciencia y sazón de casa.
           </p>
-          <p className="mt-2 font-sans text-sm sm:text-base text-charcoal-ink/75 leading-relaxed">
+          <p className="mt-3 font-sans text-sm sm:text-base text-charcoal-ink/80 leading-relaxed max-w-2xl mx-auto">
             Elige tu plato favorito preparado con nuestra marinada tradicional de 24 horas y guarniciones caribeñas recién hechas.
           </p>
         </div>
 
-        {/* 1. Pestañas de Categorías con deslizador animado estilo CRAV */}
-        <div className="relative mb-10 sm:mb-12">
-          <div className="flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar gap-2 p-1.5 rounded-full bg-surface-sand border border-charcoal-ink/10 w-full max-w-4xl mx-auto shadow-xs">
+        {/* 1. Pestañas de Categorías con Retícula de Ángulo Recto */}
+        <div className="sticky top-[56px] sm:top-[64px] z-30 mb-10 py-2 backdrop-blur-md bg-cream-bg/90">
+          <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-1.5 p-1.5 rounded-none bg-surface-sand border border-charcoal-ink/20 max-w-4xl mx-auto">
             {CATEGORIES.map((category) => {
               const isSelected = selectedCategory === category.id;
               return (
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`relative z-10 flex-shrink-0 rounded-full px-4 sm:px-6 py-2.5 font-sans text-xs sm:text-sm font-bold tracking-wide transition-colors duration-200 focus:outline-hidden ${
+                  className={`relative z-10 shrink-0 rounded-none px-5 py-2.5 font-mono text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-hidden border ${
                     isSelected
-                      ? 'text-cream-bg'
-                      : 'text-charcoal-ink hover:text-brand-fire'
+                      ? 'bg-charcoal-ink text-cream-bg border-charcoal-ink'
+                      : 'bg-transparent text-charcoal-ink hover:text-brand-fire hover:bg-cream-bg/80 border-transparent'
                   }`}
                   role="tab"
                   aria-selected={isSelected}
                 >
-                  {/* Deslizador animado suave con layoutId de Framer Motion */}
-                  {isSelected && (
-                    <motion.div
-                      layoutId="activeCategoryTab"
-                      className="absolute inset-0 -z-10 rounded-full bg-brand-fire shadow-md shadow-brand-fire/30"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
                   <span>{category.label}</span>
                 </button>
               );
@@ -247,106 +242,96 @@ export function CravStyleMenuGrid() {
           </div>
         </div>
 
-        {/* 2. Grid Interactivo de Tarjetas de Producto */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredItems.map((item) => {
-              const count = addedItems[item.id] || 0;
-              return (
-                <motion.article
-                  layout
-                  key={item.id}
-                  initial={{ opacity: 0, scale: 0.94 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.94 }}
-                  transition={{ duration: 0.28, ease: 'easeOut' }}
-                  className="group relative flex flex-col justify-between rounded-3xl border border-charcoal-ink/10 bg-surface-sand p-4 sm:p-5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-brand-fire/40"
-                >
+        {/* 2. Grid Continuo de 1px (Newspaper Grid) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-charcoal-ink/20">
+          {filteredItems.map((item) => {
+            const count = addedItems[item.id] || 0;
+            return (
+              <article
+                key={item.id}
+                className="group relative flex flex-col justify-between rounded-none border-r border-b border-charcoal-ink/20 bg-surface-sand p-5 sm:p-6 transition-colors duration-200 hover:bg-cream-bg"
+              >
+                <div>
+                  {/* Contenedor de Fotografía con Marco Nítido */}
+                  <div className="relative aspect-4/3 w-full overflow-hidden rounded-none border border-charcoal-ink/20 bg-cream-bg">
+                    <img
+                      src={item.imageUrl}
+                      alt={item.name}
+                      loading="lazy"
+                      className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    />
+
+                    {/* Tag semántico de color en la esquina superior izquierda */}
+                    <div className="absolute top-3 left-3 z-10">
+                      {renderBadge(item.badgeType, item.badgeText)}
+                    </div>
+                  </div>
+
+                  {/* Información del Plato */}
+                  <div className="mt-4">
+                    <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors">
+                      {item.name}
+                    </h3>
+                    <p className="mt-2 font-sans text-xs sm:text-sm text-charcoal-ink/75 line-clamp-3 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Fila Inferior: Precio y Botón Táctil de Adición Rápida */}
+                <div className="mt-6 flex items-center justify-between border-t border-charcoal-ink/15 pt-4">
                   <div>
-                    {/* Contenedor de Fotografía con Zoom Suave en Hover */}
-                    <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl bg-cream-bg">
-                      <img
-                        src={item.imageUrl}
-                        alt={item.name}
-                        loading="lazy"
-                        className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                      />
-
-                      {/* Tag semántico de color en la esquina superior izquierda */}
-                      <div className="absolute top-3 left-3 z-10">
-                        {renderBadge(item.badgeType, item.badgeText)}
-                      </div>
-
-                      {/* Tiempo de preparación estimado en esquina superior derecha */}
-                      {item.prepTime && (
-                        <div className="absolute top-3 right-3 z-10 rounded-lg bg-charcoal-ink/80 px-2 py-1 text-[10px] font-bold text-cream-bg backdrop-blur-xs">
-                          ⏱ {item.prepTime}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Información del Plato */}
-                    <div className="mt-4">
-                      <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors">
-                        {item.name}
-                      </h3>
-                      <p className="mt-2 font-sans text-xs sm:text-sm text-charcoal-ink/75 line-clamp-3 leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-charcoal-ink/60 block">
+                      PRECIO
+                    </span>
+                    <span className="font-display text-3xl font-black text-charcoal-ink">
+                      ${item.price.toFixed(2)}
+                    </span>
                   </div>
 
-                  {/* Fila Inferior: Precio y Botón Táctil de Adición Rápida */}
-                  <div className="mt-6 flex items-center justify-between border-t border-charcoal-ink/10 pt-4">
-                    <div>
-                      <span className="font-sans text-[11px] font-bold uppercase tracking-wider text-charcoal-ink/60 block">
-                        Precio
-                      </span>
-                      <span className="font-sans text-2xl font-black text-charcoal-ink">
-                        ${item.price.toFixed(2)}
-                      </span>
-                    </div>
+                  {/* Botón Ortogonal Nítido */}
+                  <button
+                    onClick={() => handleAddItem(item)}
+                    className={`relative inline-flex items-center gap-1.5 rounded-none px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider border transition-colors cursor-pointer select-none ${
+                      count > 0
+                        ? 'bg-leaf-green text-cream-bg border-leaf-green'
+                        : 'bg-charcoal-ink text-cream-bg border-charcoal-ink hover:bg-brand-fire hover:border-brand-fire'
+                    }`}
+                    aria-label={`Añadir ${item.name} al pedido`}
+                    title="Añadir al pedido"
+                  >
+                    {count > 0 ? (
+                      <span className="font-mono text-xs font-black">+{count} AÑADIDO</span>
+                    ) : (
+                      <>
+                        <Plus className="h-4 w-4 stroke-[3]" />
+                        <span>+ AGREGAR</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </article>
+            );
+          })}
+        </div>
 
-                    {/* Botón Circular Grande con Feedback Táctil */}
-                    <motion.button
-                      whileTap={{ scale: 0.88 }}
-                      whileHover={{ scale: 1.05 }}
-                      onClick={() => handleAddItem(item)}
-                      className={`relative flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-200 focus:outline-hidden ${
-                        count > 0
-                          ? 'bg-leaf-green text-cream-bg border-leaf-green shadow-md shadow-leaf-green/30'
-                          : 'bg-brand-fire text-cream-bg border-brand-fire hover:bg-brand-fire/90 shadow-md shadow-brand-fire/25'
-                      }`}
-                      aria-label={`Añadir ${item.name} al pedido`}
-                      title="Añadir al pedido"
-                    >
-                      {count > 0 ? (
-                        <span className="font-sans text-xs font-black">+{count}</span>
-                      ) : (
-                        <Plus className="h-5 w-5 stroke-[2.5]" />
-                      )}
-                    </motion.button>
-                  </div>
-                </motion.article>
-              );
-            })}
-          </AnimatePresence>
-        </motion.div>
-
-        {/* Mensaje de pie de catálogo */}
-        <div className="mt-12 text-center">
-          <p className="font-sans text-xs sm:text-sm text-[#78716C]">
-            ¿Tienes alguna restricción alimentaria o pedido especial?{' '}
+        {/* Mensaje editorial de pie de catálogo */}
+        <div className="mt-14 rounded-none bg-surface-sand p-6 sm:p-8 border-2 border-charcoal-ink text-center">
+          <p className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-charcoal-ink font-bold">
+            ¿CONSULTA DE INGREDIENTES O PEDIDO PERSONALIZADO?
+          </p>
+          <p className="mt-2 font-sans text-xs sm:text-sm text-charcoal-ink/80 max-w-xl mx-auto">
+            ¿Tienes alguna restricción alimentaria o pedido especial? Consúltanos por WhatsApp al momento.
+          </p>
+          <div className="mt-5">
             <a
               href="#catering"
-              className="font-semibold text-[#D95327] hover:underline"
+              className="inline-flex items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg border-2 border-brand-fire hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none"
             >
-              Consúltanos por WhatsApp al momento.
+              <span>Consultar al Momento</span>
+              <span>➔</span>
             </a>
-          </p>
+          </div>
         </div>
 
       </div>

@@ -123,9 +123,9 @@ function Index() {
       {/* Textura de grano de papel artesanal editorial */}
       <NoiseOverlay />
 
-      <div className="min-h-dvh bg-[#FAF8F5] text-[#1C1917] pb-24 md:pb-0">
+      <div className="min-h-dvh bg-cream-bg text-charcoal-ink pb-24 md:pb-0">
         <TopBar onOpenCart={() => setCartOpen(true)} />
-        <main className="bg-[#FAF8F5]">
+        <main className="bg-cream-bg">
           <HeroSection
             menuAnchorId="menu"
             cateringHref="#catering"
@@ -147,29 +147,30 @@ function Index() {
 
           <section
             id="catering"
-            className="grain border-y border-charcoal-ink/10 bg-surface-sand px-4 py-14 sm:px-6"
+            className="border-b border-charcoal-ink/20 bg-surface-sand px-4 py-16 sm:px-6 lg:px-8"
           >
-            <div className="mx-auto max-w-3xl text-center">
-              <div className="inline-flex items-center gap-1.5 rounded-full border border-leaf-green/30 bg-leaf-green/10 px-3.5 py-1 text-xs font-semibold text-leaf-green mb-4">
-                🎉 Sabor Criollo Para Tus Eventos
+            <div className="mx-auto max-w-4xl text-center">
+              <div className="inline-flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-cream-bg px-3.5 py-1 font-mono text-[11px] font-bold text-charcoal-ink uppercase tracking-widest mb-4">
+                <span className="h-1.5 w-1.5 bg-brand-fire rounded-none" aria-hidden="true" />
+                <span>SABOR CRIOLLO PARA TUS EVENTOS</span>
               </div>
-              <h2 className="font-display text-3xl font-bold tracking-tight uppercase text-charcoal-ink sm:text-5xl">
+              <h2 className="font-display text-4xl sm:text-6xl font-black tracking-tight uppercase text-charcoal-ink leading-none">
                 Authentic Criollo Catering for your next celebration
               </h2>
-              <p className="mx-auto mt-3 max-w-xl font-sans text-sm text-charcoal-ink/70 sm:text-base leading-relaxed">
+              <p className="mx-auto mt-3 max-w-2xl font-sans text-sm text-charcoal-ink/80 sm:text-base leading-relaxed">
                 Family-style bandejas, live pressed Cubano stations, and hot cafecito for
                 corporate offices, weddings, and quinces. Booked with 48h notice.
               </p>
-              <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <a
                   href="tel:+13055550123"
-                  className="inline-flex items-center gap-2 rounded-full bg-brand-fire px-7 py-4 font-sans text-base font-bold text-cream-bg shadow-[0_12px_24px_-6px_rgba(229,37,22,0.38)] transition-all duration-200 hover:bg-brand-fire/90 hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2.5 rounded-none border-2 border-charcoal-ink bg-brand-fire px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
                 >
-                  <Phone className="h-5 w-5" />
-                  Talk to Catering Team: (305) 555-0123
+                  <Phone className="h-4 w-4" />
+                  <span>Talk to Catering Team: (305) 555-0123</span>
                 </a>
               </div>
-              <p className="mt-4 font-sans text-xs text-charcoal-ink/70">
+              <p className="mt-4 font-mono text-xs text-charcoal-ink/70 uppercase tracking-wide">
                 Serving Little Havana, Brickell, Doral &amp; greater Miami-Dade · Cotizaciones al momento
               </p>
             </div>

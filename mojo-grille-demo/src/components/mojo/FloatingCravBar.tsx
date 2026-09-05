@@ -34,37 +34,37 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
             : "translate-y-24 opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex items-center justify-between gap-3 rounded-2xl bg-charcoal-ink p-3 pl-4 text-cream-bg shadow-[0_16px_36px_rgba(0,0,0,0.45)] border border-charcoal-ink/40 backdrop-blur-lg">
+        <div className="flex items-center justify-between gap-3 rounded-none bg-charcoal-ink p-3 pl-4 text-cream-bg shadow-none border-2 border-charcoal-ink">
           
           {/* Lado Izquierdo: Contador y Total Acumulado */}
           <div
             className="flex items-center gap-3 cursor-pointer select-none"
             onClick={() => (onOpenFullCart ? onOpenFullCart() : setIsModalOpen(true))}
           >
-            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-charcoal-ink/90 border border-charcoal-ink/60">
+            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-none bg-charcoal-ink/90 border border-cream-bg/20">
               <ShoppingBag className="h-5 w-5 text-cream-bg" />
               {/* Badge Verde Cilantro (leaf-green) */}
-              <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-leaf-green px-1 font-sans text-[11px] font-black text-cream-bg shadow-xs">
+              <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-none bg-leaf-green px-1 font-mono text-[10px] font-black text-cream-bg border border-charcoal-ink">
                 {count}
               </span>
             </div>
 
             <div className="flex flex-col text-left">
-              <span className="font-sans text-[10px] font-semibold uppercase tracking-wider text-cream-bg/70">
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-cream-bg/70">
                 {count > 0 ? `${count} plato${count > 1 ? "s" : ""}` : "Tu Pedido"}
               </span>
-              <span className="font-sans text-base font-black tracking-tight text-cream-bg">
+              <span className="font-display text-lg font-bold tracking-tight text-cream-bg leading-tight">
                 {count > 0 ? currency(total) : "$0.00"}
               </span>
             </div>
           </div>
 
-          {/* Lado Derecho: Botón Rojo Mojo Scarlet (#E52516 / brand-fire) con pulsación elástica */}
+          {/* Lado Derecho: Botón Rojo Mojo Scarlet (#E52516 / brand-fire) */}
           <button
             type="button"
             onClick={() => setIsModalOpen(true)}
             aria-label="Hacer Pedido por WhatsApp"
-            className="group flex items-center justify-center gap-2 rounded-xl bg-brand-fire px-5 py-3 font-sans text-sm font-bold text-cream-bg shadow-md shadow-brand-fire/30 transition-transform duration-150 hover:bg-brand-fire/90 active:scale-95 focus:outline-none"
+            className="group flex items-center justify-center gap-2 rounded-none border-2 border-brand-fire bg-brand-fire px-5 py-3 font-sans text-sm font-bold text-cream-bg shadow-none transition-colors duration-150 hover:bg-cream-bg hover:text-charcoal-ink focus:outline-none"
           >
             <span>Hacer Pedido</span>
             <span className="font-bold text-base transition-transform group-hover:translate-x-1">
@@ -79,15 +79,15 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-charcoal-ink/60 p-0 sm:p-4 backdrop-blur-xs transition-opacity">
           <div
-            className="w-full max-w-md rounded-t-3xl sm:rounded-3xl bg-cream-bg p-5 sm:p-6 shadow-2xl border border-charcoal-ink/10 text-charcoal-ink max-h-[85vh] overflow-y-auto"
+            className="w-full max-w-md rounded-none bg-cream-bg p-5 sm:p-6 shadow-none border-2 border-charcoal-ink text-charcoal-ink max-h-[85vh] overflow-y-auto"
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-order-title"
           >
             {/* Cabecera del Modal */}
-            <div className="flex items-center justify-between border-b border-charcoal-ink/10 pb-4">
+            <div className="flex items-center justify-between border-b-2 border-charcoal-ink pb-4">
               <div className="flex items-center gap-2">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-fire text-cream-bg font-display font-bold text-base">
+                <span className="flex h-8 w-8 items-center justify-center rounded-none bg-brand-fire text-cream-bg font-display font-bold text-base border border-charcoal-ink">
                   M
                 </span>
                 <div>
@@ -103,7 +103,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="rounded-full p-1.5 text-charcoal-ink/60 hover:bg-surface-sand hover:text-charcoal-ink transition-colors"
+                className="rounded-none border border-charcoal-ink/20 p-1.5 text-charcoal-ink/60 hover:bg-surface-sand hover:text-charcoal-ink transition-colors"
                 aria-label="Cerrar modal"
               >
                 <X className="h-5 w-5" />
@@ -111,12 +111,12 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
             </div>
 
             {/* Selector de Sede */}
-            <div className="mt-4 rounded-2xl bg-surface-sand p-3 border border-charcoal-ink/10">
+            <div className="mt-4 rounded-none bg-surface-sand p-3 border border-charcoal-ink/20">
               <div className="flex items-center justify-between mb-2 text-xs font-semibold text-charcoal-ink/70">
                 <span className="flex items-center gap-1.5 text-leaf-green font-bold">
                   <CheckCircle2 className="h-4 w-4" /> Sede Seleccionada
                 </span>
-                <span>Cambiar</span>
+                <span className="font-mono text-[10px] uppercase">Cambiar</span>
               </div>
               <div className="flex gap-1.5 overflow-x-auto no-scrollbar">
                 {availableLocations.map((loc) => (
@@ -124,10 +124,10 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
                     key={loc.id}
                     type="button"
                     onClick={() => setLocation(loc.id)}
-                    className={`rounded-xl px-3 py-1.5 text-xs font-bold transition-colors ${
+                    className={`rounded-none px-3 py-1.5 text-xs font-bold transition-colors ${
                       location.id === loc.id
-                        ? "bg-brand-fire text-cream-bg shadow-xs"
-                        : "bg-cream-bg text-charcoal-ink border border-charcoal-ink/15 hover:bg-surface-sand"
+                        ? "bg-brand-fire text-cream-bg border border-charcoal-ink"
+                        : "bg-cream-bg text-charcoal-ink border border-charcoal-ink/20 hover:bg-surface-sand"
                     }`}
                   >
                     {loc.name}
@@ -138,11 +138,11 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
 
             {/* Desglose de Platos Seleccionados */}
             <div className="mt-4">
-              <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink/70 mb-2">
+              <h4 className="font-mono text-[11px] font-bold uppercase tracking-wider text-charcoal-ink/70 mb-2">
                 Resumen de Platos ({count})
               </h4>
               {lines.length === 0 ? (
-                <div className="rounded-2xl border border-dashed border-charcoal-ink/20 bg-surface-sand/50 p-6 text-center">
+                <div className="rounded-none border border-dashed border-charcoal-ink/30 bg-surface-sand/50 p-6 text-center">
                   <p className="text-sm font-medium text-charcoal-ink/70">
                     Aún no has seleccionado ningún plato.
                   </p>
@@ -151,7 +151,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
                   </p>
                 </div>
               ) : (
-                <ul className="space-y-2 max-h-48 overflow-y-auto no-scrollbar rounded-2xl bg-surface-sand p-3 border border-charcoal-ink/10">
+                <ul className="space-y-2 max-h-48 overflow-y-auto no-scrollbar rounded-none bg-surface-sand p-3 border border-charcoal-ink/20">
                   {lines.map((line) => (
                     <li
                       key={line.key}
@@ -177,11 +177,11 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
             </div>
 
             {/* Total Estimado */}
-            <div className="mt-4 flex items-center justify-between rounded-2xl bg-surface-sand p-3.5 border border-charcoal-ink/10">
-              <span className="font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink">
+            <div className="mt-4 flex items-center justify-between rounded-none bg-surface-sand p-3.5 border border-charcoal-ink/20">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-charcoal-ink">
                 Total Estimado
               </span>
-              <span className="font-sans text-xl font-black text-brand-fire">
+              <span className="font-display text-xl font-bold text-brand-fire">
                 {currency(total)}
               </span>
             </div>
@@ -193,7 +193,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsModalOpen(false)}
-                className="flex w-full items-center justify-center gap-2.5 rounded-2xl bg-leaf-green py-3.5 px-4 font-sans text-sm font-bold text-cream-bg shadow-lg shadow-leaf-green/30 transition-all hover:bg-leaf-green/90 active:scale-98"
+                className="flex w-full items-center justify-center gap-2.5 rounded-none border-2 border-charcoal-ink bg-leaf-green py-3.5 px-4 font-sans text-sm font-bold text-cream-bg shadow-none transition-all hover:bg-charcoal-ink"
               >
                 <MessageCircle className="h-5 w-5" />
                 <span>Enviar Pedido a WhatsApp</span>
@@ -202,7 +202,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="w-full py-2 text-center font-sans text-xs font-semibold text-charcoal-ink/60 hover:text-charcoal-ink"
+                className="w-full py-2 text-center font-mono text-[11px] uppercase tracking-wider font-semibold text-charcoal-ink/60 hover:text-brand-fire"
               >
                 Continuar eligiendo platos
               </button>

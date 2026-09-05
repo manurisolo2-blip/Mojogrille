@@ -29,7 +29,7 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
         isVisible ? "translate-y-0 opacity-100" : "translate-y-24 opacity-0"
       }`}
     >
-      <div className="pointer-events-auto flex items-center justify-between gap-3 rounded-2xl bg-charcoal-ink p-3 pl-4 text-cream-bg shadow-[0_16px_36px_rgba(0,0,0,0.45)] border border-charcoal-ink/40 backdrop-blur-lg">
+      <div className="pointer-events-auto flex items-center justify-between gap-3 rounded-none bg-charcoal-ink p-3 pl-4 text-cream-bg shadow-none border-2 border-charcoal-ink">
         {/* Lado Izquierdo: Contador y Total Acumulado */}
         <div
           className="flex items-center gap-3 cursor-pointer select-none"
@@ -38,31 +38,31 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
           tabIndex={0}
           aria-label="Abrir carrito"
         >
-          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-charcoal-ink/90 border border-charcoal-ink/60">
+          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-none bg-charcoal-ink/90 border border-cream-bg/20">
             <ShoppingBag className="h-5 w-5 text-cream-bg" />
             {/* Badge Verde Cilantro (#2F6A4F / leaf-green) */}
-            <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-leaf-green px-1 font-sans text-[11px] font-black text-cream-bg shadow-xs">
+            <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-none bg-leaf-green px-1 font-mono text-[10px] font-black text-cream-bg border border-charcoal-ink">
               {count}
             </span>
           </div>
 
           <div className="flex flex-col text-left">
-            <span className="font-sans text-[10px] font-semibold uppercase tracking-wider text-cream-bg/70">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-cream-bg/70">
               {count > 0 ? `${count} plato${count > 1 ? "s" : ""}` : "Tu Pedido"}
             </span>
-            <span className="font-sans text-base font-black tracking-tight text-cream-bg">
+            <span className="font-display text-lg font-bold tracking-tight text-cream-bg leading-tight">
               {count > 0 ? currency(total) : "$0.00"}
             </span>
           </div>
         </div>
 
-        {/* Lado Derecho: Botón Rojo Mojo Scarlet (#E52516 / brand-fire) con pulsación elástica */}
+        {/* Lado Derecho: Botón Rojo Mojo Scarlet (#E52516 / brand-fire) */}
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Hacer Pedido por WhatsApp"
-          className="group flex items-center justify-center gap-2 rounded-xl bg-brand-fire px-5 py-3 font-sans text-sm font-bold text-cream-bg shadow-md shadow-brand-fire/30 transition-transform duration-150 hover:bg-brand-fire/90 active:scale-95 focus:outline-none"
+          className="group flex items-center justify-center gap-2 rounded-none border-2 border-brand-fire bg-brand-fire px-5 py-3 font-sans text-sm font-bold text-cream-bg shadow-none transition-colors duration-150 hover:bg-cream-bg hover:text-charcoal-ink focus:outline-none"
         >
           <span>Hacer Pedido</span>
           <span className="font-bold text-base transition-transform group-hover:translate-x-1">

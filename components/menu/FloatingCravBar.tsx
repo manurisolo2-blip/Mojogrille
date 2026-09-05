@@ -53,21 +53,21 @@ export function FloatingCravBar({
           : "translate-y-24 opacity-0 pointer-events-none"
       }`}
     >
-      <div className="flex items-center justify-between gap-3 rounded-2xl bg-charcoal-ink p-3 pl-4 text-cream-bg shadow-[0_16px_36px_rgba(0,0,0,0.45)] border border-charcoal-ink/40 backdrop-blur-lg">
+      <div className="flex items-center justify-between gap-3 rounded-none bg-charcoal-ink p-3 pl-4 text-cream-bg shadow-none border-2 border-charcoal-ink">
         {/* Lado Izquierdo: Contador y Total */}
         <div className="flex items-center gap-3">
-          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-charcoal-ink/90 border border-charcoal-ink/60">
+          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-none bg-charcoal-ink/90 border border-cream-bg/20">
             <span className="text-base">🛍️</span>
-            <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-leaf-green px-1 font-sans text-[11px] font-black text-cream-bg shadow-xs">
+            <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-none bg-leaf-green px-1 font-mono text-[10px] font-black text-cream-bg border border-charcoal-ink">
               {effectiveCount}
             </span>
           </div>
 
           <div className="flex flex-col text-left">
-            <span className="font-sans text-[10px] font-semibold uppercase tracking-wider text-cream-bg/70">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-cream-bg/70">
               Total Estimado
             </span>
-            <span className="font-sans text-base font-black tracking-tight text-cream-bg">
+            <span className="font-display text-lg font-bold tracking-tight text-cream-bg leading-tight">
               ${effectiveTotal.toFixed(2)}
             </span>
           </div>
@@ -77,7 +77,7 @@ export function FloatingCravBar({
         <button
           type="button"
           onClick={handleOrder}
-          className="group flex items-center justify-center gap-2 rounded-xl bg-brand-fire px-5 py-3 font-sans text-sm font-bold text-cream-bg shadow-md shadow-brand-fire/30 transition-transform duration-150 hover:bg-brand-fire/90 active:scale-95 focus:outline-none"
+          className="group flex items-center justify-center gap-2 rounded-none border-2 border-brand-fire bg-brand-fire px-5 py-3 font-sans text-sm font-bold text-cream-bg shadow-none transition-colors duration-150 hover:bg-cream-bg hover:text-charcoal-ink focus:outline-none"
         >
           <span>Hacer Pedido</span>
           <span className="font-bold text-base transition-transform group-hover:translate-x-1">

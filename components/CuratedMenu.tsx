@@ -175,7 +175,7 @@ export function CuratedMenu() {
       <div
         ref={previewRef}
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-50 hidden lg:flex flex-col overflow-hidden rounded-none border-2 border-charcoal-ink bg-surface-sand shadow-[0_25px_50px_-12px_rgba(20,18,16,0.35)] opacity-0 w-80 h-52 select-none will-change-transform"
+        className="pointer-events-none fixed top-0 left-0 z-50 hidden lg:flex flex-col overflow-hidden rounded-none border-2 border-charcoal-ink bg-surface-sand shadow-none opacity-0 w-80 h-52 select-none will-change-transform"
         style={{ transform: 'translate3d(-9999px, -9999px, 0)' }}
       >
         <div className="relative h-full w-full overflow-hidden bg-surface-sand">

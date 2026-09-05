@@ -56,8 +56,6 @@ export function HeroProductCard({
       className="relative flex w-full max-w-[440px] items-center justify-center p-2 sm:p-4 select-none"
       style={{ perspective: 1100 }}
     >
-      {/* Resplandor radial de fondo */}
-      <div className="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-[#D95327]/20 via-[#F59E0B]/15 to-[#4D7C0F]/15 blur-2xl -z-10 pointer-events-none" />
 
       {/* Tarjeta con efecto Tilt 3D */}
       <motion.div
@@ -67,53 +65,49 @@ export function HeroProductCard({
           transformStyle: 'preserve-3d',
           filter: brightness.get() ? `brightness(${brightness.get()})` : undefined,
         }}
-        className="relative w-full rounded-3xl border border-[#EAE5DC] bg-white p-4 shadow-xl transition-shadow duration-300 hover:shadow-2xl"
+        className="relative w-full rounded-none border-2 border-charcoal-ink bg-surface-sand p-4 shadow-none transition-colors duration-300"
       >
         {/* Contenedor de la Imagen con zoom interactivo */}
-        <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl bg-[#FAF8F5]">
+        <div className="relative aspect-4/3 w-full overflow-hidden rounded-none bg-cream-bg border border-charcoal-ink/20">
           <motion.img
             src={imageSrc}
             alt={title}
-            whileHover={{ scale: 1.06 }}
+            whileHover={{ scale: 1.04 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
             className="h-full w-full object-cover object-center transition-transform duration-500"
             style={{ transform: 'translateZ(20px)' }}
           />
 
           {/* Tag de Precio Flotante estilo Badge superpuesto en la esquina */}
-          <motion.div
-            animate={{ y: [0, -4, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute top-3 left-3 z-20 flex items-center gap-2 rounded-xl bg-[#1C1917]/90 px-3.5 py-1.5 backdrop-blur-md border border-white/20 text-white shadow-lg"
+          <div
+            className="absolute top-3 left-3 z-20 flex items-center gap-2 rounded-none bg-charcoal-ink px-3.5 py-1.5 border border-cream-bg/20 text-cream-bg"
             style={{ transform: 'translateZ(45px)' }}
           >
-            <span className="font-sans text-base font-black text-[#F59E0B] tracking-tight">
+            <span className="font-mono text-base font-black text-mojo-citrus tracking-tight">
               {price}
             </span>
-            <span className="h-3 w-px bg-white/20" />
-            <span className="font-sans text-[11px] font-semibold uppercase tracking-wider text-[#FAF8F5]">
+            <span className="h-3 w-px bg-cream-bg/20" />
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-cream-bg">
               Al Momento
             </span>
-          </motion.div>
-
-
+          </div>
         </div>
 
         {/* Detalles del Producto */}
         <div className="mt-4 px-1 pb-1" style={{ transform: 'translateZ(25px)' }}>
-          <div className="flex items-center justify-between text-xs font-semibold text-[#78716C]">
-            <span className="flex items-center gap-1.5 text-[#4D7C0F]">
-              <span className="h-2 w-2 rounded-full bg-[#4D7C0F] animate-ping" />
+          <div className="flex items-center justify-between text-xs font-semibold text-charcoal-ink/70">
+            <span className="flex items-center gap-1.5 text-leaf-green font-bold">
+              <span className="h-2 w-2 rounded-none bg-leaf-green animate-pulse" />
               {category}
             </span>
-            <span>Marinado 24h</span>
+            <span className="font-mono text-[10px] uppercase">Marinado 24h</span>
           </div>
 
-          <h3 className="mt-2 font-serif text-lg sm:text-xl font-bold text-[#1C1917] leading-tight">
+          <h3 className="mt-2 font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-charcoal-ink leading-tight">
             {title}
           </h3>
 
-          <p className="mt-1 font-sans text-xs text-[#78716C] line-clamp-2">
+          <p className="mt-1 font-sans text-xs text-charcoal-ink/80 line-clamp-2">
             Hebras de falda tierna marinada en naranja agria, ajo criollo y orégano. Servido con arroz moro y tostones crujientes.
           </p>
 
@@ -122,25 +116,13 @@ export function HeroProductCard({
             {['Arroz Moro', 'Tostones', 'Mojo Ajo', 'Cebollitas'].map((side, i) => (
               <span
                 key={i}
-                className="rounded-md bg-[#FAF8F5] border border-[#EAE5DC] px-2 py-0.5 text-[10px] font-semibold text-[#1C1917]"
+                className="rounded-none bg-cream-bg border border-charcoal-ink/20 px-2 py-0.5 font-mono text-[10px] font-semibold text-charcoal-ink"
               >
                 +{side}
               </span>
             ))}
           </div>
         </div>
-
-        {/* Sello Circular Giratorio estilo CRAV sobrepuesto */}
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
-          className="absolute -bottom-5 -right-4 z-30 hidden sm:flex h-22 w-22 items-center justify-center rounded-full bg-[#D95327] text-white p-2 text-center shadow-lg border-2 border-white select-none"
-          style={{ transform: 'translateZ(60px)' }}
-        >
-          <div className="font-sans text-[8px] font-black uppercase tracking-widest leading-tight">
-            ★ AUTÉNTICO ★ SABOR MIAMI
-          </div>
-        </motion.div>
       </motion.div>
     </div>
   );

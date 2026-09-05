@@ -11,7 +11,7 @@ export function Navbar() {
           <span className="font-display text-3xl font-bold tracking-tight text-charcoal-ink">
             MOJO<span className="text-brand-fire">GRILLE</span>
           </span>
-          <span className="hidden sm:inline-block rounded-full bg-leaf-green/15 px-2.5 py-0.5 font-sans text-[11px] font-bold tracking-widest text-leaf-green uppercase">
+          <span className="hidden sm:inline-block rounded-none border border-leaf-green/30 bg-leaf-green/15 px-2 py-0.5 font-mono text-[10px] font-bold tracking-widest text-leaf-green uppercase">
             Miami
           </span>
         </a>
@@ -48,10 +48,10 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <a
             href="#menu"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-fire px-5 py-2.5 font-sans text-sm font-bold text-cream-bg shadow-md shadow-brand-fire/25 transition-all duration-200 hover:scale-105 hover:bg-brand-fire/90 active:scale-95 focus:outline-hidden focus:ring-2 focus:ring-brand-fire focus:ring-offset-2"
+            className="inline-flex items-center justify-center gap-2 rounded-none border-2 border-charcoal-ink bg-brand-fire px-5 py-2.5 font-sans text-sm font-bold text-cream-bg shadow-none transition-all duration-200 hover:bg-charcoal-ink focus:outline-hidden"
           >
             <span>ORDENAR CALIENTE</span>
-            <span className="flex h-2 w-2 rounded-full bg-cream-bg animate-pulse" />
+            <span className="flex h-2 w-2 rounded-none bg-cream-bg animate-pulse" />
           </a>
         </div>
       </div>
