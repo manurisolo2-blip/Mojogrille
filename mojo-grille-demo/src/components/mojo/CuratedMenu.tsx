@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { Plus } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
 import { MagneticButton } from "./MagneticButton";
-import { TapeLabel } from "./TapeLabel";
+import { RebelChefBadge } from "./RebelChefBadge";
 
 export interface CuratedMenuItem {
   id: string;
@@ -196,7 +196,7 @@ export function CuratedMenu() {
             <span className="font-display text-lg uppercase tracking-tight text-cream-bg font-black">
               {activeItem.name}
             </span>
-            <span className="font-accent font-serif italic text-xs text-brand-fire lowercase">
+            <span className="font-accent font-serif italic font-bold text-xs text-brand-fire lowercase">
               {activeItem.authorNote}
             </span>
           </div>
@@ -239,27 +239,19 @@ export function CuratedMenu() {
               onClick={() => handleAddToCart(item)}
               className="border-b border-charcoal-ink/20 py-7 md:py-8 px-4 sm:px-6 flex flex-col md:flex-row md:items-center justify-between group transition-colors duration-300 hover:bg-surface-sand/60 relative cursor-pointer gap-4 md:gap-6"
             >
-              {/* Izquierda: Código mono + Nombre del plato font-display + Etiqueta de autor en cursiva */}
-              <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-5 lg:w-[42%]">
-                <div className="flex items-center gap-2.5 shrink-0">
-                  <span className="font-mono text-xs sm:text-sm text-charcoal-ink/60 uppercase tracking-widest font-bold">
-                    [ITEM {String(index + 1).padStart(2, "0")}]
-                  </span>
-                  {index === 0 && (
-                    <TapeLabel className="scale-90 origin-left">
-                      CHEF&apos;S SIGNATURE // #001
-                    </TapeLabel>
-                  )}
-                </div>
-
-                <div className="flex flex-col">
+              {/* Izquierda: Nombre del plato font-display + Badge Rebelde de Chef (Item 01) + Subtítulo con mayor grosor */}
+              <div className="flex flex-col gap-1.5 lg:w-[42%]">
+                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
                   <h3 className="font-display text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors duration-200 leading-none">
                     {item.name}
                   </h3>
-                  <span className="font-accent font-serif italic text-sm sm:text-base lowercase text-charcoal-ink/60 mt-1.5 group-hover:text-charcoal-ink/90 transition-colors">
-                    {item.authorNote}
-                  </span>
+                  {index === 0 && (
+                    <RebelChefBadge />
+                  )}
                 </div>
+                <span className="font-serif italic font-bold text-base sm:text-lg text-charcoal-ink/85 mt-0.5 group-hover:text-charcoal-ink transition-colors leading-snug">
+                  {item.authorNote}
+                </span>
               </div>
 
               {/* Miniatura fija visible únicamente en móviles (md:hidden) */}
