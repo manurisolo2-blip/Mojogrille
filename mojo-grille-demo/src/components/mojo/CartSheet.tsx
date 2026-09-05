@@ -39,7 +39,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
             <MapPin className="h-4 w-4 shrink-0 text-brand-fire" />
             <div className="min-w-0">
               <span className="font-bold text-charcoal-ink">{location.name} Store</span>
-              <span className="ml-1.5 hidden text-charcoal-ink/60 sm:inline">• {location.address.street}</span>
+              <span className="ml-1.5 hidden text-charcoal-ink/60 sm:inline">, {location.address.street}</span>
             </div>
           </div>
           <span className="shrink-0 rounded-none border border-charcoal-ink/30 bg-cream-bg px-2 py-0.5 font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink">
@@ -55,7 +55,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
                 Your cart is empty. Start with our signature favorites!
               </p>
               <p className="mt-1.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-brand-fire">
-                HOT LECHÓN ASADO · CRIOLLO BOWLS · CAFECITO AL MOMENTO
+                HOT LECHÓN ASADO CRIOLLO BOWLS CAFECITO AL MOMENTO
               </p>
             </div>
           ) : (
@@ -71,7 +71,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
                     </p>
                     {line.sides.length > 0 && (
                       <p className="mt-1 font-sans text-xs text-charcoal-ink/60">
-                        {line.sides.join(" · ")}
+                        {line.sides.join(", ")}
                       </p>
                     )}
                     <p className="mt-1 font-sans text-sm font-semibold text-charcoal-ink">

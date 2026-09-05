@@ -216,7 +216,7 @@ export const menu: MenuItem[] = [
     id: "bandeja-familiar",
     name: "Bandeja Criolla Familiar (Catering Feast)",
     description:
-      "Feeds 8–10 people: Slow-roasted lechón asado, seasoned yellow rice, black beans, yuca con mojo & sweet maduros. Ready to serve con todo for celebrations.",
+      "Feeds 8 to 10 people: Slow-roasted lechón asado, seasoned yellow rice, black beans, yuca con mojo & sweet maduros. Ready to serve con todo for celebrations.",
     price: 129,
     image: catering,
     category: "catering",

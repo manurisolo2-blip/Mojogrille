@@ -189,7 +189,7 @@ export function CuratedMenu() {
           {/* Metadato superior de previsualización */}
           <div className="absolute top-2.5 left-3 flex items-center">
             <span className="font-sans text-[9px] font-bold uppercase tracking-[0.18em] text-cream-bg bg-charcoal-ink px-2 py-0.5 border border-cream-bg/20">
-              MADE AL MOMENTO · 100% FRESH
+              MADE AL MOMENTO 100% FRESH
             </span>
           </div>
 
@@ -212,7 +212,7 @@ export function CuratedMenu() {
           HOT PLANCHA SELECTION
         </h2>
         <p className="mt-2 sm:mt-3 font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-brand-fire">
-          MADE AL MOMENTO · SEASONED WITH MOJO
+          MADE AL MOMENTO SEASONED WITH MOJO
         </p>
       </div>
 

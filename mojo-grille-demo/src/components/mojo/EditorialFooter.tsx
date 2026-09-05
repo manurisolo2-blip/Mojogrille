@@ -99,9 +99,9 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
           MOJO GRILLE
         </h1>
         <div className="flex flex-col sm:flex-row items-center justify-between mt-3 text-xs sm:text-sm font-sans uppercase tracking-widest text-charcoal-ink/70">
-          <p className="font-semibold">CUBAN KITCHEN &amp; ARTISANAL PLANCHA · MIAMI, FL</p>
+          <p className="font-semibold">CUBAN KITCHEN &amp; ARTISANAL PLANCHA MIAMI, FL</p>
           <p className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-brand-fire mt-1 sm:mt-0">
-            AUTHENTIC CRIOLLO FLAVOR · 24-HOUR CITRUS MOJO
+            AUTHENTIC CRIOLLO FLAVOR 24-HOUR CITRUS MOJO
           </p>
         </div>
       </div>
@@ -121,7 +121,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
           <div className="space-y-1 font-sans text-sm text-charcoal-ink/85">
             <p className="font-bold text-base text-charcoal-ink">Brownsville Central Kitchen</p>
             <p>2920 NW 27th Ave, Miami, FL 33142</p>
-            <p className="text-xs text-charcoal-ink/60">Pickup hubs: Little Havana · Brickell · Doral</p>
+            <p className="text-xs text-charcoal-ink/60">Pickup hubs: Little Havana, Brickell, Doral</p>
           </div>
 
           <div className="pt-2 border-t border-charcoal-ink/10 space-y-1 font-sans text-xs text-charcoal-ink/75 leading-relaxed">
@@ -129,9 +129,9 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
               <Clock className="h-3.5 w-3.5 text-brand-fire" />
               <span>Plancha Active al Momento:</span>
             </div>
-            <p>Monday to Thursday: 11:00 AM – 10:00 PM</p>
-            <p>Friday &amp; Saturday: 11:00 AM – 11:30 PM</p>
-            <p>Sunday: 12:00 PM – 9:00 PM</p>
+            <p>Monday to Thursday: 11:00 AM to 10:00 PM</p>
+            <p>Friday &amp; Saturday: 11:00 AM to 11:30 PM</p>
+            <p>Sunday: 12:00 PM to 9:00 PM</p>
           </div>
         </div>
 
@@ -150,7 +150,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 href="#menu"
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex transition-transform duration-200"
               >
-                — Full Menu &amp; Criollo Bowls
+                Full Menu &amp; Criollo Bowls
               </a>
             </li>
             <li>
@@ -158,7 +158,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 href="#cuban-deconstruction"
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex transition-transform duration-200"
               >
-                — Anatomy of the Pressed Cubano
+                Anatomy of the Pressed Cubano
               </a>
             </li>
             <li>
@@ -166,7 +166,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 href="#curated-menu"
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex transition-transform duration-200"
               >
-                — Plancha Selection (Signature Dishes)
+                Plancha Selection (Signature Dishes)
               </a>
             </li>
             <li>
@@ -174,7 +174,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 href="#districts-catering"
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex transition-transform duration-200"
               >
-                — Thermal Packaging &amp; Corporate Catering
+                Thermal Packaging &amp; Corporate Catering
               </a>
             </li>
             <li>
@@ -183,7 +183,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 onClick={onOpenCart}
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex items-center gap-1.5 transition-transform duration-200 cursor-pointer text-left"
               >
-                — View Order / Order Drawer
+                View Order / Order Drawer
               </button>
             </li>
           </ul>
@@ -231,10 +231,9 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
 
       {/* 3. Barra Inferior Legal & Marca de Agua */}
       <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-charcoal-ink/60">
-        <p>© {new Date().getFullYear()} MOJO GRILLE LLC · ALL RIGHTS RESERVED · MIAMI-LATIN MODERNISM</p>
+        <p>© {new Date().getFullYear()} MOJO GRILLE LLC ALL RIGHTS RESERVED MIAMI-LATIN MODERNISM</p>
         <div className="flex items-center gap-4">
           <span>25.7617° N, 80.1918° W</span>
-          <span>•</span>
           <span className="inline-flex items-center gap-1">
             Crafted with <Heart className="h-3 w-3 text-brand-fire fill-brand-fire" /> and Seville Sour Orange
           </span>

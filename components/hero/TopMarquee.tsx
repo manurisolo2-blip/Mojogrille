@@ -28,21 +28,19 @@ export function TopMarquee({ variant = 'terracotta' }: TopMarqueeProps) {
         {/* Dos contenedores flexibles con white-space: nowrap animados a velocidad constante (transform: translateX(-50%)) */}
         <div className="flex w-max will-change-transform animate-marquee font-display text-sm sm:text-base md:text-lg font-bold tracking-wider uppercase">
           {/* Primer contenedor flexible */}
-          <div className="flex shrink-0 items-center gap-6 pr-6 whitespace-nowrap">
+          <div className="flex shrink-0 items-center gap-8 pr-8 whitespace-nowrap">
             {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((phrase, index) => (
-              <span key={`marq-1-${index}`} className="inline-flex items-center gap-6">
+              <span key={`marq-1-${index}`} className="inline-flex items-center">
                 <span>{phrase}</span>
-                <span className="text-mojo-citrus text-base select-none">·</span>
               </span>
             ))}
           </div>
 
           {/* Segundo contenedor flexible para loop continuo infinito idéntico */}
-          <div className="flex shrink-0 items-center gap-6 pr-6 whitespace-nowrap" aria-hidden="true">
+          <div className="flex shrink-0 items-center gap-8 pr-8 whitespace-nowrap" aria-hidden="true">
             {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((phrase, index) => (
-              <span key={`marq-2-${index}`} className="inline-flex items-center gap-6">
+              <span key={`marq-2-${index}`} className="inline-flex items-center">
                 <span>{phrase}</span>
-                <span className="text-mojo-citrus text-base select-none">·</span>
               </span>
             ))}
           </div>

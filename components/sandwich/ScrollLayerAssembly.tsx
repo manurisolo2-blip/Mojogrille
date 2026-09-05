@@ -152,7 +152,7 @@ export function ScrollLayerAssembly() {
         {/* Encabezado Superior de Sección */}
         <div className="absolute top-8 md:top-12 left-0 right-0 text-center px-4 pointer-events-none z-10">
           <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire">
-            ARTISANAL GASTRONOMIC ANATOMY · PRESSED HOT
+            ARTISANAL GASTRONOMIC ANATOMY PRESSED HOT
           </span>
           <h3 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tight text-charcoal-ink mt-1">
             ANATOMY OF THE PRESSED CUBANO
@@ -229,7 +229,6 @@ export function ScrollLayerAssembly() {
 
           <div className="mt-3 flex items-center gap-1.5 pt-2 border-t border-charcoal-ink/10 text-[10px] font-bold text-leaf-green">
             <span>100% Fresh Ingredients</span>
-            <span>•</span>
             <span>Made al momento</span>
           </div>
         </div>

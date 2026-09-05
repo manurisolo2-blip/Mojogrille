@@ -23,7 +23,7 @@ export const DISTRICT_PACKAGES: DistrictPackage[] = [
     district: 'Wynwood',
     editionName: 'Wynwood Arts Edition',
     tagline: 'High-contrast graphic packaging for creative event catering',
-    serialNumber: 'WYNWOOD · PKG 01',
+    serialNumber: 'WYNWOOD PKG 01',
     capacity: '15 - 35 Guests',
     thermalRetention: '90 MIN ACTIVE HEAT',
     badge: 'Limited Graphic Run',
@@ -42,7 +42,7 @@ export const DISTRICT_PACKAGES: DistrictPackage[] = [
     district: 'Brickell',
     editionName: 'Brickell Express',
     tagline: 'Individual airtight executive box lunches',
-    serialNumber: 'BRICKELL · PKG 02',
+    serialNumber: 'BRICKELL PKG 02',
     capacity: 'Individual / Corporate (10+)',
     thermalRetention: '120 MIN VACUUM SEAL',
     badge: 'Single Serve Airtight',
@@ -61,7 +61,7 @@ export const DISTRICT_PACKAGES: DistrictPackage[] = [
     district: 'Design District',
     editionName: 'Design District Curated',
     tagline: 'Premium presentation box with dedicated mojo flight compartments',
-    serialNumber: 'DESIGN DISTRICT · PKG 03',
+    serialNumber: 'DESIGN DISTRICT PKG 03',
     capacity: '20 - 40 Guests',
     thermalRetention: '100 MIN GOURMET LOCK',
     badge: 'Multi-Slot Gourmet',
@@ -80,7 +80,7 @@ export const DISTRICT_PACKAGES: DistrictPackage[] = [
     district: 'Coral Gables',
     editionName: 'Coral Gables Family Feast',
     tagline: 'Tostones platters and heaping pernil trays for big gatherings',
-    serialNumber: 'CORAL GABLES · PKG 04',
+    serialNumber: 'CORAL GABLES PKG 04',
     capacity: '25 - 60 Guests',
     thermalRetention: '180 MIN REINFORCED THERMAL',
     badge: 'Family Mega Feast',
@@ -118,10 +118,10 @@ export function DistrictsCatering() {
     if (!selectedPkg) return;
 
     const message = `Hello Mojo Grille Catering! I'd like to request a quote for the *${selectedPkg.editionName}* package for an event in Miami.%0A%0A` +
-      `• *Estimated Guests:* ${guestCount}%0A` +
-      (customerName ? `• *Contact:* ${customerName}%0A` : '') +
-      (eventDate ? `• *Event Date:* ${eventDate}%0A` : '') +
-      `• *Standard Capacity:* ${selectedPkg.capacity}%0A%0A` +
+      `*Estimated Guests:* ${guestCount}%0A` +
+      (customerName ? `*Contact:* ${customerName}%0A` : '') +
+      (eventDate ? `*Event Date:* ${eventDate}%0A` : '') +
+      `*Standard Capacity:* ${selectedPkg.capacity}%0A%0A` +
       `Could you confirm availability and customized pricing? Thank you!`;
 
     const waUrl = `https://wa.me/13055550123?text=${message}`;
@@ -142,10 +142,10 @@ export function DistrictsCatering() {
             BRINGING THE FLAVOR TO THE ENTIRE CITY
           </span>
           <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-cream-bg leading-[0.9]">
-            ARTISANAL THERMAL PACKAGING · FROM BROWNSVILLE TO ALL MIAMI
+            ARTISANAL THERMAL PACKAGING FROM BROWNSVILLE TO ALL MIAMI
           </h2>
           <p className="mt-4 font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-mojo-citrus">
-            PLANCHA HEAT PRESERVED · HANDCRAFTED PRESENTATION BOXES
+            PLANCHA HEAT PRESERVED HANDCRAFTED PRESENTATION BOXES
           </p>
         </div>
 
@@ -183,7 +183,7 @@ export function DistrictsCatering() {
                     <Package className="h-12 w-12 text-cream-bg/80 group-hover:text-brand-fire group-hover:scale-105 transition-all duration-300 stroke-[1.3]" />
                     
                     <span className="mt-2 font-sans text-[10px] font-bold tracking-widest uppercase text-cream-bg/70">
-                      {pkg.district.toUpperCase()} · THERMAL BOX
+                      {pkg.district.toUpperCase()} THERMAL BOX
                     </span>
                   </div>
 
@@ -263,7 +263,7 @@ export function DistrictsCatering() {
             {/* Encabezado del Modal */}
             <div className="mb-6">
               <span className="text-[11px] font-sans font-bold uppercase tracking-[0.18em] text-brand-fire">
-                {selectedPkg.serialNumber} · {selectedPkg.district}
+                {selectedPkg.serialNumber} {selectedPkg.district}
               </span>
               <h3 id="catering-modal-title" className="font-display text-3xl font-black uppercase tracking-tight text-charcoal-ink mt-1">
                 {selectedPkg.editionName}

@@ -51,7 +51,7 @@ export function CartDrawer() {
     if (items.length === 0) return;
 
     const linesText = items
-      .map((item) => `• ${item.quantity}x ${item.name} ($${(item.price * item.quantity).toFixed(2)})`)
+      .map((item) => `${item.quantity}x ${item.name} ($${(item.price * item.quantity).toFixed(2)})`)
       .join("%0A");
 
     const message = `Hello Mojo Grille! I'd like to place an order:%0A%0A${linesText}%0A%0ASubtotal: $${subtotal.toFixed(

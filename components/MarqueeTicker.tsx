@@ -9,7 +9,7 @@ export interface MarqueeTickerProps {
 }
 
 const DEFAULT_TICKER_TEXT =
-  'MOJO GRILLE · SLOW ROASTED PORK · CITRUS MARINATED · PRESSED TO PERFECTION · MIAMI FL · 100% ARTISANAL MOJO';
+  'MOJO GRILLE SLOW ROASTED PORK CITRUS MARINATED PRESSED TO PERFECTION MIAMI FL 100% ARTISANAL MOJO';
 
 export function MarqueeTicker({
   variant = 'brand',
@@ -40,9 +40,6 @@ export function MarqueeTicker({
             {[1, 2, 3, 4].map((idx) => (
               <span key={`ticker-a-${idx}`} className="inline-flex items-center gap-8">
                 <span>{text}</span>
-                <span className="text-mojo-citrus font-serif text-xl sm:text-2xl select-none" aria-hidden="true">
-                  ·
-                </span>
               </span>
             ))}
           </div>
@@ -52,9 +49,6 @@ export function MarqueeTicker({
             {[1, 2, 3, 4].map((idx) => (
               <span key={`ticker-b-${idx}`} className="inline-flex items-center gap-8">
                 <span>{text}</span>
-                <span className="text-mojo-citrus font-serif text-xl sm:text-2xl select-none">
-                  ·
-                </span>
               </span>
             ))}
           </div>

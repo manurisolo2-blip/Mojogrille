@@ -13,7 +13,7 @@ interface HeroProductCardProps {
 
 export function HeroProductCard({
   imageSrc = '/assets/mojo-bowl-ropa-vieja.jpg',
-  title = 'Signature Mojo Bowl • Ropa Vieja Criolla',
+  title = 'Signature Mojo Bowl Ropa Vieja Criolla',
   category = '#1 Miami Top Seller',
   price = '$15.50',
 }: HeroProductCardProps) {

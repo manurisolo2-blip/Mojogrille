@@ -132,10 +132,10 @@ function Index() {
             shouldAnimateIn={isLoaded}
           />
 
-          {/* Fase 5: El Elemento Estrella — Deconstrucción en Scroll (CubanDeconstruction) */}
+          {/* Fase 5: El Elemento Estrella: Deconstrucción en Scroll (CubanDeconstruction) */}
           <CubanDeconstruction />
 
-          {/* Selección de la Plancha — 6 Platos Estelares Curados */}
+          {/* Selección de la Plancha: 6 Platos Estelares Curados */}
           <CuratedMenu />
 
           <section id="menu" className="scroll-mt-32">
@@ -150,7 +150,7 @@ function Index() {
             className="border-b border-charcoal-ink/20 bg-surface-sand px-4 py-16 sm:px-6 lg:px-8"
           >
             <div className="mx-auto max-w-4xl text-center">
-              <div className="inline-flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-cream-bg px-3.5 py-1 font-mono text-[11px] font-bold text-charcoal-ink uppercase tracking-widest mb-4">
+              <div className="inline-flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-cream-bg px-3.5 py-1 font-sans text-[11px] font-bold text-brand-fire uppercase tracking-[0.2em] mb-4">
                 <span className="h-1.5 w-1.5 bg-brand-fire rounded-none" aria-hidden="true" />
                 <span>CRIOLLO FLAVOR FOR YOUR EVENTS</span>
               </div>
@@ -170,8 +170,8 @@ function Index() {
                   <span>Talk to Catering Team: (305) 555-0123</span>
                 </a>
               </div>
-              <p className="mt-4 font-mono text-xs text-charcoal-ink/70 uppercase tracking-wide">
-                Serving Little Havana, Brickell, Doral &amp; greater Miami-Dade · Instant quotes al momento
+              <p className="mt-4 font-sans text-xs font-semibold text-charcoal-ink/70 uppercase tracking-wider">
+                Serving Little Havana, Brickell, Doral &amp; greater Miami-Dade, instant quotes al momento
               </p>
             </div>
           </section>

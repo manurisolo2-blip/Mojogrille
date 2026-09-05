@@ -93,7 +93,7 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
       {/* Barra Superior Editorial */}
       <div className="flex items-center justify-between border-b border-cream-bg/20 pb-4">
         <span className="font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase text-cream-bg">
-          MOJO GRILLE · MIAMI ARTISANAL KITCHEN
+          MOJO GRILLE MIAMI ARTISANAL KITCHEN
         </span>
         <span className="font-sans text-xs sm:text-sm tracking-widest text-cream-bg/80">
           25.7617° N, 80.1918° W
@@ -118,7 +118,7 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
       {/* Barra Inferior Editorial */}
       <div className="border-t border-cream-bg/20 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2">
         <p className="font-sans text-xs sm:text-sm font-medium tracking-widest uppercase text-cream-bg/80">
-          SLOW ROASTED · CITRUS MARINATED · EST. MIAMI
+          SLOW ROASTED CITRUS MARINATED EST. MIAMI
         </p>
         <div className="hidden sm:flex items-center gap-2">
           <span className="h-2 w-2 rounded-none bg-cream-bg animate-pulse" aria-hidden="true" />

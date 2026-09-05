@@ -270,7 +270,7 @@ export function CubanDeconstruction() {
 
         {/* Etiqueta tipo cinta adhesiva en la esquina de la deconstrucción */}
         <div className="absolute top-4 left-4 sm:top-6 sm:left-8 z-30 pointer-events-none">
-          <TapeLabel>24H CITRUS MARINADE · SLOW ROASTED</TapeLabel>
+          <TapeLabel>24H CITRUS MARINADE SLOW ROASTED</TapeLabel>
         </div>
 
         {/* Sello de Tinta Real Artesanal */}
@@ -281,13 +281,13 @@ export function CubanDeconstruction() {
         {/* Encabezado Superior de Sección */}
         <div className="absolute top-4 sm:top-8 left-0 right-0 text-center px-4 pointer-events-none z-10">
           <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire">
-            ANATOMY OF A CLASSIC · PRESSED HOT
+            ANATOMY OF A CLASSIC PRESSED HOT
           </span>
           <h3 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-charcoal-ink mt-0.5 sm:mt-1">
             THE UNFORGIVING CUBANO
           </h3>
           <p className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-charcoal-ink/75 mt-1">
-            SCROLL TO DECONSTRUCT EVERY LAYER · PRESSED AL MOMENTO
+            SCROLL TO DECONSTRUCT EVERY LAYER PRESSED AL MOMENTO
           </p>
         </div>
 
@@ -417,7 +417,7 @@ export function CubanDeconstruction() {
 
             {/* Subtítulo Editorial */}
             <p className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.12em] text-charcoal-ink/70 mt-1 mb-3">
-              PRESSED BREAD · MOJO PERNIL · CALIBRATED TANG
+              PRESSED BREAD MOJO PERNIL CALIBRATED TANG
             </p>
 
             {/* Puntos Clave de Calle / Comanda sincronizados con el scroll */}

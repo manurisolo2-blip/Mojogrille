@@ -51,7 +51,7 @@ export interface Location {
   phoneRaw: string; // Digits only for wa.me/tel links: "13055550123"
   address: LocationAddress;
   coordinates?: LocationCoordinates;
-  hours: string; // e.g. "Mon–Sun · 11:00 AM – 10:00 PM"
+  hours: string; // e.g. "Mon to Sun 11:00 AM to 10:00 PM"
   isPrimary?: boolean;
 }
 

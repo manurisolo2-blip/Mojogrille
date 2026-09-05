@@ -21,7 +21,7 @@ export const LOCATIONS: Record<LocationId, Location> = {
       latitude: 25.7654,
       longitude: -80.2115,
     },
-    hours: "Mon–Sun · 11:00 AM – 10:00 PM",
+    hours: "Mon to Sun 11:00 AM to 10:00 PM",
     isPrimary: true,
   },
   brickell: {
@@ -41,7 +41,7 @@ export const LOCATIONS: Record<LocationId, Location> = {
       latitude: 25.7645,
       longitude: -80.1936,
     },
-    hours: "Mon–Sun · 11:00 AM – 11:00 PM",
+    hours: "Mon to Sun 11:00 AM to 11:00 PM",
     isPrimary: false,
   },
   doral: {
@@ -61,7 +61,7 @@ export const LOCATIONS: Record<LocationId, Location> = {
       latitude: 25.809,
       longitude: -80.334,
     },
-    hours: "Mon–Sun · 11:00 AM – 10:00 PM",
+    hours: "Mon to Sun 11:00 AM to 10:00 PM",
     isPrimary: false,
   },
 };

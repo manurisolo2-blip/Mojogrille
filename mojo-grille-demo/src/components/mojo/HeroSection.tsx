@@ -71,7 +71,7 @@ export function HeroSection({
             
             {/* Eyebrow de Comanda y Filosofía */}
             <p className={`font-sans text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-brand-fire select-none ${animItemClass}`}>
-              100% FRESH CRIOLLO · SLOW ROASTED
+              100% FRESH CRIOLLO SLOW ROASTED
             </p>
 
             {/* Titular Central Impactante: HOT CAST IRON. CRUSHED GARLIC. SLOW-ROASTED PERNIL. */}
@@ -155,7 +155,7 @@ export function HeroSection({
               <div className="flex items-center gap-2">
                 <div className="text-left">
                   <p className="font-sans text-xs font-black text-cream-bg leading-tight uppercase tracking-wide">
-                    EST. MIAMI · 100% ARTISANAL MOJO
+                    EST. MIAMI 100% ARTISANAL MOJO
                   </p>
                   <p className="font-sans text-[10px] text-cream-bg/85">
                     Made Fresh Al Momento

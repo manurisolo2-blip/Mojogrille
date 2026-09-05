@@ -95,7 +95,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
                     Confirm WhatsApp Order
                   </h3>
                   <p className="font-sans text-xs text-charcoal-ink/60">
-                    Mojo Grille Cuban Kitchen • Miami
+                    Mojo Grille Cuban Kitchen Miami
                   </p>
                 </div>
               </div>
