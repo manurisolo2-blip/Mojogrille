@@ -71,22 +71,22 @@ export function HeroSection({
             
             {/* Eyebrow de Comanda y Filosofía */}
             <p className={`font-mono text-xs sm:text-sm font-bold uppercase tracking-widest text-brand-fire select-none ${animItemClass}`}>
-              [ 100% MARINADO CRIOLLO // SIN ATAJOS ]
+              [ 100% CRIOLLO MARINADE // NO SHORTCUTS ]
             </p>
 
-            {/* Titular Central Impactante: HIERRO CALIENTE. AJO TRITURADO. PERNIL ASADO. */}
+            {/* Titular Central Impactante: HOT CAST IRON. CRUSHED GARLIC. SLOW-ROASTED PERNIL. */}
             <h1 className={`font-display text-5xl sm:text-7xl lg:text-[7.5vw] font-black uppercase tracking-tight text-charcoal-ink leading-[0.88] text-center max-w-5xl ${animItemClass}`}>
-              HIERRO CALIENTE.{" "}
+              HOT CAST IRON.{" "}
               <span className="font-accent font-serif italic font-normal lowercase tracking-normal text-brand-fire">
-                ajo triturado.
+                crushed garlic.
               </span>{" "}
-              PERNIL ASADO.
+              SLOW-ROASTED PERNIL.
             </h1>
 
             {/* Subtítulo Narrativo Visceral */}
             <p className={`mt-3 max-w-3xl font-sans text-sm sm:text-base md:text-lg leading-relaxed text-charcoal-ink/90 text-center ${animItemClass}`}>
-              No hacemos bowls corporativos. Cocinamos recetas familiares de cerdo macerado durante 4 horas en naranja agria, prensadas{" "}
-              <span className="font-bold text-brand-fire">al momento</span> en el corazón de Brownsville.
+              No corporate bowls. We cook generational family recipes of slow-roasted pork marinated for 4 hours in Seville sour orange, pressed{" "}
+              <span className="font-bold text-brand-fire">al momento</span> in the heart of Brownsville.
             </p>
           </div>
 
@@ -105,13 +105,13 @@ export function HeroSection({
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
 
-              {/* Botón rápido sobre el plato: AGARRAR ESTE BOWL */}
+              {/* Botón rápido sobre el plato: GRAB THIS BOWL */}
               <button
                 type="button"
                 onClick={onOrderClick}
                 className="absolute bottom-4 left-4 z-20 inline-flex items-center gap-2 rounded-none bg-charcoal-ink text-cream-bg px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-widest border border-cream-bg/20 hover:bg-brand-fire transition-colors cursor-pointer select-none"
               >
-                <span>AGARRAR ESTE BOWL</span>
+                <span>GRAB THIS BOWL</span>
                 <span>→</span>
               </button>
 
@@ -145,7 +145,7 @@ export function HeroSection({
                     4.7 Stars across +3,000 orders in Miami
                   </p>
                   <p className="font-sans text-[10px] text-charcoal-ink/70">
-                    UberEats &amp; Google Miami (4.7 en 3K+ Reviews)
+                    UberEats &amp; Google Miami (4.7 across 3K+ Reviews)
                   </p>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export function HeroSection({
                     EST. MIAMI · 100% ARTISANAL MOJO
                   </p>
                   <p className="font-sans text-[10px] text-cream-bg/85">
-                    Hecho Al Momento
+                    Made Fresh Al Momento
                   </p>
                 </div>
               </div>
@@ -168,7 +168,7 @@ export function HeroSection({
 
           </div>
 
-          {/* Botón de Llamada a la Acción Primario: A LA PLANCHA */}
+          {/* Botón de Llamada a la Acción Primario: ORDER HOT */}
           <div className={`mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row ${animItemClass}`}>
             <MagneticButton
               href={`#${menuAnchorId}`}
@@ -176,7 +176,7 @@ export function HeroSection({
               className="group relative inline-flex items-center justify-center gap-3 rounded-none border-2 border-brand-fire bg-brand-fire px-9 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none"
             >
               <UtensilsCrossed className="h-4 w-4 transition-transform group-hover:rotate-12" aria-hidden="true" />
-              <span>A LA PLANCHA</span>
+              <span>ORDER HOT</span>
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 font-bold">
                 →
               </span>

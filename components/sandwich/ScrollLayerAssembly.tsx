@@ -12,29 +12,29 @@ export interface LayerInfo {
 
 const LAYERS_INFO: LayerInfo[] = [
   {
-    tag: 'Tapa Superior',
-    title: 'Pan Cubano Prensado',
-    desc: 'Corteza dorada crujiente con mantequilla derretida al calor de la plancha.',
+    tag: 'Top Bun',
+    title: 'Pressed Cuban Bread',
+    desc: 'Golden crusty exterior with melted butter pressed crisp under live-fire cast iron.',
   },
   {
-    tag: 'Toque Ácido',
-    title: 'Pepinillos Dill & Mostaza Criolla',
-    desc: 'Encurtido crocante con mostaza especiada que corta la riqueza cárnica.',
+    tag: 'Tangy Crunch',
+    title: 'Dill Pickles & Criollo Mustard',
+    desc: 'Crisp pickle spears paired with spiced mustard to cut through the rich roasted meats.',
   },
   {
-    tag: 'Cremosidad',
-    title: 'Queso Suizo Fundido',
-    desc: 'Capas elásticas doradas que abrazan las carnes jugosas.',
+    tag: 'Melted Comfort',
+    title: 'Melted Swiss Cheese',
+    desc: 'Gooey, golden ribbons hugging the savory, slow-cooked layers.',
   },
   {
-    tag: 'Capas de Sabor',
+    tag: 'Flavor Core',
     title: '4-Hour Slow-Roasted Mojo Pork',
-    desc: 'Marinado en naranja agria, ajo confitado y orégano silvestre con jamón dulce.',
+    desc: 'Marinated in Seville sour orange, garlic confit, and wild oregano with sweet ham.',
   },
   {
-    tag: 'Base Firme',
-    title: 'Pan Cubano Artesanal',
-    desc: 'Miga suave y base prensada que absorbe todos los jugos criollos.',
+    tag: 'Solid Base',
+    title: 'Artisanal Cuban Bread Base',
+    desc: 'Tender crumb and plancha-pressed foundation absorbing all savory criollo drippings.',
   },
 ];
 
@@ -133,16 +133,16 @@ export function ScrollLayerAssembly() {
   }, []);
 
   const currentInfo: LayerInfo = LAYERS_INFO[activeStep] ?? {
-    tag: 'Capas de Sabor',
+    tag: 'Flavor Core',
     title: '4-Hour Slow-Roasted Mojo Pork',
-    desc: 'Marinado en naranja agria, ajo confitado y orégano silvestre con jamón dulce.',
+    desc: 'Marinated in Seville sour orange, garlic confit, and wild oregano with sweet ham.',
   };
 
   return (
     <section
       ref={containerRef}
       id="cuban-sandwich-layers"
-      aria-label="Deconstrucción interactiva del Sándwich Cubano Mojo Grille"
+      aria-label="Interactive deconstruction of the Mojo Grille Cuban Sandwich"
       className="relative h-[300vh] bg-cream-bg border-b border-charcoal-ink/10 select-none"
     >
       <div
@@ -152,13 +152,13 @@ export function ScrollLayerAssembly() {
         {/* Encabezado Superior de Sección */}
         <div className="absolute top-8 md:top-12 left-0 right-0 text-center px-4 pointer-events-none z-10">
           <span className="font-sans text-[11px] font-bold uppercase tracking-widest text-brand-fire">
-            ✦ Arquitectura Gastronómica Artesanal ✦
+            ✦ Artisanal Gastronomic Anatomy ✦
           </span>
           <h3 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tight text-charcoal-ink mt-1">
-            Anatomía del Cubano Prensado
+            Anatomy of the Pressed Cubano
           </h3>
           <p className="font-accent italic text-lg sm:text-2xl text-charcoal-ink/80 lowercase mt-0.5">
-            scrollea para deconstruir cada capa de sabor criollo
+            scroll to deconstruct each layer of criollo flavor
           </p>
         </div>
 
@@ -168,7 +168,7 @@ export function ScrollLayerAssembly() {
           <img
             ref={topBunRef}
             src="/layers/top-bread.webp"
-            alt="Tapa superior de pan cubano tostado a la plancha"
+            alt="Top bun of toasted plancha Cuban bread"
             className="absolute w-full object-contain pointer-events-none drop-shadow-xl will-change-transform z-50"
           />
 
@@ -176,7 +176,7 @@ export function ScrollLayerAssembly() {
           <img
             ref={picklesRef}
             src="/layers/pickles.webp"
-            alt="Pepinillos dill encurtidos y mostaza criolla"
+            alt="Dill pickles and criollo mustard"
             className="absolute w-full object-contain pointer-events-none drop-shadow-md will-change-transform z-40"
           />
 
@@ -184,7 +184,7 @@ export function ScrollLayerAssembly() {
           <img
             ref={cheeseRef}
             src="/layers/cheese.webp"
-            alt="Queso suizo fundido y elástico"
+            alt="Gooey melted Swiss cheese"
             className="absolute w-full object-contain pointer-events-none drop-shadow-md will-change-transform z-30"
           />
 
@@ -192,7 +192,7 @@ export function ScrollLayerAssembly() {
           <img
             ref={porkRef}
             src="/layers/mojo-pork.webp"
-            alt="Pernil asado 4 horas al mojo cítrico y jamón dulce"
+            alt="4-hour slow-roasted citrus mojo pork and sweet ham"
             className="absolute w-full object-contain pointer-events-none drop-shadow-xl will-change-transform z-20"
           />
 
@@ -200,7 +200,7 @@ export function ScrollLayerAssembly() {
           <img
             ref={bottomBunRef}
             src="/layers/bottom-bread.webp"
-            alt="Tapa inferior de pan cubano prensado"
+            alt="Bottom base of pressed artisanal Cuban bread"
             className="absolute w-full object-contain pointer-events-none drop-shadow-2xl will-change-transform z-10"
           />
         </div>
@@ -215,7 +215,7 @@ export function ScrollLayerAssembly() {
               {currentInfo.tag}
             </span>
             <span className="font-sans text-[10px] text-charcoal-ink/60 font-semibold">
-              Capa {activeStep + 1} de 5
+              Layer {activeStep + 1} of 5
             </span>
           </div>
 
@@ -228,16 +228,16 @@ export function ScrollLayerAssembly() {
           </p>
 
           <div className="mt-3 flex items-center gap-1.5 pt-2 border-t border-charcoal-ink/10 text-[10px] font-bold text-leaf-green">
-            <span>🌿 100% Ingredientes Frescos</span>
+            <span>🌿 100% Fresh Ingredients</span>
             <span>•</span>
-            <span>Hecho Al Momento</span>
+            <span>Made al momento</span>
           </div>
         </div>
 
         {/* Indicador sutil de scroll hacia abajo */}
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-charcoal-ink/60 font-sans text-xs tracking-wider uppercase font-semibold">
           <span className="animate-bounce">↓</span>
-          <span>Desplaza para ensamblar</span>
+          <span>Scroll to assemble</span>
         </div>
       </div>
     </section>

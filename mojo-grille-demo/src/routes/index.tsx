@@ -152,7 +152,7 @@ function Index() {
             <div className="mx-auto max-w-4xl text-center">
               <div className="inline-flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-cream-bg px-3.5 py-1 font-mono text-[11px] font-bold text-charcoal-ink uppercase tracking-widest mb-4">
                 <span className="h-1.5 w-1.5 bg-brand-fire rounded-none" aria-hidden="true" />
-                <span>SABOR CRIOLLO PARA TUS EVENTOS</span>
+                <span>CRIOLLO FLAVOR FOR YOUR EVENTS</span>
               </div>
               <h2 className="font-display text-4xl sm:text-6xl font-black tracking-tight uppercase text-charcoal-ink leading-none">
                 Authentic Criollo Catering for your next celebration
@@ -171,7 +171,7 @@ function Index() {
                 </a>
               </div>
               <p className="mt-4 font-mono text-xs text-charcoal-ink/70 uppercase tracking-wide">
-                Serving Little Havana, Brickell, Doral &amp; greater Miami-Dade · Cotizaciones al momento
+                Serving Little Havana, Brickell, Doral &amp; greater Miami-Dade · Instant quotes al momento
               </p>
             </div>
           </section>

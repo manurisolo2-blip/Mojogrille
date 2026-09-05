@@ -22,76 +22,76 @@ export const DISTRICT_PACKAGES: DistrictPackage[] = [
     id: 'wynwood-arts',
     district: 'Wynwood',
     editionName: 'Wynwood Arts Edition',
-    tagline: 'Empaque gráfico de alto contraste para catering creativo',
+    tagline: 'High-contrast graphic packaging for creative event catering',
     serialNumber: 'PACK-WY-01',
-    capacity: '15 - 35 Comensales',
-    thermalRetention: '90 MIN CALOR ACTIVO',
+    capacity: '15 - 35 Guests',
+    thermalRetention: '90 MIN ACTIVE HEAT',
     badge: 'Limited Graphic Run',
     accentColor: '#FFA826', // citrus
     description:
-      'Caja modular serigrafiada a dos tintas con cartón Kraft multicapa térmico. Diseñada para agencias, galerías de arte y sesiones fotográficas en Wynwood.',
+      'Custom two-tone screenprinted Kraft box with multi-layer thermal insulation. Built for creative agencies, art gallery shows, and photo shoots in Wynwood.',
     specs: [
-      'Mini Cubanos prensados crujientes',
-      'Croquetas criollas de jamón y pernil',
-      'Pocillos herméticos de mojo de ajo verde',
-      'Servilletas de algodón Kraft y tenedores eco',
+      'Crisp mini pressed Cubanos',
+      'Criollo ham & pernil croquetas',
+      'Airtight cups of green garlic mojo',
+      'Kraft cotton napkins and eco cutlery',
     ],
   },
   {
     id: 'brickell-express',
     district: 'Brickell',
     editionName: 'Brickell Express',
-    tagline: 'Box lunch hermético individual para ejecutivos',
+    tagline: 'Individual airtight executive box lunches',
     serialNumber: 'PACK-BK-02',
-    capacity: 'Individual / Oficinas (10+)',
-    thermalRetention: '120 MIN SELLADO VACÍO',
-    badge: 'Single Serve Hermético',
+    capacity: 'Individual / Corporate (10+)',
+    thermalRetention: '120 MIN VACUUM SEAL',
+    badge: 'Single Serve Airtight',
     accentColor: '#2F6A4F', // leaf-green
     description:
-      'Compartimentos estancos sellados al vacío que preservan el calor de la plancha sin condensación. Formato ultra-portátil para juntas directivas y corporativos.',
+      'Airtight sealed compartments preserving plancha sizzle without steam condensation. Ultra-portable executive lunch format for corporate boardrooms.',
     specs: [
-      'Bowl Criollo a elección (Lechón, Pollo o Ropa Vieja)',
-      'Mini cubano prensado dorado al momento',
-      'Chips de plátano verde con alioli cítrico',
-      'Postre artesanal de guayaba & queso',
+      'Criollo Bowl of choice (Lechón, Pollo, or Ropa Vieja)',
+      'Plancha-pressed mini golden cubano',
+      'Green plantain chips with citrus mojo aioli',
+      'Artisanal guava & cream cheese dessert',
     ],
   },
   {
     id: 'design-district',
     district: 'Design District',
     editionName: 'Design District Curated',
-    tagline: 'Caja premium con compartimentos separados para salsas de mojo',
+    tagline: 'Premium presentation box with dedicated mojo flight compartments',
     serialNumber: 'PACK-DD-03',
-    capacity: '20 - 40 Invitados',
+    capacity: '20 - 40 Guests',
     thermalRetention: '100 MIN GOURMET LOCK',
     badge: 'Multi-Slot Gourmet',
     accentColor: '#E52516', // brand-fire
     description:
-      'Packaging minimalista en negro carbón mate con troquelado de precisión. 6 compartimentos individuales para maridajes de mojos y emulsiones cítricas de autor.',
+      'Matte charcoal black box with precision die-cut slots. 6 compartments featuring signature mojo pairings and artisanal citrus emulsions.',
     specs: [
-      'Bocados de pernil braseado 4 horas',
-      'Estación de 4 salsas de mojo exclusivas',
-      'Yuca frita crocante y maduros caramelizados',
-      'Vasos térmicos biodegradables para maridaje',
+      'Bite-size 4-hour braised mojo pernil',
+      'Tasting flight of 4 signature mojo sauces',
+      'Crispy yuca fries & caramelized maduros',
+      'Biodegradable tasting cups for mojo pairings',
     ],
   },
   {
     id: 'coral-gables',
     district: 'Coral Gables',
     editionName: 'Coral Gables Family Feast',
-    tagline: 'Pack de tostones y fuentes de pernil para reuniones',
+    tagline: 'Tostones platters and heaping pernil trays for big gatherings',
     serialNumber: 'PACK-CG-04',
-    capacity: '25 - 60 Personas',
-    thermalRetention: '180 MIN TERMO-REFUERZO',
-    badge: 'Mega Feast Familiar',
+    capacity: '25 - 60 Guests',
+    thermalRetention: '180 MIN REINFORCED THERMAL',
+    badge: 'Family Mega Feast',
     accentColor: '#FFA826', // citrus
     description:
-      'Fuentes de aluminio anodizado reforzado con tapas térmicas rígidas diseñadas para celebraciones familiares, quinces y aniversarios bajo el estilo criollo.',
+      'Heavy-gauge anodized aluminum party trays with rigid thermal covers designed for family celebrations, quinces, and milestones criollo style.',
     specs: [
-      'Fuentes XL de pernil asado al mojo criollo',
-      'Packs masivos de tostones doble fritura',
-      'Bandejas de arroz moro con frijoles negros',
-      'Termos de café cubano recién colado al calor',
+      'XL trays of slow-roasted mojo criollo pernil',
+      'Massive platters of twice-fried tostones',
+      'Deep trays of moro rice and black beans',
+      'Thermos jugs of piping hot brewed Cuban coffee',
     ],
   },
 ];
@@ -117,12 +117,12 @@ export function DistrictsCatering() {
     e.preventDefault();
     if (!selectedPkg) return;
 
-    const message = `¡Hola Mojo Grille Catering! Me interesa cotizar el paquete de empaque temático *${selectedPkg.editionName}* para un evento en Miami.%0A%0A` +
-      `• *Comensales estimados:* ${guestCount}%0A` +
-      (customerName ? `• *Contacto:* ${customerName}%0A` : '') +
-      (eventDate ? `• *Fecha deseada:* ${eventDate}%0A` : '') +
-      `• *Capacidad estándar:* ${selectedPkg.capacity}%0A%0A` +
-      `¿Podrían confirmarme disponibilidad y presupuesto personalizado? ¡Muchas gracias!`;
+    const message = `Hello Mojo Grille Catering! I'd like to request a quote for the *${selectedPkg.editionName}* package for an event in Miami.%0A%0A` +
+      `• *Estimated Guests:* ${guestCount}%0A` +
+      (customerName ? `• *Contact:* ${customerName}%0A` : '') +
+      (eventDate ? `• *Event Date:* ${eventDate}%0A` : '') +
+      `• *Standard Capacity:* ${selectedPkg.capacity}%0A%0A` +
+      `Could you confirm availability and customized pricing? Thank you!`;
 
     const waUrl = `https://wa.me/13055550123?text=${message}`;
     window.open(waUrl, '_blank', 'noopener,noreferrer');
@@ -132,20 +132,20 @@ export function DistrictsCatering() {
   return (
     <section
       id="districts-catering"
-      aria-label="Packaging Térmico de Autor y Catering para Distritos de Miami"
+      aria-label="Artisanal Thermal Packaging and Catering for Miami Districts"
       className="relative bg-charcoal-ink text-cream-bg py-24 select-none overflow-hidden border-t border-charcoal-ink/30"
     >
       <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
         {/* Encabezado Editorial */}
         <div className="text-center max-w-4xl mx-auto mb-16 sm:mb-20">
           <span className="block text-brand-fire font-bold uppercase tracking-widest text-xs sm:text-sm mb-3">
-            LLEVAMOS EL SABOR A TODA LA CIUDAD
+            BRINGING THE FLAVOR TO THE ENTIRE CITY
           </span>
           <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-cream-bg leading-[0.9]">
-            PACKAGING TÉRMICO DE AUTOR · DE BROWNSVILLE PARA MIAMI
+            ARTISANAL THERMAL PACKAGING · FROM BROWNSVILLE TO ALL MIAMI
           </h2>
           <p className="mt-4 font-accent italic text-cream-bg/85 text-2xl sm:text-3xl lowercase">
-            calor de plancha preservado en cajas térmicas de diseño artesanal
+            plancha heat preserved in handcrafted thermal presentation boxes
           </p>
         </div>
 
@@ -203,7 +203,7 @@ export function DistrictsCatering() {
                   <div className="space-y-1.5 border-t border-cream-bg/10 pt-3.5 mb-6">
                     <div className="flex items-center gap-1.5 text-[11px] font-sans font-semibold text-cream-bg/90 mb-2">
                       <Users className="h-3.5 w-3.5 text-brand-fire shrink-0" />
-                      <span>Capacidad: {pkg.capacity}</span>
+                      <span>Capacity: {pkg.capacity}</span>
                     </div>
                     {pkg.specs.map((spec, i) => (
                       <div key={i} className="flex items-start gap-2 text-[11px] font-sans text-cream-bg/65">
@@ -219,9 +219,9 @@ export function DistrictsCatering() {
                   type="button"
                   onClick={() => handleOpenModal(pkg)}
                   className="w-full py-3.5 px-4 rounded-none font-sans font-bold uppercase tracking-wider text-xs bg-cream-bg text-charcoal-ink hover:bg-brand-fire hover:text-cream-bg border border-cream-bg hover:border-brand-fire transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
-                  aria-label={`Cotizar catering para ${pkg.editionName}`}
+                  aria-label={`Quote catering for ${pkg.editionName}`}
                 >
-                  <span>COTIZAR CATERING</span>
+                  <span>QUOTE CATERING</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </button>
               </article>
@@ -233,14 +233,14 @@ export function DistrictsCatering() {
         <div className="mt-16 text-center border-t border-cream-bg/10 pt-10 flex flex-col sm:flex-row items-center justify-center gap-6 text-xs text-cream-bg/75">
           <div className="flex items-center gap-2">
             <ShieldCheck className="h-4 w-4 text-leaf-green" />
-            <span>Garantía de calor al momento: entrega puntual en Little Havana, Brickell, Wynwood y Doral.</span>
+            <span>Guaranteed hot on arrival: prompt delivery to Little Havana, Brickell, Wynwood, and Doral.</span>
           </div>
           <a
             href="tel:+13055550123"
             className="inline-flex items-center gap-2 font-bold text-cream-bg hover:text-brand-fire transition-colors underline underline-offset-4"
           >
             <Phone className="h-3.5 w-3.5" />
-            <span>Línea Directa de Catering: (305) 555-0123</span>
+            <span>Direct Catering Line: (305) 555-0123</span>
           </a>
         </div>
       </div>
@@ -259,7 +259,7 @@ export function DistrictsCatering() {
               type="button"
               onClick={handleCloseModal}
               className="absolute top-5 right-5 p-1.5 rounded-none text-charcoal-ink/70 hover:text-charcoal-ink hover:bg-charcoal-ink/10 transition-colors"
-              aria-label="Cerrar modal de cotización"
+              aria-label="Close catering quote modal"
             >
               <X className="h-5 w-5" />
             </button>
@@ -283,30 +283,30 @@ export function DistrictsCatering() {
                   <Check className="h-6 w-6" />
                 </div>
                 <h4 className="font-display text-2xl font-bold uppercase tracking-tight text-charcoal-ink">
-                  ¡Solicitud Enviada!
+                  Request Sent!
                 </h4>
                 <p className="font-sans text-sm text-charcoal-ink/80 max-w-xs mx-auto">
-                  Se ha abierto WhatsApp con los datos de tu evento. Nuestro equipo de catering responderá en menos de 15 minutos.
+                  WhatsApp has been opened with your event details. Our catering team will respond within 15 minutes.
                 </p>
                 <button
                   type="button"
                   onClick={handleCloseModal}
                   className="mt-4 px-6 py-2.5 rounded-none bg-charcoal-ink text-cream-bg font-sans text-xs font-bold uppercase tracking-wider hover:bg-brand-fire transition-colors"
                 >
-                  Cerrar
+                  Close
                 </button>
               </div>
             ) : (
               <form onSubmit={handleWhatsAppQuote} className="space-y-4">
                 <div>
                   <label htmlFor="customer-name" className="block font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink mb-1">
-                    Tu Nombre o Empresa
+                    Your Name or Company
                   </label>
                   <input
                     id="customer-name"
                     type="text"
                     required
-                    placeholder="Ej. Estudio Creativo Wynwood / Carlos Mendoza"
+                    placeholder="e.g. Wynwood Creative Studio / Carlos Mendoza"
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
                     className="w-full rounded-none border border-charcoal-ink/30 bg-cream-bg px-4 py-2.5 font-sans text-sm text-charcoal-ink placeholder:text-charcoal-ink/40 focus:border-brand-fire focus:outline-hidden"
@@ -316,7 +316,7 @@ export function DistrictsCatering() {
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label htmlFor="guest-count" className="block font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink mb-1">
-                      Comensales Aprox.
+                      Approx. Guest Count
                     </label>
                     <select
                       id="guest-count"
@@ -324,15 +324,15 @@ export function DistrictsCatering() {
                       onChange={(e) => setGuestCount(e.target.value)}
                       className="w-full rounded-none border border-charcoal-ink/30 bg-cream-bg px-3 py-2.5 font-sans text-sm text-charcoal-ink focus:border-brand-fire focus:outline-hidden"
                     >
-                      <option value="15-20">15 a 20 personas</option>
-                      <option value="25-35">25 a 35 personas</option>
-                      <option value="40-60">40 a 60 personas</option>
-                      <option value="75-100+">75 a 100+ personas</option>
+                      <option value="15-20">15 to 20 guests</option>
+                      <option value="25-35">25 to 35 guests</option>
+                      <option value="40-60">40 to 60 guests</option>
+                      <option value="75-100+">75 to 100+ guests</option>
                     </select>
                   </div>
                   <div>
                     <label htmlFor="event-date" className="block font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink mb-1">
-                      Fecha del Evento
+                      Event Date
                     </label>
                     <input
                       id="event-date"
@@ -346,14 +346,14 @@ export function DistrictsCatering() {
                 </div>
 
                 <div className="rounded-none border border-charcoal-ink/20 bg-charcoal-ink/5 p-3 text-[11px] font-sans text-charcoal-ink/70">
-                  ⚡ <strong>Confirmación Rápida:</strong> Se enviará un mensaje estructurado directo al WhatsApp de nuestro equipo de catering para cotizar al momento.
+                  ⚡ <strong>Instant Confirmation:</strong> Sends a structured message directly to our catering WhatsApp team for an instant quote.
                 </div>
 
                 <button
                   type="submit"
                   className="w-full py-3.5 px-4 rounded-none font-sans font-bold uppercase tracking-wider text-xs bg-brand-fire text-cream-bg hover:bg-charcoal-ink transition-colors border-2 border-brand-fire hover:border-charcoal-ink flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span>COTIZAR POR WHATSAPP</span>
+                  <span>QUOTE VIA WHATSAPP</span>
                   <ArrowRight className="h-4 w-4" />
                 </button>
               </form>

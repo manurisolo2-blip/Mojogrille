@@ -31,11 +31,11 @@ export interface CravMenuItem {
 }
 
 const CATEGORIES: CategoryTabItem[] = [
-  { id: "favorites", label: "🔥 Favoritos" },
-  { id: "bowls", label: "🥗 Bowls" },
-  { id: "sandwiches", label: "🥪 Sándwiches Cubanos" },
+  { id: "favorites", label: "🔥 Favorites" },
+  { id: "bowls", label: "🥗 Criollo Bowls" },
+  { id: "sandwiches", label: "🥪 Pressed Cubanos" },
   { id: "sides", label: "🥟 Sides / Pa' Picar" },
-  { id: "drinks", label: "🥤 Bebidas" },
+  { id: "drinks", label: "🥤 Cafecito & Drinks" },
 ];
 
 const CRAV_MENU_ITEMS: CravMenuItem[] = [
@@ -46,7 +46,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: true,
     price: 14.5,
     description:
-      "Pechuga tierna marinada en mojo cítrico por 24h, arroz blanco criollo, frijoles negros sazonados, plátanos maduros dulces y mojo verde fresco.",
+      "Tender chicken breast marinated in citrus mojo for 24h, white rice, seasoned black beans, sweet ripe maduros & fresh green mojo.",
     imageUrl: chickenImg,
     badgeType: "fresh",
     badgeText: "Fresh / Gluten Friendly",
@@ -59,7 +59,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: true,
     price: 13.95,
     description:
-      "Jamón curado dulce, lechón asado desmenuzado en su jugo, queso suizo fundido, pepinillos encurtidos y mostaza suave en pan cubano prensado con mantequilla dorada.",
+      "Sweet cured ham, shredded slow-roasted lechón in its juices, melted Swiss cheese, crisp pickles & yellow mustard on butter-crusted pressed Cuban bread.",
     imageUrl: cubanImg,
     badgeType: "top_seller",
     badgeText: "Top Seller",
@@ -72,7 +72,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: true,
     price: 15.95,
     description:
-      "Cerdo deshebrado marinado lentamente en naranja agria y ajo asado con comino. Acompañado de arroz moro con frijoles negros y crujientes tostones.",
+      "Shredded pork shoulder slow-braised in Seville sour orange and roasted garlic with cumin. Served with moro rice and crispy tostones.",
     imageUrl: porkImg,
     badgeType: "signature",
     badgeText: "Signature Mojo",
@@ -85,7 +85,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: false,
     price: 16.5,
     description:
-      "Hebras de falda de res guisadas lentamente con sofrito de pimientos rojos, cebollas caramelizadas y aceitunas. Servido sobre arroz moro y maduros.",
+      "Tender shredded flank steak slow-braised in red pepper, sweet onion & olive sofrito. Served over moro rice and sweet maduros.",
     imageUrl: porkImg,
     badgeType: "top_seller",
     badgeText: "Top Seller",
@@ -98,7 +98,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: true,
     price: 6.5,
     description:
-      "Bastones de yuca crujientes y dorados por fuera, cremosos por dentro, bañados en abundante mojo de ajo asado con cilantro y limón.",
+      "Golden crispy yuca batons, fluffy on the inside, drenched in roasted garlic mojo with fresh cilantro and key lime.",
     imageUrl: tostonesImg,
     badgeType: "fresh",
     badgeText: "Fresh / Gluten Friendly",
@@ -111,7 +111,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: false,
     price: 6.0,
     description:
-      "Plátanos machos verdes fritos dos veces al estilo tradicional de Miami con sal marina y salsa tártara criolla especial de la casa.",
+      "Twice-fried green plantains prepared traditional Miami style with sea salt flakes and house garlic dip.",
     imageUrl: tostonesImg,
     badgeType: "fresh",
     badgeText: "Fresh / Gluten Friendly",
@@ -124,7 +124,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: true,
     price: 3.5,
     description:
-      "Espresso cubano extra oscuro con su tradicional espumita dulce de caña de azúcar recién batida. Para compartir o disfrutar al momento.",
+      "Dark roast Cuban espresso whipped with sweet demerara sugar to create thick golden espumita. Brewed to share al momento.",
     imageUrl: cafecitoImg,
     badgeType: "signature",
     badgeText: "Signature Mojo",
@@ -137,7 +137,7 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
     isFavorite: false,
     price: 4.5,
     description:
-      "Néctar de guayaba rosa batido en frío con zumo de limas recién exprimidas y azúcar morena de caña. Muy refrescante.",
+      "Chilled pink guava nectar blended with freshly squeezed key lime juice and raw cane sugar. Intensely refreshing.",
     imageUrl: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80",
     badgeType: "top_seller",
     badgeText: "Top Seller",
@@ -225,13 +225,13 @@ export function CravStyleMenuGrid({
             CATALOG // SECTION B
           </div>
           <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-charcoal-ink leading-none">
-            Hecho a Fuego Lento, Servido <span className="text-brand-fire">Al Momento</span>.
+            SLOW ROASTED, SERVED <span className="text-brand-fire">AL MOMENTO</span>.
           </h2>
           <p className="mt-2 font-accent italic text-2xl sm:text-3xl text-brand-fire lowercase tracking-normal">
-            sabores criollos cocinados con paciencia y sazón de casa.
+            authentic criollo flavors prepared with patience and generational recipes.
           </p>
           <p className="mt-3 font-sans text-sm sm:text-base text-charcoal-ink/80 leading-relaxed max-w-2xl mx-auto">
-            Preparado al instante en Little Havana, Brickell y Doral con 24 horas de maceración en naranja agria, ajo criollo y orégano fresco.
+            Prepared fresh in Little Havana, Brickell, and Doral with 24 hours of marinade in Seville sour orange, crushed garlic, and fresh oregano.
           </p>
         </div>
 
@@ -239,7 +239,7 @@ export function CravStyleMenuGrid({
         <div className="sticky top-[56px] sm:top-[64px] z-30 mb-10 py-2 backdrop-blur-md bg-cream-bg/90">
           <div
             role="tablist"
-            aria-label="Categorías del Menú"
+            aria-label="Menu Categories"
             className="no-scrollbar flex items-center justify-start sm:justify-center gap-1.5 overflow-x-auto p-1.5 rounded-none bg-surface-sand border border-charcoal-ink/20 max-w-4xl mx-auto"
           >
             {CATEGORIES.map((category) => {
@@ -316,7 +316,7 @@ export function CravStyleMenuGrid({
                 <div className="mt-6 flex items-center justify-between border-t border-charcoal-ink/15 pt-4">
                   <div>
                     <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-charcoal-ink/60 block">
-                      PRECIO
+                      PRICE
                     </span>
                     <span className="font-display text-3xl font-black text-charcoal-ink">
                       ${item.price.toFixed(2)}
@@ -327,8 +327,8 @@ export function CravStyleMenuGrid({
                   <button
                     type="button"
                     onClick={() => handleQuickAdd(item)}
-                    aria-label={`Añadir ${item.name} al pedido`}
-                    title="Añadir al pedido"
+                    aria-label={`Add ${item.name} to order`}
+                    title="Add to order"
                     className={`relative inline-flex items-center gap-1.5 rounded-none px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider border transition-colors cursor-pointer select-none ${
                       isAdded
                         ? "bg-leaf-green text-cream-bg border-leaf-green"
@@ -338,12 +338,12 @@ export function CravStyleMenuGrid({
                     {isAdded ? (
                       <>
                         <Check className="h-4 w-4 stroke-[3]" />
-                        <span>AÑADIDO</span>
+                        <span>ADDED</span>
                       </>
                     ) : (
                       <>
                         <Plus className="h-4 w-4 stroke-[3]" />
-                        <span>+ AGREGAR</span>
+                        <span>+ ADD TO ORDER</span>
                       </>
                     )}
                   </button>
@@ -356,10 +356,10 @@ export function CravStyleMenuGrid({
         {/* Bloque editorial de consulta personalizada */}
         <div className="mt-14 rounded-none bg-surface-sand p-6 sm:p-8 border-2 border-charcoal-ink text-center">
           <p className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-charcoal-ink font-bold">
-            ¿CONSULTA DE INGREDIENTES O PEDIDO PERSONALIZADO?
+            NEED INGREDIENT DETAILS OR A CUSTOM ORDER?
           </p>
           <p className="mt-2 font-sans text-xs sm:text-sm text-charcoal-ink/80 max-w-xl mx-auto">
-            Nuestro equipo en Little Havana y Brickell atiende tus dudas al momento a través de cocina directa.
+            Our team in Little Havana and Brickell is ready to answer questions and customize your order al momento.
           </p>
           <div className="mt-5">
             <a
@@ -368,7 +368,7 @@ export function CravStyleMenuGrid({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg border-2 border-brand-fire hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none"
             >
-              <span>Preguntar por WhatsApp</span>
+              <span>Inquire via WhatsApp</span>
               <span>➔</span>
             </a>
           </div>

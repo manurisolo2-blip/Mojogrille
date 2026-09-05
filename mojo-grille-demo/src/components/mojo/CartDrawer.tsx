@@ -54,11 +54,11 @@ export function CartDrawer() {
       .map((item) => `• ${item.quantity}x ${item.name} ($${(item.price * item.quantity).toFixed(2)})`)
       .join("%0A");
 
-    const message = `¡Hola Mojo Grille! Quiero confirmar mi pedido:%0A%0A${linesText}%0A%0ASubtotal: $${subtotal.toFixed(
+    const message = `Hello Mojo Grille! I'd like to place an order:%0A%0A${linesText}%0A%0ASubtotal: $${subtotal.toFixed(
       2
     )}%0ATax (7%): $${estimatedTax.toFixed(2)}%0ATotal: $${total.toFixed(
       2
-    )}%0A%0A¡Muchas gracias!`;
+    )}%0A%0AThank you!`;
 
     const whatsappUrl = `https://wa.me/13055550123?text=${message}`;
     window.open(whatsappUrl, "_blank");
@@ -82,7 +82,7 @@ export function CartDrawer() {
           </div>
           <div className="text-left">
             <p className="font-sans text-xs font-bold text-cream-bg">
-              {toast?.message || "¡Añadido al pedido criollo!"}
+              {toast?.message || "Added to your order!"}
             </p>
             <p className="font-sans text-[11px] text-cream-bg/70 line-clamp-1">
               {toast?.itemName}
@@ -99,13 +99,13 @@ export function CartDrawer() {
             }}
             className="rounded-none bg-cream-bg/20 border border-cream-bg/30 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-cream-bg hover:bg-brand-fire transition-colors cursor-pointer"
           >
-            Ver
+            View
           </button>
           <button
             type="button"
             onClick={dismissToast}
             className="text-cream-bg/60 hover:text-cream-bg p-1 cursor-pointer"
-            aria-label="Cerrar notificación"
+            aria-label="Dismiss notification"
           >
             <X className="h-4 w-4" />
           </button>
@@ -125,7 +125,7 @@ export function CartDrawer() {
       <aside
         role="dialog"
         aria-modal="true"
-        aria-label="Carrito de compras Mojo Grille"
+        aria-label="Your Order Shopping Cart"
         className={`fixed inset-y-0 right-0 max-w-md w-full bg-surface-sand z-50 border-l-2 border-charcoal-ink flex flex-col justify-between select-none transition-transform duration-300 ease-in-out transform ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
@@ -138,10 +138,10 @@ export function CartDrawer() {
             </div>
             <div>
               <h2 className="font-display text-2xl font-bold uppercase tracking-tight text-charcoal-ink leading-none">
-                Tu Pedido Criollo
+                Your Criollo Order
               </h2>
               <span className="font-mono text-xs font-semibold uppercase tracking-wider text-charcoal-ink/70">
-                {itemCount} {itemCount === 1 ? "producto" : "productos"} añadidos
+                {itemCount} {itemCount === 1 ? "item" : "items"} added
               </span>
             </div>
           </div>
@@ -150,7 +150,7 @@ export function CartDrawer() {
             type="button"
             onClick={closeCart}
             className="flex h-9 w-9 items-center justify-center rounded-none border border-charcoal-ink bg-cream-bg text-charcoal-ink hover:bg-brand-fire hover:text-cream-bg hover:border-brand-fire transition-colors cursor-pointer"
-            aria-label="Cerrar panel de pedido"
+            aria-label="Close order panel"
           >
             <X className="h-5 w-5" />
           </button>
@@ -168,7 +168,7 @@ export function CartDrawer() {
                   Your cart is empty. Start with our signature favorites!
                 </p>
                 <p className="font-sans text-xs sm:text-sm text-charcoal-ink/70 mt-1 max-w-xs">
-                  Explora nuestros Bowls Criollos y Sándwiches Cubanos marinados al mojo al momento.
+                  Explore our slow-roasted Criollo Bowls and plancha-pressed Cubanos made fresh al momento.
                 </p>
               </div>
               <button
@@ -176,7 +176,7 @@ export function CartDrawer() {
                 onClick={closeCart}
                 className="rounded-none border-2 border-brand-fire bg-brand-fire px-6 py-2.5 font-sans text-xs font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer"
               >
-                Explorar Menú
+                Explore Menu
               </button>
             </div>
           ) : (
@@ -207,7 +207,7 @@ export function CartDrawer() {
                     ${(item.price * item.quantity).toFixed(2)}
                     {item.quantity > 1 && (
                       <span className="font-normal text-[11px] text-charcoal-ink/60 ml-1">
-                        (${item.price.toFixed(2)} c/u)
+                        (${item.price.toFixed(2)} each)
                       </span>
                     )}
                   </p>
@@ -225,7 +225,7 @@ export function CartDrawer() {
                       type="button"
                       onClick={() => decrement(item.id)}
                       className="flex h-6 w-6 items-center justify-center rounded-none text-charcoal-ink hover:bg-cream-bg transition-colors cursor-pointer"
-                      aria-label={`Reducir cantidad de ${item.name}`}
+                      aria-label={`Decrease quantity of ${item.name}`}
                     >
                       <Minus className="h-3 w-3" />
                     </button>
@@ -236,7 +236,7 @@ export function CartDrawer() {
                       type="button"
                       onClick={() => increment(item.id)}
                       className="flex h-6 w-6 items-center justify-center rounded-none text-charcoal-ink hover:bg-cream-bg transition-colors cursor-pointer"
-                      aria-label={`Aumentar cantidad de ${item.name}`}
+                      aria-label={`Increase quantity of ${item.name}`}
                     >
                       <Plus className="h-3 w-3" />
                     </button>
@@ -246,7 +246,7 @@ export function CartDrawer() {
                     type="button"
                     onClick={() => removeItem(item.id)}
                     className="p-1.5 text-charcoal-ink/40 hover:text-brand-fire transition-colors cursor-pointer"
-                    aria-label={`Eliminar ${item.name} del carrito`}
+                    aria-label={`Remove ${item.name} from cart`}
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>
@@ -262,11 +262,11 @@ export function CartDrawer() {
             {/* Desglose de Precios */}
             <div className="space-y-1.5 font-sans text-xs text-charcoal-ink/75">
               <div className="flex justify-between">
-                <span>Subtotal acumulado</span>
+                <span>Item subtotal</span>
                 <span className="font-bold text-charcoal-ink">${subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
-                <span>Impuesto estimado (Florida 7%)</span>
+                <span>Estimated tax (Florida 7%)</span>
                 <span className="font-bold text-charcoal-ink">${estimatedTax.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-sm sm:text-base font-black text-charcoal-ink pt-2 border-t border-charcoal-ink/15">
@@ -287,7 +287,7 @@ export function CartDrawer() {
               onClick={handleCheckout}
               className="w-full flex items-center justify-center gap-2 rounded-none border-2 border-brand-fire bg-brand-fire py-4 font-sans text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none shadow-none"
             >
-              <span>CHECKOUT SEGURO</span>
+              <span>SECURE CHECKOUT</span>
               <ArrowRight className="h-4 w-4 font-bold" />
             </button>
 
@@ -297,7 +297,7 @@ export function CartDrawer() {
                 onClick={clearCart}
                 className="font-sans text-[11px] text-charcoal-ink/50 hover:text-brand-fire underline transition-colors cursor-pointer"
               >
-                Vaciar carrito completo
+                Clear entire cart
               </button>
             </div>
           </div>

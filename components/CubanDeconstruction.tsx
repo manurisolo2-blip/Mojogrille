@@ -260,13 +260,13 @@ export function CubanDeconstruction() {
         {/* Encabezado Superior de Sección */}
         <div className="absolute top-4 sm:top-8 left-0 right-0 text-center px-4 pointer-events-none z-10">
           <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-brand-fire">
-            ✦ RADIOGRAFÍA DE UN CLÁSICO ✦
+            ✦ ANATOMY OF A CLASSIC ✦
           </span>
           <h3 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-charcoal-ink mt-0.5 sm:mt-1">
-            EL CUBANO QUE NO PERDONA
+            THE UNFORGIVING CUBANO
           </h3>
           <p className="font-accent italic text-base sm:text-xl lg:text-2xl text-charcoal-ink/80 lowercase mt-0.5">
-            desplaza para deconstruir cada capa de sabor criollo al momento
+            scroll to deconstruct every layer of criollo flavor al momento
           </p>
         </div>
 
@@ -287,7 +287,7 @@ export function CubanDeconstruction() {
             >
               <Image
                 src="/sandwich/01-top-bread.webp"
-                alt="Tapa superior de pan cubano tostado"
+                alt="Toasted artisanal Cuban bread top crust"
                 width={1000}
                 height={545}
                 priority
@@ -304,7 +304,7 @@ export function CubanDeconstruction() {
             >
               <Image
                 src="/sandwich/02-pickles.webp"
-                alt="Láminas de pepinillo dill encurtido y mostaza criolla"
+                alt="Tangy dill pickles and yellow mustard slices"
                 width={1000}
                 height={545}
                 priority
@@ -321,7 +321,7 @@ export function CubanDeconstruction() {
             >
               <Image
                 src="/sandwich/03-melted-cheese.webp"
-                alt="Queso suizo fundido y elástico"
+                alt="Melted stretchy Swiss cheese"
                 width={1000}
                 height={545}
                 priority
@@ -338,7 +338,7 @@ export function CubanDeconstruction() {
             >
               <Image
                 src="/sandwich/04-mojo-pork.webp"
-                alt="Pernil de cerdo asado 4 horas al mojo cítrico y jamón dulce"
+                alt="Slow-roasted 4-hour citrus mojo pork and sweet cured ham"
                 width={1000}
                 height={545}
                 priority
@@ -355,7 +355,7 @@ export function CubanDeconstruction() {
             >
               <Image
                 src="/sandwich/05-bottom-bread.webp"
-                alt="Tapa inferior de pan cubano prensado"
+                alt="Bottom crust of plancha-pressed Cuban bread"
                 width={1000}
                 height={545}
                 priority
@@ -375,18 +375,18 @@ export function CubanDeconstruction() {
             <div className="flex items-center gap-2 mb-1.5">
               <span className="h-1.5 w-1.5 rounded-none bg-brand-fire" aria-hidden="true" />
               <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-brand-fire">
-                RADIOGRAFÍA DE UN CLÁSICO
+                ANATOMY OF A CLASSIC
               </span>
             </div>
 
             {/* Título Display Monumental */}
             <h4 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-charcoal-ink leading-[0.9]">
-              EL CUBANO QUE NO PERDONA
+              THE UNFORGIVING CUBANO
             </h4>
 
             {/* Subtítulo Cursivo Editorial */}
             <p className="font-accent font-serif italic text-sm sm:text-base text-charcoal-ink/70 lowercase mt-1 mb-3">
-              pan prensado, pernil al mojo &amp; acidez milimétrica
+              pressed bread, mojo pork &amp; calibrated tang
             </p>
 
             {/* Puntos Clave de Calle / Comanda */}
@@ -394,47 +394,47 @@ export function CubanDeconstruction() {
               <div>
                 <div className="flex items-center gap-1.5">
                   <span className="font-mono text-[9.5px] font-bold uppercase tracking-wider text-charcoal-ink bg-surface-sand px-1.5 py-0.5 border border-charcoal-ink/20">
-                    PAN
+                    BREAD
                   </span>
                   <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
-                    Corteza Quebradiza
+                    Crusty &amp; Golden
                   </span>
                 </div>
                 <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/80 leading-snug mt-0.5">
-                  Miga densa. Prensado en plancha de hierro hasta crujir.
+                  Dense crumb. Plancha-pressed on hot cast iron until crackling crisp.
                 </p>
               </div>
 
               <div>
                 <div className="flex items-center gap-1.5">
                   <span className="font-mono text-[9.5px] font-bold uppercase tracking-wider text-cream-bg bg-brand-fire px-1.5 py-0.5">
-                    CARNE
+                    MEAT
                   </span>
                   <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
-                    Pernil al Mojo Fuego Vivo
+                    Live-Fire Mojo Pernil
                   </span>
                 </div>
                 <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/80 leading-snug mt-0.5">
-                  Bañado en grasa de mojo y ajo dorado en plancha caliente.
+                  Basted in citrus mojo drippings and golden garlic on sizzling cast iron.
                 </p>
               </div>
 
               <div>
                 <div className="flex items-center gap-1.5">
                   <span className="font-mono text-[9.5px] font-bold uppercase tracking-wider text-charcoal-ink bg-surface-sand px-1.5 py-0.5 border border-charcoal-ink/20">
-                    ENCURTIDO
+                    PICKLES
                   </span>
                   <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
-                    Acidez Milimétrica
+                    Calibrated Tang
                   </span>
                 </div>
                 <p className="font-sans text-[11px] sm:text-xs text-charcoal-ink/80 leading-snug mt-0.5">
-                  Pepinillo dill para cortar con precisión la grasa del cerdo asado.
+                  Crisp dill pickles calibrated to cut through the rich roasted pork.
                 </p>
               </div>
             </div>
 
-            {/* Ficha Técnica Integrada (Sin pastillas redondeadas ni conteos de fitness) */}
+            {/* Ficha Técnica Integrada */}
             <div className="mt-3.5 pt-2.5 border-t border-charcoal-ink/15 flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1 rounded-none border border-charcoal-ink/20 bg-surface-sand/50 px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-charcoal-ink">
                 <Clock className="h-2.5 w-2.5 text-brand-fire" aria-hidden="true" />
@@ -446,7 +446,7 @@ export function CubanDeconstruction() {
               </span>
               <span className="inline-flex items-center gap-1 rounded-none border border-leaf-green/30 bg-leaf-green/10 px-2 py-0.5 font-mono text-[10px] font-bold uppercase text-leaf-green">
                 <Sparkles className="h-2.5 w-2.5" aria-hidden="true" />
-                100% ARTESANAL
+                100% ARTISANAL
               </span>
             </div>
 
@@ -456,7 +456,7 @@ export function CubanDeconstruction() {
                 href="#curated-menu"
                 className="inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-wider text-brand-fire hover:text-charcoal-ink transition-colors group cursor-pointer"
               >
-                <span>ORDENAR CALIENTE</span>
+                <span>ORDER HOT</span>
                 <span className="transition-transform group-hover:translate-x-1">→</span>
               </a>
             </div>
@@ -467,7 +467,7 @@ export function CubanDeconstruction() {
         {/* Indicador de scroll */}
         <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-charcoal-ink/60 font-sans text-[10px] sm:text-xs tracking-wider uppercase font-semibold pointer-events-none">
           <span className="animate-bounce">↓</span>
-          <span>Desplaza para deconstruir</span>
+          <span>Scroll to deconstruct</span>
         </div>
       </div>
     </section>

@@ -51,7 +51,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
 
             <div className="flex flex-col text-left">
               <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-cream-bg/70">
-                {count > 0 ? `${count} plato${count > 1 ? "s" : ""}` : "Tu Pedido"}
+                {count > 0 ? `${count} item${count > 1 ? "s" : ""}` : "Your Order"}
               </span>
               <span className="font-display text-lg font-bold tracking-tight text-cream-bg leading-tight">
                 {count > 0 ? currency(total) : "$0.00"}
@@ -63,10 +63,10 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
           <button
             type="button"
             onClick={() => setIsModalOpen(true)}
-            aria-label="Hacer Pedido por WhatsApp"
+            aria-label="Order via WhatsApp"
             className="group flex items-center justify-center gap-2 rounded-none border-2 border-brand-fire bg-brand-fire px-5 py-3 font-sans text-sm font-bold text-cream-bg shadow-none transition-colors duration-150 hover:bg-cream-bg hover:text-charcoal-ink focus:outline-none"
           >
-            <span>Hacer Pedido</span>
+            <span>Order Now</span>
             <span className="font-bold text-base transition-transform group-hover:translate-x-1">
               ➔
             </span>
@@ -92,7 +92,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
                 </span>
                 <div>
                   <h3 id="modal-order-title" className="font-display text-xl font-bold tracking-tight uppercase text-charcoal-ink">
-                    Confirmar Pedido WhatsApp
+                    Confirm WhatsApp Order
                   </h3>
                   <p className="font-sans text-xs text-charcoal-ink/60">
                     Mojo Grille Cuban Kitchen • Miami
@@ -104,7 +104,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
                 type="button"
                 onClick={() => setIsModalOpen(false)}
                 className="rounded-none border border-charcoal-ink/20 p-1.5 text-charcoal-ink/60 hover:bg-surface-sand hover:text-charcoal-ink transition-colors"
-                aria-label="Cerrar modal"
+                aria-label="Close modal"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -114,9 +114,9 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
             <div className="mt-4 rounded-none bg-surface-sand p-3 border border-charcoal-ink/20">
               <div className="flex items-center justify-between mb-2 text-xs font-semibold text-charcoal-ink/70">
                 <span className="flex items-center gap-1.5 text-leaf-green font-bold">
-                  <CheckCircle2 className="h-4 w-4" /> Sede Seleccionada
+                  <CheckCircle2 className="h-4 w-4" /> Selected Location
                 </span>
-                <span className="font-mono text-[10px] uppercase">Cambiar</span>
+                <span className="font-mono text-[10px] uppercase">Change</span>
               </div>
               <div className="flex gap-1.5 overflow-x-auto no-scrollbar">
                 {availableLocations.map((loc) => (
@@ -139,15 +139,15 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
             {/* Desglose de Platos Seleccionados */}
             <div className="mt-4">
               <h4 className="font-mono text-[11px] font-bold uppercase tracking-wider text-charcoal-ink/70 mb-2">
-                Resumen de Platos ({count})
+                Order Summary ({count})
               </h4>
               {lines.length === 0 ? (
                 <div className="rounded-none border border-dashed border-charcoal-ink/30 bg-surface-sand/50 p-6 text-center">
                   <p className="text-sm font-medium text-charcoal-ink/70">
-                    Aún no has seleccionado ningún plato.
+                    No items selected yet.
                   </p>
                   <p className="mt-1 text-xs text-brand-fire font-semibold">
-                    ¡Elige tus bowls y cubanos favoritos arriba!
+                    Choose your favorite bowls and cubanos above!
                   </p>
                 </div>
               ) : (
@@ -179,7 +179,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
             {/* Total Estimado */}
             <div className="mt-4 flex items-center justify-between rounded-none bg-surface-sand p-3.5 border border-charcoal-ink/20">
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-charcoal-ink">
-                Total Estimado
+                Estimated Total
               </span>
               <span className="font-display text-xl font-bold text-brand-fire">
                 {currency(total)}
@@ -196,7 +196,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
                 className="flex w-full items-center justify-center gap-2.5 rounded-none border-2 border-charcoal-ink bg-leaf-green py-3.5 px-4 font-sans text-sm font-bold text-cream-bg shadow-none transition-all hover:bg-charcoal-ink"
               >
                 <MessageCircle className="h-5 w-5" />
-                <span>Enviar Pedido a WhatsApp</span>
+                <span>Send Order to WhatsApp</span>
               </a>
 
               <button
@@ -204,7 +204,7 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
                 onClick={() => setIsModalOpen(false)}
                 className="w-full py-2 text-center font-mono text-[11px] uppercase tracking-wider font-semibold text-charcoal-ink/60 hover:text-brand-fire"
               >
-                Continuar eligiendo platos
+                Continue browsing menu
               </button>
             </div>
 

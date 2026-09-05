@@ -21,7 +21,7 @@ export function TopMarquee({ variant = 'terracotta' }: TopMarqueeProps) {
 
   return (
     <aside
-      aria-label="Destacados de Mojo Grille"
+      aria-label="Mojo Grille highlights marquee"
       className={`relative z-50 w-full overflow-hidden py-2.5 text-cream-bg select-none border-b ${bgClass} shadow-xs`}
     >
       <div className="relative flex overflow-x-hidden">

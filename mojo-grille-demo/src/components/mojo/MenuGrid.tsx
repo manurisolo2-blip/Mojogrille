@@ -81,7 +81,7 @@ export function MenuGrid({
           <div className="mt-5 flex items-center justify-between border-t border-[#EAE5DC]/80 px-1 pt-4">
             <div>
               <span className="font-sans text-[11px] font-semibold uppercase tracking-wider text-[#78716C] block">
-                Precio
+                Price
               </span>
               <p className="font-sans text-xl font-black text-[#1C1917]">
                 {currency(item.price)}
@@ -95,7 +95,7 @@ export function MenuGrid({
               className="inline-flex items-center gap-2 rounded-full bg-[#D95327] px-4 py-2.5 font-sans text-sm font-bold text-white shadow-md shadow-[#D95327]/25 transition-all duration-200 hover:bg-[#B83E16] active:scale-95"
             >
               <Plus className="h-4 w-4 stroke-[3]" />
-              <span>{item.sidesAllowed ? "Personalizar" : "Añadir"}</span>
+              <span>{item.sidesAllowed ? "Customize" : "Add"}</span>
             </button>
           </div>
         </article>

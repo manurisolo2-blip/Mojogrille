@@ -78,7 +78,7 @@ export function QuickOrderModal({
           {item.sidesAllowed ? (
             <>
               <p className="mt-6 font-mono text-xs font-bold uppercase tracking-widest text-charcoal-ink/80 border-b border-charcoal-ink/15 pb-2">
-                CHOOSE SIDES // GUARNICIONES
+                CHOOSE SIDES // SIDES & EXTRAS
               </p>
               <ul className="mt-3 space-y-2">
                 {sideOptions.map((side) => {
@@ -119,7 +119,7 @@ export function QuickOrderModal({
             </>
           ) : (
             <p className="mt-6 rounded-none border border-leaf-green/30 bg-leaf-green/10 px-4 py-3 font-mono text-xs font-bold uppercase text-leaf-green">
-              HECHO AL MOMENTO // 100% ARTESANAL MIAMI
+              MADE AL MOMENTO // 100% ARTISANAL MIAMI
             </p>
           )}
 
@@ -136,7 +136,7 @@ export function QuickOrderModal({
             }}
             className="mt-6 flex w-full items-center justify-between gap-2 rounded-none border-2 border-brand-fire bg-brand-fire px-6 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none shadow-none"
           >
-            <span className="truncate">AGREGAR AL PEDIDO</span>
+            <span className="truncate">ADD TO ORDER</span>
             <span className="shrink-0 font-display text-xl">• {currency(total)}</span>
           </button>
         </div>

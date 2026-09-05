@@ -92,7 +92,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
   return (
     <footer
       id="footer"
-      aria-label="Pie de página editorial de Mojo Grille"
+      aria-label="Mojo Grille editorial footer"
       className="relative bg-cream-bg text-charcoal-ink border-t border-charcoal-ink/10 pt-20 pb-8 px-6 md:px-12 select-none overflow-hidden"
     >
       {/* 1. Titular Masivo Superior (Width Completo) */}
@@ -103,7 +103,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
         <div className="flex flex-col sm:flex-row items-center justify-between mt-3 text-xs sm:text-sm font-sans uppercase tracking-widest text-charcoal-ink/70">
           <p className="font-semibold">CUBAN KITCHEN &amp; ARTISANAL PLANCHA · MIAMI, FL</p>
           <p className="font-accent italic text-base sm:text-lg text-brand-fire normal-case mt-1 sm:mt-0">
-            sabor criollo macerado 24 horas al mojo cítrico
+            authentic criollo flavor marinated 24 hours in citrus mojo
           </p>
         </div>
       </div>
@@ -116,24 +116,24 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
           <div className="flex items-center gap-2 text-brand-fire">
             <MapPin className="h-4 w-4" />
             <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-charcoal-ink">
-              Ubicación &amp; Horarios de Plancha
+              Location &amp; Plancha Hours
             </h3>
           </div>
 
           <div className="space-y-1 font-sans text-sm text-charcoal-ink/85">
-            <p className="font-bold text-base text-charcoal-ink">Cocina Central Brownsville</p>
+            <p className="font-bold text-base text-charcoal-ink">Brownsville Central Kitchen</p>
             <p>2920 NW 27th Ave, Miami, FL 33142</p>
-            <p className="text-xs text-charcoal-ink/60">Puntos de retiro: Little Havana · Brickell · Doral</p>
+            <p className="text-xs text-charcoal-ink/60">Pickup hubs: Little Havana · Brickell · Doral</p>
           </div>
 
           <div className="pt-2 border-t border-charcoal-ink/10 space-y-1 font-sans text-xs text-charcoal-ink/75 leading-relaxed">
             <div className="flex items-center gap-1.5 font-bold text-charcoal-ink">
               <Clock className="h-3.5 w-3.5 text-brand-fire" />
-              <span>Plancha Activa al Momento:</span>
+              <span>Plancha Active al Momento:</span>
             </div>
-            <p>Lunes a Jueves: 11:00 AM – 10:00 PM</p>
-            <p>Viernes &amp; Sábado: 11:00 AM – 11:30 PM</p>
-            <p>Domingo: 12:00 PM – 9:00 PM</p>
+            <p>Monday to Thursday: 11:00 AM – 10:00 PM</p>
+            <p>Friday &amp; Saturday: 11:00 AM – 11:30 PM</p>
+            <p>Sunday: 12:00 PM – 9:00 PM</p>
           </div>
         </div>
 
@@ -142,7 +142,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
           <div className="flex items-center gap-2 text-brand-fire">
             <Sparkles className="h-4 w-4" />
             <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-charcoal-ink">
-              Navegación Rápida
+              Quick Navigation
             </h3>
           </div>
 
@@ -152,7 +152,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 href="#menu"
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex transition-transform duration-200"
               >
-                ✦ Menú Completo &amp; Bowls Criollos
+                ✦ Full Menu &amp; Criollo Bowls
               </a>
             </li>
             <li>
@@ -160,7 +160,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 href="#cuban-deconstruction"
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex transition-transform duration-200"
               >
-                ✦ Anatomía del Cubano Prensado
+                ✦ Anatomy of the Pressed Cubano
               </a>
             </li>
             <li>
@@ -168,7 +168,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 href="#curated-menu"
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex transition-transform duration-200"
               >
-                ✦ Selección de la Plancha (6 Platos)
+                ✦ Plancha Selection (Signature Dishes)
               </a>
             </li>
             <li>
@@ -176,7 +176,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 href="#districts-catering"
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex transition-transform duration-200"
               >
-                ✦ Packaging Térmico &amp; Catering Corporativo
+                ✦ Thermal Packaging &amp; Corporate Catering
               </a>
             </li>
             <li>
@@ -185,7 +185,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 onClick={onOpenCart}
                 className="hover:text-brand-fire hover:translate-x-1 inline-flex items-center gap-1.5 transition-transform duration-200 cursor-pointer text-left"
               >
-                ✦ Ver Orden / Carrito Transaccional
+                ✦ View Order / Order Drawer
               </button>
             </li>
           </ul>
@@ -194,10 +194,10 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
         {/* Columna 3: Registro a Newsletter en una Sola Línea */}
         <div className="md:col-span-4 space-y-4">
           <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-charcoal-ink">
-            Boletín Criollo &amp; Secret Drops
+            Criollo Dispatch &amp; Secret Drops
           </h3>
           <p className="font-sans text-xs sm:text-sm text-charcoal-ink/75 leading-relaxed">
-            Recibe avisos de batches exclusivos de salsa al mojo cítrico, degustaciones pop-up y descuentos secretos para eventos en Miami.
+            Get early access to exclusive small-batch citrus mojo, pop-up tastings, and secret perks for Miami gatherings.
           </p>
 
           <form onSubmit={handleNewsletterSubmit} className="pt-2">
@@ -205,7 +205,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
               <input
                 type="email"
                 required
-                placeholder="tu-correo@miami.com"
+                placeholder="your-email@miami.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full bg-transparent font-sans text-sm text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-hidden"
@@ -214,18 +214,18 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 type="submit"
                 className="shrink-0 font-sans text-xs font-extrabold uppercase tracking-widest text-brand-fire hover:text-charcoal-ink transition-colors cursor-pointer px-2 py-1"
               >
-                UNIRSE
+                JOIN
               </button>
             </div>
             {subscribed && (
               <p className="mt-2 text-xs font-sans font-bold text-leaf-green animate-in fade-in">
-                ¡Listo! Te has unido a la mesa criolla de Mojo Grille.
+                You're on the list! Welcome to the Mojo Grille table.
               </p>
             )}
           </form>
 
           <p className="text-[11px] font-sans text-charcoal-ink/50 pt-1">
-            Sin spam. Solo calor de plancha, cultura y gastronomía criolla de alta gama.
+            No spam. Pure plancha heat, culture, and high-craft criollo food.
           </p>
         </div>
 
@@ -238,7 +238,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
           <span>25.7617° N, 80.1918° W</span>
           <span>•</span>
           <span className="inline-flex items-center gap-1">
-            Hecho con <Heart className="h-3 w-3 text-brand-fire fill-brand-fire" /> y Naranja Agria
+            Crafted with <Heart className="h-3 w-3 text-brand-fire fill-brand-fire" /> and Seville Sour Orange
           </span>
         </div>
       </div>
@@ -248,9 +248,11 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
         ref={backToTopRef}
         type="button"
         onClick={handleScrollToTop}
-        aria-label="Volver arriba al inicio de la página"
+        aria-label="Back to top of page"
         className="fixed bottom-6 right-6 z-40 h-12 w-12 rounded-none bg-charcoal-ink text-cream-bg shadow-none flex items-center justify-center hover:bg-brand-fire hover:text-cream-bg transition-colors duration-200 cursor-pointer border-2 border-charcoal-ink active:scale-95 group"
       >
+        <ArrowUp className="h-5 w-5 stroke-[2.5] group-hover:-translate-y-0.5 transition-transform duration-200" />
+      </button>
         <ArrowUp className="h-5 w-5 stroke-[2.5] group-hover:-translate-y-0.5 transition-transform duration-200" />
       </button>
     </footer>

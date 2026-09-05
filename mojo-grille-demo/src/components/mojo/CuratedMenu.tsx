@@ -26,7 +26,7 @@ export const CURATED_ITEMS: CuratedMenuItem[] = [
     price: 13.5,
     feature: "4h Braised",
     description:
-      "Pernil de cerdo asado lentamente por 4 horas al mojo cítrico criollo, servido sobre arroz moro y cebollas caramelizadas al calor de la plancha.",
+      "Slow-roasted pork shoulder braised for 4 hours in Seville citrus mojo, served over moro rice and plancha-caramelized sweet onions.",
     imageUrl: "/assets/mojo-bowl-ropa-vieja.jpg",
     authorNote: "slow-roasted pernil & caramelized onions",
   },
@@ -36,7 +36,7 @@ export const CURATED_ITEMS: CuratedMenuItem[] = [
     price: 12.95,
     feature: "Plancha Crunch",
     description:
-      "Pan cubano prensado con mantequilla tostada, lechón asado, jamón dulce, queso suizo fundido, pepinillos encurtidos y mostaza criolla.",
+      "Pressed Cuban bread with toasted butter, slow-roasted lechón, sweet smoked ham, melted Swiss, crisp pickles & yellow mustard.",
     imageUrl: "/assets/mojo-cubano.jpg",
     authorNote: "crispy golden crust & sweet ham fold",
   },
@@ -46,7 +46,7 @@ export const CURATED_ITEMS: CuratedMenuItem[] = [
     price: 11.5,
     feature: "Queso Fundido",
     description:
-      "Picadillo de res sazonado al sofrito cubano con aceitunas y pimientos, prensado en plancha con queso suizo derretido y aliño de ajo.",
+      "Ground beef seasoned with Cuban sofrito, Spanish olives & sweet peppers, plancha-pressed with melted Swiss cheese and garlic mojo.",
     imageUrl: "/assets/mojo-cubano.jpg",
     authorNote: "seasoned ground beef & melted swiss",
   },
@@ -56,7 +56,7 @@ export const CURATED_ITEMS: CuratedMenuItem[] = [
     price: 10.75,
     feature: "Doble Fritura",
     description:
-      "Tostones crujientes de plátano verde con doble fritura artesanal, coronados con pernil al mojo, cebolla caramelizada y cilantro fresco.",
+      "Handcrafted double-fried crispy green plantain tostones, topped with mojo roasted pernil, caramelized onions & fresh cilantro.",
     imageUrl: "/assets/mojo-tostones.jpg",
     authorNote: "double-fried plantain & crushed garlic",
   },
@@ -66,7 +66,7 @@ export const CURATED_ITEMS: CuratedMenuItem[] = [
     price: 13.0,
     feature: "Pechuga Marinada",
     description:
-      "Pechuga tierna a la plancha marinada 24 horas en naranja agria y ajo, con arroz blanco, frijoles negros sazonados y aguacate hass.",
+      "Tender plancha-grilled chicken breast marinated 24 hours in sour orange & garlic, served with white rice, black beans & Hass avocado.",
     imageUrl: "/assets/mojo-pollo-bowl.jpg",
     authorNote: "24h citrus mojo & grilled hass avocado",
   },
@@ -76,7 +76,7 @@ export const CURATED_ITEMS: CuratedMenuItem[] = [
     price: 14.5,
     feature: "Salteado Criollo",
     description:
-      "Tiras tiernas de res salteadas al fuego vivo con pimientos y cebolla en reducción de sofrito criollo, acompañadas de yuca con mojo.",
+      "Tender beef strips wok-seared over live flame with peppers and onions in rich criollo sofrito reduction, served with yuca con mojo.",
     imageUrl: "/assets/mojo-bowl-ropa-vieja.jpg",
     authorNote: "flame-seared wok beef & tender yuca",
   },
@@ -166,7 +166,7 @@ export function CuratedMenu() {
   return (
     <section
       id="curated-menu"
-      aria-label="Selección de la plancha - Platos estelares de Mojo Grille"
+      aria-label="Hot Plancha Selection - Mojo Grille Signature Dishes"
       className="relative bg-cream-bg py-16 sm:py-24 border-b border-charcoal-ink/20 select-none overflow-hidden"
     >
       {/* Miniatura Fotográfica Flotante al Cursor (Solo Desktop) */}
@@ -187,7 +187,7 @@ export function CuratedMenu() {
           {/* Metadato superior de previsualización */}
           <div className="absolute top-2.5 left-3 flex items-center">
             <span className="font-mono text-[9px] uppercase tracking-widest text-cream-bg bg-charcoal-ink px-2 py-0.5 border border-cream-bg/20 font-bold">
-              HECHO AL MOMENTO // FRESCO
+              MADE AL MOMENTO // FRESH
             </span>
           </div>
 
@@ -213,15 +213,15 @@ export function CuratedMenu() {
         {/* Badge Superior Tipo Sello Editorial */}
         <div className="inline-flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-surface-sand px-3.5 py-1 text-[11px] font-sans font-bold uppercase tracking-widest text-charcoal-ink mb-4">
           <span className="h-1.5 w-1.5 rounded-none bg-brand-fire" aria-hidden="true" />
-          <span>Platos Insignia · Plancha Caliente</span>
+          <span>Signature Dishes · Hot Plancha</span>
         </div>
 
         {/* Título Monumental & Subtítulo Editorial */}
         <h2 className="font-display text-5xl md:text-7xl uppercase tracking-tight text-charcoal-ink leading-none">
-          SELECCIÓN DE LA PLANCHA
+          HOT PLANCHA SELECTION
         </h2>
         <p className="mt-2 sm:mt-3 font-accent italic text-brand-fire text-2xl md:text-3xl lowercase tracking-normal">
-          hecho al momento, sazonado al mojo
+          made al momento, seasoned with mojo
         </p>
       </div>
 
@@ -295,15 +295,15 @@ export function CuratedMenu() {
                     handleAddToCart(item);
                   }}
                   className="px-4 py-2 sm:px-5 sm:py-2.5 font-sans font-bold uppercase tracking-wider text-xs sm:text-sm bg-charcoal-ink text-cream-bg group-hover:bg-brand-fire transition-colors duration-200 rounded-none border border-charcoal-ink flex items-center gap-1.5 cursor-pointer shrink-0"
-                  aria-label={`Agregar ${item.name} a la orden por $${item.price.toFixed(2)}`}
+                  aria-label={`Add ${item.name} to order for $${item.price.toFixed(2)}`}
                 >
                   <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[3]" aria-hidden="true" />
                   <span>
                     {item.id.includes("bowl")
-                      ? "AGARRAR ESTE BOWL"
+                      ? "GRAB THIS BOWL"
                       : item.id.includes("tostones")
-                        ? "ORDENAR CALIENTE"
-                        : "A LA PLANCHA"}
+                        ? "ORDER HOT"
+                        : "FROM THE PLANCHA"}
                   </span>
                 </MagneticButton>
               </div>

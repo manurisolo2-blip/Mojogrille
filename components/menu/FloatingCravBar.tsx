@@ -65,7 +65,7 @@ export function FloatingCravBar({
 
           <div className="flex flex-col text-left">
             <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-cream-bg/70">
-              Total Estimado
+              Estimated Total
             </span>
             <span className="font-display text-lg font-bold tracking-tight text-cream-bg leading-tight">
               ${effectiveTotal.toFixed(2)}
@@ -79,7 +79,7 @@ export function FloatingCravBar({
           onClick={handleOrder}
           className="group flex items-center justify-center gap-2 rounded-none border-2 border-brand-fire bg-brand-fire px-5 py-3 font-sans text-sm font-bold text-cream-bg shadow-none transition-colors duration-150 hover:bg-cream-bg hover:text-charcoal-ink focus:outline-none"
         >
-          <span>Hacer Pedido</span>
+          <span>Order Now</span>
           <span className="font-bold text-base transition-transform group-hover:translate-x-1">
             ➔
           </span>

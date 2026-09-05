@@ -86,7 +86,7 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
       ref={containerRef}
       role="status"
       aria-live="polite"
-      aria-label="Cargando experiencia artesanal Mojo Grille"
+      aria-label="Loading Mojo Grille artisanal dining experience"
       data-loaded={isLoaded}
       className="fixed inset-0 z-[9999] bg-brand-fire text-cream-bg flex flex-col justify-between p-6 md:p-12 overflow-hidden select-none will-change-transform shadow-none"
     >
@@ -111,7 +111,7 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
           </span>
         </div>
         <p className="mt-6 sm:mt-8 font-sans text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest text-cream-bg/90">
-          CALENTANDO LA PLANCHA CRIOLLA...
+          HEATING UP THE CRIOLLO PLANCHA...
         </p>
       </div>
 

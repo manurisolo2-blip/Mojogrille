@@ -14,7 +14,7 @@ interface HeroProductCardProps {
 export function HeroProductCard({
   imageSrc = '/assets/mojo-bowl-ropa-vieja.jpg',
   title = 'Signature Mojo Bowl • Ropa Vieja Criolla',
-  category = 'Top Seller #1 en Miami',
+  category = '#1 Miami Top Seller',
   price = '$15.50',
 }: HeroProductCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -100,7 +100,7 @@ export function HeroProductCard({
               <span className="h-2 w-2 rounded-none bg-leaf-green animate-pulse" />
               {category}
             </span>
-            <span className="font-mono text-[10px] uppercase">Marinado 24h</span>
+            <span className="font-mono text-[10px] uppercase">24h Marinade</span>
           </div>
 
           <h3 className="mt-2 font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-charcoal-ink leading-tight">
@@ -108,12 +108,12 @@ export function HeroProductCard({
           </h3>
 
           <p className="mt-1 font-sans text-xs text-charcoal-ink/80 line-clamp-2">
-            Hebras de falda tierna marinada en naranja agria, ajo criollo y orégano. Servido con arroz moro y tostones crujientes.
+            Tender flank steak braised in Seville sour orange, garlic mojo, and herbs. Served over moro rice and crispy tostones.
           </p>
 
           {/* Micro badges de guarniciones */}
           <div className="mt-3 flex flex-wrap gap-1.5">
-            {['Arroz Moro', 'Tostones', 'Mojo Ajo', 'Cebollitas'].map((side, i) => (
+            {['Moro Rice', 'Tostones', 'Garlic Mojo', 'Pickled Onions'].map((side, i) => (
               <span
                 key={i}
                 className="rounded-none bg-cream-bg border border-charcoal-ink/20 px-2 py-0.5 font-mono text-[10px] font-semibold text-charcoal-ink"

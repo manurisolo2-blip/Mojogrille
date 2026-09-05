@@ -55,7 +55,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
                 Your cart is empty. Start with our signature favorites!
               </p>
               <p className="mt-1.5 font-accent italic text-base font-medium text-brand-fire">
-                ¡Pide tu lechón asado, bowl criollo o cafecito al momento!
+                Order your hot lechón asado, criollo bowl, or cafecito al momento!
               </p>
             </div>
           ) : (

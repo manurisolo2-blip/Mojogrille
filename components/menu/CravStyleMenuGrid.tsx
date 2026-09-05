@@ -27,11 +27,11 @@ export interface MenuItem {
 }
 
 const CATEGORIES: CategoryOption[] = [
-  { id: 'favorites', label: '🔥 Favoritos' },
-  { id: 'bowls', label: '🥗 Bowls' },
-  { id: 'sandwiches', label: '🥪 Sándwiches Cubanos' },
+  { id: 'favorites', label: '🔥 Favorites' },
+  { id: 'bowls', label: '🥗 Criollo Bowls' },
+  { id: 'sandwiches', label: '🥪 Pressed Cubanos' },
   { id: 'sides', label: "🥟 Sides / Pa' Picar" },
-  { id: 'drinks', label: '🥤 Bebidas' },
+  { id: 'drinks', label: '🥤 Cafecito & Drinks' },
 ];
 
 const MENU_ITEMS: MenuItem[] = [
@@ -42,7 +42,7 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: true,
     price: 14.5,
     description:
-      'Pechuga tierna marinada en mojo cítrico por 24h, arroz blanco criollo, frijoles negros sazonados, plátanos maduros dulces y mojo verde fresco.',
+      'Tender chicken breast marinated in citrus mojo for 24h, white rice, seasoned black beans, sweet ripe maduros & fresh green mojo.',
     imageUrl:
       'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=800&q=80',
     badgeType: 'fresh',
@@ -56,7 +56,7 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: true,
     price: 13.95,
     description:
-      'Jamón curado dulce, lechón asado desmenuzado en su jugo, queso suizo derretido, pepinillos encurtidos y mostaza suave en pan cubano prensado con mantequilla dorada.',
+      'Sweet cured ham, shredded slow-roasted lechón in its juices, melted Swiss cheese, crisp pickles & yellow mustard on butter-crusted pressed Cuban bread.',
     imageUrl:
       'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80',
     badgeType: 'top_seller',
@@ -70,7 +70,7 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: true,
     price: 15.95,
     description:
-      'Cerdo deshebrado marinado lentamente en naranja agria y ajo asado con comino. Acompañado de arroz moro con frijoles negros y crujientes tostones.',
+      'Shredded pork shoulder slow-braised in Seville sour orange and roasted garlic with cumin. Served with moro rice and crispy tostones.',
     imageUrl:
       'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
     badgeType: 'signature',
@@ -84,7 +84,7 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: false,
     price: 16.5,
     description:
-      'Hebras de falda de res guisadas lentamente con sofrito de pimientos rojos, cebollas caramelizadas y aceitunas. Servido sobre arroz moro y maduros.',
+      'Tender shredded flank steak slow-braised in red pepper, sweet onion & olive sofrito. Served over moro rice and sweet maduros.',
     imageUrl:
       'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80',
     badgeType: 'top_seller',
@@ -98,7 +98,7 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: true,
     price: 6.5,
     description:
-      'Bastones de yuca crujientes y dorados por fuera, cremosos por dentro, bañados en abundante mojo de ajo asado con cilantro y limón.',
+      'Golden crispy yuca batons, fluffy on the inside, drenched in roasted garlic mojo with fresh cilantro and key lime.',
     imageUrl:
       'https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=800&q=80',
     badgeType: 'fresh',
@@ -112,7 +112,7 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: false,
     price: 6.0,
     description:
-      'Plátanos machos verdes fritos dos veces al estilo tradicional de Miami con sal marina y salsa tártara criolla especial de la casa.',
+      'Twice-fried green plantains prepared traditional Miami style with sea salt flakes and house garlic dip.',
     imageUrl:
       'https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=800&q=80',
     badgeType: 'fresh',
@@ -126,7 +126,7 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: true,
     price: 3.5,
     description:
-      'Espresso cubano extra oscuro con su tradicional espumita dulce de caña de azúcar recién batida. Para compartir o disfrutar al momento.',
+      'Dark roast Cuban espresso whipped with sweet demerara sugar to create thick golden espumita. Brewed to share al momento.',
     imageUrl:
       'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80',
     badgeType: 'signature',
@@ -140,7 +140,7 @@ const MENU_ITEMS: MenuItem[] = [
     isFavorite: false,
     price: 4.5,
     description:
-      'Néctar de guayaba rosa batido en frío con zumo de limas recién exprimidas y azúcar morena de caña. Muy refrescante.',
+      'Chilled pink guava nectar blended with freshly squeezed key lime juice and raw cane sugar. Intensely refreshing.',
     imageUrl:
       'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80',
     badgeType: 'top_seller',
@@ -208,13 +208,13 @@ export function CravStyleMenuGrid() {
             CATALOG // SECTION B
           </div>
           <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-charcoal-ink leading-none">
-            Hecho a Fuego Lento, Servido <span className="text-brand-fire">Al Momento</span>.
+            SLOW ROASTED, SERVED <span className="text-brand-fire">AL MOMENTO</span>.
           </h2>
           <p className="mt-2 font-accent italic text-2xl sm:text-3xl text-brand-fire lowercase tracking-normal">
-            sabores criollos cocinados con paciencia y sazón de casa.
+            authentic criollo flavors prepared with patience and generational recipes.
           </p>
           <p className="mt-3 font-sans text-sm sm:text-base text-charcoal-ink/80 leading-relaxed max-w-2xl mx-auto">
-            Elige tu plato favorito preparado con nuestra marinada tradicional de 24 horas y guarniciones caribeñas recién hechas.
+            Choose your favorite signature dish prepared with our 24-hour citrus mojo marinade and handcrafted Caribbean sides.
           </p>
         </div>
 
@@ -282,7 +282,7 @@ export function CravStyleMenuGrid() {
                 <div className="mt-6 flex items-center justify-between border-t border-charcoal-ink/15 pt-4">
                   <div>
                     <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-charcoal-ink/60 block">
-                      PRECIO
+                      PRICE
                     </span>
                     <span className="font-display text-3xl font-black text-charcoal-ink">
                       ${item.price.toFixed(2)}
@@ -297,15 +297,15 @@ export function CravStyleMenuGrid() {
                         ? 'bg-leaf-green text-cream-bg border-leaf-green'
                         : 'bg-charcoal-ink text-cream-bg border-charcoal-ink hover:bg-brand-fire hover:border-brand-fire'
                     }`}
-                    aria-label={`Añadir ${item.name} al pedido`}
-                    title="Añadir al pedido"
+                    aria-label={`Add ${item.name} to order`}
+                    title="Add to order"
                   >
                     {count > 0 ? (
-                      <span className="font-mono text-xs font-black">+{count} AÑADIDO</span>
+                      <span className="font-mono text-xs font-black">+{count} ADDED</span>
                     ) : (
                       <>
                         <Plus className="h-4 w-4 stroke-[3]" />
-                        <span>+ AGREGAR</span>
+                        <span>+ ADD TO ORDER</span>
                       </>
                     )}
                   </button>
@@ -318,17 +318,17 @@ export function CravStyleMenuGrid() {
         {/* Mensaje editorial de pie de catálogo */}
         <div className="mt-14 rounded-none bg-surface-sand p-6 sm:p-8 border-2 border-charcoal-ink text-center">
           <p className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-charcoal-ink font-bold">
-            ¿CONSULTA DE INGREDIENTES O PEDIDO PERSONALIZADO?
+            NEED INGREDIENT DETAILS OR A CUSTOM ORDER?
           </p>
           <p className="mt-2 font-sans text-xs sm:text-sm text-charcoal-ink/80 max-w-xl mx-auto">
-            ¿Tienes alguna restricción alimentaria o pedido especial? Consúltanos por WhatsApp al momento.
+            Have dietary questions or a special request? Reach out to our kitchen team via WhatsApp al momento.
           </p>
           <div className="mt-5">
             <a
               href="#catering"
               className="inline-flex items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg border-2 border-brand-fire hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none"
             >
-              <span>Consultar al Momento</span>
+              <span>Inquire via WhatsApp</span>
               <span>➔</span>
             </a>
           </div>

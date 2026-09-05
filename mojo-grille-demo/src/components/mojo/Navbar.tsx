@@ -6,7 +6,7 @@ export function Navbar() {
         <a
           href="/"
           className="group flex items-baseline gap-2 transition-transform duration-200 hover:scale-[1.02]"
-          aria-label="Mojo Grille Inicio"
+          aria-label="Mojo Grille Home"
         >
           <span className="font-display text-3xl font-bold tracking-tight text-charcoal-ink">
             MOJO<span className="text-brand-fire">GRILLE</span>
@@ -22,13 +22,13 @@ export function Navbar() {
             href="#menu"
             className="transition-colors duration-200 hover:text-brand-fire"
           >
-            Menú &amp; Bowls
+            Menu &amp; Bowls
           </a>
           <a
             href="#cubanos"
             className="transition-colors duration-200 hover:text-brand-fire"
           >
-            Sándwiches Prensados
+            Pressed Cubanos
           </a>
           <a
             href="#catering"
@@ -40,7 +40,7 @@ export function Navbar() {
             href="#locations"
             className="transition-colors duration-200 hover:text-brand-fire"
           >
-            Sedes (Miami)
+            Miami Locations
           </a>
         </nav>
 
@@ -50,7 +50,7 @@ export function Navbar() {
             href="#menu"
             className="inline-flex items-center justify-center gap-2 rounded-none border-2 border-charcoal-ink bg-brand-fire px-5 py-2.5 font-sans text-sm font-bold text-cream-bg shadow-none transition-all duration-200 hover:bg-charcoal-ink focus:outline-hidden"
           >
-            <span>ORDENAR CALIENTE</span>
+            <span>ORDER HOT</span>
             <span className="flex h-2 w-2 rounded-none bg-cream-bg animate-pulse" />
           </a>
         </div>
