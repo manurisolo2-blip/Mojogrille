@@ -95,7 +95,10 @@ export default function HomePage() {
       {/* 7. Districts Catering: Packaging térmico de autor y catering por distritos */}
       <DistrictsCatering />
 
-      {/* 8. Editorial Footer: Titular monumental, 3 columnas y botón magnético 'Volver Arriba' */}
+      {/* 8. Deconstrucción Insignia del Sándwich Cubano Prensado */}
+      <CubanDeconstruction />
+
+      {/* 9. Editorial Footer: Titular monumental, 3 columnas y botón magnético 'Volver Arriba' */}
       <EditorialFooter />
 
       {/* Barra flotante mobile para conversión rápida */}

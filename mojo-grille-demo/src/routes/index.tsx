@@ -177,6 +177,9 @@ function Index() {
             </div>
           </section>
 
+          {/* Deconstrucción Insignia del Sándwich Cubano Prensado */}
+          <CubanDeconstruction />
+
           {/* Editorial Footer de Alto Impacto */}
           <EditorialFooter onOpenCart={() => setCartOpen(true)} />
         </main>
