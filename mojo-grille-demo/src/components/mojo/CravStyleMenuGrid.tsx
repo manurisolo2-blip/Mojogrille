@@ -216,7 +216,7 @@ export function CravStyleMenuGrid({
   };
 
   return (
-    <section className="relative w-full bg-cream-bg py-10 sm:py-16 overflow-hidden border-b border-charcoal-ink/20">
+    <section className="relative w-full bg-transparent py-10 sm:py-16 overflow-hidden border-b border-charcoal-ink/20">
       <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado con tipografía monumental y acento editorial */}

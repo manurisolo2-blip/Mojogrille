@@ -169,7 +169,7 @@ export function CuratedMenu() {
     <section
       id="curated-menu"
       aria-label="Hot Plancha Selection - Mojo Grille Signature Dishes"
-      className="relative bg-cream-bg py-16 sm:py-24 border-b border-charcoal-ink/20 select-none overflow-hidden"
+      className="relative bg-transparent py-16 sm:py-24 border-b border-charcoal-ink/20 select-none overflow-hidden"
     >
       {/* Miniatura Fotográfica Flotante al Cursor (Solo Desktop) */}
       <div
@@ -233,7 +233,7 @@ export function CuratedMenu() {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeaveList}
       >
-        <div className="border-t border-charcoal-ink/20 w-full bg-cream-bg">
+        <div className="border-t border-charcoal-ink/20 w-full bg-transparent">
           {CURATED_ITEMS.map((item, index) => (
             <div
               key={item.id}

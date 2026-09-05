@@ -60,7 +60,7 @@ export function HeroSection({
     <section
       id="top"
       aria-label="Welcome to Mojo Grille Cuban Kitchen"
-      className="relative overflow-hidden bg-cream-bg border-b border-charcoal-ink/10 select-none"
+      className="relative overflow-hidden bg-transparent border-b border-charcoal-ink/10 select-none"
     >
       {/* 2. Bloque Principal Hero */}
       <div className={`relative pt-10 pb-16 md:pt-16 md:pb-24 ${animContainerClass}`}>

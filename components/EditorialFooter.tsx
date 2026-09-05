@@ -93,7 +93,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
     <footer
       id="footer"
       aria-label="Mojo Grille editorial footer"
-      className="relative bg-cream-bg text-charcoal-ink border-t border-charcoal-ink/10 pt-20 pb-8 px-6 md:px-12 select-none overflow-hidden"
+      className="relative bg-transparent text-charcoal-ink border-t border-charcoal-ink/10 pt-20 pb-8 px-6 md:px-12 select-none overflow-hidden"
     >
       {/* 1. Titular Masivo Superior (Width Completo) */}
       <div className="w-full border-b border-charcoal-ink/10 pb-12 sm:pb-16 overflow-hidden">

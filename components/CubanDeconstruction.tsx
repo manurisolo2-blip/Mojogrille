@@ -241,7 +241,7 @@ export function CubanDeconstruction() {
       ref={containerRef}
       id="cuban-deconstruction"
       aria-label="Deconstrucción interactiva del Sándwich Cubano Mojo Grille"
-      className="relative h-[300vh] bg-cream-bg border-b border-charcoal-ink/10 select-none overflow-x-clip"
+      className="relative h-[300vh] bg-transparent border-b border-charcoal-ink/10 select-none overflow-x-clip"
     >
       <div
         ref={pinRef}

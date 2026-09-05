@@ -183,6 +183,11 @@
 @utility bg-cream-bg {
   background-color: #F6F1E8;
 }
+@utility bg-cream-canvas {
+  background-color: #F6F1E8;
+  background-image: url('/assets/noise.png');
+  background-repeat: repeat;
+}
 @utility text-cream-bg {
   color: #F6F1E8;
 }

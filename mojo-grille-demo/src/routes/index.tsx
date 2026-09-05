@@ -123,9 +123,9 @@ function Index() {
       {/* Textura de grano de papel artesanal editorial */}
       <NoiseOverlay />
 
-      <div className="min-h-dvh bg-cream-bg text-charcoal-ink pb-24 md:pb-0">
+      <div className="min-h-dvh bg-cream-canvas text-charcoal-ink pb-24 md:pb-0">
         <TopBar onOpenCart={() => setCartOpen(true)} />
-        <main className="bg-cream-bg">
+        <main className="bg-transparent">
           <HeroSection
             menuAnchorId="menu"
             cateringHref="#catering"
@@ -138,7 +138,7 @@ function Index() {
           {/* Selección de la Plancha — 6 Platos Estelares Curados */}
           <CuratedMenu />
 
-          <section id="menu" className="scroll-mt-32 bg-cream-bg">
+          <section id="menu" className="scroll-mt-32">
             <CravStyleMenuGrid onSelect={setSelected} />
           </section>
 

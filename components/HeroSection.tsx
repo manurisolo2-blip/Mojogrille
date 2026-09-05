@@ -31,7 +31,7 @@ export function HeroSection({
     <section
       id="top"
       aria-label="Hero Section Mojo Grille"
-      className="relative overflow-hidden bg-cream-bg border-b border-charcoal-ink/10 select-none"
+      className="relative overflow-hidden bg-transparent border-b border-charcoal-ink/10 select-none"
     >
       {/* Bloque Principal Hero */}
 

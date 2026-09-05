@@ -199,7 +199,7 @@ export function CravStyleMenuGrid() {
   };
 
   return (
-    <div className="w-full bg-cream-bg py-10 sm:py-16 border-b border-charcoal-ink/20">
+    <div className="w-full bg-transparent py-10 sm:py-16 border-b border-charcoal-ink/20">
       <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
         
         {/* Encabezado de Sección */}

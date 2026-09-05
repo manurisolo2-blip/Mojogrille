@@ -69,7 +69,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-cream-bg text-charcoal-ink select-none overflow-x-hidden">
+    <main className="min-h-screen bg-cream-canvas text-charcoal-ink select-none overflow-x-hidden">
       {/* 1. Preloader Editorial con salida de cortina cinematográfica GSAP */}
       <Preloader onComplete={() => setIsLoaded(true)} />
 
