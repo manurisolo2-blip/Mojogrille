@@ -196,19 +196,19 @@ export function CravStyleMenuGrid({
     switch (type) {
       case "signature":
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-fire/10 border border-brand-fire/30 text-brand-fire text-xs font-bold uppercase tracking-wider rounded-full">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-fire/10 text-brand-fire text-xs font-bold uppercase tracking-wider rounded-full">
             {text}
           </span>
         );
       case "fresh":
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-leaf-green/10 border border-leaf-green/30 text-leaf-green text-xs font-bold uppercase tracking-wider rounded-full">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-leaf-green/10 text-leaf-green text-xs font-bold uppercase tracking-wider rounded-full">
             {text}
           </span>
         );
       case "top_seller":
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-charcoal-ink/5 border border-charcoal-ink/10 text-charcoal-ink text-xs font-bold uppercase tracking-wider rounded-full">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-charcoal-ink/5 text-charcoal-ink text-xs font-bold uppercase tracking-wider rounded-full">
             {text}
           </span>
         );
@@ -240,7 +240,7 @@ export function CravStyleMenuGrid({
           <div
             role="tablist"
             aria-label="Menu Categories"
-            className="no-scrollbar flex items-center justify-start sm:justify-center gap-1.5 overflow-x-auto p-1.5 rounded-none bg-surface-sand border border-charcoal-ink/20 max-w-4xl mx-auto"
+            className="no-scrollbar flex items-center justify-start sm:justify-center gap-1.5 overflow-x-auto p-1.5 rounded-none bg-surface-sand max-w-4xl mx-auto"
           >
             {CATEGORIES.map((category) => {
               const isSelected = selectedCategory === category.id;
@@ -251,10 +251,10 @@ export function CravStyleMenuGrid({
                   aria-selected={isSelected}
                   type="button"
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`relative shrink-0 rounded-none px-5 py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none border ${
+                  className={`relative shrink-0 rounded-none px-5 py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none ${
                     isSelected
-                      ? "bg-charcoal-ink text-cream-bg border-charcoal-ink"
-                      : "bg-transparent text-charcoal-ink hover:text-brand-fire hover:bg-cream-bg/80 border-transparent"
+                      ? "bg-charcoal-ink text-cream-bg"
+                      : "bg-transparent text-charcoal-ink hover:text-brand-fire hover:bg-cream-bg/80"
                   }`}
                 >
                   {category.label}
@@ -264,17 +264,17 @@ export function CravStyleMenuGrid({
           </div>
         </div>
 
-        {/* 2. Retícula Editorial Continua de 1px (Newspaper Grid) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-charcoal-ink/20">
+        {/* 2. Retícula Editorial de Platos */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredItems.map((item) => {
             const isAdded = clickedItemId === item.id;
             return (
               <article
                 key={item.id}
-                className="group relative flex flex-col justify-between rounded-none border-r border-b border-charcoal-ink/20 bg-surface-sand p-5 sm:p-6 transition-colors duration-200 hover:bg-cream-bg"
+                className="group relative flex flex-col justify-between rounded-none bg-surface-sand p-5 sm:p-6 transition-colors duration-200 hover:bg-cream-bg"
               >
                 <div>
-                  {/* Contenedor de Fotografía con Marco Nítido */}
+                  {/* Contenedor de Fotografía */}
                   <div
                     onClick={() => onSelect && onSelect({
                       id: item.id,
@@ -286,7 +286,7 @@ export function CravStyleMenuGrid({
                       badge: item.badgeText as any,
                       sidesAllowed: Boolean(item.sidesAllowed),
                     })}
-                    className="relative aspect-4/3 w-full overflow-hidden rounded-none border border-charcoal-ink/20 bg-cream-bg cursor-pointer"
+                    className="relative aspect-4/3 w-full overflow-hidden rounded-none bg-cream-bg cursor-pointer"
                   >
                     <img
                       src={item.imageUrl}
@@ -329,10 +329,10 @@ export function CravStyleMenuGrid({
                     onClick={() => handleQuickAdd(item)}
                     aria-label={`Add ${item.name} to order`}
                     title="Add to order"
-                    className={`relative inline-flex items-center gap-1.5 rounded-none px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-wider border transition-colors cursor-pointer select-none ${
+                    className={`relative inline-flex items-center gap-1.5 rounded-none px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none ${
                       isAdded
-                        ? "bg-leaf-green text-cream-bg border-leaf-green"
-                        : "bg-charcoal-ink text-cream-bg border-charcoal-ink hover:bg-brand-fire hover:border-brand-fire"
+                        ? "bg-leaf-green text-cream-bg"
+                        : "bg-charcoal-ink text-cream-bg hover:bg-brand-fire"
                     }`}
                   >
                     {isAdded ? (
@@ -354,7 +354,7 @@ export function CravStyleMenuGrid({
         </div>
 
         {/* Bloque editorial de consulta personalizada */}
-        <div className="mt-14 rounded-none bg-surface-sand p-6 sm:p-8 border-2 border-charcoal-ink text-center">
+        <div className="mt-14 rounded-none bg-surface-sand p-6 sm:p-8 text-center">
           <p className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-charcoal-ink font-bold">
             NEED INGREDIENT DETAILS OR A CUSTOM ORDER?
           </p>
@@ -366,7 +366,7 @@ export function CravStyleMenuGrid({
               href="https://wa.me/13055550123"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg border-2 border-brand-fire hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none"
+              className="inline-flex items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
             >
               <span>Inquire via WhatsApp</span>
               <span>➔</span>

@@ -27,7 +27,7 @@ export function MarqueeTicker({
   return (
     <aside
       aria-label="Mojo Grille kinetic marquee"
-      className={`relative w-full overflow-hidden py-3 sm:py-4 select-none border-y shadow-xs ${getThemeClasses()}`}
+      className={`relative w-full overflow-hidden py-3 sm:py-4 select-none border-y ${getThemeClasses()}`}
     >
       <div className="relative flex overflow-x-hidden">
         {/* Contenedores con translate infinito a velocidad constante */}

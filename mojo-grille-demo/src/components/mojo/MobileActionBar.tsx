@@ -29,7 +29,7 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
         isVisible ? "translate-y-0 opacity-100" : "translate-y-24 opacity-0"
       }`}
     >
-      <div className="pointer-events-auto flex items-center justify-between gap-3 rounded-none bg-charcoal-ink p-3 pl-4 text-cream-bg shadow-none border-2 border-charcoal-ink">
+      <div className="pointer-events-auto flex items-center justify-between gap-3 rounded-none bg-charcoal-ink p-3 pl-4 text-cream-bg shadow-none">
         {/* Lado Izquierdo: Contador y Total Acumulado */}
         <div
           className="flex items-center gap-3 cursor-pointer select-none"
@@ -41,7 +41,7 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
           <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-none bg-charcoal-ink/90 border border-cream-bg/20">
             <ShoppingBag className="h-5 w-5 text-cream-bg" />
             {/* Badge Verde Cilantro (#2F6A4F / leaf-green) */}
-            <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-none bg-leaf-green px-1 font-sans text-[10px] font-black text-cream-bg border border-charcoal-ink">
+            <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-none bg-leaf-green px-1 font-sans text-[10px] font-black text-cream-bg">
               {count}
             </span>
           </div>
@@ -62,7 +62,7 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Order via WhatsApp"
-          className="group flex items-center justify-center gap-2 rounded-none border-2 border-brand-fire bg-brand-fire px-5 py-3 font-sans text-sm font-bold text-cream-bg shadow-none transition-colors duration-150 hover:bg-cream-bg hover:text-charcoal-ink focus:outline-none"
+          className="group flex items-center justify-center gap-2 rounded-none bg-brand-fire px-5 py-3 font-sans text-sm font-bold text-cream-bg shadow-none transition-colors duration-150 hover:bg-cream-bg hover:text-charcoal-ink focus:outline-none"
         >
           <span>Order Now</span>
           <span className="font-bold text-base transition-transform group-hover:translate-x-1">

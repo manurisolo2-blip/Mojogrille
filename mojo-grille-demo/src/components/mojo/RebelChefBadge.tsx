@@ -17,7 +17,7 @@ export function RebelChefBadge({
       aria-label={`${badgeText} - ${tag}`}
     >
       <div
-        className="relative inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 bg-[#FFE600] text-charcoal-ink border-2 border-charcoal-ink shadow-[2.5px_2.5px_0px_#141210] rotate-[-2deg]"
+        className="relative inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 bg-[#FFE600] text-charcoal-ink rotate-[-2deg]"
         style={{
           // Dientes de sierra en extremos simulando cinta adhesiva rasgada a mano en chinchorreo callejero
           clipPath:

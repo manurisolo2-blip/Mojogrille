@@ -4,27 +4,27 @@ import { currency, type MenuItem } from "@/data/menu";
 function Badge({ label }: { label: NonNullable<MenuItem["badge"]> }) {
   if (label === "Mojo Signature") {
     return (
-      <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-[#D95327] px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-white shadow-md">
+      <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-[#D95327] px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-white">
         {label}
       </span>
     );
   }
   if (label === "Popular" || label === "Top Seller") {
     return (
-      <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-[#F59E0B] px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-[#1C1917] shadow-md">
+      <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-[#F59E0B] px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-[#1C1917]">
         {label}
       </span>
     );
   }
   if (label === "Fresco del día") {
     return (
-      <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-[#4D7C0F] px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-white shadow-md">
+      <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-[#4D7C0F] px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-white">
         {label}
       </span>
     );
   }
   return (
-    <span className="absolute left-3 top-3 rounded-full border border-[#EAE5DC] bg-white px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-[#D95327] shadow-sm">
+    <span className="absolute left-3 top-3 rounded-full border border-[#EAE5DC] bg-white px-3 py-1 font-sans text-[11px] font-bold uppercase tracking-wider text-[#D95327]">
       {label}
     </span>
   );
@@ -42,7 +42,7 @@ export function MenuGrid({
       {items.map((item) => (
         <article
           key={item.id}
-          className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-[#EAE5DC] bg-white p-4 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#D95327]/30"
+          className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-[#EAE5DC] bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#D95327]/30"
         >
           <div>
             <button
@@ -92,7 +92,7 @@ export function MenuGrid({
               type="button"
               onClick={() => onSelect(item)}
               aria-label={`Personalizar / Añadir ${item.name} (Add)`}
-              className="inline-flex items-center gap-2 rounded-full bg-[#D95327] px-4 py-2.5 font-sans text-sm font-bold text-white shadow-md shadow-[#D95327]/25 transition-all duration-200 hover:bg-[#B83E16] active:scale-95"
+              className="inline-flex items-center gap-2 rounded-full bg-[#D95327] px-4 py-2.5 font-sans text-sm font-bold text-white transition-all duration-200 hover:bg-[#B83E16] active:scale-95"
             >
               <Plus className="h-4 w-4 stroke-[3]" />
               <span>{item.sidesAllowed ? "Customize" : "Add"}</span>

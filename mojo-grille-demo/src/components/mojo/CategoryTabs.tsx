@@ -24,7 +24,7 @@ export function CategoryTabs({
         <div
           role="tablist"
           aria-label="Menu Categories"
-          className="no-scrollbar flex items-center justify-start sm:justify-center gap-2 overflow-x-auto p-1.5 rounded-full bg-white/80 border border-[#EAE5DC] shadow-xs"
+          className="no-scrollbar flex items-center justify-start sm:justify-center gap-2 overflow-x-auto p-1.5 rounded-full bg-white/80 border border-[#EAE5DC]"
         >
           {categories.map((cat) => {
             const isActive = cat.id === active;
@@ -39,7 +39,7 @@ export function CategoryTabs({
                 className={
                   "relative shrink-0 rounded-full px-5 py-2 font-sans text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 focus:outline-none " +
                   (isActive
-                    ? "bg-[#D95327] text-white shadow-md shadow-[#D95327]/30 scale-[1.02]"
+                    ? "bg-[#D95327] text-white scale-[1.02]"
                     : "text-[#1C1917] hover:text-[#D95327] hover:bg-[#FAF8F5]")
                 }
               >

@@ -33,7 +33,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
       <div className="bg-cream-bg/95">
         <nav className="mx-auto flex max-w-[1600px] w-full items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
           <a href="#top" className="flex min-w-0 items-center gap-2.5">
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-none bg-brand-fire font-display text-2xl font-bold text-cream-bg border border-charcoal-ink">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-none bg-brand-fire font-display text-2xl font-bold text-cream-bg">
               M
             </span>
             <span className="min-w-0">
@@ -55,7 +55,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                 aria-haspopup="listbox"
                 aria-expanded={open}
                 aria-label={`Select location, currently ${location.name}`}
-                className="flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-cream-bg px-3 py-2 font-sans text-[11px] uppercase tracking-wider font-bold text-charcoal-ink transition-colors hover:border-charcoal-ink hover:bg-surface-sand sm:px-3.5 sm:py-2 select-none shadow-none cursor-pointer"
+                className="flex items-center gap-2 rounded-none bg-surface-sand px-3 py-2 font-sans text-[11px] uppercase tracking-wider font-bold text-charcoal-ink transition-colors hover:bg-surface-sand/80 sm:px-3.5 sm:py-2 select-none shadow-none cursor-pointer"
               >
                 <MapPin className="h-3.5 w-3.5 text-brand-fire stroke-[2.2]" />
                 <span className="max-w-[95px] truncate sm:max-w-none font-bold">{location.name}</span>
@@ -65,7 +65,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                 <ul
                   role="listbox"
                   aria-label="Miami restaurant locations"
-                  className="absolute right-0 mt-2 w-48 overflow-hidden rounded-none border-2 border-charcoal-ink bg-surface-sand shadow-none z-50"
+                  className="absolute right-0 mt-2 w-48 overflow-hidden rounded-none bg-surface-sand shadow-none z-50"
                 >
                   {availableLocations.map((loc) => (
                     <li key={loc.id} role="option" aria-selected={loc.id === location.id}>
@@ -93,11 +93,11 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
               type="button"
               onClick={onOpenCart}
               aria-label="View shopping bag"
-              className="relative grid h-10 w-10 sm:h-11 sm:w-11 place-items-center rounded-full bg-brand-fire text-cream-bg shadow-none transition-all hover:bg-charcoal-ink active:scale-95 cursor-pointer border border-charcoal-ink/10 select-none"
+              className="relative grid h-10 w-10 sm:h-11 sm:w-11 place-items-center rounded-full bg-brand-fire text-cream-bg shadow-none transition-all hover:bg-charcoal-ink active:scale-95 cursor-pointer select-none"
             >
               <LatinMarketBagIcon className="h-5 w-5 stroke-[2] text-cream-bg" />
               {count > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full border border-cream-bg bg-leaf-green px-1 font-sans text-[10px] font-black text-cream-bg shadow-xs">
+                <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full border border-cream-bg bg-leaf-green px-1 font-sans text-[10px] font-black text-cream-bg shadow-none">
                   {count}
                 </span>
               )}

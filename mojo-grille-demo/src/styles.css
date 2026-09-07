@@ -75,8 +75,8 @@
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
 
-  --shadow-soft: 0 1px 3px rgba(28, 25, 23, 0.05), 0 8px 24px -12px rgba(28, 25, 23, 0.1);
-  --shadow-lift: 0 4px 6px -1px rgba(217, 83, 39, 0.12), 0 16px 32px -8px rgba(28, 25, 23, 0.18);
+  --shadow-soft: none;
+  --shadow-lift: none;
 }
 
 :root {

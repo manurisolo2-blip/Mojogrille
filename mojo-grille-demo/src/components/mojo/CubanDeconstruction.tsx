@@ -312,7 +312,7 @@ export function CubanDeconstruction() {
                 height={545}
                 loading="eager"
                 onLoad={handleLayerImageLoad}
-                className="w-full h-auto object-contain drop-shadow-[0_25px_25px_rgba(20,18,16,0.25)] select-none"
+                className="w-full h-auto object-contain select-none"
               />
             </div>
 
@@ -329,7 +329,7 @@ export function CubanDeconstruction() {
                 height={545}
                 loading="eager"
                 onLoad={handleLayerImageLoad}
-                className="w-full h-auto object-contain drop-shadow-[0_25px_25px_rgba(20,18,16,0.25)] select-none"
+                className="w-full h-auto object-contain select-none"
               />
             </div>
 
@@ -346,7 +346,7 @@ export function CubanDeconstruction() {
                 height={545}
                 loading="eager"
                 onLoad={handleLayerImageLoad}
-                className="w-full h-auto object-contain drop-shadow-[0_25px_25px_rgba(20,18,16,0.25)] select-none"
+                className="w-full h-auto object-contain select-none"
               />
             </div>
 
@@ -363,7 +363,7 @@ export function CubanDeconstruction() {
                 height={545}
                 loading="eager"
                 onLoad={handleLayerImageLoad}
-                className="w-full h-auto object-contain drop-shadow-[0_25px_25px_rgba(20,18,16,0.25)] select-none"
+                className="w-full h-auto object-contain select-none"
               />
             </div>
 
@@ -380,7 +380,7 @@ export function CubanDeconstruction() {
                 height={545}
                 loading="eager"
                 onLoad={handleLayerImageLoad}
-                className="w-full h-auto object-contain drop-shadow-[0_25px_25px_rgba(20,18,16,0.25)] select-none"
+                className="w-full h-auto object-contain select-none"
               />
             </div>
 
@@ -406,7 +406,7 @@ export function CubanDeconstruction() {
               {/* Capa 1: Pan Superior */}
               <div ref={stepBreadRef} className="transition-opacity duration-200">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink bg-surface-sand px-2 py-0.5 border border-charcoal-ink/20">
+                  <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink bg-surface-sand px-2 py-0.5">
                     PAN SUPERIOR
                   </span>
                   <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
@@ -427,7 +427,7 @@ export function CubanDeconstruction() {
                   <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">
                     Live-Fire Criollo Roast
                   </span>
-                  <span className="font-sans text-[9px] font-bold uppercase tracking-wider text-brand-fire bg-brand-fire/10 px-1.5 py-0.5 border border-brand-fire/30">
+                  <span className="font-sans text-[9px] font-bold uppercase tracking-wider text-brand-fire bg-brand-fire/10 px-1.5 py-0.5">
                     24H MARINADE
                   </span>
                 </div>
@@ -439,7 +439,7 @@ export function CubanDeconstruction() {
               {/* Capa 3: Base Crujiente */}
               <div ref={stepBaseRef} className="transition-opacity duration-200">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink bg-surface-sand px-2 py-0.5 border border-charcoal-ink/20">
+                  <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink bg-surface-sand px-2 py-0.5">
                     BASE CRUJIENTE
                   </span>
                   <span className="font-sans text-xs font-bold uppercase tracking-tight text-charcoal-ink">

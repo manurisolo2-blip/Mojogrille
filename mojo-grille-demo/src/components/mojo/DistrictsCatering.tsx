@@ -212,7 +212,7 @@ export function DistrictsCatering() {
                 <button
                   type="button"
                   onClick={() => handleOpenModal(pkg)}
-                  className="w-full py-3.5 px-4 rounded-none font-sans font-bold uppercase tracking-wider text-xs bg-cream-bg text-charcoal-ink hover:bg-brand-fire hover:text-cream-bg border border-cream-bg hover:border-brand-fire transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3.5 px-4 rounded-none font-sans font-bold uppercase tracking-wider text-xs bg-cream-bg text-charcoal-ink hover:bg-brand-fire hover:text-cream-bg transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
                   aria-label={`Quote catering for ${pkg.editionName}`}
                 >
                   <span>QUOTE CATERING</span>
@@ -247,7 +247,7 @@ export function DistrictsCatering() {
           aria-labelledby="catering-modal-title"
           className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-charcoal-ink/80 backdrop-blur-xs animate-in fade-in duration-200"
         >
-          <div className="relative w-full max-w-lg rounded-none bg-surface-sand text-charcoal-ink p-6 sm:p-8 border-2 border-charcoal-ink">
+          <div className="relative w-full max-w-lg rounded-none bg-surface-sand text-charcoal-ink p-6 sm:p-8">
             {/* Botón Cerrar */}
             <button
               type="button"
@@ -303,7 +303,7 @@ export function DistrictsCatering() {
                     placeholder="e.g. Wynwood Creative Studio / Carlos Mendoza"
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
-                    className="w-full rounded-none border border-charcoal-ink/30 bg-cream-bg px-4 py-2.5 font-sans text-sm text-charcoal-ink placeholder:text-charcoal-ink/40 focus:border-brand-fire focus:outline-hidden"
+                    className="w-full rounded-none bg-cream-bg px-4 py-2.5 font-sans text-sm text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-hidden"
                   />
                 </div>
 
@@ -316,7 +316,7 @@ export function DistrictsCatering() {
                       id="guest-count"
                       value={guestCount}
                       onChange={(e) => setGuestCount(e.target.value)}
-                      className="w-full rounded-none border border-charcoal-ink/30 bg-cream-bg px-3 py-2.5 font-sans text-sm text-charcoal-ink focus:border-brand-fire focus:outline-hidden"
+                      className="w-full rounded-none bg-cream-bg px-3 py-2.5 font-sans text-sm text-charcoal-ink focus:outline-hidden"
                     >
                       <option value="15-20">15 to 20 guests</option>
                       <option value="25-35">25 to 35 guests</option>
@@ -333,18 +333,18 @@ export function DistrictsCatering() {
                       type="date"
                       value={eventDate}
                       onChange={(e) => setEventDate(e.target.value)}
-                      className="w-full rounded-none border border-charcoal-ink/30 bg-cream-bg px-3 py-2.5 font-sans text-sm text-charcoal-ink focus:border-brand-fire focus:outline-hidden"
+                      className="w-full rounded-none bg-cream-bg px-3 py-2.5 font-sans text-sm text-charcoal-ink focus:outline-hidden"
                     />
                   </div>
                 </div>
 
-                <div className="rounded-none border border-charcoal-ink/20 bg-charcoal-ink/5 p-3 text-[11px] font-sans text-charcoal-ink/70">
+                <div className="rounded-none bg-charcoal-ink/5 p-3 text-[11px] font-sans text-charcoal-ink/70">
                   <strong>Instant Confirmation:</strong> Sends a structured message directly to our catering WhatsApp team for an instant quote.
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-4 rounded-none font-sans font-bold uppercase tracking-wider text-xs bg-brand-fire text-cream-bg hover:bg-charcoal-ink transition-colors border-2 border-brand-fire hover:border-charcoal-ink flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3.5 px-4 rounded-none font-sans font-bold uppercase tracking-wider text-xs bg-brand-fire text-cream-bg hover:bg-charcoal-ink transition-colors flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>QUOTE VIA WHATSAPP</span>
                   <ArrowRight className="h-4 w-4" />

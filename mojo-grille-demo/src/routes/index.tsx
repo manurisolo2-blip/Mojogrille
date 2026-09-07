@@ -150,7 +150,7 @@ function Index() {
             className="border-b border-charcoal-ink/20 bg-surface-sand px-4 py-16 sm:px-6 lg:px-8"
           >
             <div className="mx-auto max-w-4xl text-center">
-              <div className="inline-flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-cream-bg px-3.5 py-1 font-sans text-[11px] font-bold text-brand-fire uppercase tracking-[0.2em] mb-4">
+              <div className="inline-flex items-center gap-2 rounded-none bg-cream-bg px-3.5 py-1 font-sans text-[11px] font-bold text-brand-fire uppercase tracking-[0.2em] mb-4">
                 <span className="h-1.5 w-1.5 bg-brand-fire rounded-none" aria-hidden="true" />
                 <span>CRIOLLO FLAVOR FOR YOUR EVENTS</span>
               </div>
@@ -164,7 +164,7 @@ function Index() {
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <a
                   href="tel:+13055550123"
-                  className="inline-flex items-center gap-2.5 rounded-none border-2 border-charcoal-ink bg-brand-fire px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
+                  className="inline-flex items-center gap-2.5 rounded-none bg-brand-fire px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
                 >
                   <Phone className="h-4 w-4" />
                   <span>Talk to Catering Team: (305) 555-0123</span>

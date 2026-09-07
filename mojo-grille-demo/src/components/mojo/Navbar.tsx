@@ -48,7 +48,7 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <a
             href="#menu"
-            className="inline-flex items-center justify-center gap-2 rounded-none border-2 border-charcoal-ink bg-brand-fire px-5 py-2.5 font-sans text-sm font-bold text-cream-bg shadow-none transition-all duration-200 hover:bg-charcoal-ink focus:outline-hidden"
+            className="inline-flex items-center justify-center gap-2 rounded-none bg-brand-fire px-5 py-2.5 font-sans text-sm font-bold text-cream-bg shadow-none transition-all duration-200 hover:bg-charcoal-ink focus:outline-hidden"
           >
             <span>ORDER HOT</span>
             <span className="flex h-2 w-2 rounded-none bg-cream-bg animate-pulse" />

@@ -167,7 +167,7 @@ export function ScrollLayerAssembly() {
             ref={topBunRef}
             src="/layers/top-bread.webp"
             alt="Top bun of toasted plancha Cuban bread"
-            className="absolute w-full object-contain pointer-events-none drop-shadow-xl will-change-transform z-50"
+            className="absolute w-full object-contain pointer-events-none will-change-transform z-50"
           />
 
           {/* Capa 2: Láminas de pepinillo encurtido y mostaza criolla */}
@@ -175,7 +175,7 @@ export function ScrollLayerAssembly() {
             ref={picklesRef}
             src="/layers/pickles.webp"
             alt="Dill pickles and criollo mustard"
-            className="absolute w-full object-contain pointer-events-none drop-shadow-md will-change-transform z-40"
+            className="absolute w-full object-contain pointer-events-none will-change-transform z-40"
           />
 
           {/* Capa 3: Queso suizo fundido */}
@@ -183,7 +183,7 @@ export function ScrollLayerAssembly() {
             ref={cheeseRef}
             src="/layers/cheese.webp"
             alt="Gooey melted Swiss cheese"
-            className="absolute w-full object-contain pointer-events-none drop-shadow-md will-change-transform z-30"
+            className="absolute w-full object-contain pointer-events-none will-change-transform z-30"
           />
 
           {/* Capa 4: Jamón serrano / pierna de cerdo asada 4 horas al mojo de ajo */}
@@ -191,7 +191,7 @@ export function ScrollLayerAssembly() {
             ref={porkRef}
             src="/layers/mojo-pork.webp"
             alt="4-hour slow-roasted citrus mojo pork and sweet ham"
-            className="absolute w-full object-contain pointer-events-none drop-shadow-xl will-change-transform z-20"
+            className="absolute w-full object-contain pointer-events-none will-change-transform z-20"
           />
 
           {/* Capa 5: Tapa inferior de pan cubano prensado */}
@@ -199,14 +199,14 @@ export function ScrollLayerAssembly() {
             ref={bottomBunRef}
             src="/layers/bottom-bread.webp"
             alt="Bottom base of pressed artisanal Cuban bread"
-            className="absolute w-full object-contain pointer-events-none drop-shadow-2xl will-change-transform z-10"
+            className="absolute w-full object-contain pointer-events-none will-change-transform z-10"
           />
         </div>
 
         {/* Ficha descriptiva de ingredientes sincronizada con el scroll */}
         <div
           ref={infoCardRef}
-          className="absolute bottom-10 sm:bottom-12 md:bottom-auto md:right-12 lg:right-20 max-w-xs sm:max-w-sm rounded-none bg-surface-sand p-5 border-2 border-charcoal-ink shadow-none transition-all duration-300 z-30"
+          className="absolute bottom-10 sm:bottom-12 md:bottom-auto md:right-12 lg:right-20 max-w-xs sm:max-w-sm rounded-none bg-surface-sand p-5 shadow-none transition-all duration-300 z-30"
         >
           <div className="flex items-center justify-between mb-1.5">
             <span className="font-sans text-[11px] uppercase tracking-widest text-brand-fire font-bold">

@@ -94,7 +94,7 @@ export function HeroSection({
           <div className={`relative mx-auto mt-10 w-full max-w-4xl ${animCardClass}`}>
             
             {/* Contenedor Fotográfico con Marco Rígido Editorial */}
-            <div className="group relative overflow-hidden rounded-none border-2 border-charcoal-ink bg-surface-sand">
+            <div className="group relative overflow-hidden rounded-none bg-surface-sand">
               <img
                 src={imageUrl}
                 alt="Signature Mojo Grille dish: The Authentic Criollo Flavor of Miami, Marinado to Perfection - Artisanal Cuban bowl marinated in citrus mojo"
@@ -136,7 +136,7 @@ export function HeroSection({
             <div
               role="status"
               aria-label="Average customer rating in Miami"
-              className="absolute -top-4 -left-4 sm:-top-5 sm:-left-6 z-20 rounded-none border-2 border-charcoal-ink bg-surface-sand px-4 py-2.5 select-none cursor-pointer hover:bg-surface-sand/90 transition-colors"
+              className="absolute -top-4 -left-4 sm:-top-5 sm:-left-6 z-20 rounded-none bg-surface-sand px-4 py-2.5 select-none cursor-pointer hover:bg-surface-sand/90 transition-colors"
             >
               <div className="flex items-center gap-2">
                 <div className="text-left">
@@ -151,7 +151,7 @@ export function HeroSection({
             </div>
 
             {/* Badge Derecho: Ficha de Metadato Editorial */}
-            <div className="absolute -bottom-4 -right-3 sm:-bottom-5 sm:-right-4 z-20 rounded-none border border-charcoal-ink/20 bg-leaf-green px-4 py-2.5 text-cream-bg select-none cursor-pointer">
+            <div className="absolute -bottom-4 -right-3 sm:-bottom-5 sm:-right-4 z-20 rounded-none bg-leaf-green px-4 py-2.5 text-cream-bg select-none cursor-pointer">
               <div className="flex items-center gap-2">
                 <div className="text-left">
                   <p className="font-sans text-xs font-black text-cream-bg leading-tight uppercase tracking-wide">
@@ -171,7 +171,7 @@ export function HeroSection({
             <MagneticButton
               href={`#${menuAnchorId}`}
               onClick={handleScrollToMenu}
-              className="group relative inline-flex items-center justify-center gap-3 rounded-none border-2 border-brand-fire bg-brand-fire px-9 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none"
+              className="group relative inline-flex items-center justify-center gap-3 rounded-none bg-brand-fire px-9 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
             >
               <UtensilsCrossed className="h-4 w-4 transition-transform group-hover:rotate-12" aria-hidden="true" />
               <span>ORDER HOT</span>
@@ -182,7 +182,7 @@ export function HeroSection({
 
             <a
               href={cateringHref}
-              className="inline-flex items-center justify-center gap-2.5 rounded-none border-2 border-charcoal-ink bg-surface-sand px-7 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors select-none"
+              className="inline-flex items-center justify-center gap-2.5 rounded-none bg-surface-sand px-7 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors select-none"
             >
               <CalendarHeart className="h-4 w-4 text-leaf-green" aria-hidden="true" />
               <span>Catering &amp; Events</span>
