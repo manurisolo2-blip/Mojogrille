@@ -3,6 +3,7 @@ import { UtensilsCrossed, CalendarHeart } from "lucide-react";
 import defaultHeroImage from "@/assets/mojo-bowl-ropa-vieja.jpg";
 import { MagneticButton } from "./MagneticButton";
 import { InkStamp } from "./InkStamp";
+import { HoverHighlightText } from "@/components/ui/hover-highlight-text";
 
 export interface HeroSectionProps {
   onOrderClick?: () => void;
@@ -74,14 +75,20 @@ export function HeroSection({
               100% FRESH CRIOLLO SLOW ROASTED
             </p>
 
-            {/* Titular Central Impactante: HOT CAST IRON. CRUSHED GARLIC. SLOW-ROASTED PERNIL. */}
-            <h1 className={`font-display text-5xl sm:text-7xl lg:text-[7.5vw] font-black uppercase tracking-tight text-charcoal-ink leading-[0.88] text-center max-w-5xl ${animItemClass}`}>
-              HOT CAST IRON.{" "}
-              <span className="text-brand-fire">
-                CRUSHED GARLIC.
-              </span>{" "}
-              SLOW-ROASTED PERNIL.
-            </h1>
+            {/* Titular Central con Efecto Spotlight HoverHighlightText */}
+            <div className={`w-full max-w-5xl mx-auto flex justify-center ${animItemClass}`}>
+              <HoverHighlightText
+                as="h1"
+                text="HOT CAST IRON. CRUSHED GARLIC. SLOW-ROASTED PERNIL."
+                baseClassName="font-display text-5xl sm:text-7xl lg:text-[7.2vw] font-black uppercase tracking-tight text-charcoal-ink/35 leading-[0.88] text-center"
+                highlightClassName="font-display text-5xl sm:text-7xl lg:text-[7.2vw] font-black uppercase tracking-tight text-brand-fire leading-[0.88] text-center"
+                strokeColor="#E52516"
+                strokeWidth={1.5}
+                spotlightRadius={180}
+                spotlightSoftness={0.82}
+                enableGlow
+              />
+            </div>
 
             {/* Subtítulo Narrativo Visceral */}
             <p className={`mt-3 max-w-3xl font-sans text-sm sm:text-base md:text-lg leading-relaxed text-charcoal-ink/90 text-center ${animItemClass}`}>
