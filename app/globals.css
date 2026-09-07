@@ -1,4 +1,12 @@
 @font-face {
+  font-family: 'Spot';
+  src: url('/fonts/spot-normal.otf') format('opentype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Clarkson';
   src: url('/fonts/Clarkson.ttf') format('truetype');
   font-weight: 100 900;
@@ -18,7 +26,7 @@
     --color-surface-sand: #ECE4D5;
     --color-mojo-citrus: #FFA826;
     --color-leaf-green: #2F6A4F;
-    --font-display: 'Clarkson', 'Bebas Neue', sans-serif;
+    --font-display: 'Spot', 'Clarkson', 'Bebas Neue', sans-serif;
   }
 
   body {
