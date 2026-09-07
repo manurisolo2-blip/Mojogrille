@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Clarkson';
+  src: url('/fonts/Clarkson.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,6 +18,7 @@
     --color-surface-sand: #ECE4D5;
     --color-mojo-citrus: #FFA826;
     --color-leaf-green: #2F6A4F;
+    --font-display: 'Clarkson', 'Bebas Neue', sans-serif;
   }
 
   body {
@@ -28,7 +37,9 @@
   }
 
   h1,
-  h2 {
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
     text-transform: uppercase;

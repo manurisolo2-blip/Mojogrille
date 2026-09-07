@@ -140,6 +140,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "alternate", href: "https://mojogrille.com/", hrefLang: "en-us" },
       { rel: "alternate", href: "https://mojogrille.com/", hrefLang: "es-us" },
       {
+        rel: "preload",
+        href: "/fonts/Clarkson.ttf",
+        as: "font",
+        type: "font/ttf",
+        crossOrigin: "anonymous",
+      },
+      {
         rel: "stylesheet",
         href: appCss,
       },

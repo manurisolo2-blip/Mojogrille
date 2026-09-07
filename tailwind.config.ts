@@ -32,7 +32,7 @@ const config: Config = {
         borderSubtle: '#ECE4D5',
       },
       fontFamily: {
-        display: ['var(--font-display)', 'Bebas Neue', 'sans-serif'],
+        display: ['Clarkson', 'var(--font-display)', 'Bebas Neue', 'sans-serif'],
         sans: ['var(--font-sans)', 'Plus Jakarta Sans', 'Inter', 'sans-serif'],
         accent: ['var(--font-accent)', 'Instrument Serif', 'Playfair Display', 'serif'],
         serif: ['var(--font-accent)', 'Instrument Serif', 'Playfair Display', 'serif'],
