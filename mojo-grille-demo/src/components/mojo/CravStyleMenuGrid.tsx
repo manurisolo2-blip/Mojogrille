@@ -192,29 +192,6 @@ export function CravStyleMenuGrid({
     }
   };
 
-  const renderBadge = (type: CravMenuItem["badgeType"], text: string) => {
-    switch (type) {
-      case "signature":
-        return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-fire/10 text-brand-fire text-xs font-bold uppercase tracking-wider rounded-full">
-            {text}
-          </span>
-        );
-      case "fresh":
-        return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-leaf-green/10 text-leaf-green text-xs font-bold uppercase tracking-wider rounded-full">
-            {text}
-          </span>
-        );
-      case "top_seller":
-        return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-charcoal-ink/5 text-charcoal-ink text-xs font-bold uppercase tracking-wider rounded-full">
-            {text}
-          </span>
-        );
-    }
-  };
-
   return (
     <section className="relative w-full bg-transparent py-10 sm:py-16 overflow-hidden border-b border-charcoal-ink/20">
       <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
@@ -291,11 +268,6 @@ export function CravStyleMenuGrid({
                       loading="lazy"
                       className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                     />
-
-                    {/* Tag de color semántico */}
-                    <div className="absolute top-3 left-3 z-10">
-                      {renderBadge(item.badgeType, item.badgeText)}
-                    </div>
                   </div>
 
                   {/* Información del Plato */}
