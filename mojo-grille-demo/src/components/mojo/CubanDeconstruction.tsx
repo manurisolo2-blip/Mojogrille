@@ -320,7 +320,7 @@ export function CubanDeconstruction() {
       ref={containerRef}
       id="cuban-deconstruction"
       aria-label="Interactive Deconstruction of the Mojo Grille Cuban Sandwich"
-      className="relative h-[180vh] bg-transparent border-b border-charcoal-ink/10 select-none overflow-x-clip"
+      className="relative h-[180vh] bg-transparent select-none overflow-x-clip"
     >
       <div
         ref={pinRef}
@@ -498,7 +498,7 @@ export function CubanDeconstruction() {
         </div>
 
         {/* Indicador de scroll */}
-        <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-charcoal-ink/75 font-sans text-xs sm:text-sm tracking-wider uppercase font-bold pointer-events-none bg-surface-sand/80 px-4 py-1 border border-charcoal-ink/10 shadow-sm">
+        <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-charcoal-ink/75 font-sans text-xs sm:text-sm tracking-wider uppercase font-bold pointer-events-none bg-surface-sand/90 px-4 py-1 shadow-sm">
           <span className="animate-bounce text-brand-fire">↓</span>
           <span>Scroll to deconstruct · Scroll up to assemble</span>
         </div>

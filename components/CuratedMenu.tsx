@@ -222,7 +222,7 @@ export function CuratedMenu() {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeaveList}
       >
-        <div className="border-t border-cream-bg/20 w-full bg-transparent">
+        <div className="w-full bg-transparent">
           {CURATED_ITEMS.map((item, index) => (
             <div
               key={item.id}

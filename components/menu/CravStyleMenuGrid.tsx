@@ -193,17 +193,17 @@ export function CravStyleMenuGrid() {
 
         {/* 1. Pestañas de Categorías con Retícula de Ángulo Recto */}
         <div className="sticky top-[56px] sm:top-[64px] z-30 mb-10 py-2 backdrop-blur-md bg-cream-bg/90">
-          <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-1.5 p-1.5 rounded-none bg-transparent border border-charcoal-ink/15 max-w-4xl mx-auto">
+          <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-1.5 p-1.5 rounded-none bg-surface-sand/70 max-w-4xl mx-auto">
             {CATEGORIES.map((category) => {
               const isSelected = selectedCategory === category.id;
               return (
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`relative z-10 shrink-0 rounded-none px-5 py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-hidden border ${
+                  className={`relative z-10 shrink-0 rounded-none px-5 py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-hidden ${
                     isSelected
-                      ? 'bg-charcoal-ink text-cream-bg border-charcoal-ink'
-                      : 'bg-transparent text-charcoal-ink hover:text-brand-fire hover:bg-charcoal-ink/5 border-transparent'
+                      ? 'bg-charcoal-ink text-cream-bg'
+                      : 'bg-transparent text-charcoal-ink hover:text-brand-fire hover:bg-charcoal-ink/5'
                   }`}
                   role="tab"
                   aria-selected={isSelected}
@@ -246,8 +246,8 @@ export function CravStyleMenuGrid() {
                   </div>
                 </div>
 
-                {/* Fila Inferior: Precio y Botón Táctil de Adición Rápida */}
-                <div className="mt-6 flex items-center justify-between border-t border-charcoal-ink/15 pt-4">
+                {/* Fila Inferior: Precio y Botón Táctil de Adición Rápida (Sin líneas divisorias) */}
+                <div className="mt-5 flex items-center justify-between pt-1">
                   <div>
                     <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/60 block">
                       PRICE
@@ -260,10 +260,10 @@ export function CravStyleMenuGrid() {
                   {/* Botón Ortogonal Nítido */}
                   <button
                     onClick={() => handleAddItem(item)}
-                    className={`relative inline-flex items-center gap-1.5 rounded-none px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-wider border transition-colors cursor-pointer select-none ${
+                    className={`relative inline-flex items-center gap-1.5 rounded-none px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none ${
                       count > 0
-                        ? 'bg-leaf-green text-cream-bg border-leaf-green'
-                        : 'bg-charcoal-ink text-cream-bg border-charcoal-ink hover:bg-brand-fire hover:border-brand-fire'
+                        ? 'bg-leaf-green text-cream-bg'
+                        : 'bg-charcoal-ink text-cream-bg hover:bg-brand-fire'
                     }`}
                     aria-label={`Add ${item.name} to order`}
                     title="Add to order"
@@ -273,7 +273,7 @@ export function CravStyleMenuGrid() {
                     ) : (
                       <>
                         <Plus className="h-4 w-4 stroke-[3]" />
-                        <span>+ ADD TO ORDER</span>
+                        <span>ADD TO ORDER</span>
                       </>
                     )}
                   </button>
@@ -284,7 +284,7 @@ export function CravStyleMenuGrid() {
         </div>
 
         {/* Mensaje editorial de pie de catálogo */}
-        <div className="mt-14 rounded-none bg-transparent border border-charcoal-ink/15 p-6 sm:p-8 text-center">
+        <div className="mt-14 rounded-none bg-surface-sand/80 p-6 sm:p-8 text-center">
           <p className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-charcoal-ink font-bold">
             NEED INGREDIENT DETAILS OR A CUSTOM ORDER?
           </p>

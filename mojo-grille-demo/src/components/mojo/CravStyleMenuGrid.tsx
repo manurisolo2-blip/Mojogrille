@@ -214,7 +214,7 @@ export function CravStyleMenuGrid({
           <div
             role="tablist"
             aria-label="Menu Categories"
-            className="no-scrollbar flex items-center justify-start sm:justify-center gap-1.5 overflow-x-auto p-1.5 rounded-none bg-transparent border border-charcoal-ink/15 max-w-4xl mx-auto"
+            className="no-scrollbar flex items-center justify-start sm:justify-center gap-1.5 overflow-x-auto p-1.5 rounded-none bg-surface-sand/70 max-w-4xl mx-auto"
           >
             {CATEGORIES.map((category) => {
               const isSelected = selectedCategory === category.id;
@@ -281,8 +281,8 @@ export function CravStyleMenuGrid({
                   </div>
                 </div>
 
-                {/* Fila Inferior de Precio y Botón Táctil */}
-                <div className="mt-6 flex items-center justify-between border-t border-charcoal-ink/15 pt-4">
+                {/* Fila Inferior de Precio y Botón Táctil (Sin líneas divisorias) */}
+                <div className="mt-5 flex items-center justify-between pt-1">
                   <div>
                     <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/60 block">
                       PRICE
@@ -312,7 +312,7 @@ export function CravStyleMenuGrid({
                     ) : (
                       <>
                         <Plus className="h-4 w-4 stroke-[3]" />
-                        <span>+ ADD TO ORDER</span>
+                        <span>ADD TO ORDER</span>
                       </>
                     )}
                   </button>
@@ -323,7 +323,7 @@ export function CravStyleMenuGrid({
         </div>
 
         {/* Bloque editorial de consulta personalizada */}
-        <div className="mt-14 rounded-none bg-transparent border border-charcoal-ink/15 p-6 sm:p-8 text-center">
+        <div className="mt-14 rounded-none bg-surface-sand/80 p-6 sm:p-8 text-center">
           <p className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-charcoal-ink font-bold">
             NEED INGREDIENT DETAILS OR A CUSTOM ORDER?
           </p>
