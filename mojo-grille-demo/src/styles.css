@@ -44,7 +44,7 @@
   --font-mono: "Space Mono", monospace;
 
   /* Miami-Latin Modernism Color Palette */
-  --color-cream-bg: #ECE4D5;
+  --color-cream-bg: #F6F1E8;
   --color-brand-fire: #E52516;
   --color-charcoal-ink: #141210;
   --color-surface-sand: #ECE4D5;
@@ -52,7 +52,7 @@
   --color-leaf-green: #2F6A4F;
 
   /* Backward Compatibility Aliases */
-  --color-cream: #ECE4D5;
+  --color-cream: #F6F1E8;
   --color-surface-white: #FFFFFF;
   --color-mojo-terracotta: #E52516;
   --color-mojo-terracotta-dark: #C71F12;
@@ -142,14 +142,14 @@
   }
 
   body {
-    background-color: #ECE4D5;
+    background-color: #F6F1E8;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
 
   .grain {
-    background-color: #ECE4D5;
+    background-color: #F6F1E8;
   }
 
   /* All Titles & Headings Hierarchy */
@@ -195,13 +195,13 @@
 
 /* Official Miami-Latin Modernism Design Token Utilities */
 @utility bg-cream-bg {
-  background-color: #ECE4D5;
+  background-color: #F6F1E8;
 }
 @utility bg-cream-canvas {
-  background-color: #ECE4D5;
+  background-color: #F6F1E8;
 }
 @utility text-cream-bg {
-  color: #ECE4D5;
+  color: #F6F1E8;
 }
 @utility bg-brand-fire {
   background-color: #E52516;

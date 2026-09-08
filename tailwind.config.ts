@@ -11,14 +11,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'cream-bg': '#ECE4D5',
+        'cream-bg': '#F6F1E8',
         'brand-fire': '#E52516',
         'charcoal-ink': '#141210',
         'surface-sand': '#ECE4D5',
         'mojo-citrus': '#FFA826',
         'leaf-green': '#2F6A4F',
         // Backward-compatible semantic aliases
-        cream: '#ECE4D5',
+        cream: '#F6F1E8',
         mojoRed: '#E52516',
         charcoal: '#141210',
         sand: '#ECE4D5',
