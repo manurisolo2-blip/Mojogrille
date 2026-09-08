@@ -20,7 +20,7 @@
 
 @layer base {
   :root {
-    --color-cream-bg: #F6F1E8;
+    --color-cream-bg: #ECE4D5;
     --color-brand-fire: #E52516;
     --color-charcoal-ink: #141210;
     --color-surface-sand: #ECE4D5;
@@ -30,18 +30,18 @@
   }
 
   body {
-    background-color: #F6F1E8;
+    background-color: #ECE4D5;
     color: #141210;
     font-family: var(--font-sans);
   }
 
   .bg-cream-bg {
-    background-color: #F6F1E8;
+    background-color: #ECE4D5;
   }
 
   .grain,
   .bg-cream-canvas {
-    background-color: #F6F1E8;
+    background-color: #ECE4D5;
   }
 
   h1,
