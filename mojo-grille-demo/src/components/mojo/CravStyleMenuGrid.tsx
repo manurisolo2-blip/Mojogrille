@@ -214,7 +214,7 @@ export function CravStyleMenuGrid({
           <div
             role="tablist"
             aria-label="Menu Categories"
-            className="no-scrollbar flex items-center justify-start sm:justify-center gap-1.5 overflow-x-auto p-1.5 rounded-none bg-surface-sand max-w-4xl mx-auto"
+            className="no-scrollbar flex items-center justify-start sm:justify-center gap-1.5 overflow-x-auto p-1.5 rounded-none bg-transparent border border-charcoal-ink/15 max-w-4xl mx-auto"
           >
             {CATEGORIES.map((category) => {
               const isSelected = selectedCategory === category.id;
@@ -228,7 +228,7 @@ export function CravStyleMenuGrid({
                   className={`relative shrink-0 rounded-none px-5 py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none ${
                     isSelected
                       ? "bg-charcoal-ink text-cream-bg"
-                      : "bg-transparent text-charcoal-ink hover:text-brand-fire hover:bg-cream-bg/80"
+                      : "bg-transparent text-charcoal-ink hover:text-brand-fire hover:bg-charcoal-ink/5"
                   }`}
                 >
                   {category.label}
@@ -245,7 +245,7 @@ export function CravStyleMenuGrid({
             return (
               <article
                 key={item.id}
-                className="group relative flex flex-col justify-between rounded-none bg-surface-sand p-5 sm:p-6 transition-colors duration-200 hover:bg-cream-bg"
+                className="group relative flex flex-col justify-between rounded-none bg-transparent transition-colors duration-200"
               >
                 <div>
                   {/* Contenedor de Fotografía */}
@@ -260,7 +260,7 @@ export function CravStyleMenuGrid({
                       badge: item.badgeText as any,
                       sidesAllowed: Boolean(item.sidesAllowed),
                     })}
-                    className="relative aspect-4/3 w-full overflow-hidden rounded-none bg-cream-bg cursor-pointer"
+                    className="relative aspect-4/3 w-full overflow-hidden rounded-none bg-transparent cursor-pointer"
                   >
                     <img
                       src={item.imageUrl}
@@ -323,7 +323,7 @@ export function CravStyleMenuGrid({
         </div>
 
         {/* Bloque editorial de consulta personalizada */}
-        <div className="mt-14 rounded-none bg-surface-sand p-6 sm:p-8 text-center">
+        <div className="mt-14 rounded-none bg-transparent border border-charcoal-ink/15 p-6 sm:p-8 text-center">
           <p className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-charcoal-ink font-bold">
             NEED INGREDIENT DETAILS OR A CUSTOM ORDER?
           </p>

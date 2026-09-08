@@ -193,7 +193,7 @@ export function CravStyleMenuGrid() {
 
         {/* 1. Pestañas de Categorías con Retícula de Ángulo Recto */}
         <div className="sticky top-[56px] sm:top-[64px] z-30 mb-10 py-2 backdrop-blur-md bg-cream-bg/90">
-          <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-1.5 p-1.5 rounded-none bg-surface-sand border border-charcoal-ink/20 max-w-4xl mx-auto">
+          <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-1.5 p-1.5 rounded-none bg-transparent border border-charcoal-ink/15 max-w-4xl mx-auto">
             {CATEGORIES.map((category) => {
               const isSelected = selectedCategory === category.id;
               return (
@@ -203,7 +203,7 @@ export function CravStyleMenuGrid() {
                   className={`relative z-10 shrink-0 rounded-none px-5 py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-hidden border ${
                     isSelected
                       ? 'bg-charcoal-ink text-cream-bg border-charcoal-ink'
-                      : 'bg-transparent text-charcoal-ink hover:text-brand-fire hover:bg-cream-bg/80 border-transparent'
+                      : 'bg-transparent text-charcoal-ink hover:text-brand-fire hover:bg-charcoal-ink/5 border-transparent'
                   }`}
                   role="tab"
                   aria-selected={isSelected}
@@ -215,18 +215,18 @@ export function CravStyleMenuGrid() {
           </div>
         </div>
 
-        {/* 2. Grid Continuo de 1px (Newspaper Grid) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-charcoal-ink/20">
+        {/* 2. Grid de Platos */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredItems.map((item) => {
             const count = addedItems[item.id] || 0;
             return (
               <article
                 key={item.id}
-                className="group relative flex flex-col justify-between rounded-none border-r border-b border-charcoal-ink/20 bg-surface-sand p-5 sm:p-6 transition-colors duration-200 hover:bg-cream-bg"
+                className="group relative flex flex-col justify-between rounded-none bg-transparent transition-colors duration-200"
               >
                 <div>
-                  {/* Contenedor de Fotografía con Marco Nítido */}
-                  <div className="relative aspect-4/3 w-full overflow-hidden rounded-none border border-charcoal-ink/20 bg-cream-bg">
+                  {/* Contenedor de Fotografía */}
+                  <div className="relative aspect-4/3 w-full overflow-hidden rounded-none bg-transparent">
                     <img
                       src={item.imageUrl}
                       alt={item.name}
@@ -284,7 +284,7 @@ export function CravStyleMenuGrid() {
         </div>
 
         {/* Mensaje editorial de pie de catálogo */}
-        <div className="mt-14 rounded-none bg-surface-sand p-6 sm:p-8 border-2 border-charcoal-ink text-center">
+        <div className="mt-14 rounded-none bg-transparent border border-charcoal-ink/15 p-6 sm:p-8 text-center">
           <p className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-charcoal-ink font-bold">
             NEED INGREDIENT DETAILS OR A CUSTOM ORDER?
           </p>
@@ -294,7 +294,7 @@ export function CravStyleMenuGrid() {
           <div className="mt-5">
             <a
               href="#catering"
-              className="inline-flex items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg border-2 border-brand-fire hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none"
+              className="inline-flex items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg border border-brand-fire hover:bg-charcoal-ink hover:border-charcoal-ink transition-colors cursor-pointer select-none"
             >
               <span>Inquire via WhatsApp</span>
               <span>➔</span>
