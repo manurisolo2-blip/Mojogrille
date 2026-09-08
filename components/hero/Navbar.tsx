@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-40 w-full bg-cream-bg/95 backdrop-blur-md transition-all duration-300">
+    <header className="sticky top-0 z-40 w-full bg-cream-bg transition-all duration-300">
       <div className="mx-auto flex h-20 max-w-[1600px] w-full items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand name en grande sin logo ni subtitulo */}
         <Link

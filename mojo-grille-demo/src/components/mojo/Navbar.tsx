@@ -1,6 +1,6 @@
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-charcoal-ink/10 bg-cream-bg/90 backdrop-blur-md transition-all duration-300">
+    <header className="sticky top-0 z-40 w-full bg-cream-bg transition-all duration-300">
       <div className="mx-auto flex h-20 max-w-[1600px] w-full items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo a la izquierda */}
         <a

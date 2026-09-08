@@ -53,7 +53,7 @@ Cada vez que el usuario envíe un prompt para crear, modificar, refactorizar o d
 
 | Token UI | Nombre Comercial | HEX | RGB | Rol en la Interfaz |
 | :--- | :--- | :--- | :--- | :--- |
-| **`cream-bg`** | Criollo Cream | `#F6F1E8` | 246, 241, 232 | Fondo principal de la web. Elimina el brillo frío del `#FFFFFF` y evoca el pan tostado. |
+| **`cream-bg`** | Criollo Cream | `#F2ECE1` | 242, 236, 225 | Fondo principal de la web. Elimina el brillo frío del `#FFFFFF` y evoca el pan tostado. |
 | **`brand-fire`** | Mojo Scarlet | `#E52516` | 229, 37, 22 | Color de choque primario (análogo al `#f91814` de Crav). Se usa en CTAs, titulares hero, preloader y acentos de hover. |
 | **`charcoal-ink`** | Pressed Dark | `#141210` | 20, 18, 16 | Tipografía principal, bordes finos divisorios (`border-charcoal-ink/10`) y textos legales. |
 | **`surface-sand`** | Yuca Sand | `#ECE4D5` | 236, 228, 213 | Fondo de tarjetas de producto, badges nutricionales y contenedor del cart drawer. |
@@ -61,7 +61,7 @@ Cada vez que el usuario envíe un prompt para crear, modificar, refactorizar o d
 | **`leaf-green`** | Cilantro Fresh | `#2F6A4F` | 47, 106, 79 | Acento secundario para elementos "100% Fresco" o ítems vegetarianos. |
 
 #### Regla de Distribución Cromática (Regla 60-30-10):
-* **60%**: Criollo Cream (`#F6F1E8`) como lienzo constante en todo el scroll.
+* **60%**: Criollo Cream (`#F2ECE1`) como lienzo constante en todo el scroll.
 * **30%**: Pressed Dark (`#141210`) para textos, bordes de separación y estructuras de navegación.
 * **10%**: Mojo Scarlet (`#E52516`) reservado con máxima saturación para llamar la atención del ojo hacia botones, marcas de agua, precios y marquesinas.
 
