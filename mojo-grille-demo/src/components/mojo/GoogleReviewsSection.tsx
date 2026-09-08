@@ -13,6 +13,7 @@ export interface GoogleReviewItem extends CardStackItem {
   content: string;
   initials: string;
   avatarBg: string;
+  avatarUrl?: string;
 }
 
 export const GOOGLE_MAPS_URL =
@@ -35,6 +36,7 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
       "The lechón asado bowl and yuca fries are incredible. Real deal Cuban mojo flavor, juicy and tender. Best quick lunch in Miami!",
     initials: "CM",
     avatarBg: "bg-brand-fire",
+    avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&h=160&q=80",
   },
   {
     id: "review-2",
@@ -52,6 +54,7 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
       "Best Cuban sandwich in the area! Pressed hot on the plancha, crisp bread with the right balance of mustard and pickles. You can taste the slow-roasted pork marinade.",
     initials: "SR",
     avatarBg: "bg-leaf-green",
+    avatarUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=160&h=160&q=80",
   },
   {
     id: "review-3",
@@ -69,6 +72,7 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
       "Generous portions, fast service, and authentic taste. The Chicken Fresco bowl with black beans and maduros tastes just like abuela's cooking.",
     initials: "DL",
     avatarBg: "bg-charcoal-ink",
+    avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&h=160&q=80",
   },
   {
     id: "review-4",
@@ -86,6 +90,7 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
       "The mojo sauce is liquid gold. We ordered catering for our office in Brickell and the party trays arrived hot, perfectly packaged, and everyone went crazy for the pulled pork.",
     initials: "VP",
     avatarBg: "bg-mojo-citrus",
+    avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&h=160&q=80",
   },
   {
     id: "review-5",
@@ -103,6 +108,7 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
       "Clean spot, super friendly staff, and the cafecito gives you that authentic 3:05 PM Miami kick. 10/10 recommended!",
     initials: "JG",
     avatarBg: "bg-brand-fire",
+    avatarUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=160&h=160&q=80",
   },
   {
     id: "review-6",
@@ -115,11 +121,12 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
     role: "Local Guide · 29 reviews",
     rating: 5,
     date: "Just now",
-    dish: "Slow-Braised Ropa Vieja Bowl",
+    dish: "Slow Braised Ropa Vieja Bowl",
     content:
       "Unbelievable quality for the price. Fresh ingredients, no corporate taste. Real live-fire Cuban food that Miami-Dade should be proud of.",
     initials: "MK",
     avatarBg: "bg-leaf-green",
+    avatarUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=160&h=160&q=80",
   },
 ];
 
@@ -256,10 +263,22 @@ export function GoogleReviewsSection() {
                     {/* Cabecera de la Tarjeta */}
                     <div className="relative z-10 flex items-start justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <div
-                          className={`h-10 w-10 rounded-full ${review.avatarBg} text-cream-bg flex items-center justify-center font-sans font-bold text-xs uppercase shrink-0 ring-2 ring-cream-bg/20`}
-                        >
-                          {review.initials}
+                        {/* Foto de Perfil en el Circulito */}
+                        <div className="relative h-11 w-11 rounded-full overflow-hidden shrink-0 ring-2 ring-cream-bg/25 bg-charcoal-ink flex items-center justify-center">
+                          {review.avatarUrl ? (
+                            <img
+                              src={review.avatarUrl}
+                              alt={review.author}
+                              className="h-full w-full object-cover rounded-full select-none"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <span
+                              className={`h-full w-full ${review.avatarBg} text-cream-bg flex items-center justify-center font-sans font-bold text-xs uppercase`}
+                            >
+                              {review.initials}
+                            </span>
+                          )}
                         </div>
                         <div>
                           <div className="font-sans font-bold text-sm text-cream-bg leading-tight flex items-center gap-1.5">
@@ -285,11 +304,11 @@ export function GoogleReviewsSection() {
                       </div>
                     </div>
 
-                    {/* Contenido Central: Plato y Cita */}
+                    {/* Contenido Central: Plato (sin recuadros ni guiones, letra más grande en negrita) y Cita */}
                     <div className="relative z-10 my-auto py-2">
-                      <div className="inline-block bg-brand-fire/25 border border-brand-fire/40 text-mojo-citrus font-sans text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 mb-2">
+                      <h4 className="font-sans text-base sm:text-lg font-bold text-mojo-citrus leading-snug tracking-tight mb-2 select-none">
                         {review.dish}
-                      </div>
+                      </h4>
                       <p className="font-sans text-sm sm:text-base text-cream-bg font-normal leading-relaxed line-clamp-3">
                         &ldquo;{review.content}&rdquo;
                       </p>
@@ -329,10 +348,22 @@ export function GoogleReviewsSection() {
                 <div>
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <div
-                        className={`h-10 w-10 rounded-full ${review.avatarBg} text-cream-bg flex items-center justify-center font-sans font-bold text-xs uppercase shrink-0`}
-                      >
-                        {review.initials}
+                      {/* Foto de Perfil en el Circulito */}
+                      <div className="relative h-11 w-11 rounded-full overflow-hidden shrink-0 ring-1 ring-charcoal-ink/15 bg-charcoal-ink flex items-center justify-center">
+                        {review.avatarUrl ? (
+                          <img
+                            src={review.avatarUrl}
+                            alt={review.author}
+                            className="h-full w-full object-cover rounded-full select-none"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <span
+                            className={`h-full w-full ${review.avatarBg} text-cream-bg flex items-center justify-center font-sans font-bold text-xs uppercase`}
+                          >
+                            {review.initials}
+                          </span>
+                        )}
                       </div>
                       <div>
                         <h3 className="font-sans font-bold text-sm text-charcoal-ink leading-tight flex items-center gap-1.5">
@@ -361,13 +392,14 @@ export function GoogleReviewsSection() {
                     </span>
                   </div>
 
-                  <div className="mt-3">
-                    <span className="inline-block bg-charcoal-ink/5 border border-charcoal-ink/10 text-brand-fire font-sans text-[10px] font-bold uppercase tracking-wider px-2 py-0.5">
+                  {/* Plato Destacado (sin recuadro ni guiones, negrita, tamaño mayor a la reseña) */}
+                  <div className="mt-3.5 mb-1.5">
+                    <h4 className="font-sans text-sm sm:text-base font-bold text-brand-fire leading-snug tracking-tight">
                       {review.dish}
-                    </span>
+                    </h4>
                   </div>
 
-                  <p className="mt-3 font-sans text-xs sm:text-sm text-charcoal-ink/85 leading-relaxed">
+                  <p className="font-sans text-xs sm:text-sm text-charcoal-ink/85 leading-relaxed">
                     &ldquo;{review.content}&rdquo;
                   </p>
                 </div>
