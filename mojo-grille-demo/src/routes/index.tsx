@@ -19,6 +19,7 @@ import { CuratedMenu } from "@/components/mojo/CuratedMenu";
 import { GoogleReviewsSection } from "@/components/mojo/GoogleReviewsSection";
 import { EditorialFooter } from "@/components/mojo/EditorialFooter";
 import { NoiseOverlay } from "@/components/mojo/NoiseOverlay";
+import { JellyWaveTransition } from "@/components/mojo/JellyWaveTransition";
 import { itemsForCategory, type CategoryId, type MenuItem } from "@/data/menu";
 import { locationsList } from "@/data/locations";
 
@@ -135,8 +136,23 @@ function Index() {
           {/* Fase 5: El Elemento Estrella: Deconstrucción en Scroll (CubanDeconstruction) */}
           <CubanDeconstruction />
 
-          {/* Selección de la Plancha: 6 Platos Estelares Curados */}
+          {/* Transición 1: Onda Orgánica Jelly (Criollo Cream -> Mojo Scarlet) con stickers de guarnición */}
+          <JellyWaveTransition
+            topColor="#F2ECE1"
+            bottomColor="#E52516"
+            direction="down"
+            showGarnish
+          />
+
+          {/* Selección de la Plancha: 6 Platos Estelares Curados (Mojo Scarlet Live-Fire Section) */}
           <CuratedMenu />
+
+          {/* Transición 2: Onda Orgánica Jelly (Mojo Scarlet -> Criollo Cream) */}
+          <JellyWaveTransition
+            topColor="#E52516"
+            bottomColor="#F2ECE1"
+            direction="up"
+          />
 
           <section id="menu" className="scroll-mt-32">
             <CravStyleMenuGrid onSelect={setSelected} />
@@ -145,9 +161,16 @@ function Index() {
           {/* Reseñas Verificadas de Google Maps */}
           <GoogleReviewsSection />
 
+          {/* Transición 3: Onda Orgánica Jelly (Criollo Cream -> Yuca Sand) */}
+          <JellyWaveTransition
+            topColor="#F2ECE1"
+            bottomColor="#ECE4D5"
+            direction="down"
+          />
+
           <section
             id="catering"
-            className="border-b border-charcoal-ink/20 bg-surface-sand px-4 py-16 sm:px-6 lg:px-8"
+            className="bg-surface-sand px-4 py-16 sm:px-6 lg:px-8"
           >
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="font-display text-4xl sm:text-6xl font-black tracking-tight uppercase text-charcoal-ink leading-none">
@@ -171,6 +194,13 @@ function Index() {
               </p>
             </div>
           </section>
+
+          {/* Transición 4: Onda Orgánica Jelly (Yuca Sand -> Pressed Dark) hacia el Footer */}
+          <JellyWaveTransition
+            topColor="#ECE4D5"
+            bottomColor="#141210"
+            direction="down"
+          />
 
           {/* Editorial Footer de Alto Impacto */}
           <EditorialFooter onOpenCart={() => setCartOpen(true)} />

@@ -167,26 +167,26 @@ export function CuratedMenu() {
     <section
       id="curated-menu"
       aria-label="Hot Plancha Selection - Mojo Grille Signature Dishes"
-      className="relative bg-transparent py-16 sm:py-24 border-b border-charcoal-ink/20 select-none overflow-hidden"
+      className="relative bg-brand-fire py-16 sm:py-24 select-none overflow-hidden"
     >
       {/* Miniatura Fotográfica Flotante al Cursor (Solo Desktop) */}
       <div
         ref={previewRef}
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-50 hidden lg:flex flex-col overflow-hidden rounded-none bg-surface-sand shadow-none opacity-0 w-80 h-52 select-none will-change-transform"
+        className="pointer-events-none fixed top-0 left-0 z-50 hidden lg:flex flex-col overflow-hidden rounded-none bg-charcoal-ink border border-cream-bg/30 shadow-2xl opacity-0 w-80 h-52 select-none will-change-transform"
         style={{ transform: "translate3d(-9999px, -9999px, 0)" }}
       >
-        <div className="relative h-full w-full overflow-hidden bg-surface-sand">
+        <div className="relative h-full w-full overflow-hidden bg-charcoal-ink">
           <img
             src={activeItem.imageUrl}
             alt={activeItem.name}
             className="h-full w-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal-ink/90 via-transparent to-charcoal-ink/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-charcoal-ink/90 via-transparent to-charcoal-ink/30" />
           
           {/* Metadato superior de previsualización */}
           <div className="absolute top-2.5 left-3 flex items-center">
-            <span className="font-sans text-[9px] font-bold uppercase tracking-[0.18em] text-cream-bg bg-charcoal-ink px-2 py-0.5 border border-cream-bg/20">
+            <span className="font-sans text-[9px] font-bold uppercase tracking-[0.18em] text-cream-bg bg-brand-fire px-2 py-0.5 border border-cream-bg/20">
               MADE AL MOMENTO 100% FRESH
             </span>
           </div>
@@ -196,7 +196,7 @@ export function CuratedMenu() {
             <span className="font-display text-lg uppercase tracking-tight text-cream-bg font-black">
               {activeItem.name}
             </span>
-            <span className="font-sans font-bold uppercase text-[11px] tracking-wider text-brand-fire">
+            <span className="font-sans font-bold uppercase text-[11px] tracking-wider text-mojo-citrus">
               {activeItem.authorNote}
             </span>
           </div>
@@ -206,10 +206,10 @@ export function CuratedMenu() {
       {/* Encabezado Editorial Monumental */}
       <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16 text-center">
         {/* Título Monumental & Subtítulo Editorial */}
-        <h2 className="font-display text-5xl md:text-7xl uppercase tracking-tight text-charcoal-ink leading-none">
+        <h2 className="font-display text-5xl md:text-7xl uppercase tracking-tight text-cream-bg leading-none">
           HOT PLANCHA SELECTION
         </h2>
-        <p className="mt-2 sm:mt-3 font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-brand-fire">
+        <p className="mt-2 sm:mt-3 font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-mojo-citrus">
           MADE AL MOMENTO SEASONED WITH MOJO
         </p>
       </div>
@@ -220,25 +220,25 @@ export function CuratedMenu() {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeaveList}
       >
-        <div className="border-t border-charcoal-ink/20 w-full bg-transparent">
+        <div className="border-t border-cream-bg/20 w-full bg-transparent">
           {CURATED_ITEMS.map((item, index) => (
             <div
               key={item.id}
               onMouseEnter={(e) => handleRowMouseEnter(item, e)}
               onClick={() => handleAddToCart(item)}
-              className="border-b border-charcoal-ink/20 py-7 md:py-8 px-4 sm:px-6 flex flex-col md:flex-row md:items-center justify-between group transition-colors duration-300 hover:bg-surface-sand/60 relative cursor-pointer gap-4 md:gap-6"
+              className="border-b border-cream-bg/20 py-7 md:py-8 px-4 sm:px-6 flex flex-col md:flex-row md:items-center justify-between group transition-colors duration-300 hover:bg-black/15 relative cursor-pointer gap-4 md:gap-6"
             >
               {/* Izquierda: Nombre del plato font-display + Badge Rebelde de Chef (Item 01) + Subtítulo con mayor grosor */}
               <div className="flex flex-col gap-1.5 lg:w-[42%]">
                 <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
-                  <h3 className="font-display text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors duration-200 leading-none">
+                  <h3 className="font-display text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight text-cream-bg group-hover:text-mojo-citrus transition-colors duration-200 leading-none">
                     {item.name}
                   </h3>
                   {index === 0 && (
                     <RebelChefBadge />
                   )}
                 </div>
-                <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-charcoal-ink/70 mt-0.5 group-hover:text-charcoal-ink transition-colors leading-snug">
+                <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg/80 mt-0.5 group-hover:text-mojo-citrus transition-colors leading-snug">
                   {item.authorNote}
                 </span>
               </div>
@@ -248,24 +248,24 @@ export function CuratedMenu() {
                 <img
                   src={item.imageUrl}
                   alt={item.name}
-                  className="w-16 h-16 object-cover shrink-0"
+                  className="w-16 h-16 object-cover shrink-0 border border-cream-bg/20"
                   loading="lazy"
                 />
-                <p className="font-sans text-xs text-charcoal-ink/75 line-clamp-2">
+                <p className="font-sans text-xs text-cream-bg/85 line-clamp-2">
                   {item.description}
                 </p>
               </div>
 
               {/* Centro: Descripción sensorial criolla (En escritorio) */}
               <div className="hidden md:flex items-center lg:w-[32%] px-2">
-                <p className="font-sans text-xs sm:text-[13px] text-charcoal-ink/75 leading-relaxed text-left line-clamp-2 group-hover:text-charcoal-ink transition-colors">
+                <p className="font-sans text-xs sm:text-[13px] text-cream-bg/85 leading-relaxed text-left line-clamp-2 group-hover:text-cream-bg transition-colors">
                   {item.description}
                 </p>
               </div>
 
               {/* Derecha: Precio en gran escala y botón de corte limpio + ADD */}
               <div className="flex items-center justify-between md:justify-end gap-5 sm:gap-6 lg:w-[28%]">
-                <span className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors duration-200 shrink-0">
+                <span className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-cream-bg group-hover:text-mojo-citrus transition-colors duration-200 shrink-0">
                   ${item.price.toFixed(2)}
                 </span>
                 <MagneticButton
@@ -275,7 +275,7 @@ export function CuratedMenu() {
                     e.stopPropagation();
                     handleAddToCart(item);
                   }}
-                  className="px-4 py-2 sm:px-5 sm:py-2.5 font-sans font-bold uppercase tracking-wider text-xs sm:text-sm bg-charcoal-ink text-cream-bg group-hover:bg-brand-fire transition-colors duration-200 rounded-none flex items-center gap-1.5 cursor-pointer shrink-0"
+                  className="px-4 py-2 sm:px-5 sm:py-2.5 font-sans font-bold uppercase tracking-wider text-xs sm:text-sm bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center gap-1.5 cursor-pointer shrink-0 shadow-md"
                   aria-label={`Add ${item.name} to order for $${item.price.toFixed(2)}`}
                 >
                   <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[3]" aria-hidden="true" />
