@@ -1,47 +1,78 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef } from 'react';
-import Image from 'next/image';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { InkStamp } from './InkStamp';
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { InkStamp } from "./InkStamp";
 
 interface IngredientCalloutProps {
   name: string;
   detail: string;
+  side?: "left" | "right";
 }
 
-function IngredientCallout({ name, detail }: IngredientCalloutProps) {
-  return (
-    <div className="ingredient-callout absolute left-[78%] sm:left-[82%] md:left-[85%] lg:left-[88%] top-1/2 -translate-y-1/2 flex items-center gap-2 sm:gap-3 pointer-events-auto select-none whitespace-nowrap opacity-0 will-change-transform z-30">
-      {/* Flecha y Línea Conectora hacia el ingrediente */}
-      <div className="flex items-center">
-        {/* Punta de Flecha apuntando al ingrediente */}
-        <span
-          className="w-0 h-0 border-y-[4px] sm:border-y-[5px] border-y-transparent border-r-[7px] sm:border-r-[9px] border-r-brand-fire inline-block shrink-0"
-          aria-hidden="true"
-        />
-        {/* Línea conectora */}
-        <span
-          className="h-[1.5px] sm:h-[2px] w-6 sm:w-12 md:w-18 lg:w-24 bg-brand-fire inline-block shrink-0 opacity-85"
-          aria-hidden="true"
-        />
-        {/* Punto de anclaje */}
-        <span
-          className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-brand-fire inline-block shrink-0 -ml-0.5"
-          aria-hidden="true"
-        />
-      </div>
+function IngredientCallout({ name, detail, side = "right" }: IngredientCalloutProps) {
+  const isLeft = side === "left";
 
-      {/* Ficha Tipográfica del Ingrediente */}
-      <div className="flex flex-col text-left pl-0.5 sm:pl-1">
-        <span className="font-display text-sm sm:text-lg md:text-xl lg:text-2xl font-bold uppercase tracking-tight text-charcoal-ink leading-tight">
-          {name}
-        </span>
-        <span className="font-sans text-[8px] sm:text-[10px] md:text-xs font-semibold uppercase tracking-wider text-charcoal-ink/75 leading-none mt-0.5">
-          {detail}
-        </span>
-      </div>
+  return (
+    <div
+      className={`ingredient-callout ${
+        isLeft ? "ingredient-callout-left" : "ingredient-callout-right"
+      } absolute ${
+        isLeft
+          ? "right-[78%] sm:right-[82%] md:right-[86%]"
+          : "left-[78%] sm:left-[82%] md:left-[86%]"
+      } top-1/2 -translate-y-1/2 flex items-center gap-2 sm:gap-3 pointer-events-auto select-none whitespace-nowrap opacity-0 will-change-transform z-30`}
+    >
+      {isLeft ? (
+        <>
+          {/* Ficha Tipográfica Izquierda (Alineada a la derecha) */}
+          <div className="flex flex-col text-right items-end pr-0.5 sm:pr-1">
+            <span className="font-display text-xs sm:text-base md:text-lg lg:text-xl font-bold uppercase tracking-tight text-charcoal-ink leading-tight">
+              {name}
+            </span>
+            <span className="font-sans text-[8px] sm:text-[9px] md:text-[11px] font-semibold uppercase tracking-wider text-charcoal-ink/75 leading-none mt-0.5">
+              {detail}
+            </span>
+          </div>
+
+          {/* Línea Recta y Punto Conector Izquierdo */}
+          <div className="flex items-center">
+            <span
+              className="h-[1.5px] sm:h-[2px] w-6 sm:w-12 md:w-16 lg:w-24 bg-brand-fire inline-block shrink-0 opacity-90"
+              aria-hidden="true"
+            />
+            <span
+              className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-brand-fire inline-block shrink-0 shadow-sm"
+              aria-hidden="true"
+            />
+          </div>
+        </>
+      ) : (
+        <>
+          {/* Línea Recta y Punto Conector Derecho */}
+          <div className="flex items-center">
+            <span
+              className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-brand-fire inline-block shrink-0 shadow-sm"
+              aria-hidden="true"
+            />
+            <span
+              className="h-[1.5px] sm:h-[2px] w-6 sm:w-12 md:w-16 lg:w-24 bg-brand-fire inline-block shrink-0 opacity-90"
+              aria-hidden="true"
+            />
+          </div>
+
+          {/* Ficha Tipográfica Derecha (Alineada a la izquierda) */}
+          <div className="flex flex-col text-left items-start pl-0.5 sm:pl-1">
+            <span className="font-display text-xs sm:text-base md:text-lg lg:text-xl font-bold uppercase tracking-tight text-charcoal-ink leading-tight">
+              {name}
+            </span>
+            <span className="font-sans text-[8px] sm:text-[9px] md:text-[11px] font-semibold uppercase tracking-wider text-charcoal-ink/75 leading-none mt-0.5">
+              {detail}
+            </span>
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -66,14 +97,13 @@ export function CubanDeconstruction() {
   };
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // ScrollTrigger.matchMedia para adaptar la animación según el ancho de viewport
     ScrollTrigger.matchMedia({
-      // 1. Escritorio (min-width: 1024px): separación de capas con llamadas tipográficas
-      '(min-width: 1024px)': function () {
+      // 1. Escritorio (min-width: 1024px): separación de capas con llamadas alternadas izquierda / derecha
+      "(min-width: 1024px)": function () {
         gsap.set([topBreadRef.current, bottomBreadRef.current], {
           rotateX: 20,
           transformPerspective: 1000,
@@ -83,8 +113,8 @@ export function CubanDeconstruction() {
           scrollTrigger: {
             trigger: containerRef.current,
             pin: pinRef.current,
-            start: 'top top',
-            end: 'bottom bottom',
+            start: "top top",
+            end: "bottom bottom",
             scrub: 1.5,
           },
         });
@@ -95,7 +125,7 @@ export function CubanDeconstruction() {
             y: -240,
             rotate: -3,
             rotateX: 20,
-            ease: 'power1.inOut',
+            ease: "power1.inOut",
           },
           0
         )
@@ -104,7 +134,7 @@ export function CubanDeconstruction() {
             {
               y: -120,
               rotate: 4,
-              ease: 'power1.inOut',
+              ease: "power1.inOut",
             },
             0
           )
@@ -113,7 +143,7 @@ export function CubanDeconstruction() {
             {
               y: -35,
               rotate: -1,
-              ease: 'power1.inOut',
+              ease: "power1.inOut",
             },
             0
           )
@@ -122,7 +152,7 @@ export function CubanDeconstruction() {
             {
               y: 55,
               scale: 1.08,
-              ease: 'power1.inOut',
+              ease: "power1.inOut",
             },
             0
           )
@@ -132,12 +162,12 @@ export function CubanDeconstruction() {
               y: 210,
               rotate: 1,
               rotateX: 20,
-              ease: 'power1.inOut',
+              ease: "power1.inOut",
             },
             0
           )
           .fromTo(
-            '.ingredient-callout',
+            ".ingredient-callout-right",
             {
               opacity: 0,
               x: -25,
@@ -146,7 +176,21 @@ export function CubanDeconstruction() {
               opacity: 1,
               x: 0,
               stagger: 0.04,
-              ease: 'power1.out',
+              ease: "power1.out",
+            },
+            0.15
+          )
+          .fromTo(
+            ".ingredient-callout-left",
+            {
+              opacity: 0,
+              x: 25,
+            },
+            {
+              opacity: 1,
+              x: 0,
+              stagger: 0.04,
+              ease: "power1.out",
             },
             0.15
           );
@@ -157,7 +201,7 @@ export function CubanDeconstruction() {
       },
 
       // 2. Móviles y tabletas (max-width: 1023px)
-      '(max-width: 1023px)': function () {
+      "(max-width: 1023px)": function () {
         gsap.set([topBreadRef.current, bottomBreadRef.current], {
           rotateX: 16,
           transformPerspective: 1000,
@@ -167,8 +211,8 @@ export function CubanDeconstruction() {
           scrollTrigger: {
             trigger: containerRef.current,
             pin: pinRef.current,
-            start: 'top top',
-            end: 'bottom bottom',
+            start: "top top",
+            end: "bottom bottom",
             scrub: 1.5,
           },
         });
@@ -179,7 +223,7 @@ export function CubanDeconstruction() {
             y: -140,
             rotate: -2,
             rotateX: 16,
-            ease: 'power1.inOut',
+            ease: "power1.inOut",
           },
           0
         )
@@ -188,7 +232,7 @@ export function CubanDeconstruction() {
             {
               y: -70,
               rotate: 3,
-              ease: 'power1.inOut',
+              ease: "power1.inOut",
             },
             0
           )
@@ -197,7 +241,7 @@ export function CubanDeconstruction() {
             {
               y: -20,
               rotate: -1,
-              ease: 'power1.inOut',
+              ease: "power1.inOut",
             },
             0
           )
@@ -206,7 +250,7 @@ export function CubanDeconstruction() {
             {
               y: 35,
               scale: 1.05,
-              ease: 'power1.inOut',
+              ease: "power1.inOut",
             },
             0
           )
@@ -216,12 +260,12 @@ export function CubanDeconstruction() {
               y: 125,
               rotate: 1,
               rotateX: 16,
-              ease: 'power1.inOut',
+              ease: "power1.inOut",
             },
             0
           )
           .fromTo(
-            '.ingredient-callout',
+            ".ingredient-callout-right",
             {
               opacity: 0,
               x: -12,
@@ -230,7 +274,21 @@ export function CubanDeconstruction() {
               opacity: 1,
               x: 0,
               stagger: 0.04,
-              ease: 'power1.out',
+              ease: "power1.out",
+            },
+            0.15
+          )
+          .fromTo(
+            ".ingredient-callout-left",
+            {
+              opacity: 0,
+              x: 12,
+            },
+            {
+              opacity: 1,
+              x: 0,
+              stagger: 0.04,
+              ease: "power1.out",
             },
             0.15
           );
@@ -241,14 +299,15 @@ export function CubanDeconstruction() {
       },
     });
 
+    // Listener de carga de ventana para refrescar ScrollTrigger
     const handleWindowLoad = () => {
       ScrollTrigger.refresh();
     };
 
-    if (document.readyState === 'complete') {
+    if (document.readyState === "complete") {
       ScrollTrigger.refresh();
     } else {
-      window.addEventListener('load', handleWindowLoad);
+      window.addEventListener("load", handleWindowLoad);
     }
 
     const timer1 = setTimeout(() => {
@@ -262,7 +321,7 @@ export function CubanDeconstruction() {
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
-      window.removeEventListener('load', handleWindowLoad);
+      window.removeEventListener("load", handleWindowLoad);
       ScrollTrigger.clearMatchMedia();
       ScrollTrigger.getAll().forEach((t) => {
         if (t.trigger === containerRef.current) {
@@ -276,14 +335,14 @@ export function CubanDeconstruction() {
     <section
       ref={containerRef}
       id="cuban-deconstruction"
-      aria-label="Deconstrucción interactiva del Sándwich Cubano Mojo Grille"
+      aria-label="Interactive Deconstruction of the Mojo Grille Cuban Sandwich"
       className="relative h-[180vh] bg-transparent border-b border-charcoal-ink/10 select-none overflow-x-clip"
     >
       <div
         ref={pinRef}
         className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-visible px-4 sm:px-8 relative"
       >
-        {/* Tipografía Monumental Marca de Agua */}
+        {/* Tipografía Monumental Marca de Agua (Watermark) */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden z-0 select-none opacity-40"
@@ -298,7 +357,7 @@ export function CubanDeconstruction() {
           <InkStamp size={135} />
         </div>
 
-        {/* Encabezado Superior de Sección */}
+        {/* Encabezado Superior de Sección en Inglés */}
         <div className="absolute top-4 sm:top-8 left-0 right-0 text-center px-4 pointer-events-none z-10">
           <h3 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-charcoal-ink mt-0.5 sm:mt-1">
             THE UNFORGIVING CUBANO
@@ -308,127 +367,132 @@ export function CubanDeconstruction() {
           </p>
         </div>
 
-        {/* Contenedor central de capas apiladas con perspectiva CSS */}
+        {/* Contenedor central de capas apiladas con perspectiva CSS centrada */}
         <div className="relative w-full max-w-[1600px] px-4 sm:px-8 flex items-center justify-center pt-8 sm:pt-12">
           <div
-            className="relative w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] md:w-[500px] md:h-[500px] lg:w-[560px] lg:h-[560px] flex items-center justify-center overflow-visible md:-translate-x-20 lg:-translate-x-32"
-            style={{ perspective: '1000px' }}
+            className="relative w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] md:w-[500px] md:h-[500px] lg:w-[560px] lg:h-[560px] flex items-center justify-center overflow-visible mx-auto"
+            style={{ perspective: "1000px" }}
           >
-            {/* Capa 1: Tapa superior de pan cubano (rotateX 20deg) */}
+            {/* Capa 1: Tapa superior de pan cubano (DERECHA) */}
             <div
               ref={topBreadRef}
               className="absolute inset-0 flex items-center justify-center will-change-transform z-50 pointer-events-none overflow-visible"
-              style={{ willChange: 'transform', transform: 'rotateX(20deg)' }}
+              style={{ willChange: "transform", transform: "rotateX(20deg)" }}
             >
-              <Image
+              <img
                 src="/sandwich/01-top-bread.webp"
                 alt="Toasted artisanal Cuban bread top crust"
                 width={1000}
                 height={545}
-                priority
+                loading="eager"
                 onLoad={handleLayerImageLoad}
                 className="w-full h-auto object-contain select-none"
               />
               <IngredientCallout
-                name="PAN SUPERIOR"
-                detail="Pan Cubano Dorado a la Plancha"
+                name="ARTISANAL TOP CRUST"
+                detail="Golden Griddled Cuban Bread"
+                side="right"
               />
             </div>
 
-            {/* Capa 2: Pepinillos encurtidos y mostaza criolla */}
+            {/* Capa 2: Pepinillos encurtidos y mostaza criolla (IZQUIERDA) */}
             <div
               ref={picklesRef}
               className="absolute inset-0 flex items-center justify-center will-change-transform z-40 pointer-events-none overflow-visible"
-              style={{ willChange: 'transform' }}
+              style={{ willChange: "transform" }}
             >
-              <Image
+              <img
                 src="/sandwich/02-pickles.webp"
                 alt="Tangy dill pickles and yellow mustard slices"
                 width={1000}
                 height={545}
-                priority
+                loading="eager"
                 onLoad={handleLayerImageLoad}
                 className="w-full h-auto object-contain select-none"
               />
               <IngredientCallout
-                name="PEPINILLOS & MOSTAZA"
-                detail="Encurtidos Crujientes en Eneldo"
+                name="CRISP PICKLES & MUSTARD"
+                detail="Crunchy Dill Spears & Yellow Mustard"
+                side="left"
               />
             </div>
 
-            {/* Capa 3: Queso suizo fundido */}
+            {/* Capa 3: Queso suizo fundido (DERECHA) */}
             <div
               ref={cheeseRef}
               className="absolute inset-0 flex items-center justify-center will-change-transform z-30 pointer-events-none overflow-visible"
-              style={{ willChange: 'transform' }}
+              style={{ willChange: "transform" }}
             >
-              <Image
+              <img
                 src="/sandwich/03-melted-cheese.webp"
                 alt="Melted stretchy Swiss cheese"
                 width={1000}
                 height={545}
-                priority
+                loading="eager"
                 onLoad={handleLayerImageLoad}
                 className="w-full h-auto object-contain select-none"
               />
               <IngredientCallout
-                name="QUESO SUIZO"
-                detail="Fundido al Calor del Fierro"
+                name="MELTED SWISS CHEESE"
+                detail="Plancha Melted & Stretchy"
+                side="right"
               />
             </div>
 
-            {/* Capa 4: Pernil asado al mojo cítrico y jamón dulce */}
+            {/* Capa 4: Pernil asado al mojo cítrico y jamón dulce (IZQUIERDA) */}
             <div
               ref={mojoPorkRef}
               className="absolute inset-0 flex items-center justify-center will-change-transform z-20 pointer-events-none overflow-visible"
-              style={{ willChange: 'transform' }}
+              style={{ willChange: "transform" }}
             >
-              <Image
+              <img
                 src="/sandwich/04-mojo-pork.webp"
                 alt="Slow-roasted 4-hour citrus mojo pork and sweet cured ham"
                 width={1000}
                 height={545}
-                priority
+                loading="eager"
                 onLoad={handleLayerImageLoad}
                 className="w-full h-auto object-contain select-none"
               />
               <IngredientCallout
-                name="CARNE / PERNIL AL MOJO"
-                detail="Asado 4h en Mojo Cítrico & Jamón"
+                name="CITRUS MOJO ROAST PORK"
+                detail="Slow-Roasted 4h in Sour Orange & Garlic"
+                side="left"
               />
             </div>
 
-            {/* Capa 5: Tapa inferior de pan cubano prensado (rotateX 20deg) */}
+            {/* Capa 5: Tapa inferior de pan cubano prensado (DERECHA) */}
             <div
               ref={bottomBreadRef}
               className="absolute inset-0 flex items-center justify-center will-change-transform z-10 pointer-events-none overflow-visible"
-              style={{ willChange: 'transform', transform: 'rotateX(20deg)' }}
+              style={{ willChange: "transform", transform: "rotateX(20deg)" }}
             >
-              <Image
+              <img
                 src="/sandwich/05-bottom-bread.webp"
                 alt="Bottom crust of plancha-pressed Cuban bread"
                 width={1000}
                 height={545}
-                priority
+                loading="eager"
                 onLoad={handleLayerImageLoad}
                 className="w-full h-auto object-contain select-none"
               />
               <IngredientCallout
-                name="BASE CRUJIENTE"
-                detail="Pan Tostado con Jugos de la Plancha"
+                name="CRUNCHY PLANCHA BASE"
+                detail="Toasted with Rich Griddle Juices"
+                side="right"
               />
             </div>
           </div>
         </div>
 
-        {/* Botón Flotante para Ordenar el Cubano */}
+        {/* Botón Flotante para Ordenar el Cubano en Inglés */}
         <div className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 z-30 flex items-center">
           <a
             href="#curated-menu"
             className="bg-charcoal-ink hover:bg-brand-fire text-cream-bg py-3 px-5 sm:px-6 text-xs font-bold uppercase tracking-widest transition-colors flex items-center gap-3 rounded-none cursor-pointer group shadow-none"
           >
             <span className="flex items-center gap-2">
-              <span>ORDENAR AL FUEGO</span>
+              <span>ORDER LIVE-FIRE</span>
               <span className="transition-transform group-hover:translate-x-1">➔</span>
             </span>
             <span className="h-3 w-px bg-cream-bg/30" />
