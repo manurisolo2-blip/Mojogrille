@@ -149,9 +149,6 @@ export function ScrollLayerAssembly() {
       >
         {/* Encabezado Superior de Sección */}
         <div className="absolute top-8 md:top-12 left-0 right-0 text-center px-4 pointer-events-none z-10">
-          <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire">
-            100% FRESH CRIOLLO PRESSED HOT
-          </span>
           <h3 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tight text-charcoal-ink mt-1">
             THE UNFORGIVING CUBANO
           </h3>

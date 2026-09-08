@@ -221,9 +221,6 @@ export function CravStyleMenuGrid({
         
         {/* Encabezado con tipografía monumental y acento editorial */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-          <div className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-fire mb-2">
-            100% FRESH CRIOLLO PRESSED HOT
-          </div>
           <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-charcoal-ink leading-none">
             SLOW ROASTED, SERVED <span className="text-brand-fire">AL MOMENTO</span>.
           </h2>
