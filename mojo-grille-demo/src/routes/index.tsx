@@ -150,10 +150,6 @@ function Index() {
             className="border-b border-charcoal-ink/20 bg-surface-sand px-4 py-16 sm:px-6 lg:px-8"
           >
             <div className="mx-auto max-w-4xl text-center">
-              <div className="inline-flex items-center gap-2 rounded-none bg-cream-bg px-3.5 py-1 font-sans text-[11px] font-bold text-brand-fire uppercase tracking-[0.2em] mb-4">
-                <span className="h-1.5 w-1.5 bg-brand-fire rounded-none" aria-hidden="true" />
-                <span>CRIOLLO FLAVOR FOR YOUR EVENTS</span>
-              </div>
               <h2 className="font-display text-4xl sm:text-6xl font-black tracking-tight uppercase text-charcoal-ink leading-none">
                 Authentic Criollo Catering for your next celebration
               </h2>
