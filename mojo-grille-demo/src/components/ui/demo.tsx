@@ -1,3 +1,6 @@
-"use client";
+import React from "react";
+import AuthSwitch from "./auth-switch";
 
-export { default, CardStackDemoPage } from "./card-stack-demo";
+export default function Demo() {
+  return <AuthSwitch />;
+}

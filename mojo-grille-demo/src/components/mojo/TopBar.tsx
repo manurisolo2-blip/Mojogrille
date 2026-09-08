@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown, MapPin, Menu, X, UserPlus, Phone, ArrowRight } from "lucide-react";
 import { LatinMarketBagIcon } from "./LatinMarketBagIcon";
 import { useCart } from "./cart";
+import { AuthSwitch } from "../ui/auth-switch";
 
 export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
   const { count, location, setLocation, availableLocations } = useCart();
@@ -221,7 +222,10 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                   <p className="font-sans text-xs text-charcoal-ink/80 mt-1 leading-relaxed">
                     Únete a la familia Mojo Grille para acumular puntos por cada lechón o bowl, recibir un cafecito de cortesía en tu cumpleaños y pedir en 1 clic.
                   </p>
-                  <div className="mt-3.5">
+                  <div className="my-3.5">
+                    <AuthSwitch title="Component Example" />
+                  </div>
+                  <div className="mt-3">
                     <button
                       type="button"
                       onClick={() => setAccountToast(true)}
