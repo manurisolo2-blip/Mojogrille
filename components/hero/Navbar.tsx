@@ -1,23 +1,19 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-charcoal-ink/10 bg-cream-bg/90 backdrop-blur-md transition-all duration-300">
+    <header className="sticky top-0 z-40 w-full bg-cream-bg/95 backdrop-blur-md transition-all duration-300">
       <div className="mx-auto flex h-20 max-w-[1600px] w-full items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Logo a la izquierda */}
+        {/* Brand name en grande sin logo ni subtitulo */}
         <Link
           href="/"
-          className="group flex items-baseline gap-2 transition-transform duration-200 hover:scale-[1.02]"
+          className="group flex items-center transition-transform duration-200 hover:scale-[1.01]"
           aria-label="Mojo Grille Home"
         >
-          <span className="font-display text-3xl font-bold tracking-tight text-charcoal-ink">
-            MOJO<span className="text-brand-fire">GRILLE</span>
-          </span>
-          <span className="hidden sm:inline-block rounded-none border border-leaf-green/30 bg-leaf-green/15 px-2 py-0.5 font-sans text-[10px] font-bold tracking-[0.18em] text-leaf-green uppercase">
-            Miami
+          <span className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-charcoal-ink leading-none transition-colors group-hover:text-brand-fire">
+            MOJO GRILLE
           </span>
         </Link>
 
@@ -42,24 +38,22 @@ export function Navbar() {
             Catering
           </Link>
           <Link
-            href="#locations"
+            href="#reviews"
             className="transition-colors duration-200 hover:text-brand-fire"
           >
-            Miami Locations
+            Google Reviews
           </Link>
         </nav>
 
-        {/* Botón CTA a la derecha con microanimación */}
+        {/* Botón CTA a la derecha */}
         <div className="flex items-center gap-3">
-          <motion.a
+          <a
             href="#menu"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center justify-center gap-2 rounded-none border-2 border-charcoal-ink bg-brand-fire px-5 py-2.5 font-sans text-sm font-bold text-cream-bg shadow-none transition-all duration-200 hover:bg-charcoal-ink focus:outline-hidden"
+            className="inline-flex items-center justify-center gap-2 rounded-none bg-brand-fire px-5 py-2.5 font-sans text-sm font-bold text-cream-bg shadow-none transition-all duration-200 hover:bg-charcoal-ink focus:outline-hidden"
           >
             <span>ORDER HOT</span>
             <span className="flex h-2 w-2 rounded-none bg-cream-bg animate-pulse" />
-          </motion.a>
+          </a>
         </div>
       </div>
     </header>

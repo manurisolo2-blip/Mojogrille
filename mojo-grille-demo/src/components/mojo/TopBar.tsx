@@ -29,20 +29,16 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-charcoal-ink/10 bg-cream-bg/95 backdrop-blur-md">
+    <header className="sticky top-0 z-40 bg-cream-bg/95 backdrop-blur-md">
       <div className="bg-cream-bg/95">
-        <nav className="mx-auto flex max-w-[1600px] w-full items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
-          <a href="#top" className="flex min-w-0 items-center gap-2.5">
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-none bg-brand-fire font-display text-2xl font-bold text-cream-bg">
-              M
-            </span>
-            <span className="min-w-0">
-              <span className="block truncate font-display text-2xl font-bold leading-tight text-charcoal-ink">
-                MOJO GRILLE
-              </span>
-              <span className="block truncate font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-charcoal-ink/60">
-                Cuban Kitchen
-              </span>
+        <nav className="mx-auto flex max-w-[1600px] w-full items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8">
+          <a
+            href="#top"
+            className="flex min-w-0 items-center group cursor-pointer select-none"
+            aria-label="Mojo Grille Home"
+          >
+            <span className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-charcoal-ink leading-none transition-colors group-hover:text-brand-fire">
+              MOJO GRILLE
             </span>
           </a>
 
@@ -111,3 +107,5 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
     </header>
   );
 }
+
+export default TopBar;
