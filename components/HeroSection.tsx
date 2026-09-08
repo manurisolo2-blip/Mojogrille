@@ -41,11 +41,6 @@ export function HeroSection({
           
           {/* Ficha de Metadato Flotante Superior (Ticket de Comanda) */}
           <div className="flex flex-col items-center text-center space-y-3 max-w-5xl mx-auto">
-            {/* Eyebrow de Comanda y Filosofía */}
-            <p className="font-sans text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-brand-fire select-none">
-              100% FRESH CRIOLLO SLOW ROASTED
-            </p>
-
             {/* Titular Central con Efecto Spotlight HoverHighlightText */}
             <div className="w-full max-w-5xl mx-auto flex justify-center">
               <HoverHighlightText
