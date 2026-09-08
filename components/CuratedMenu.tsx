@@ -231,7 +231,7 @@ export function CuratedMenu() {
               className="border-b border-cream-bg/20 py-7 md:py-8 px-4 sm:px-6 flex flex-col md:flex-row md:items-center justify-between group transition-colors duration-300 hover:bg-black/15 relative cursor-pointer gap-4 md:gap-6"
             >
               {/* Izquierda: Nombre del plato font-display + Badge Rebelde de Chef (Item 01) + Subtítulo con mayor grosor */}
-              <div className="flex flex-col gap-1.5 lg:w-[42%]">
+              <div className="flex flex-col gap-1.5 lg:w-[40%]">
                 <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
                   <h3 className="font-display text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight text-cream-bg group-hover:text-mojo-citrus transition-colors duration-200 leading-none">
                     {item.name}
@@ -259,15 +259,15 @@ export function CuratedMenu() {
               </div>
 
               {/* Centro: Descripción sensorial criolla (En escritorio) */}
-              <div className="hidden md:flex items-center lg:w-[32%] px-2">
+              <div className="hidden md:flex items-center lg:w-[30%] px-2">
                 <p className="font-sans text-xs sm:text-[13px] text-cream-bg/85 leading-relaxed text-left line-clamp-2 group-hover:text-cream-bg transition-colors">
                   {item.description}
                 </p>
               </div>
 
-              {/* Derecha: Precio en gran escala y botón de corte limpio + ADD */}
-              <div className="flex items-center justify-between md:justify-end gap-5 sm:gap-6 lg:w-[28%]">
-                <span className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-cream-bg group-hover:text-mojo-citrus transition-colors duration-200 shrink-0">
+              {/* Derecha: Precio en gran escala y botón de corte limpio con anchos balanceados y alineación uniforme */}
+              <div className="flex items-center justify-between md:justify-end gap-4 sm:gap-6 lg:w-[30%] shrink-0">
+                <span className="w-24 sm:w-28 text-right font-display text-3xl sm:text-4xl font-bold tracking-tight text-cream-bg group-hover:text-mojo-citrus transition-colors duration-200 shrink-0 tabular-nums">
                   ${item.price.toFixed(2)}
                 </span>
                 <MagneticButton
@@ -277,11 +277,11 @@ export function CuratedMenu() {
                     e.stopPropagation();
                     handleAddToCart(item);
                   }}
-                  className="px-4 py-2 sm:px-5 sm:py-2.5 font-sans font-bold uppercase tracking-wider text-xs sm:text-sm bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center gap-1.5 cursor-pointer shrink-0 shadow-md"
+                  className="w-44 sm:w-52 h-11 px-3 sm:px-4 font-sans font-bold uppercase tracking-wider text-xs sm:text-sm bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center justify-center gap-1.5 cursor-pointer shrink-0 shadow-md select-none"
                   aria-label={`Add ${item.name} to order for $${item.price.toFixed(2)}`}
                 >
                   <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[3]" aria-hidden="true" />
-                  <span>
+                  <span className="truncate">
                     {item.id.includes('bowl')
                       ? 'GRAB THIS BOWL'
                       : item.id.includes('tostones')
