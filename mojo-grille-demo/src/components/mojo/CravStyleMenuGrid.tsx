@@ -209,12 +209,12 @@ export function CravStyleMenuGrid({
           </p>
         </div>
 
-        {/* 1. Pestañas de Categorías con Retícula de Ángulo Recto */}
-        <div className="sticky top-[56px] sm:top-[64px] z-30 mb-10 py-2 backdrop-blur-md bg-cream-bg/90">
+        {/* 1. Pestañas de Categorías con Retícula de Ángulo Recto (100% Unificado) */}
+        <div className="sticky top-[56px] sm:top-[64px] z-30 mb-10 py-2.5 bg-cream-bg">
           <div
             role="tablist"
             aria-label="Menu Categories"
-            className="no-scrollbar flex items-center justify-start sm:justify-center gap-1.5 overflow-x-auto p-1.5 rounded-none bg-surface-sand/70 max-w-4xl mx-auto"
+            className="no-scrollbar flex items-center justify-start sm:justify-center gap-1.5 overflow-x-auto p-1 rounded-none bg-transparent max-w-4xl mx-auto"
           >
             {CATEGORIES.map((category) => {
               const isSelected = selectedCategory === category.id;
@@ -323,7 +323,7 @@ export function CravStyleMenuGrid({
         </div>
 
         {/* Bloque editorial de consulta personalizada */}
-        <div className="mt-14 rounded-none bg-surface-sand/80 p-6 sm:p-8 text-center">
+        <div className="mt-14 rounded-none bg-transparent p-6 sm:p-8 text-center">
           <p className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-charcoal-ink font-bold">
             NEED INGREDIENT DETAILS OR A CUSTOM ORDER?
           </p>

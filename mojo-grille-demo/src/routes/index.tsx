@@ -161,16 +161,9 @@ function Index() {
           {/* Reseñas Verificadas de Google Maps */}
           <GoogleReviewsSection />
 
-          {/* Transición 3: Onda Orgánica Jelly (Criollo Cream -> Yuca Sand) */}
-          <JellyWaveTransition
-            topColor="#F2ECE1"
-            bottomColor="#ECE4D5"
-            direction="down"
-          />
-
           <section
             id="catering"
-            className="bg-surface-sand px-4 py-16 sm:px-6 lg:px-8"
+            className="bg-transparent px-4 py-16 sm:px-6 lg:px-8"
           >
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="font-display text-4xl sm:text-6xl font-black tracking-tight uppercase text-charcoal-ink leading-none">
@@ -195,9 +188,9 @@ function Index() {
             </div>
           </section>
 
-          {/* Transición 4: Onda Orgánica Jelly (Yuca Sand -> Mojo Scarlet) hacia el Footer */}
+          {/* Transición hacia el Footer Rojo Mojo Scarlet */}
           <JellyWaveTransition
-            topColor="#ECE4D5"
+            topColor="#F2ECE1"
             bottomColor="#E52516"
             direction="down"
           />
