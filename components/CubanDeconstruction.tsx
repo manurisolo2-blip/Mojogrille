@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -20,18 +18,18 @@ function IngredientCallout({ name, detail, side = "right" }: IngredientCalloutPr
         isLeft ? "ingredient-callout-left" : "ingredient-callout-right"
       } absolute ${
         isLeft
-          ? "right-[78%] sm:right-[82%] md:right-[85%]"
-          : "left-[78%] sm:left-[82%] md:left-[85%]"
-      } top-1/2 -translate-y-1/2 flex items-center gap-2 sm:gap-3 pointer-events-auto select-none whitespace-nowrap opacity-90 will-change-transform z-30`}
+          ? "right-[90%] sm:right-[94%] md:right-[97%] lg:right-[99%] xl:right-[101%]"
+          : "left-[90%] sm:left-[94%] md:left-[97%] lg:left-[99%] xl:left-[101%]"
+      } top-1/2 -translate-y-1/2 flex items-center gap-2 sm:gap-3 pointer-events-auto select-none whitespace-nowrap opacity-0 will-change-transform z-30`}
     >
       {isLeft ? (
         <>
           {/* Ficha Tipográfica Izquierda (Alineada a la derecha) */}
           <div className="flex flex-col text-right items-end pr-0.5 sm:pr-1">
-            <span className="font-display text-xs sm:text-base md:text-lg lg:text-xl font-bold uppercase tracking-tight text-charcoal-ink leading-tight">
+            <span className="font-display text-xs sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
               {name}
             </span>
-            <span className="font-sans text-[8px] sm:text-[9px] md:text-[11px] font-semibold uppercase tracking-wider text-charcoal-ink/75 leading-none mt-0.5">
+            <span className="font-sans text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-bold uppercase tracking-wider text-charcoal-ink/75 leading-none mt-0.5 sm:mt-1">
               {detail}
             </span>
           </div>
@@ -39,11 +37,11 @@ function IngredientCallout({ name, detail, side = "right" }: IngredientCalloutPr
           {/* Línea Recta y Punto Conector Izquierdo */}
           <div className="flex items-center">
             <span
-              className="h-[1.5px] sm:h-[2px] w-6 sm:w-12 md:w-16 lg:w-24 bg-brand-fire inline-block shrink-0 opacity-90"
+              className="h-[2px] w-5 sm:w-10 md:w-16 lg:w-24 xl:w-32 bg-brand-fire inline-block shrink-0 opacity-90"
               aria-hidden="true"
             />
             <span
-              className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-brand-fire inline-block shrink-0 shadow-sm"
+              className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-brand-fire inline-block shrink-0 shadow-sm"
               aria-hidden="true"
             />
           </div>
@@ -53,21 +51,21 @@ function IngredientCallout({ name, detail, side = "right" }: IngredientCalloutPr
           {/* Línea Recta y Punto Conector Derecho */}
           <div className="flex items-center">
             <span
-              className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-brand-fire inline-block shrink-0 shadow-sm"
+              className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-brand-fire inline-block shrink-0 shadow-sm"
               aria-hidden="true"
             />
             <span
-              className="h-[1.5px] sm:h-[2px] w-6 sm:w-12 md:w-16 lg:w-24 bg-brand-fire inline-block shrink-0 opacity-90"
+              className="h-[2px] w-5 sm:w-10 md:w-16 lg:w-24 xl:w-32 bg-brand-fire inline-block shrink-0 opacity-90"
               aria-hidden="true"
             />
           </div>
 
           {/* Ficha Tipográfica Derecha (Alineada a la izquierda) */}
           <div className="flex flex-col text-left items-start pl-0.5 sm:pl-1">
-            <span className="font-display text-xs sm:text-base md:text-lg lg:text-xl font-bold uppercase tracking-tight text-charcoal-ink leading-tight">
+            <span className="font-display text-xs sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
               {name}
             </span>
-            <span className="font-sans text-[8px] sm:text-[9px] md:text-[11px] font-semibold uppercase tracking-wider text-charcoal-ink/75 leading-none mt-0.5">
+            <span className="font-sans text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-bold uppercase tracking-wider text-charcoal-ink/75 leading-none mt-0.5 sm:mt-1">
               {detail}
             </span>
           </div>
@@ -102,14 +100,16 @@ export function CubanDeconstruction() {
     gsap.registerPlugin(ScrollTrigger);
 
     ScrollTrigger.matchMedia({
-      // 1. Escritorio (min-width: 1024px): separación amplia garantizada sin ninguna superposición
+      // 1. Escritorio (min-width: 1024px): Sándwich 100% UNIDO de inicio, se deconstruye monumental al scroll
       "(min-width: 1024px)": function () {
-        // Inicializar cada capa en su posición ya separada para garantizar CERO superposición
-        gsap.set(topBreadRef.current, { y: -240, rotate: -1 });
-        gsap.set(picklesRef.current, { y: -120, rotate: 1.5 });
-        gsap.set(cheeseRef.current, { y: 0, rotate: -0.5 });
-        gsap.set(mojoPorkRef.current, { y: 120, rotate: 1 });
-        gsap.set(bottomBreadRef.current, { y: 240, rotate: -1 });
+        // Inicializar sándwich completamente UNIDO (ensamblado apretado)
+        gsap.set(topBreadRef.current, { y: -52, rotate: 0 });
+        gsap.set(picklesRef.current, { y: -26, rotate: 0 });
+        gsap.set(cheeseRef.current, { y: -6, rotate: 0 });
+        gsap.set(mojoPorkRef.current, { y: 16, rotate: 0 });
+        gsap.set(bottomBreadRef.current, { y: 46, rotate: 0 });
+        gsap.set(".ingredient-callout-right", { opacity: 0, x: -20 });
+        gsap.set(".ingredient-callout-left", { opacity: 0, x: 20 });
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -124,104 +124,7 @@ export function CubanDeconstruction() {
         tl.to(
           topBreadRef.current,
           {
-            y: -290,
-            rotate: -2.5,
-            ease: "power1.out",
-          },
-          0
-        )
-          .to(
-            picklesRef.current,
-            {
-              y: -145,
-              rotate: 2.5,
-              ease: "power1.out",
-            },
-            0
-          )
-          .to(
-            cheeseRef.current,
-            {
-              y: 0,
-              rotate: -1,
-              ease: "power1.out",
-            },
-            0
-          )
-          .to(
-            mojoPorkRef.current,
-            {
-              y: 145,
-              rotate: 1.5,
-              ease: "power1.out",
-            },
-            0
-          )
-          .to(
-            bottomBreadRef.current,
-            {
-              y: 290,
-              rotate: -2,
-              ease: "power1.out",
-            },
-            0
-          )
-          .fromTo(
-            ".ingredient-callout-right",
-            {
-              opacity: 0.7,
-              x: -15,
-            },
-            {
-              opacity: 1,
-              x: 0,
-              stagger: 0.03,
-              ease: "power1.out",
-            },
-            0
-          )
-          .fromTo(
-            ".ingredient-callout-left",
-            {
-              opacity: 0.7,
-              x: 15,
-            },
-            {
-              opacity: 1,
-              x: 0,
-              stagger: 0.03,
-              ease: "power1.out",
-            },
-            0
-          );
-
-        return () => {
-          tl.kill();
-        };
-      },
-
-      // 2. Móviles y tabletas (max-width: 1023px): separación adaptada para pantallas compactas
-      "(max-width: 1023px)": function () {
-        gsap.set(topBreadRef.current, { y: -180, rotate: -1 });
-        gsap.set(picklesRef.current, { y: -90, rotate: 1 });
-        gsap.set(cheeseRef.current, { y: 0, rotate: -0.5 });
-        gsap.set(mojoPorkRef.current, { y: 90, rotate: 1 });
-        gsap.set(bottomBreadRef.current, { y: 180, rotate: -1 });
-
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: containerRef.current,
-            pin: pinRef.current,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 1.2,
-          },
-        });
-
-        tl.to(
-          topBreadRef.current,
-          {
-            y: -215,
+            y: -270,
             rotate: -2,
             ease: "power1.out",
           },
@@ -230,7 +133,7 @@ export function CubanDeconstruction() {
           .to(
             picklesRef.current,
             {
-              y: -105,
+              y: -135,
               rotate: 2,
               ease: "power1.out",
             },
@@ -240,6 +143,7 @@ export function CubanDeconstruction() {
             cheeseRef.current,
             {
               y: 0,
+              rotate: -0.5,
               ease: "power1.out",
             },
             0
@@ -247,7 +151,97 @@ export function CubanDeconstruction() {
           .to(
             mojoPorkRef.current,
             {
-              y: 105,
+              y: 135,
+              rotate: 1.5,
+              ease: "power1.out",
+            },
+            0
+          )
+          .to(
+            bottomBreadRef.current,
+            {
+              y: 270,
+              rotate: -1.5,
+              ease: "power1.out",
+            },
+            0
+          )
+          .to(
+            ".ingredient-callout-right",
+            {
+              opacity: 1,
+              x: 0,
+              stagger: 0.03,
+              ease: "power1.out",
+            },
+            0.08
+          )
+          .to(
+            ".ingredient-callout-left",
+            {
+              opacity: 1,
+              x: 0,
+              stagger: 0.03,
+              ease: "power1.out",
+            },
+            0.08
+          );
+
+        return () => {
+          tl.kill();
+        };
+      },
+
+      // 2. Móviles y tabletas (max-width: 1023px): Sándwich UNIDO y deconstrucción proporcional
+      "(max-width: 1023px)": function () {
+        gsap.set(topBreadRef.current, { y: -36, rotate: 0 });
+        gsap.set(picklesRef.current, { y: -18, rotate: 0 });
+        gsap.set(cheeseRef.current, { y: -4, rotate: 0 });
+        gsap.set(mojoPorkRef.current, { y: 12, rotate: 0 });
+        gsap.set(bottomBreadRef.current, { y: 32, rotate: 0 });
+        gsap.set(".ingredient-callout-right", { opacity: 0, x: -15 });
+        gsap.set(".ingredient-callout-left", { opacity: 0, x: 15 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            pin: pinRef.current,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1.2,
+          },
+        });
+
+        tl.to(
+          topBreadRef.current,
+          {
+            y: -195,
+            rotate: -1.5,
+            ease: "power1.out",
+          },
+          0
+        )
+          .to(
+            picklesRef.current,
+            {
+              y: -95,
+              rotate: 1.5,
+              ease: "power1.out",
+            },
+            0
+          )
+          .to(
+            cheeseRef.current,
+            {
+              y: 0,
+              ease: "power1.out",
+            },
+            0
+          )
+          .to(
+            mojoPorkRef.current,
+            {
+              y: 95,
               rotate: 1,
               ease: "power1.out",
             },
@@ -256,39 +250,31 @@ export function CubanDeconstruction() {
           .to(
             bottomBreadRef.current,
             {
-              y: 215,
-              rotate: -1.5,
+              y: 195,
+              rotate: -1,
               ease: "power1.out",
             },
             0
           )
-          .fromTo(
+          .to(
             ".ingredient-callout-right",
             {
-              opacity: 0.7,
-              x: -10,
-            },
-            {
               opacity: 1,
               x: 0,
               stagger: 0.03,
               ease: "power1.out",
             },
-            0
+            0.08
           )
-          .fromTo(
+          .to(
             ".ingredient-callout-left",
             {
-              opacity: 0.7,
-              x: 10,
-            },
-            {
               opacity: 1,
               x: 0,
               stagger: 0.03,
               ease: "power1.out",
             },
-            0
+            0.08
           );
 
         return () => {
@@ -357,24 +343,24 @@ export function CubanDeconstruction() {
 
         {/* Encabezado Superior de Sección en Inglés */}
         <div className="absolute top-4 sm:top-8 left-0 right-0 text-center px-4 pointer-events-none z-10">
-          <h3 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-charcoal-ink mt-0.5 sm:mt-1">
+          <h3 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-charcoal-ink mt-0.5 sm:mt-1">
             THE UNFORGIVING CUBANO
           </h3>
-          <p className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-charcoal-ink/75 mt-1">
+          <p className="font-sans text-xs sm:text-sm md:text-base font-bold uppercase tracking-[0.2em] text-charcoal-ink/80 mt-1 sm:mt-2">
             SCROLL TO DECONSTRUCT EVERY LAYER PRESSED AL MOMENTO
           </p>
         </div>
 
-        {/* Contenedor central de capas apiladas con generoso espaciado sin superposición */}
-        <div className="relative w-full max-w-[1600px] px-4 sm:px-8 flex items-center justify-center pt-6 sm:pt-10">
-          <div className="relative w-[280px] h-[360px] sm:w-[360px] sm:h-[440px] md:w-[460px] md:h-[520px] lg:w-[520px] lg:h-[600px] flex items-center justify-center overflow-visible mx-auto">
+        {/* Contenedor central del sándwich monumental y unificado */}
+        <div className="relative w-full max-w-[1700px] px-2 sm:px-6 md:px-12 flex items-center justify-center pt-4 sm:pt-8">
+          <div className="relative w-[340px] h-[520px] sm:w-[540px] sm:h-[600px] md:w-[740px] md:h-[680px] lg:w-[960px] lg:h-[760px] xl:w-[1100px] xl:h-[820px] flex items-center justify-center overflow-visible mx-auto">
             {/* Sombra de Contacto Dinámica en el Piso */}
             <div
-              className="absolute -bottom-6 sm:-bottom-10 w-[65%] max-w-[380px] h-5 sm:h-7 rounded-[100%] bg-charcoal-ink/15 blur-xl pointer-events-none animate-sandwich-shadow"
+              className="absolute -bottom-8 sm:-bottom-14 w-[85%] max-w-[750px] h-7 sm:h-12 rounded-[100%] bg-charcoal-ink/20 blur-2xl pointer-events-none animate-sandwich-shadow"
               aria-hidden="true"
             />
 
-            {/* Envoltorio Flotante Suave (Sin transform-style: preserve-3d para eliminar recortes o superposiciones) */}
+            {/* Envoltorio Flotante Suave */}
             <div className="relative w-full h-full flex items-center justify-center animate-sandwich-float will-change-transform">
               {/* Capa 1: Tapa superior de pan cubano (DERECHA) */}
               <div
@@ -385,11 +371,11 @@ export function CubanDeconstruction() {
                   <img
                     src="/sandwich/01-top-bread.webp"
                     alt="Toasted artisanal Cuban bread top crust"
-                    width={1000}
-                    height={545}
+                    width={2816}
+                    height={1536}
                     loading="eager"
                     onLoad={handleLayerImageLoad}
-                    className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[360px] lg:max-w-[400px] max-h-[85px] sm:max-h-[105px] md:max-h-[120px] object-contain select-none drop-shadow-md"
+                    className="w-full max-w-[320px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[160px] sm:max-h-[220px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
                   />
                   <IngredientCallout
                     name="ARTISANAL TOP CRUST"
@@ -408,11 +394,11 @@ export function CubanDeconstruction() {
                   <img
                     src="/sandwich/02-pickles.webp"
                     alt="Tangy dill pickles and yellow mustard slices"
-                    width={1000}
-                    height={545}
+                    width={2816}
+                    height={1536}
                     loading="eager"
                     onLoad={handleLayerImageLoad}
-                    className="w-full max-w-[220px] sm:max-w-[280px] md:max-w-[330px] lg:max-w-[370px] max-h-[85px] sm:max-h-[105px] md:max-h-[120px] object-contain select-none drop-shadow-md"
+                    className="w-full max-w-[300px] sm:max-w-[470px] md:max-w-[660px] lg:max-w-[850px] xl:max-w-[970px] max-h-[160px] sm:max-h-[220px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
                   />
                   <IngredientCallout
                     name="CRISP PICKLES & MUSTARD"
@@ -431,11 +417,11 @@ export function CubanDeconstruction() {
                   <img
                     src="/sandwich/03-melted-cheese.webp"
                     alt="Melted stretchy Swiss cheese"
-                    width={1000}
-                    height={545}
+                    width={2816}
+                    height={1536}
                     loading="eager"
                     onLoad={handleLayerImageLoad}
-                    className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[360px] lg:max-w-[400px] max-h-[85px] sm:max-h-[105px] md:max-h-[120px] object-contain select-none drop-shadow-md"
+                    className="w-full max-w-[320px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[160px] sm:max-h-[220px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
                   />
                   <IngredientCallout
                     name="MELTED SWISS CHEESE"
@@ -454,11 +440,11 @@ export function CubanDeconstruction() {
                   <img
                     src="/sandwich/04-mojo-pork.webp"
                     alt="Slow-roasted 4-hour citrus mojo pork and sweet cured ham"
-                    width={1000}
-                    height={545}
+                    width={2816}
+                    height={1536}
                     loading="eager"
                     onLoad={handleLayerImageLoad}
-                    className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[360px] lg:max-w-[400px] max-h-[85px] sm:max-h-[105px] md:max-h-[120px] object-contain select-none drop-shadow-md"
+                    className="w-full max-w-[320px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[160px] sm:max-h-[220px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
                   />
                   <IngredientCallout
                     name="CITRUS MOJO ROAST PORK"
@@ -477,11 +463,11 @@ export function CubanDeconstruction() {
                   <img
                     src="/sandwich/05-bottom-bread.webp"
                     alt="Bottom crust of plancha-pressed Cuban bread"
-                    width={1000}
-                    height={545}
+                    width={2816}
+                    height={1536}
                     loading="eager"
                     onLoad={handleLayerImageLoad}
-                    className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[360px] lg:max-w-[400px] max-h-[85px] sm:max-h-[105px] md:max-h-[120px] object-contain select-none drop-shadow-md"
+                    className="w-full max-w-[320px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[160px] sm:max-h-[220px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
                   />
                   <IngredientCallout
                     name="CRUNCHY PLANCHA BASE"
@@ -512,9 +498,9 @@ export function CubanDeconstruction() {
         </div>
 
         {/* Indicador de scroll */}
-        <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-charcoal-ink/60 font-sans text-[10px] sm:text-xs tracking-wider uppercase font-semibold pointer-events-none">
-          <span className="animate-bounce">↓</span>
-          <span>Scroll to deconstruct</span>
+        <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-charcoal-ink/75 font-sans text-xs sm:text-sm tracking-wider uppercase font-bold pointer-events-none bg-surface-sand/80 px-4 py-1 border border-charcoal-ink/10 shadow-sm">
+          <span className="animate-bounce text-brand-fire">↓</span>
+          <span>Scroll to deconstruct · Scroll up to assemble</span>
         </div>
       </div>
     </section>
