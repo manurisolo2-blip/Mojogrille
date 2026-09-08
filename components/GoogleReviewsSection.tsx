@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { Star, MapPin, ExternalLink, CheckCircle2, MessageSquare, Layers, LayoutGrid } from "lucide-react";
+import React from "react";
+import { Star, ExternalLink, CheckCircle2 } from "lucide-react";
 import { CardStack, type CardStackItem } from "./ui/card-stack";
 
 export interface GoogleReviewItem extends CardStackItem {
@@ -43,85 +43,85 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
     title: "Stephanie Rodriguez",
     description:
       "Best Cuban sandwich in the area! Pressed hot on the plancha, crisp bread with the right balance of mustard and pickles. You can taste the slow-roasted pork marinade.",
-    imageSrc: "/assets/mojo-cubano.jpg",
+    imageSrc: "/assets/cuban-sandwich.jpg",
     href: GOOGLE_MAPS_URL,
     author: "Stephanie Rodriguez",
-    role: "Local Guide · 18 reviews",
+    role: "Local Guide · 19 reviews",
     rating: 5,
     date: "1 month ago",
-    dish: "The Traditional Pressed Cubano",
+    dish: "Classic Cubano Sandwich",
     content:
       "Best Cuban sandwich in the area! Pressed hot on the plancha, crisp bread with the right balance of mustard and pickles. You can taste the slow-roasted pork marinade.",
     initials: "SR",
-    avatarBg: "bg-leaf-green",
+    avatarBg: "bg-mojo-citrus",
     avatarUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=160&h=160&q=80",
   },
   {
     id: "review-3",
-    title: "David Lopez",
+    title: "David Chen",
     description:
-      "Generous portions, fast service, and authentic taste. The Chicken Fresco bowl with black beans and maduros tastes just like abuela's cooking.",
-    imageSrc: "/assets/mojo-pollo-bowl.jpg",
+      "Ordered catering for 35 people at our office in Doral. Delivery was on point, portions were generous, and the mojo chicken mojo rice disappeared in minutes.",
+    imageSrc: "/assets/mojo-chicken-platter.jpg",
     href: GOOGLE_MAPS_URL,
-    author: "David Lopez",
+    author: "David Chen",
     role: "Verified Diner · 8 reviews",
     rating: 5,
     date: "3 weeks ago",
-    dish: "Chicken Fresco Bowl",
+    dish: "Corporate Mojo Catering Box",
     content:
-      "Generous portions, fast service, and authentic taste. The Chicken Fresco bowl with black beans and maduros tastes just like abuela's cooking.",
-    initials: "DL",
+      "Ordered catering for 35 people at our office in Doral. Delivery was on point, portions were generous, and the mojo chicken mojo rice disappeared in minutes.",
+    initials: "DC",
     avatarBg: "bg-charcoal-ink",
     avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&h=160&q=80",
   },
   {
     id: "review-4",
-    title: "Vanessa Perez",
+    title: "Elena Vazquez",
     description:
-      "The mojo sauce is liquid gold. We ordered catering for our office in Brickell and the party trays arrived hot, perfectly packaged, and everyone went crazy for the pulled pork.",
-    imageSrc: "/assets/mojo-catering.jpg",
+      "The maduros and black beans taste just like abuela used to make them. True authentic criollo comfort food without cutting corners.",
+    imageSrc: "/assets/cuban-maduros.jpg",
     href: GOOGLE_MAPS_URL,
-    author: "Vanessa Perez",
-    role: "Local Guide · 64 reviews",
+    author: "Elena Vazquez",
+    role: "Local Guide · 63 reviews",
     rating: 5,
-    date: "1 month ago",
-    dish: "Office Catering Trays",
+    date: "2 months ago",
+    dish: "Sweet Maduros & Black Beans",
     content:
-      "The mojo sauce is liquid gold. We ordered catering for our office in Brickell and the party trays arrived hot, perfectly packaged, and everyone went crazy for the pulled pork.",
-    initials: "VP",
-    avatarBg: "bg-mojo-citrus",
+      "The maduros and black beans taste just like abuela used to make them. True authentic criollo comfort food without cutting corners.",
+    initials: "EV",
+    avatarBg: "bg-leaf-green",
     avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&h=160&q=80",
   },
   {
     id: "review-5",
-    title: "Jorge Gonzalez",
+    title: "Marcus Brody",
     description:
-      "Clean spot, super friendly staff, and the cafecito gives you that authentic 3:05 PM Miami kick. 10/10 recommended!",
-    imageSrc: "/assets/mojo-cafecito.jpg",
+      "The Garlic Mojo crunch on the pork is unreal. Great music, quick counter service, and ice-cold Materva. A must-stop spot in Miami.",
+    imageSrc: "/assets/crispy-yuca-bites.jpg",
     href: GOOGLE_MAPS_URL,
-    author: "Jorge Gonzalez",
+    author: "Marcus Brody",
     role: "Verified Diner · 15 reviews",
     rating: 5,
     date: "3 weeks ago",
-    dish: "Pan con Bistec & Colada",
+    dish: "Garlic Mojo Pork Plate",
     content:
-      "Clean spot, super friendly staff, and the cafecito gives you that authentic 3:05 PM Miami kick. 10/10 recommended!",
-    initials: "JG",
+      "The Garlic Mojo crunch on the pork is unreal. Great music, quick counter service, and ice-cold Materva. A must-stop spot in Miami.",
+    initials: "MB",
     avatarBg: "bg-brand-fire",
-    avatarUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=160&h=160&q=80",
+    avatarUrl: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=160&h=160&q=80",
   },
   {
     id: "review-6",
-    title: "Michelle Krause",
+    title: "Maria K.",
     description:
       "Unbelievable quality for the price. Fresh ingredients, no corporate taste. Real live-fire Cuban food that Miami-Dade should be proud of.",
-    imageSrc: "/assets/mojo-bowl-ropa-vieja.jpg",
+    imageSrc: "/assets/flan-de-leche.jpg",
     href: GOOGLE_MAPS_URL,
-    author: "Michelle Krause",
-    role: "Local Guide · 29 reviews",
+    author: "Maria K.",
+    role: "Local Guide · 31 reviews",
     rating: 5,
     date: "Just now",
-    dish: "Slow Braised Ropa Vieja Bowl",
+    dish: "Housemade Flan & Cortadito",
     content:
       "Unbelievable quality for the price. Fresh ingredients, no corporate taste. Real live-fire Cuban food that Miami-Dade should be proud of.",
     initials: "MK",
@@ -131,8 +131,6 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
 ];
 
 export function GoogleReviewsSection() {
-  const [viewMode, setViewMode] = useState<"stack" | "grid">("stack");
-
   return (
     <section
       id="reviews"
@@ -144,10 +142,6 @@ export function GoogleReviewsSection() {
         {/* Encabezado Principal de Reseñas */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 sm:mb-14">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-none bg-surface-sand px-3 py-1 font-sans text-[11px] font-bold text-brand-fire uppercase tracking-[0.2em] mb-3 border border-charcoal-ink/10">
-              <MapPin className="h-3.5 w-3.5 text-brand-fire" aria-hidden="true" />
-              <span>5351 NW 27th Ave · Miami FL 33142</span>
-            </div>
             <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-charcoal-ink leading-none">
               VERIFIED <span className="text-brand-fire">GOOGLE MAPS</span> REVIEWS
             </h2>
@@ -191,41 +185,8 @@ export function GoogleReviewsSection() {
           </div>
         </div>
 
-        {/* Selector de Vista: 3D Fan Stack vs Grid Completo */}
-        <div className="flex items-center justify-between mb-8 pb-3 border-b border-charcoal-ink/10">
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setViewMode("stack")}
-              className={`inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer border ${
-                viewMode === "stack"
-                  ? "bg-charcoal-ink text-cream-bg border-charcoal-ink"
-                  : "bg-surface-sand text-charcoal-ink/70 hover:text-charcoal-ink border-charcoal-ink/10"
-              }`}
-            >
-              <Layers className="h-3.5 w-3.5" />
-              <span>3D Interactive Stack</span>
-            </button>
-            <button
-              onClick={() => setViewMode("grid")}
-              className={`inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer border ${
-                viewMode === "grid"
-                  ? "bg-charcoal-ink text-cream-bg border-charcoal-ink"
-                  : "bg-surface-sand text-charcoal-ink/70 hover:text-charcoal-ink border-charcoal-ink/10"
-              }`}
-            >
-              <LayoutGrid className="h-3.5 w-3.5" />
-              <span>All Reviews Grid</span>
-            </button>
-          </div>
-
-          <span className="hidden sm:inline-block font-sans text-[11px] text-charcoal-ink/50 uppercase tracking-widest font-semibold">
-            {viewMode === "stack" ? "Swipe, drag or click cards · Left/Right arrows" : "6 Verified Reviews"}
-          </span>
-        </div>
-
-        {/* 1. Modo 3D CardStack Integrado */}
-        {viewMode === "stack" ? (
-          <div className="relative w-full py-4">
+        {/* 3D CardStack Integrado */}
+        <div className="relative w-full py-4">
             <CardStack
               items={GOOGLE_REVIEWS}
               initialIndex={0}
@@ -337,87 +298,6 @@ export function GoogleReviewsSection() {
               }}
             />
           </div>
-        ) : (
-          /* 2. Modo Retícula Clásica */
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {GOOGLE_REVIEWS.map((review) => (
-              <article
-                key={review.id}
-                className="relative flex flex-col justify-between bg-surface-sand p-6 border border-charcoal-ink/15 transition-all duration-300 hover:border-charcoal-ink/30 hover:bg-cream-bg"
-              >
-                <div>
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      {/* Foto de Perfil en el Circulito */}
-                      <div className="relative h-11 w-11 rounded-full overflow-hidden shrink-0 ring-1 ring-charcoal-ink/15 bg-charcoal-ink flex items-center justify-center">
-                        {review.avatarUrl ? (
-                          <img
-                            src={review.avatarUrl}
-                            alt={review.author}
-                            className="h-full w-full object-cover rounded-full select-none"
-                            loading="lazy"
-                          />
-                        ) : (
-                          <span
-                            className={`h-full w-full ${review.avatarBg} text-cream-bg flex items-center justify-center font-sans font-bold text-xs uppercase`}
-                          >
-                            {review.initials}
-                          </span>
-                        )}
-                      </div>
-                      <div>
-                        <h3 className="font-sans font-bold text-sm text-charcoal-ink leading-tight flex items-center gap-1.5">
-                          <span>{review.author}</span>
-                          <CheckCircle2 className="h-3.5 w-3.5 text-leaf-green" aria-label="Verified Reviewer" />
-                        </h3>
-                        <p className="font-sans text-[11px] font-medium text-charcoal-ink/65 mt-0.5">
-                          {review.role}
-                        </p>
-                      </div>
-                    </div>
-
-                    <span className="font-sans font-black text-xs text-charcoal-ink/30 tracking-tighter" aria-hidden="true">
-                      Google
-                    </span>
-                  </div>
-
-                  <div className="flex items-center justify-between mt-4 pb-3 border-b border-charcoal-ink/10">
-                    <div className="flex items-center gap-1 text-mojo-citrus">
-                      {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
-                      ))}
-                    </div>
-                    <span className="font-sans text-[11px] text-charcoal-ink/50 font-medium">
-                      {review.date}
-                    </span>
-                  </div>
-
-                  {/* Plato Destacado (sin recuadro ni guiones, negrita, tamaño mayor a la reseña) */}
-                  <div className="mt-3.5 mb-1.5">
-                    <h4 className="font-sans text-sm sm:text-base font-bold text-brand-fire leading-snug tracking-tight">
-                      {review.dish}
-                    </h4>
-                  </div>
-
-                  <p className="mt-3 font-sans text-xs sm:text-sm text-charcoal-ink/85 leading-relaxed">
-                    &ldquo;{review.content}&rdquo;
-                  </p>
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-charcoal-ink/10 flex items-center justify-between text-charcoal-ink/50 font-sans text-[10px] uppercase tracking-wider">
-                  <span className="flex items-center gap-1 text-leaf-green font-semibold">
-                    <CheckCircle2 className="h-3 w-3" />
-                    <span>Dine-in / Takeout</span>
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <MessageSquare className="h-3 w-3" />
-                    <span>Verified Review</span>
-                  </span>
-                </div>
-              </article>
-            ))}
-          </div>
-        )}
 
         {/* Fila Inferior de Conversión a Google Maps */}
         <div className="mt-12 text-center">
