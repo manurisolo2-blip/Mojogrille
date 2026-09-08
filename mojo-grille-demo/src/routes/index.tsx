@@ -16,7 +16,7 @@ import { MobileActionBar } from "@/components/mojo/MobileActionBar";
 import { Preloader } from "@/components/mojo/Preloader";
 import { CubanDeconstruction } from "@/components/mojo/CubanDeconstruction";
 import { CuratedMenu } from "@/components/mojo/CuratedMenu";
-import { DistrictsCatering } from "@/components/mojo/DistrictsCatering";
+import { GoogleReviewsSection } from "@/components/mojo/GoogleReviewsSection";
 import { EditorialFooter } from "@/components/mojo/EditorialFooter";
 import { NoiseOverlay } from "@/components/mojo/NoiseOverlay";
 import { itemsForCategory, type CategoryId, type MenuItem } from "@/data/menu";
@@ -142,8 +142,8 @@ function Index() {
             <CravStyleMenuGrid onSelect={setSelected} />
           </section>
 
-          {/* Packaging Térmico de Autor & Catering para Distritos */}
-          <DistrictsCatering />
+          {/* Reseñas Verificadas de Google Maps */}
+          <GoogleReviewsSection />
 
           <section
             id="catering"

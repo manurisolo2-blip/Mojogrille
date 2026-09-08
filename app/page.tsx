@@ -10,7 +10,7 @@ import { Navbar } from '../components/hero/Navbar';
 import { HeroSection } from '../components/HeroSection';
 import { CubanDeconstruction } from '../components/CubanDeconstruction';
 import { CuratedMenu } from '../components/CuratedMenu';
-import { DistrictsCatering } from '../components/DistrictsCatering';
+import { GoogleReviewsSection } from '../components/GoogleReviewsSection';
 import { EditorialFooter } from '../components/EditorialFooter';
 import { FloatingCravBar } from '../components/menu/FloatingCravBar';
 import { NoiseOverlay } from '../components/NoiseOverlay';
@@ -91,8 +91,8 @@ export default function HomePage() {
       {/* 6. Curated Menu: Selección de la plancha con 6 platos estelares y badges técnicos */}
       <CuratedMenu />
 
-      {/* 7. Districts Catering: Packaging térmico de autor y catering por distritos */}
-      <DistrictsCatering />
+      {/* 7. Google Reviews Section: Reseñas verificadas de Google Maps */}
+      <GoogleReviewsSection />
 
       {/* 8. Editorial Footer: Titular monumental, 3 columnas y botón magnético 'Volver Arriba' */}
       <EditorialFooter />
