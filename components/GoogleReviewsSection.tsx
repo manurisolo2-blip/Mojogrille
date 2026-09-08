@@ -135,7 +135,7 @@ export function GoogleReviewsSection() {
     <section
       id="reviews"
       aria-label="Google Maps Customer Reviews"
-      className="relative w-full bg-transparent py-16 sm:py-24 border-b border-charcoal-ink/20 select-none overflow-hidden"
+      className="relative w-full bg-transparent py-16 sm:py-24 select-none overflow-hidden"
     >
       <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
         
