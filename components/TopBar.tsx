@@ -354,30 +354,19 @@ export function TopBar({
             aria-hidden="true"
           />
 
-          {/* Contenedor del Modal (Sin recuadros internos ni líneas divisoras) */}
+          {/* Contenedor del Modal (Minimalista, sin encabezados repetitivos ni banners duplicados) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.94, y: 16 }}
+            initial={{ opacity: 0, scale: 0.96, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.94, y: 12 }}
+            exit={{ opacity: 0, scale: 0.96, y: 12 }}
             transition={{ type: "spring", stiffness: 450, damping: 32 }}
             role="dialog"
             aria-modal="true"
-            aria-label="Apartado de creación de cuenta y Club Mojo"
-            className="relative z-50 w-full max-w-lg bg-cream-bg shadow-2xl p-6 sm:p-8 my-auto overflow-hidden"
+            aria-label="Apartado de cuenta y Club Mojo"
+            className="relative z-50 w-full max-w-md bg-cream-bg shadow-2xl p-6 sm:p-8 my-auto overflow-hidden"
           >
-            {/* Cabecera del Apartado */}
-            <div className="flex items-start justify-between gap-4 mb-5">
-              <div>
-                <span className="font-sans text-[11px] font-black uppercase tracking-widest text-brand-fire block mb-1">
-                  CLUB MOJO MIAMI · BENEFICIOS VIP
-                </span>
-                <h2 className="font-display text-3xl sm:text-4xl font-black uppercase tracking-tight text-charcoal-ink leading-none">
-                  APARTADO DE CUENTA
-                </h2>
-                <p className="font-sans text-xs text-charcoal-ink/75 mt-1.5 leading-relaxed">
-                  Crea tu cuenta o inicia sesión para acumular puntos, recibir tu cafecito cubano de cortesía y pedir al momento.
-                </p>
-              </div>
+            {/* Botón de Cierre Minimalista */}
+            <div className="flex justify-end -mt-2 -mr-2 mb-2">
               <button
                 type="button"
                 onClick={() => setAccountModalOpen(false)}
@@ -388,24 +377,8 @@ export function TopBar({
               </button>
             </div>
 
-            {/* Módulo de Autenticación con Conmutador */}
+            {/* Módulo de Autenticación / Pasaporte Minimalista */}
             <AuthSwitch onAuthSuccess={() => {}} />
-
-            {/* Fila de Beneficios Inmediatos */}
-            <div className="mt-6 grid grid-cols-3 gap-3 text-center">
-              <div>
-                <span className="font-display text-xl sm:text-2xl font-black text-brand-fire block">☕ 1 GRATIS</span>
-                <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70">Cafecito de Bienvenida</span>
-              </div>
-              <div>
-                <span className="font-display text-xl sm:text-2xl font-black text-brand-fire block">10 PTS / $1</span>
-                <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70">En cada orden</span>
-              </div>
-              <div>
-                <span className="font-display text-xl sm:text-2xl font-black text-brand-fire block">1 CLIC</span>
-                <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70">Pedidos Rápidos</span>
-              </div>
-            </div>
           </motion.div>
         </div>
       )}

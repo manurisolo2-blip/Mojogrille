@@ -196,7 +196,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
     setPassword("Mojo2026!");
   };
 
-  // ESTADO 1: SOCIO IDENTIFICADO (PASAPORTE VIP - Minimalista, sin recuadros ni cajas)
+  // ESTADO 1: SOCIO IDENTIFICADO (PASAPORTE VIP - Ultra-minimalista, sin textos redundantes)
   if (user) {
     return (
       <motion.div
@@ -206,71 +206,62 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
         exit={{ opacity: 0, scale: 0.98, y: -8 }}
         transition={{ type: "spring", stiffness: 450, damping: 32 }}
         className={cn(
-          "relative flex flex-col bg-transparent text-charcoal-ink space-y-4",
+          "relative flex flex-col bg-transparent text-charcoal-ink space-y-5",
           className
         )}
       >
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Award className="h-5 w-5 text-brand-fire stroke-[2.2]" />
-            <div>
-              <span className="font-sans text-[10px] font-black uppercase tracking-widest text-brand-fire block leading-none">
-                PASAPORTE VIP
-              </span>
-              <span className="font-display text-lg font-black uppercase tracking-tight text-charcoal-ink">
-                CLUB MOJO MIAMI
-              </span>
-            </div>
+        {/* Cabecera del Socio */}
+        <div>
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="font-sans text-[11px] font-black uppercase tracking-widest text-brand-fire">
+              CLUB MOJO MIAMI
+            </span>
+            <span className="font-mono text-xs font-bold text-charcoal-ink/50">
+              {user.memberId}
+            </span>
           </div>
-          <span className="font-mono text-xs font-bold text-charcoal-ink/60">
-            {user.memberId}
-          </span>
+          <h2 className="font-display text-4xl sm:text-5xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
+            {user.name}
+          </h2>
+          <p className="font-sans text-xs text-charcoal-ink/70 mt-0.5">
+            {user.email} {user.phone && `· ${user.phone}`}
+          </p>
         </div>
 
-        <div className="space-y-3">
+        {/* Puntos y Beneficio Activo */}
+        <div className="grid grid-cols-2 gap-4 pt-1">
           <div>
-            <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/60 block">
-              SOCIO TITULAR
+            <span className="font-sans text-[10px] font-black uppercase tracking-widest text-charcoal-ink/50 block">
+              PUNTOS MOJO
             </span>
-            <p className="font-display text-3xl font-bold uppercase tracking-tight text-charcoal-ink leading-tight">
-              {user.name}
-            </p>
-            <p className="font-sans text-xs text-charcoal-ink/75 truncate mt-0.5">
-              {user.email} {user.phone && `· ${user.phone}`}
-            </p>
+            <span className="font-display text-4xl sm:text-5xl font-black text-brand-fire leading-none block mt-1">
+              {user.points} <span className="font-sans text-xs font-bold text-charcoal-ink/70">PTS</span>
+            </span>
           </div>
-
-          <div className="grid grid-cols-2 gap-4 py-2">
-            <div>
-              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-charcoal-ink/60 block">
-                PUNTOS MOJO
-              </span>
-              <span className="font-display text-3xl font-black text-brand-fire leading-none">
-                {user.points} <span className="text-xs font-sans text-charcoal-ink/70">PTS</span>
+          <div>
+            <span className="font-sans text-[10px] font-black uppercase tracking-widest text-charcoal-ink/50 block">
+              BENEFICIO ACTIVO
+            </span>
+            <div className="flex items-center gap-1.5 text-leaf-green mt-2">
+              <Coffee className="h-4 w-4 shrink-0 stroke-[2.5]" />
+              <span className="font-sans text-xs font-bold uppercase tracking-tight">
+                Cafecito Gratis
               </span>
             </div>
-            <div>
-              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-charcoal-ink/60 block">
-                BENEFICIO ACTIVO
-              </span>
-              <div className="flex items-center gap-1.5 text-leaf-green mt-1">
-                <Coffee className="h-4 w-4 shrink-0 stroke-[2.5]" />
-                <span className="font-sans text-xs font-bold uppercase tracking-tight leading-tight">
-                  Cafecito Gratis
-                </span>
-              </div>
-            </div>
           </div>
+        </div>
 
-          <div className="flex items-center gap-2 text-charcoal-ink/80 text-xs font-sans">
-            <Sparkles className="h-3.5 w-3.5 text-brand-fire shrink-0" />
-            <span>Ganas 10 pts por cada $1 consumido en Little Havana, Brickell o Doral.</span>
-          </div>
+        {/* Micro-nota informativa */}
+        <p className="font-sans text-xs text-charcoal-ink/60">
+          Ganas 10 pts por cada $1 consumido en Little Havana, Brickell o Doral.
+        </p>
 
+        {/* Acción de Cerrar Sesión */}
+        <div className="pt-2">
           <button
             type="button"
             onClick={handleLogout}
-            className="w-full pt-3 flex items-center justify-center gap-2 font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink/70 hover:text-brand-fire transition-colors cursor-pointer select-none"
+            className="flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink/60 hover:text-brand-fire transition-colors cursor-pointer select-none"
           >
             <LogOut className="h-3.5 w-3.5 stroke-[2]" />
             <span>CERRAR SESIÓN</span>
