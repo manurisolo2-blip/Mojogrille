@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   User,
   Mail,
@@ -195,11 +196,17 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
     setPassword("Mojo2026!");
   };
 
+  // ESTADO 1: SOCIO IDENTIFICADO (PASAPORTE VIP)
   if (user) {
     return (
-      <div
+      <motion.div
+        key="passport-view"
+        initial={{ opacity: 0, scale: 0.95, y: 12 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: -12 }}
+        transition={{ type: "spring", stiffness: 450, damping: 32 }}
         className={cn(
-          "relative flex flex-col rounded-none bg-cream-bg border border-charcoal-ink/15 p-4 sm:p-5 text-charcoal-ink transition-all",
+          "relative flex flex-col rounded-none bg-cream-bg border border-charcoal-ink/15 p-4 sm:p-5 text-charcoal-ink transition-all shadow-sm",
           className
         )}
       >
@@ -260,23 +267,30 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
             <span>Ganas 10 pts por cada $1 consumido en Little Havana, Brickell o Doral.</span>
           </div>
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.98 }}
             type="button"
             onClick={handleLogout}
             className="w-full mt-3 flex items-center justify-center gap-2 rounded-none border border-charcoal-ink/20 bg-surface-sand py-2 px-3 font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer select-none"
           >
             <LogOut className="h-3.5 w-3.5 stroke-[2]" />
             <span>CERRAR SESIÓN</span>
-          </button>
+          </motion.button>
         </div>
-      </div>
+      </motion.div>
     );
   }
 
   return (
-    <div
+    <motion.div
+      layout
+      transition={{ duration: 0.28, ease: "easeInOut" }}
       className={cn(
-        "flex flex-col rounded-none bg-cream-bg border border-charcoal-ink/15 p-4 sm:p-5 text-charcoal-ink transition-all",
+        "flex flex-col rounded-none bg-cream-bg border p-4 sm:p-5 text-charcoal-ink transition-colors duration-300",
+        mode === "signup"
+          ? "border-brand-fire/35 shadow-[0_4px_24px_rgba(229,37,22,0.06)]"
+          : "border-charcoal-ink/20 shadow-[0_4px_24px_rgba(20,18,16,0.06)]",
         className
       )}
     >
@@ -286,10 +300,11 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
         </h2>
       )}
 
+      {/* Selector de Pestañas con Transición de Colores y Deslizador Animado */}
       <div
         role="tablist"
         aria-label="Opciones de cuenta"
-        className="grid grid-cols-2 gap-1 p-1 bg-surface-sand border border-charcoal-ink/15 mb-4"
+        className="relative grid grid-cols-2 p-1 bg-surface-sand border border-charcoal-ink/15 mb-4 select-none overflow-hidden"
       >
         <button
           type="button"
@@ -299,14 +314,21 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
             setMode("signup");
             setFeedback(null);
           }}
-          className={`py-2 px-3 font-sans text-xs uppercase font-bold tracking-wider transition-colors cursor-pointer select-none text-center ${
-            mode === "signup"
-              ? "bg-charcoal-ink text-cream-bg"
-              : "bg-transparent text-charcoal-ink hover:text-brand-fire"
-          }`}
+          className={cn(
+            "relative z-10 py-2.5 px-3 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 cursor-pointer select-none text-center",
+            mode === "signup" ? "text-cream-bg" : "text-charcoal-ink hover:text-brand-fire"
+          )}
         >
-          CREAR CUENTA
+          {mode === "signup" && (
+            <motion.div
+              layoutId="auth-active-indicator"
+              className="absolute inset-0 bg-brand-fire shadow-sm"
+              transition={{ type: "spring", stiffness: 480, damping: 36 }}
+            />
+          )}
+          <span className="relative z-10">CREAR CUENTA</span>
         </button>
+
         <button
           type="button"
           role="tab"
@@ -315,239 +337,274 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
             setMode("login");
             setFeedback(null);
           }}
-          className={`py-2 px-3 font-sans text-xs uppercase font-bold tracking-wider transition-colors cursor-pointer select-none text-center ${
-            mode === "login"
-              ? "bg-charcoal-ink text-cream-bg"
-              : "bg-transparent text-charcoal-ink hover:text-brand-fire"
-          }`}
+          className={cn(
+            "relative z-10 py-2.5 px-3 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 cursor-pointer select-none text-center",
+            mode === "login" ? "text-cream-bg" : "text-charcoal-ink hover:text-brand-fire"
+          )}
         >
-          INICIAR SESIÓN
+          {mode === "login" && (
+            <motion.div
+              layoutId="auth-active-indicator"
+              className="absolute inset-0 bg-charcoal-ink shadow-sm"
+              transition={{ type: "spring", stiffness: 480, damping: 36 }}
+            />
+          )}
+          <span className="relative z-10">INICIAR SESIÓN</span>
         </button>
       </div>
 
-      {feedback && (
-        <div
-          className={`mb-3 p-2.5 font-sans text-xs font-semibold leading-relaxed border ${
-            feedback.type === "error"
-              ? "bg-brand-fire/10 border-brand-fire/30 text-brand-fire"
-              : "bg-leaf-green/10 border-leaf-green/30 text-leaf-green"
-          }`}
-        >
-          {feedback.message}
-        </div>
-      )}
-
-      {mode === "signup" && (
-        <form onSubmit={handleRegister} className="space-y-3">
-          <div>
-            <label className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70 block mb-1">
-              NOMBRE Y APELLIDO *
-            </label>
-            <div className="relative">
-              <User className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Carlos Rodríguez"
-                required
-                className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire transition-colors"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70 block mb-1">
-              CORREO ELECTRÓNICO *
-            </label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="carlos@miami.com"
-                required
-                className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire transition-colors"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70 block mb-1">
-              TELÉFONO MÓVIL (MIAMI / WHATSAPP)
-            </label>
-            <div className="relative">
-              <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="(305) 555-0199"
-                className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire transition-colors"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70 block mb-1">
-              CONTRASEÑA (MÍNIMO 6 CARACTERES) *
-            </label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
-              <input
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                required
-                className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-9 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire transition-colors"
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-charcoal-ink/50 hover:text-charcoal-ink cursor-pointer"
-                aria-label={showPassword ? "Ocultar contraseña" : "Ver contraseña"}
-              >
-                {showPassword ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
-              </button>
-            </div>
-          </div>
-
-          <label className="flex items-start gap-2 pt-1 cursor-pointer select-none">
-            <input
-              type="checkbox"
-              checked={acceptPerks}
-              onChange={(e) => setAcceptPerks(e.target.checked)}
-              className="mt-0.5 rounded-none border-charcoal-ink text-brand-fire focus:ring-0 cursor-pointer"
-            />
-            <span className="font-sans text-[11px] text-charcoal-ink/80 leading-snug">
-              Activar mi <strong>Cafecito Cubano gratis</strong> de bienvenida y 100 puntos Club Mojo.
-            </span>
-          </label>
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full mt-2 flex items-center justify-center gap-2 rounded-none bg-brand-fire py-3 px-4 font-sans text-xs font-bold uppercase tracking-wider text-cream-bg transition-colors hover:bg-charcoal-ink cursor-pointer select-none disabled:opacity-50"
-          >
-            {isSubmitting ? (
-              <span>CREANDO CUENTA...</span>
-            ) : (
-              <>
-                <span>CREAR MI CUENTA MOJO</span>
-                <ArrowRight className="h-3.5 w-3.5 stroke-[2.5]" />
-              </>
+      {/* Mensajes de Feedback Animados */}
+      <AnimatePresence>
+        {feedback && (
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            className={cn(
+              "mb-3 p-2.5 font-sans text-xs font-semibold leading-relaxed border",
+              feedback.type === "error"
+                ? "bg-brand-fire/10 border-brand-fire/30 text-brand-fire"
+                : "bg-leaf-green/10 border-leaf-green/30 text-leaf-green"
             )}
-          </button>
+          >
+            {feedback.message}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-          <div className="text-center pt-1">
-            <button
-              type="button"
-              onClick={fillDemoData}
-              className="font-sans text-[10px] uppercase font-bold tracking-wider text-charcoal-ink/60 hover:text-brand-fire underline cursor-pointer"
-            >
-              Completar datos de prueba
-            </button>
-          </div>
-        </form>
-      )}
-
-      {mode === "login" && (
-        <form onSubmit={handleLogin} className="space-y-3">
-          <div>
-            <label className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70 block mb-1">
-              CORREO ELECTRÓNICO *
-            </label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="tu-correo@miami.com"
-                required
-                className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire transition-colors"
-              />
-            </div>
-          </div>
-
-          <div>
-            <div className="flex items-center justify-between mb-1">
-              <label className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70">
-                CONTRASEÑA *
+      {/* Formulario con Transición y Deslizamiento Suave */}
+      <AnimatePresence mode="wait" initial={false}>
+        {mode === "signup" ? (
+          <motion.form
+            key="signup-mode-form"
+            initial={{ opacity: 0, x: -16 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 16 }}
+            transition={{ duration: 0.22, ease: "easeInOut" }}
+            onSubmit={handleRegister}
+            className="space-y-3"
+          >
+            <div>
+              <label className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70 block mb-1">
+                NOMBRE Y APELLIDO *
               </label>
-              <button
-                type="button"
-                onClick={() =>
-                  setFeedback({
-                    type: "success",
-                    message: "Te enviaremos un enlace de recuperación a tu correo de Miami.",
-                  })
-                }
-                className="font-sans text-[10px] font-semibold text-brand-fire hover:underline"
-              >
-                ¿Olvidaste tu contraseña?
-              </button>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Carlos Rodríguez"
+                  required
+                  className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire focus:ring-1 focus:ring-brand-fire/30 transition-all duration-200"
+                />
+              </div>
             </div>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
+
+            <div>
+              <label className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70 block mb-1">
+                CORREO ELECTRÓNICO *
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="carlos@miami.com"
+                  required
+                  className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire focus:ring-1 focus:ring-brand-fire/30 transition-all duration-200"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70 block mb-1">
+                TELÉFONO MÓVIL (MIAMI / WHATSAPP)
+              </label>
+              <div className="relative">
+                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="(305) 555-0199"
+                  className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire focus:ring-1 focus:ring-brand-fire/30 transition-all duration-200"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70 block mb-1">
+                CONTRASEÑA (MÍNIMO 6 CARACTERES) *
+              </label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                  className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-9 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire focus:ring-1 focus:ring-brand-fire/30 transition-all duration-200"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-charcoal-ink/50 hover:text-charcoal-ink cursor-pointer transition-transform active:scale-90"
+                  aria-label={showPassword ? "Ocultar contraseña" : "Ver contraseña"}
+                >
+                  {showPassword ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
+                </button>
+              </div>
+            </div>
+
+            <label className="flex items-start gap-2 pt-1 cursor-pointer select-none">
               <input
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                required
-                className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-9 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire transition-colors"
+                type="checkbox"
+                checked={acceptPerks}
+                onChange={(e) => setAcceptPerks(e.target.checked)}
+                className="mt-0.5 rounded-none border-charcoal-ink text-brand-fire focus:ring-0 cursor-pointer"
               />
+              <span className="font-sans text-[11px] text-charcoal-ink/80 leading-snug">
+                Activar mi <strong>Cafecito Cubano gratis</strong> de bienvenida y 100 puntos Club Mojo.
+              </span>
+            </label>
+
+            <motion.button
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.98 }}
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full mt-2 flex items-center justify-center gap-2 rounded-none bg-brand-fire py-3 px-4 font-sans text-xs font-bold uppercase tracking-wider text-cream-bg transition-colors duration-300 hover:bg-charcoal-ink cursor-pointer select-none disabled:opacity-50 shadow-md shadow-brand-fire/15"
+            >
+              {isSubmitting ? (
+                <span>CREANDO CUENTA...</span>
+              ) : (
+                <>
+                  <span>CREAR MI CUENTA MOJO</span>
+                  <ArrowRight className="h-3.5 w-3.5 stroke-[2.5]" />
+                </>
+              )}
+            </motion.button>
+
+            <div className="text-center pt-1">
               <button
                 type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-charcoal-ink/50 hover:text-charcoal-ink cursor-pointer"
-                aria-label={showPassword ? "Ocultar contraseña" : "Ver contraseña"}
+                onClick={fillDemoData}
+                className="font-sans text-[10px] uppercase font-bold tracking-wider text-charcoal-ink/60 hover:text-brand-fire underline cursor-pointer transition-colors"
               >
-                {showPassword ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
+                Completar datos de prueba
               </button>
             </div>
-          </div>
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full mt-2 flex items-center justify-center gap-2 rounded-none bg-charcoal-ink py-3 px-4 font-sans text-xs font-bold uppercase tracking-wider text-cream-bg transition-colors hover:bg-brand-fire cursor-pointer select-none disabled:opacity-50"
+          </motion.form>
+        ) : (
+          <motion.form
+            key="login-mode-form"
+            initial={{ opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -16 }}
+            transition={{ duration: 0.22, ease: "easeInOut" }}
+            onSubmit={handleLogin}
+            className="space-y-3"
           >
-            {isSubmitting ? (
-              <span>ENTRANDO...</span>
-            ) : (
-              <>
-                <span>ENTRAR A MI CUENTA</span>
-                <ArrowRight className="h-3.5 w-3.5 stroke-[2.5]" />
-              </>
-            )}
-          </button>
+            <div>
+              <label className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70 block mb-1">
+                CORREO ELECTRÓNICO *
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="tu-correo@miami.com"
+                  required
+                  className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire focus:ring-1 focus:ring-brand-fire/30 transition-all duration-200"
+                />
+              </div>
+            </div>
 
-          <div className="text-center pt-1">
-            <button
-              type="button"
-              onClick={() => {
-                setEmail("carlos.cubano@miami.com");
-                setPassword("Mojo2026!");
-              }}
-              className="font-sans text-[10px] uppercase font-bold tracking-wider text-charcoal-ink/60 hover:text-brand-fire underline cursor-pointer"
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <label className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70">
+                  CONTRASEÑA *
+                </label>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setFeedback({
+                      type: "success",
+                      message: "Te enviaremos un enlace de recuperación a tu correo de Miami.",
+                    })
+                  }
+                  className="font-sans text-[10px] font-semibold text-brand-fire hover:underline transition-colors"
+                >
+                  ¿Olvidaste tu contraseña?
+                </button>
+              </div>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required
+                  className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-9 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire focus:ring-1 focus:ring-brand-fire/30 transition-all duration-200"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-charcoal-ink/50 hover:text-charcoal-ink cursor-pointer transition-transform active:scale-90"
+                  aria-label={showPassword ? "Ocultar contraseña" : "Ver contraseña"}
+                >
+                  {showPassword ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
+                </button>
+              </div>
+            </div>
+
+            <motion.button
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.98 }}
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full mt-2 flex items-center justify-center gap-2 rounded-none bg-charcoal-ink py-3 px-4 font-sans text-xs font-bold uppercase tracking-wider text-cream-bg transition-colors duration-300 hover:bg-brand-fire cursor-pointer select-none disabled:opacity-50 shadow-md shadow-charcoal-ink/15"
             >
-              Completar datos de acceso demo
-            </button>
-          </div>
-        </form>
-      )}
+              {isSubmitting ? (
+                <span>ENTRANDO...</span>
+              ) : (
+                <>
+                  <span>ENTRAR A MI CUENTA</span>
+                  <ArrowRight className="h-3.5 w-3.5 stroke-[2.5]" />
+                </>
+              )}
+            </motion.button>
+
+            <div className="text-center pt-1">
+              <button
+                type="button"
+                onClick={() => {
+                  setEmail("carlos.cubano@miami.com");
+                  setPassword("Mojo2026!");
+                }}
+                className="font-sans text-[10px] uppercase font-bold tracking-wider text-charcoal-ink/60 hover:text-brand-fire underline cursor-pointer transition-colors"
+              >
+                Completar datos de acceso demo
+              </button>
+            </div>
+          </motion.form>
+        )}
+      </AnimatePresence>
 
       <div className="mt-4 pt-3 border-t border-charcoal-ink/10 flex items-center justify-center gap-1.5 text-charcoal-ink/60 text-[10px] font-sans">
         <ShieldCheck className="h-3.5 w-3.5 text-leaf-green" />
         <span>Tus datos están protegidos y optimizados para pedidos al momento.</span>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 export const Component = AuthSwitch;
 export default AuthSwitch;
+

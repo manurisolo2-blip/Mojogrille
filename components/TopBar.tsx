@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, MapPin, Menu, X, User, Phone, ArrowRight } from 'lucide-react';
 import { LatinMarketBagIcon } from './LatinMarketBagIcon';
 import { AuthSwitch } from './ui/auth-switch';
@@ -162,21 +163,30 @@ export function TopBar({
       </header>
 
       {/* Menú Lateral Desplegable (Slide-over Drawer) */}
-      {menuDrawerOpen && (
-        <div className="fixed inset-0 z-50">
-          {/* Backdrop con desenfoque sutil */}
-          <div
-            className="fixed inset-0 bg-charcoal-ink/40 backdrop-blur-xs transition-opacity"
-            onClick={() => setMenuDrawerOpen(false)}
-            aria-hidden="true"
-          />
+      <AnimatePresence>
+        {menuDrawerOpen && (
+          <div className="fixed inset-0 z-50">
+            {/* Backdrop con desenfoque sutil */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 bg-charcoal-ink/40 backdrop-blur-xs"
+              onClick={() => setMenuDrawerOpen(false)}
+              aria-hidden="true"
+            />
 
-          {/* Panel Lateral Drawer en Criollo Cream */}
-          <aside
-            role="dialog"
-            aria-label="Menú de navegación y sedes"
-            className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-md bg-cream-bg border-l border-charcoal-ink/15 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto shadow-2xl"
-          >
+            {/* Panel Lateral Drawer en Criollo Cream */}
+            <motion.aside
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 380, damping: 36 }}
+              role="dialog"
+              aria-label="Menú de navegación y sedes"
+              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-md bg-cream-bg border-l border-charcoal-ink/15 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto shadow-2xl"
+            >
             <div>
               {/* Encabezado del Menú Drawer */}
               <div className="flex items-center justify-between pb-5 border-b border-charcoal-ink/10">
@@ -332,22 +342,32 @@ export function TopBar({
               <span>Miami Cuban Kitchen</span>
               <span className="font-bold text-brand-fire">Al Momento</span>
             </div>
-          </aside>
+          </motion.aside>
         </div>
       )}
+    </AnimatePresence>
 
-      {/* Apartado Dedicado de Creación de Cuenta y Autenticación (Modal / Dialog) */}
+    {/* Apartado Dedicado de Creación de Cuenta y Autenticación (Modal / Dialog) */}
+    <AnimatePresence>
       {accountModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
           {/* Backdrop con desenfoque suave */}
-          <div
-            className="fixed inset-0 bg-charcoal-ink/60 backdrop-blur-xs transition-opacity"
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 bg-charcoal-ink/60 backdrop-blur-xs"
             onClick={() => setAccountModalOpen(false)}
             aria-hidden="true"
           />
 
           {/* Contenedor del Modal */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94, y: 16 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.94, y: 12 }}
+            transition={{ type: "spring", stiffness: 450, damping: 32 }}
             role="dialog"
             aria-modal="true"
             aria-label="Apartado de creación de cuenta y Club Mojo"
@@ -399,9 +419,10 @@ export function TopBar({
                 <span className="font-sans text-[9px] font-bold uppercase tracking-wider text-charcoal-ink/70">Pedidos Rápidos</span>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       )}
+    </AnimatePresence>
     </>
   );
 }
