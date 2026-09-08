@@ -124,7 +124,7 @@ function Index() {
       {/* Textura de grano de papel artesanal editorial */}
       <NoiseOverlay />
 
-      <div className="min-h-dvh bg-cream-bg text-charcoal-ink pb-24 md:pb-0">
+      <div className="min-h-dvh bg-cream-bg text-charcoal-ink">
         <TopBar onOpenCart={() => setCartOpen(true)} />
         <main className="bg-transparent">
           <HeroSection
@@ -195,10 +195,10 @@ function Index() {
             </div>
           </section>
 
-          {/* Transición 4: Onda Orgánica Jelly (Yuca Sand -> Pressed Dark) hacia el Footer */}
+          {/* Transición 4: Onda Orgánica Jelly (Yuca Sand -> Mojo Scarlet) hacia el Footer */}
           <JellyWaveTransition
             topColor="#ECE4D5"
-            bottomColor="#141210"
+            bottomColor="#E52516"
             direction="down"
           />
 
