@@ -115,26 +115,26 @@ export function TopBar({
               </span>
             </a>
 
-            {/* Extremo Derecho: Botones de Cuenta, Menú y Bolsa de Compra */}
-            <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-              {/* Opción de Cuenta / Club Mojo: Abre directamente el apartado de creación de cuenta */}
+            {/* Extremo Derecho: Botones de Cuenta, Menú y Bolsa de Compra (Incorporados al fondo) */}
+            <div className="flex shrink-0 items-center gap-3 sm:gap-4">
+              {/* Opción de Cuenta / Club Mojo: Incorporado al fondo de la cabecera */}
               <button
                 type="button"
                 onClick={() => setAccountModalOpen(true)}
                 aria-label="Abrir apartado de creación de cuenta y Club Mojo"
-                className="flex items-center gap-1.5 rounded-none border border-charcoal-ink/20 bg-surface-sand px-3 py-2 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink transition-all hover:bg-brand-fire hover:text-cream-bg hover:border-brand-fire cursor-pointer select-none"
+                className="flex items-center gap-1.5 bg-transparent px-2 sm:px-2.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink transition-colors hover:text-brand-fire hover:bg-charcoal-ink/5 cursor-pointer select-none"
               >
                 <User className="h-4 w-4 stroke-[2.2]" />
                 <span className="hidden sm:inline">CUENTA</span>
               </button>
 
-              {/* Opción de Menú: Siguiendo el diseño editorial brutalista */}
+              {/* Opción de Menú: Incorporado al fondo de la cabecera */}
               <button
                 type="button"
                 onClick={() => setMenuDrawerOpen(true)}
                 aria-label="Abrir menú de navegación y sedes"
                 aria-expanded={menuDrawerOpen}
-                className="flex items-center gap-2 rounded-none border border-charcoal-ink/20 bg-surface-sand px-3.5 py-2 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink transition-all hover:bg-charcoal-ink hover:text-cream-bg cursor-pointer select-none"
+                className="flex items-center gap-1.5 bg-transparent px-2 sm:px-2.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink transition-colors hover:text-brand-fire hover:bg-charcoal-ink/5 cursor-pointer select-none"
               >
                 <Menu className="h-4 w-4 stroke-[2.2]" />
                 <span className="hidden sm:inline">MENÚ</span>
