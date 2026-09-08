@@ -8,10 +8,24 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
   const { count, location, setLocation, availableLocations } = useCart();
   const [open, setOpen] = useState(false);
   const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
+  const [accountModalOpen, setAccountModalOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // Escucha del hash #cuenta para abrir directamente el apartado
   useEffect(() => {
-    if (!open && !menuDrawerOpen) return;
+    if (typeof window === "undefined") return;
+    const handleHashChange = () => {
+      if (window.location.hash === "#cuenta") {
+        setAccountModalOpen(true);
+      }
+    };
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
+  useEffect(() => {
+    if (!open && !menuDrawerOpen && !accountModalOpen) return;
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setOpen(false);
@@ -21,6 +35,8 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
       if (event.key === "Escape") {
         if (open) {
           setOpen(false);
+        } else if (accountModalOpen) {
+          setAccountModalOpen(false);
         } else if (menuDrawerOpen) {
           setMenuDrawerOpen(false);
         }
@@ -32,7 +48,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [open, menuDrawerOpen]);
+  }, [open, menuDrawerOpen, accountModalOpen]);
 
   return (
     <>
@@ -52,12 +68,12 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
 
             {/* Extremo Derecho: Botones de Cuenta, Menú y Bolsa de Compra */}
             <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-              {/* Opción de Cuenta / Club Mojo */}
+              {/* Opción de Cuenta / Club Mojo: Abre directamente el apartado de creación de cuenta */}
               <button
                 type="button"
-                onClick={() => setMenuDrawerOpen(true)}
-                aria-label="Abrir apartado de cuenta Club Mojo"
-                className="flex items-center gap-1.5 rounded-none border border-charcoal-ink/20 bg-surface-sand px-3 py-2 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink transition-all hover:bg-charcoal-ink hover:text-cream-bg cursor-pointer select-none"
+                onClick={() => setAccountModalOpen(true)}
+                aria-label="Abrir apartado de creación de cuenta y Club Mojo"
+                className="flex items-center gap-1.5 rounded-none border border-charcoal-ink/20 bg-surface-sand px-3 py-2 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink transition-all hover:bg-brand-fire hover:text-cream-bg hover:border-brand-fire cursor-pointer select-none"
               >
                 <User className="h-4 w-4 stroke-[2.2]" />
                 <span className="hidden sm:inline">CUENTA</span>
@@ -268,6 +284,73 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
               <span className="font-bold text-brand-fire">Al Momento</span>
             </div>
           </aside>
+        </div>
+      )}
+
+      {/* Apartado Dedicado de Creación de Cuenta y Autenticación (Modal / Dialog) */}
+      {accountModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+          {/* Backdrop con desenfoque suave */}
+          <div
+            className="fixed inset-0 bg-charcoal-ink/60 backdrop-blur-xs transition-opacity"
+            onClick={() => setAccountModalOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Contenedor del Modal */}
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Apartado de creación de cuenta y Club Mojo"
+            className="relative z-50 w-full max-w-lg bg-cream-bg border border-charcoal-ink/20 shadow-2xl p-6 sm:p-8 my-auto overflow-hidden"
+          >
+            {/* Cabecera del Apartado */}
+            <div className="flex items-start justify-between gap-4 border-b border-charcoal-ink/10 pb-4 mb-5">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="font-sans text-[10px] font-black uppercase tracking-widest text-cream-bg bg-brand-fire px-2 py-0.5">
+                    CLUB MOJO MIAMI
+                  </span>
+                  <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-leaf-green bg-leaf-green/10 border border-leaf-green/20 px-1.5 py-0.5">
+                    BENEFICIOS VIP
+                  </span>
+                </div>
+                <h2 className="font-display text-3xl sm:text-4xl font-black uppercase tracking-tight text-charcoal-ink leading-none">
+                  APARTADO DE CUENTA
+                </h2>
+                <p className="font-sans text-xs text-charcoal-ink/75 mt-1.5 leading-relaxed">
+                  Crea tu cuenta o inicia sesión para acumular puntos, recibir tu cafecito cubano de cortesía y pedir al momento.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setAccountModalOpen(false)}
+                aria-label="Cerrar apartado de cuenta"
+                className="grid h-9 w-9 shrink-0 place-items-center rounded-none border border-charcoal-ink/20 bg-surface-sand text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer"
+              >
+                <X className="h-5 w-5 stroke-[2.2]" />
+              </button>
+            </div>
+
+            {/* Módulo de Autenticación con Conmutador */}
+            <AuthSwitch onAuthSuccess={() => {}} />
+
+            {/* Fila de Beneficios Inmediatos */}
+            <div className="mt-5 grid grid-cols-3 gap-2 border-t border-charcoal-ink/10 pt-4 text-center">
+              <div className="p-2 bg-surface-sand border border-charcoal-ink/10">
+                <span className="font-display text-xl sm:text-2xl font-black text-brand-fire block">☕ 1 GRATIS</span>
+                <span className="font-sans text-[9px] font-bold uppercase tracking-wider text-charcoal-ink/70">Cafecito de Bienvenida</span>
+              </div>
+              <div className="p-2 bg-surface-sand border border-charcoal-ink/10">
+                <span className="font-display text-xl sm:text-2xl font-black text-brand-fire block">10 PTS / $1</span>
+                <span className="font-sans text-[9px] font-bold uppercase tracking-wider text-charcoal-ink/70">En cada orden</span>
+              </div>
+              <div className="p-2 bg-surface-sand border border-charcoal-ink/10">
+                <span className="font-display text-xl sm:text-2xl font-black text-brand-fire block">1 CLIC</span>
+                <span className="font-sans text-[9px] font-bold uppercase tracking-wider text-charcoal-ink/70">Pedidos Rápidos</span>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </>
