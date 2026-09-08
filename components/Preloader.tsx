@@ -90,20 +90,10 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
       aria-live="polite"
       aria-label="Loading Mojo Grille artisanal dining experience"
       data-loaded={isLoaded}
-      className="fixed inset-0 z-[9999] bg-brand-fire text-cream-bg flex flex-col justify-between p-6 md:p-12 overflow-hidden select-none will-change-transform shadow-none"
+      className="fixed inset-0 z-[9999] bg-brand-fire text-cream-bg flex items-center justify-center p-6 md:p-12 overflow-hidden select-none will-change-transform shadow-none"
     >
-      {/* Barra Superior Editorial */}
-      <div className="flex items-center justify-between border-b border-cream-bg/20 pb-4">
-        <span className="font-sans text-xs sm:text-sm font-semibold tracking-widest uppercase text-cream-bg">
-          MOJO GRILLE MIAMI ARTISANAL KITCHEN
-        </span>
-        <span className="font-sans text-xs sm:text-sm tracking-widest text-cream-bg/80">
-          25.7617° N, 80.1918° W
-        </span>
-      </div>
-
       {/* Centro Monumental: Contador Display + Titular Editorial */}
-      <div className="my-auto py-8 text-center flex flex-col items-center justify-center">
+      <div className="text-center flex flex-col items-center justify-center">
         <div className="overflow-hidden">
           <span
             ref={counterRef}
@@ -115,19 +105,6 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
         <p className="mt-6 sm:mt-8 font-sans text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest text-cream-bg/90">
           HEATING UP THE CRIOLLO PLANCHA...
         </p>
-      </div>
-
-      {/* Barra Inferior Editorial */}
-      <div className="border-t border-cream-bg/20 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <p className="font-sans text-xs sm:text-sm font-medium tracking-widest uppercase text-cream-bg/80">
-          SLOW ROASTED CITRUS MARINATED EST. MIAMI
-        </p>
-        <div className="hidden sm:flex items-center gap-2">
-          <span className="h-2 w-2 rounded-none bg-cream-bg animate-pulse" aria-hidden="true" />
-          <span className="font-sans text-[11px] font-bold uppercase tracking-widest text-cream-bg/70">
-            100% ARTISANAL MOJO
-          </span>
-        </div>
       </div>
     </aside>
   );
