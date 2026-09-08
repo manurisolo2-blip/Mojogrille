@@ -196,21 +196,21 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
     setPassword("Mojo2026!");
   };
 
-  // ESTADO 1: SOCIO IDENTIFICADO (PASAPORTE VIP)
+  // ESTADO 1: SOCIO IDENTIFICADO (PASAPORTE VIP - Minimalista, sin recuadros ni cajas)
   if (user) {
     return (
       <motion.div
         key="passport-view"
-        initial={{ opacity: 0, scale: 0.95, y: 12 }}
+        initial={{ opacity: 0, scale: 0.98, y: 8 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: -12 }}
+        exit={{ opacity: 0, scale: 0.98, y: -8 }}
         transition={{ type: "spring", stiffness: 450, damping: 32 }}
         className={cn(
-          "relative flex flex-col rounded-none bg-cream-bg border border-charcoal-ink/15 p-4 sm:p-5 text-charcoal-ink transition-all shadow-sm",
+          "relative flex flex-col bg-transparent text-charcoal-ink space-y-4",
           className
         )}
       >
-        <div className="flex items-center justify-between border-b border-charcoal-ink/10 pb-3 mb-3">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Award className="h-5 w-5 text-brand-fire stroke-[2.2]" />
             <div>
@@ -222,7 +222,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
               </span>
             </div>
           </div>
-          <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/60 border border-charcoal-ink/20 px-2 py-0.5">
+          <span className="font-mono text-xs font-bold text-charcoal-ink/60">
             {user.memberId}
           </span>
         </div>
@@ -232,51 +232,49 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
             <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/60 block">
               SOCIO TITULAR
             </span>
-            <p className="font-display text-2xl font-bold uppercase tracking-tight text-charcoal-ink leading-tight">
+            <p className="font-display text-3xl font-bold uppercase tracking-tight text-charcoal-ink leading-tight">
               {user.name}
             </p>
-            <p className="font-sans text-xs text-charcoal-ink/75 truncate">
+            <p className="font-sans text-xs text-charcoal-ink/75 truncate mt-0.5">
               {user.email} {user.phone && `· ${user.phone}`}
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 bg-surface-sand p-3 border border-charcoal-ink/10">
+          <div className="grid grid-cols-2 gap-4 py-2">
             <div>
-              <span className="font-sans text-[9px] font-bold uppercase tracking-widest text-charcoal-ink/60 block">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-charcoal-ink/60 block">
                 PUNTOS MOJO
               </span>
-              <span className="font-display text-2xl font-black text-brand-fire leading-none">
+              <span className="font-display text-3xl font-black text-brand-fire leading-none">
                 {user.points} <span className="text-xs font-sans text-charcoal-ink/70">PTS</span>
               </span>
             </div>
             <div>
-              <span className="font-sans text-[9px] font-bold uppercase tracking-widest text-charcoal-ink/60 block">
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-charcoal-ink/60 block">
                 BENEFICIO ACTIVO
               </span>
-              <div className="flex items-center gap-1 text-leaf-green mt-0.5">
-                <Coffee className="h-3.5 w-3.5 shrink-0 stroke-[2.5]" />
-                <span className="font-sans text-[10px] font-bold uppercase tracking-tight leading-tight">
+              <div className="flex items-center gap-1.5 text-leaf-green mt-1">
+                <Coffee className="h-4 w-4 shrink-0 stroke-[2.5]" />
+                <span className="font-sans text-xs font-bold uppercase tracking-tight leading-tight">
                   Cafecito Gratis
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 text-charcoal-ink/80 text-[11px] font-sans pt-1">
+          <div className="flex items-center gap-2 text-charcoal-ink/80 text-xs font-sans">
             <Sparkles className="h-3.5 w-3.5 text-brand-fire shrink-0" />
             <span>Ganas 10 pts por cada $1 consumido en Little Havana, Brickell o Doral.</span>
           </div>
 
-          <motion.button
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 0.98 }}
+          <button
             type="button"
             onClick={handleLogout}
-            className="w-full mt-3 flex items-center justify-center gap-2 rounded-none border border-charcoal-ink/20 bg-surface-sand py-2 px-3 font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer select-none"
+            className="w-full pt-3 flex items-center justify-center gap-2 font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink/70 hover:text-brand-fire transition-colors cursor-pointer select-none"
           >
             <LogOut className="h-3.5 w-3.5 stroke-[2]" />
             <span>CERRAR SESIÓN</span>
-          </motion.button>
+          </button>
         </div>
       </motion.div>
     );
@@ -287,10 +285,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
       layout
       transition={{ duration: 0.28, ease: "easeInOut" }}
       className={cn(
-        "flex flex-col rounded-none bg-cream-bg border p-4 sm:p-5 text-charcoal-ink transition-colors duration-300",
-        mode === "signup"
-          ? "border-brand-fire/35 shadow-[0_4px_24px_rgba(229,37,22,0.06)]"
-          : "border-charcoal-ink/20 shadow-[0_4px_24px_rgba(20,18,16,0.06)]",
+        "flex flex-col bg-transparent text-charcoal-ink",
         className
       )}
     >
@@ -300,11 +295,11 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
         </h2>
       )}
 
-      {/* Selector de Pestañas con Transición de Colores y Deslizador Animado */}
+      {/* Selector de Pestañas (Minimalista, sin cajas) */}
       <div
         role="tablist"
         aria-label="Opciones de cuenta"
-        className="relative grid grid-cols-2 p-1 bg-surface-sand border border-charcoal-ink/15 mb-4 select-none overflow-hidden"
+        className="relative flex gap-6 mb-5 select-none"
       >
         <button
           type="button"
@@ -315,18 +310,13 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
             setFeedback(null);
           }}
           className={cn(
-            "relative z-10 py-2.5 px-3 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 cursor-pointer select-none text-center",
-            mode === "signup" ? "text-cream-bg" : "text-charcoal-ink hover:text-brand-fire"
+            "font-display text-xl uppercase font-black tracking-tight transition-colors duration-200 cursor-pointer select-none pb-1",
+            mode === "signup"
+              ? "text-brand-fire border-b-2 border-brand-fire"
+              : "text-charcoal-ink/50 hover:text-charcoal-ink"
           )}
         >
-          {mode === "signup" && (
-            <motion.div
-              layoutId="auth-active-indicator"
-              className="absolute inset-0 bg-brand-fire shadow-sm"
-              transition={{ type: "spring", stiffness: 480, damping: 36 }}
-            />
-          )}
-          <span className="relative z-10">CREAR CUENTA</span>
+          CREAR CUENTA
         </button>
 
         <button
@@ -338,18 +328,13 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
             setFeedback(null);
           }}
           className={cn(
-            "relative z-10 py-2.5 px-3 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 cursor-pointer select-none text-center",
-            mode === "login" ? "text-cream-bg" : "text-charcoal-ink hover:text-brand-fire"
+            "font-display text-xl uppercase font-black tracking-tight transition-colors duration-200 cursor-pointer select-none pb-1",
+            mode === "login"
+              ? "text-brand-fire border-b-2 border-brand-fire"
+              : "text-charcoal-ink/50 hover:text-charcoal-ink"
           )}
         >
-          {mode === "login" && (
-            <motion.div
-              layoutId="auth-active-indicator"
-              className="absolute inset-0 bg-charcoal-ink shadow-sm"
-              transition={{ type: "spring", stiffness: 480, damping: 36 }}
-            />
-          )}
-          <span className="relative z-10">INICIAR SESIÓN</span>
+          INICIAR SESIÓN
         </button>
       </div>
 
@@ -361,10 +346,10 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             className={cn(
-              "mb-3 p-2.5 font-sans text-xs font-semibold leading-relaxed border",
+              "mb-3 p-2 font-sans text-xs font-semibold leading-relaxed",
               feedback.type === "error"
-                ? "bg-brand-fire/10 border-brand-fire/30 text-brand-fire"
-                : "bg-leaf-green/10 border-leaf-green/30 text-leaf-green"
+                ? "text-brand-fire"
+                : "text-leaf-green"
             )}
           >
             {feedback.message}
@@ -372,7 +357,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
         )}
       </AnimatePresence>
 
-      {/* Formulario con Transición y Deslizamiento Suave */}
+      {/* Formulario con Transición Suave */}
       <AnimatePresence mode="wait" initial={false}>
         {mode === "signup" ? (
           <motion.form
@@ -382,21 +367,21 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
             exit={{ opacity: 0, x: 16 }}
             transition={{ duration: 0.22, ease: "easeInOut" }}
             onSubmit={handleRegister}
-            className="space-y-3"
+            className="space-y-4"
           >
             <div>
               <label className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70 block mb-1">
                 NOMBRE Y APELLIDO *
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
+                <User className="absolute left-0 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/40" />
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Carlos Rodríguez"
                   required
-                  className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire focus:ring-1 focus:ring-brand-fire/30 transition-all duration-200"
+                  className="w-full rounded-none border-b border-charcoal-ink/25 bg-transparent pl-6 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire transition-all duration-200"
                 />
               </div>
             </div>
@@ -406,14 +391,14 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
                 CORREO ELECTRÓNICO *
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
+                <Mail className="absolute left-0 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/40" />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="carlos@miami.com"
                   required
-                  className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire focus:ring-1 focus:ring-brand-fire/30 transition-all duration-200"
+                  className="w-full rounded-none border-b border-charcoal-ink/25 bg-transparent pl-6 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire transition-all duration-200"
                 />
               </div>
             </div>
@@ -423,13 +408,13 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
                 TELÉFONO MÓVIL (MIAMI / WHATSAPP)
               </label>
               <div className="relative">
-                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
+                <Phone className="absolute left-0 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/40" />
                 <input
                   type="tel"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="(305) 555-0199"
-                  className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire focus:ring-1 focus:ring-brand-fire/30 transition-all duration-200"
+                  className="w-full rounded-none border-b border-charcoal-ink/25 bg-transparent pl-6 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire transition-all duration-200"
                 />
               </div>
             </div>
@@ -439,19 +424,19 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
                 CONTRASEÑA (MÍNIMO 6 CARACTERES) *
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
+                <Lock className="absolute left-0 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/40" />
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required
-                  className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-9 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire focus:ring-1 focus:ring-brand-fire/30 transition-all duration-200"
+                  className="w-full rounded-none border-b border-charcoal-ink/25 bg-transparent pl-6 pr-8 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire transition-all duration-200"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-charcoal-ink/50 hover:text-charcoal-ink cursor-pointer transition-transform active:scale-90"
+                  className="absolute right-1 top-1/2 -translate-y-1/2 text-charcoal-ink/50 hover:text-charcoal-ink cursor-pointer transition-transform active:scale-90"
                   aria-label={showPassword ? "Ocultar contraseña" : "Ver contraseña"}
                 >
                   {showPassword ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
@@ -476,7 +461,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
               whileTap={{ scale: 0.98 }}
               type="submit"
               disabled={isSubmitting}
-              className="w-full mt-2 flex items-center justify-center gap-2 rounded-none bg-brand-fire py-3 px-4 font-sans text-xs font-bold uppercase tracking-wider text-cream-bg transition-colors duration-300 hover:bg-charcoal-ink cursor-pointer select-none disabled:opacity-50 shadow-md shadow-brand-fire/15"
+              className="w-full mt-2 flex items-center justify-center gap-2 rounded-none bg-brand-fire py-3 px-4 font-sans text-xs font-bold uppercase tracking-wider text-cream-bg transition-colors duration-300 hover:bg-charcoal-ink cursor-pointer select-none disabled:opacity-50"
             >
               {isSubmitting ? (
                 <span>CREANDO CUENTA...</span>
@@ -506,21 +491,21 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
             exit={{ opacity: 0, x: -16 }}
             transition={{ duration: 0.22, ease: "easeInOut" }}
             onSubmit={handleLogin}
-            className="space-y-3"
+            className="space-y-4"
           >
             <div>
               <label className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/70 block mb-1">
                 CORREO ELECTRÓNICO *
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
+                <Mail className="absolute left-0 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/40" />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="tu-correo@miami.com"
                   required
-                  className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire focus:ring-1 focus:ring-brand-fire/30 transition-all duration-200"
+                  className="w-full rounded-none border-b border-charcoal-ink/25 bg-transparent pl-6 pr-3 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire transition-all duration-200"
                 />
               </div>
             </div>
@@ -544,19 +529,19 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
                 </button>
               </div>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/50" />
+                <Lock className="absolute left-0 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-charcoal-ink/40" />
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required
-                  className="w-full rounded-none border border-charcoal-ink/20 bg-surface-sand pl-9 pr-9 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire focus:ring-1 focus:ring-brand-fire/30 transition-all duration-200"
+                  className="w-full rounded-none border-b border-charcoal-ink/25 bg-transparent pl-6 pr-8 py-2 font-sans text-xs text-charcoal-ink placeholder:text-charcoal-ink/40 focus:outline-none focus:border-brand-fire transition-all duration-200"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-charcoal-ink/50 hover:text-charcoal-ink cursor-pointer transition-transform active:scale-90"
+                  className="absolute right-1 top-1/2 -translate-y-1/2 text-charcoal-ink/50 hover:text-charcoal-ink cursor-pointer transition-transform active:scale-90"
                   aria-label={showPassword ? "Ocultar contraseña" : "Ver contraseña"}
                 >
                   {showPassword ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
@@ -569,7 +554,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
               whileTap={{ scale: 0.98 }}
               type="submit"
               disabled={isSubmitting}
-              className="w-full mt-2 flex items-center justify-center gap-2 rounded-none bg-charcoal-ink py-3 px-4 font-sans text-xs font-bold uppercase tracking-wider text-cream-bg transition-colors duration-300 hover:bg-brand-fire cursor-pointer select-none disabled:opacity-50 shadow-md shadow-charcoal-ink/15"
+              className="w-full mt-2 flex items-center justify-center gap-2 rounded-none bg-charcoal-ink py-3 px-4 font-sans text-xs font-bold uppercase tracking-wider text-cream-bg transition-colors duration-300 hover:bg-brand-fire cursor-pointer select-none disabled:opacity-50"
             >
               {isSubmitting ? (
                 <span>ENTRANDO...</span>
