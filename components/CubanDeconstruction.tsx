@@ -20,9 +20,9 @@ function IngredientCallout({ name, detail, side = "right" }: IngredientCalloutPr
         isLeft ? "ingredient-callout-left" : "ingredient-callout-right"
       } absolute ${
         isLeft
-          ? "right-[78%] sm:right-[82%] md:right-[86%]"
-          : "left-[78%] sm:left-[82%] md:left-[86%]"
-      } top-1/2 -translate-y-1/2 flex items-center gap-2 sm:gap-3 pointer-events-auto select-none whitespace-nowrap opacity-0 will-change-transform z-30`}
+          ? "right-[78%] sm:right-[82%] md:right-[85%]"
+          : "left-[78%] sm:left-[82%] md:left-[85%]"
+      } top-1/2 -translate-y-1/2 flex items-center gap-2 sm:gap-3 pointer-events-auto select-none whitespace-nowrap opacity-90 will-change-transform z-30`}
     >
       {isLeft ? (
         <>
@@ -102,12 +102,14 @@ export function CubanDeconstruction() {
     gsap.registerPlugin(ScrollTrigger);
 
     ScrollTrigger.matchMedia({
-      // 1. Escritorio (min-width: 1024px): separación de capas con llamadas alternadas izquierda / derecha
+      // 1. Escritorio (min-width: 1024px): separación amplia garantizada sin ninguna superposición
       "(min-width: 1024px)": function () {
-        gsap.set([topBreadRef.current, bottomBreadRef.current], {
-          rotateX: 20,
-          transformPerspective: 1000,
-        });
+        // Inicializar cada capa en su posición ya separada para garantizar CERO superposición
+        gsap.set(topBreadRef.current, { y: -240, rotate: -1 });
+        gsap.set(picklesRef.current, { y: -120, rotate: 1.5 });
+        gsap.set(cheeseRef.current, { y: 0, rotate: -0.5 });
+        gsap.set(mojoPorkRef.current, { y: 120, rotate: 1 });
+        gsap.set(bottomBreadRef.current, { y: 240, rotate: -1 });
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -115,84 +117,82 @@ export function CubanDeconstruction() {
             pin: pinRef.current,
             start: "top top",
             end: "bottom bottom",
-            scrub: 1.5,
+            scrub: 1.2,
           },
         });
 
         tl.to(
           topBreadRef.current,
           {
-            y: -240,
-            rotate: -3,
-            rotateX: 20,
-            ease: "power1.inOut",
+            y: -290,
+            rotate: -2.5,
+            ease: "power1.out",
           },
           0
         )
           .to(
             picklesRef.current,
             {
-              y: -120,
-              rotate: 4,
-              ease: "power1.inOut",
+              y: -145,
+              rotate: 2.5,
+              ease: "power1.out",
             },
             0
           )
           .to(
             cheeseRef.current,
             {
-              y: -35,
+              y: 0,
               rotate: -1,
-              ease: "power1.inOut",
+              ease: "power1.out",
             },
             0
           )
           .to(
             mojoPorkRef.current,
             {
-              y: 55,
-              scale: 1.08,
-              ease: "power1.inOut",
+              y: 145,
+              rotate: 1.5,
+              ease: "power1.out",
             },
             0
           )
           .to(
             bottomBreadRef.current,
             {
-              y: 210,
-              rotate: 1,
-              rotateX: 20,
-              ease: "power1.inOut",
+              y: 290,
+              rotate: -2,
+              ease: "power1.out",
             },
             0
           )
           .fromTo(
             ".ingredient-callout-right",
             {
-              opacity: 0,
-              x: -25,
+              opacity: 0.7,
+              x: -15,
             },
             {
               opacity: 1,
               x: 0,
-              stagger: 0.04,
+              stagger: 0.03,
               ease: "power1.out",
             },
-            0.15
+            0
           )
           .fromTo(
             ".ingredient-callout-left",
             {
-              opacity: 0,
-              x: 25,
+              opacity: 0.7,
+              x: 15,
             },
             {
               opacity: 1,
               x: 0,
-              stagger: 0.04,
+              stagger: 0.03,
               ease: "power1.out",
             },
-            0.15
+            0
           );
 
         return () => {
@@ -200,12 +200,13 @@ export function CubanDeconstruction() {
         };
       },
 
-      // 2. Móviles y tabletas (max-width: 1023px)
+      // 2. Móviles y tabletas (max-width: 1023px): separación adaptada para pantallas compactas
       "(max-width: 1023px)": function () {
-        gsap.set([topBreadRef.current, bottomBreadRef.current], {
-          rotateX: 16,
-          transformPerspective: 1000,
-        });
+        gsap.set(topBreadRef.current, { y: -180, rotate: -1 });
+        gsap.set(picklesRef.current, { y: -90, rotate: 1 });
+        gsap.set(cheeseRef.current, { y: 0, rotate: -0.5 });
+        gsap.set(mojoPorkRef.current, { y: 90, rotate: 1 });
+        gsap.set(bottomBreadRef.current, { y: 180, rotate: -1 });
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -213,84 +214,81 @@ export function CubanDeconstruction() {
             pin: pinRef.current,
             start: "top top",
             end: "bottom bottom",
-            scrub: 1.5,
+            scrub: 1.2,
           },
         });
 
         tl.to(
           topBreadRef.current,
           {
-            y: -140,
+            y: -215,
             rotate: -2,
-            rotateX: 16,
-            ease: "power1.inOut",
+            ease: "power1.out",
           },
           0
         )
           .to(
             picklesRef.current,
             {
-              y: -70,
-              rotate: 3,
-              ease: "power1.inOut",
+              y: -105,
+              rotate: 2,
+              ease: "power1.out",
             },
             0
           )
           .to(
             cheeseRef.current,
             {
-              y: -20,
-              rotate: -1,
-              ease: "power1.inOut",
+              y: 0,
+              ease: "power1.out",
             },
             0
           )
           .to(
             mojoPorkRef.current,
             {
-              y: 35,
-              scale: 1.05,
-              ease: "power1.inOut",
+              y: 105,
+              rotate: 1,
+              ease: "power1.out",
             },
             0
           )
           .to(
             bottomBreadRef.current,
             {
-              y: 125,
-              rotate: 1,
-              rotateX: 16,
-              ease: "power1.inOut",
+              y: 215,
+              rotate: -1.5,
+              ease: "power1.out",
             },
             0
           )
           .fromTo(
             ".ingredient-callout-right",
             {
-              opacity: 0,
-              x: -12,
+              opacity: 0.7,
+              x: -10,
             },
             {
               opacity: 1,
               x: 0,
-              stagger: 0.04,
+              stagger: 0.03,
               ease: "power1.out",
             },
-            0.15
+            0
           )
           .fromTo(
             ".ingredient-callout-left",
             {
-              opacity: 0,
-              x: 12,
+              opacity: 0.7,
+              x: 10,
             },
             {
               opacity: 1,
               x: 0,
-              stagger: 0.04,
+              stagger: 0.03,
               ease: "power1.out",
             },
-            0.15
+            0
           );
 
         return () => {
@@ -367,27 +365,23 @@ export function CubanDeconstruction() {
           </p>
         </div>
 
-        {/* Contenedor central de capas apiladas con perspectiva CSS centrada */}
-        <div className="relative w-full max-w-[1600px] px-4 sm:px-8 flex items-center justify-center pt-8 sm:pt-12">
-          <div
-            className="relative w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] md:w-[500px] md:h-[500px] lg:w-[560px] lg:h-[560px] flex items-center justify-center overflow-visible mx-auto"
-            style={{ perspective: "1000px" }}
-          >
-            {/* Sombra de Contacto Dinámica en el Piso (Sincronizada con la Flotación) */}
+        {/* Contenedor central de capas apiladas con generoso espaciado sin superposición */}
+        <div className="relative w-full max-w-[1600px] px-4 sm:px-8 flex items-center justify-center pt-6 sm:pt-10">
+          <div className="relative w-[280px] h-[360px] sm:w-[360px] sm:h-[440px] md:w-[460px] md:h-[520px] lg:w-[520px] lg:h-[600px] flex items-center justify-center overflow-visible mx-auto">
+            {/* Sombra de Contacto Dinámica en el Piso */}
             <div
-              className="absolute -bottom-8 sm:-bottom-12 w-[72%] max-w-[440px] h-6 sm:h-8 rounded-[100%] bg-charcoal-ink/20 blur-xl pointer-events-none animate-sandwich-shadow"
+              className="absolute -bottom-6 sm:-bottom-10 w-[65%] max-w-[380px] h-5 sm:h-7 rounded-[100%] bg-charcoal-ink/15 blur-xl pointer-events-none animate-sandwich-shadow"
               aria-hidden="true"
             />
 
-            {/* Envoltorio Flotante 3D Principal (Levitación Continua Suave) */}
-            <div className="relative w-full h-full flex items-center justify-center animate-sandwich-float will-change-transform [transform-style:preserve-3d]">
+            {/* Envoltorio Flotante Suave (Sin transform-style: preserve-3d para eliminar recortes o superposiciones) */}
+            <div className="relative w-full h-full flex items-center justify-center animate-sandwich-float will-change-transform">
               {/* Capa 1: Tapa superior de pan cubano (DERECHA) */}
               <div
                 ref={topBreadRef}
                 className="absolute inset-0 flex items-center justify-center will-change-transform z-50 pointer-events-none overflow-visible"
-                style={{ willChange: "transform", transform: "rotateX(20deg)" }}
               >
-                <div className="relative w-full h-full flex items-center justify-center animate-layer-1">
+                <div className="relative w-full h-full flex items-center justify-center">
                   <img
                     src="/sandwich/01-top-bread.webp"
                     alt="Toasted artisanal Cuban bread top crust"
@@ -395,7 +389,7 @@ export function CubanDeconstruction() {
                     height={545}
                     loading="eager"
                     onLoad={handleLayerImageLoad}
-                    className="w-full h-auto object-contain select-none"
+                    className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[360px] lg:max-w-[400px] max-h-[85px] sm:max-h-[105px] md:max-h-[120px] object-contain select-none drop-shadow-md"
                   />
                   <IngredientCallout
                     name="ARTISANAL TOP CRUST"
@@ -409,9 +403,8 @@ export function CubanDeconstruction() {
               <div
                 ref={picklesRef}
                 className="absolute inset-0 flex items-center justify-center will-change-transform z-40 pointer-events-none overflow-visible"
-                style={{ willChange: "transform" }}
               >
-                <div className="relative w-full h-full flex items-center justify-center animate-layer-2">
+                <div className="relative w-full h-full flex items-center justify-center">
                   <img
                     src="/sandwich/02-pickles.webp"
                     alt="Tangy dill pickles and yellow mustard slices"
@@ -419,7 +412,7 @@ export function CubanDeconstruction() {
                     height={545}
                     loading="eager"
                     onLoad={handleLayerImageLoad}
-                    className="w-full h-auto object-contain select-none"
+                    className="w-full max-w-[220px] sm:max-w-[280px] md:max-w-[330px] lg:max-w-[370px] max-h-[85px] sm:max-h-[105px] md:max-h-[120px] object-contain select-none drop-shadow-md"
                   />
                   <IngredientCallout
                     name="CRISP PICKLES & MUSTARD"
@@ -433,9 +426,8 @@ export function CubanDeconstruction() {
               <div
                 ref={cheeseRef}
                 className="absolute inset-0 flex items-center justify-center will-change-transform z-30 pointer-events-none overflow-visible"
-                style={{ willChange: "transform" }}
               >
-                <div className="relative w-full h-full flex items-center justify-center animate-layer-3">
+                <div className="relative w-full h-full flex items-center justify-center">
                   <img
                     src="/sandwich/03-melted-cheese.webp"
                     alt="Melted stretchy Swiss cheese"
@@ -443,7 +435,7 @@ export function CubanDeconstruction() {
                     height={545}
                     loading="eager"
                     onLoad={handleLayerImageLoad}
-                    className="w-full h-auto object-contain select-none"
+                    className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[360px] lg:max-w-[400px] max-h-[85px] sm:max-h-[105px] md:max-h-[120px] object-contain select-none drop-shadow-md"
                   />
                   <IngredientCallout
                     name="MELTED SWISS CHEESE"
@@ -457,9 +449,8 @@ export function CubanDeconstruction() {
               <div
                 ref={mojoPorkRef}
                 className="absolute inset-0 flex items-center justify-center will-change-transform z-20 pointer-events-none overflow-visible"
-                style={{ willChange: "transform" }}
               >
-                <div className="relative w-full h-full flex items-center justify-center animate-layer-4">
+                <div className="relative w-full h-full flex items-center justify-center">
                   <img
                     src="/sandwich/04-mojo-pork.webp"
                     alt="Slow-roasted 4-hour citrus mojo pork and sweet cured ham"
@@ -467,7 +458,7 @@ export function CubanDeconstruction() {
                     height={545}
                     loading="eager"
                     onLoad={handleLayerImageLoad}
-                    className="w-full h-auto object-contain select-none"
+                    className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[360px] lg:max-w-[400px] max-h-[85px] sm:max-h-[105px] md:max-h-[120px] object-contain select-none drop-shadow-md"
                   />
                   <IngredientCallout
                     name="CITRUS MOJO ROAST PORK"
@@ -481,9 +472,8 @@ export function CubanDeconstruction() {
               <div
                 ref={bottomBreadRef}
                 className="absolute inset-0 flex items-center justify-center will-change-transform z-10 pointer-events-none overflow-visible"
-                style={{ willChange: "transform", transform: "rotateX(20deg)" }}
               >
-                <div className="relative w-full h-full flex items-center justify-center animate-layer-5">
+                <div className="relative w-full h-full flex items-center justify-center">
                   <img
                     src="/sandwich/05-bottom-bread.webp"
                     alt="Bottom crust of plancha-pressed Cuban bread"
@@ -491,7 +481,7 @@ export function CubanDeconstruction() {
                     height={545}
                     loading="eager"
                     onLoad={handleLayerImageLoad}
-                    className="w-full h-auto object-contain select-none"
+                    className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[360px] lg:max-w-[400px] max-h-[85px] sm:max-h-[105px] md:max-h-[120px] object-contain select-none drop-shadow-md"
                   />
                   <IngredientCallout
                     name="CRUNCHY PLANCHA BASE"
