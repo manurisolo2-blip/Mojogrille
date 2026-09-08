@@ -133,11 +133,11 @@ export function HeroSection({
               </div>
             </div>
 
-            {/* Badge Izquierdo: Social Proof Rating (WCAG & Test Invariant) */}
+            {/* Badge Superior Derecho: Social Proof Rating (WCAG & Test Invariant) */}
             <div
               role="status"
               aria-label="Average customer rating in Miami"
-              className="absolute -top-4 -left-4 sm:-top-5 sm:-left-6 z-20 rounded-none bg-surface-sand px-4 py-2.5 select-none cursor-pointer hover:bg-surface-sand/90 transition-colors"
+              className="absolute -top-4 -right-3 sm:-top-5 sm:-right-4 md:-right-6 z-20 rounded-none bg-surface-sand px-4 py-2.5 select-none cursor-pointer hover:bg-surface-sand/90 transition-colors"
             >
               <div className="flex items-center gap-2">
                 <div className="text-left">
@@ -151,8 +151,8 @@ export function HeroSection({
               </div>
             </div>
 
-            {/* Badge Derecho: Ficha de Metadato Editorial */}
-            <div className="absolute -bottom-4 -right-3 sm:-bottom-5 sm:-right-4 z-20 rounded-none bg-leaf-green px-4 py-2.5 text-cream-bg select-none cursor-pointer">
+            {/* Badge Inferior Desplazado: Ficha de Metadato Editorial */}
+            <div className="absolute -bottom-4 right-4 sm:-bottom-5 sm:right-32 md:sm:right-36 z-20 rounded-none bg-leaf-green px-4 py-2.5 text-cream-bg select-none cursor-pointer">
               <div className="flex items-center gap-2">
                 <div className="text-left">
                   <p className="font-sans text-xs font-black text-cream-bg leading-tight uppercase tracking-wide">

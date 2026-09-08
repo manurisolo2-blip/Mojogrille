@@ -105,12 +105,12 @@ export function HeroSection({
               </div>
             </div>
 
-            {/* Badge Izquierdo: Social Proof Rating (Invariante QA) */}
+            {/* Badge Superior Derecho: Social Proof Rating (Invariante QA) */}
             <motion.div
               role="status"
               aria-label="Average customer rating in Miami"
               whileHover={{ scale: 1.02 }}
-              className="absolute -top-4 -left-4 sm:-top-5 sm:-left-6 z-20 rounded-none border-2 border-charcoal-ink bg-surface-sand px-4 py-2.5 select-none cursor-pointer"
+              className="absolute -top-4 -right-3 sm:-top-5 sm:-right-4 md:-right-6 z-20 rounded-none bg-surface-sand px-4 py-2.5 select-none cursor-pointer"
             >
               <div className="flex items-center gap-2">
                 <div className="text-left">
@@ -124,10 +124,10 @@ export function HeroSection({
               </div>
             </motion.div>
 
-            {/* Badge Derecho: Ficha de Metadato Editorial */}
+            {/* Badge Inferior Desplazado: Ficha de Metadato Editorial */}
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="absolute -bottom-4 -right-3 sm:-bottom-5 sm:-right-4 z-20 rounded-none border border-charcoal-ink/20 bg-leaf-green px-4 py-2.5 text-cream-bg select-none cursor-pointer"
+              className="absolute -bottom-4 right-4 sm:-bottom-5 sm:right-32 md:sm:right-36 z-20 rounded-none bg-leaf-green px-4 py-2.5 text-cream-bg select-none cursor-pointer"
             >
               <div className="flex items-center gap-2">
                 <div className="text-left">
