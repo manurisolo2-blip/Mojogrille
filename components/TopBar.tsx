@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronDown, MapPin, Menu, X, UserPlus, Phone, ArrowRight } from 'lucide-react';
+import { ChevronDown, MapPin, Menu, X, User, Phone, ArrowRight } from 'lucide-react';
 import { LatinMarketBagIcon } from './LatinMarketBagIcon';
 import { AuthSwitch } from './ui/auth-switch';
 
@@ -52,7 +52,6 @@ export function TopBar({
 }: TopBarProps) {
   const [open, setOpen] = useState(false);
   const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
-  const [accountToast, setAccountToast] = useState(false);
   const [selectedLoc, setSelectedLoc] = useState<LocationItem>(currentLocation);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -100,8 +99,19 @@ export function TopBar({
               </span>
             </a>
 
-            {/* Extremo Derecho: Botón MENÚ y Bolsa de Compra */}
-            <div className="flex shrink-0 items-center gap-3">
+            {/* Extremo Derecho: Botones de Cuenta, Menú y Bolsa de Compra */}
+            <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+              {/* Opción de Cuenta / Club Mojo */}
+              <button
+                type="button"
+                onClick={() => setMenuDrawerOpen(true)}
+                aria-label="Abrir apartado de cuenta Club Mojo"
+                className="flex items-center gap-1.5 rounded-none border border-charcoal-ink/20 bg-surface-sand px-3 py-2 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink transition-all hover:bg-charcoal-ink hover:text-cream-bg cursor-pointer select-none"
+              >
+                <User className="h-4 w-4 stroke-[2.2]" />
+                <span className="hidden sm:inline">CUENTA</span>
+              </button>
+
               {/* Opción de Menú: Siguiendo el diseño editorial brutalista */}
               <button
                 type="button"
@@ -256,40 +266,23 @@ export function TopBar({
                   </div>
                 </div>
 
-                {/* 2. SECCIÓN: APARTADO PARA CREAR CUENTA (EN PREPARACIÓN) */}
-                <div className="rounded-none bg-surface-sand/80 p-4 border border-charcoal-ink/10 relative overflow-hidden">
+                {/* 2. SECCIÓN: APARTADO PARA CREAR CUENTA & CLUB MOJO */}
+                <div className="rounded-none bg-surface-sand p-4 border border-charcoal-ink/10 relative overflow-hidden">
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="font-sans text-[10px] font-black uppercase tracking-widest text-cream-bg bg-brand-fire px-2 py-0.5">
-                      CLUB MOJO
+                      CLUB MOJO MIAMI
                     </span>
-                    <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/60 border border-charcoal-ink/20 px-1.5 py-0.5">
-                      PRÓXIMAMENTE
+                    <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-leaf-green bg-leaf-green/10 border border-leaf-green/20 px-1.5 py-0.5">
+                      ACTIVO
                     </span>
                   </div>
-                  <h3 className="font-display text-2xl font-black uppercase tracking-tight text-charcoal-ink">
-                    CREAR CUENTA
+                  <h3 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
+                    CREAR CUENTA & BENEFICIOS
                   </h3>
-                  <p className="font-sans text-xs text-charcoal-ink/80 mt-1 leading-relaxed">
-                    Únete a la familia Mojo Grille para acumular puntos por cada lechón o bowl, recibir un cafecito de cortesía en tu cumpleaños y pedir en 1 clic.
+                  <p className="font-sans text-xs text-charcoal-ink/80 mt-1 mb-3.5 leading-relaxed">
+                    Únete a la familia Mojo Grille para ganar 1 cafecito de cortesía, acumular puntos al momento y ordenar con prioridad en Little Havana, Brickell y Doral.
                   </p>
-                  <div className="my-3.5">
-                    <AuthSwitch title="Component Example" />
-                  </div>
-                  <div className="mt-3">
-                    <button
-                      type="button"
-                      onClick={() => setAccountToast(true)}
-                      className="w-full flex items-center justify-center gap-2 rounded-none border border-brand-fire bg-cream-bg py-2.5 px-4 font-sans text-xs font-bold uppercase tracking-wider text-brand-fire transition-all hover:bg-brand-fire hover:text-cream-bg cursor-pointer select-none"
-                    >
-                      <UserPlus className="h-3.5 w-3.5 stroke-[2.2]" />
-                      <span>REGISTRARSE (PRONTO)</span>
-                    </button>
-                  </div>
-                  {accountToast && (
-                    <p className="mt-2.5 text-[11px] font-sans font-bold text-leaf-green bg-leaf-green/10 border border-leaf-green/20 p-2 text-center">
-                      ✓ Apartado en preparación: ¡Estamos horneando la experiencia de usuarios! Estará disponible muy pronto.
-                    </p>
-                  )}
+                  <AuthSwitch />
                 </div>
 
                 {/* 3. SECCIÓN: NAVEGACIÓN DIRECTA */}
