@@ -354,7 +354,7 @@ export function TopBar({
             aria-hidden="true"
           />
 
-          {/* Contenedor del Modal (Minimalista, sin encabezados repetitivos ni banners duplicados) */}
+          {/* Contenedor del Modal Dual-Panel */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -363,21 +363,19 @@ export function TopBar({
             role="dialog"
             aria-modal="true"
             aria-label="Apartado de cuenta y Club Mojo"
-            className="relative z-50 w-full max-w-md bg-cream-bg shadow-2xl p-6 sm:p-8 my-auto overflow-hidden"
+            className="relative z-50 w-full max-w-3xl lg:max-w-4xl bg-cream-bg rounded-3xl sm:rounded-[28px] shadow-2xl my-auto overflow-hidden border border-charcoal-ink/10"
           >
-            {/* Botón de Cierre Minimalista */}
-            <div className="flex justify-end -mt-2 -mr-2 mb-2">
-              <button
-                type="button"
-                onClick={() => setAccountModalOpen(false)}
-                aria-label="Cerrar apartado de cuenta"
-                className="p-1.5 text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer"
-              >
-                <X className="h-6 w-6 stroke-[2.2]" />
-              </button>
-            </div>
+            {/* Botón de Cierre Flotante Minimalista */}
+            <button
+              type="button"
+              onClick={() => setAccountModalOpen(false)}
+              aria-label="Cerrar apartado de cuenta"
+              className="absolute top-3.5 right-3.5 z-40 p-2 rounded-full text-charcoal-ink hover:text-brand-fire bg-cream-bg/80 backdrop-blur-xs hover:bg-cream-bg shadow-sm transition-all cursor-pointer"
+            >
+              <X className="h-5 w-5 stroke-[2.2]" />
+            </button>
 
-            {/* Módulo de Autenticación / Pasaporte Minimalista */}
+            {/* Módulo de Autenticación / Pasaporte Dual Panel */}
             <AuthSwitch onAuthSuccess={() => {}} />
           </motion.div>
         </div>
