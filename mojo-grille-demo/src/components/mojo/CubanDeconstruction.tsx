@@ -371,114 +371,133 @@ export function CubanDeconstruction() {
             className="relative w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] md:w-[500px] md:h-[500px] lg:w-[560px] lg:h-[560px] flex items-center justify-center overflow-visible mx-auto"
             style={{ perspective: "1000px" }}
           >
-            {/* Capa 1: Tapa superior de pan cubano (DERECHA) */}
+            {/* Sombra de Contacto Dinámica en el Piso (Sincronizada con la Flotación) */}
             <div
-              ref={topBreadRef}
-              className="absolute inset-0 flex items-center justify-center will-change-transform z-50 pointer-events-none overflow-visible"
-              style={{ willChange: "transform", transform: "rotateX(20deg)" }}
-            >
-              <img
-                src="/sandwich/01-top-bread.webp"
-                alt="Toasted artisanal Cuban bread top crust"
-                width={1000}
-                height={545}
-                loading="eager"
-                onLoad={handleLayerImageLoad}
-                className="w-full h-auto object-contain select-none"
-              />
-              <IngredientCallout
-                name="ARTISANAL TOP CRUST"
-                detail="Golden Griddled Cuban Bread"
-                side="right"
-              />
-            </div>
+              className="absolute -bottom-8 sm:-bottom-12 w-[72%] max-w-[440px] h-6 sm:h-8 rounded-[100%] bg-charcoal-ink/20 blur-xl pointer-events-none animate-sandwich-shadow"
+              aria-hidden="true"
+            />
 
-            {/* Capa 2: Pepinillos encurtidos y mostaza criolla (IZQUIERDA) */}
-            <div
-              ref={picklesRef}
-              className="absolute inset-0 flex items-center justify-center will-change-transform z-40 pointer-events-none overflow-visible"
-              style={{ willChange: "transform" }}
-            >
-              <img
-                src="/sandwich/02-pickles.webp"
-                alt="Tangy dill pickles and yellow mustard slices"
-                width={1000}
-                height={545}
-                loading="eager"
-                onLoad={handleLayerImageLoad}
-                className="w-full h-auto object-contain select-none"
-              />
-              <IngredientCallout
-                name="CRISP PICKLES & MUSTARD"
-                detail="Crunchy Dill Spears & Yellow Mustard"
-                side="left"
-              />
-            </div>
+            {/* Envoltorio Flotante 3D Principal (Levitación Continua Suave) */}
+            <div className="relative w-full h-full flex items-center justify-center animate-sandwich-float will-change-transform [transform-style:preserve-3d]">
+              {/* Capa 1: Tapa superior de pan cubano (DERECHA) */}
+              <div
+                ref={topBreadRef}
+                className="absolute inset-0 flex items-center justify-center will-change-transform z-50 pointer-events-none overflow-visible"
+                style={{ willChange: "transform", transform: "rotateX(20deg)" }}
+              >
+                <div className="relative w-full h-full flex items-center justify-center animate-layer-1">
+                  <img
+                    src="/sandwich/01-top-bread.webp"
+                    alt="Toasted artisanal Cuban bread top crust"
+                    width={1000}
+                    height={545}
+                    loading="eager"
+                    onLoad={handleLayerImageLoad}
+                    className="w-full h-auto object-contain select-none"
+                  />
+                  <IngredientCallout
+                    name="ARTISANAL TOP CRUST"
+                    detail="Golden Griddled Cuban Bread"
+                    side="right"
+                  />
+                </div>
+              </div>
 
-            {/* Capa 3: Queso suizo fundido (DERECHA) */}
-            <div
-              ref={cheeseRef}
-              className="absolute inset-0 flex items-center justify-center will-change-transform z-30 pointer-events-none overflow-visible"
-              style={{ willChange: "transform" }}
-            >
-              <img
-                src="/sandwich/03-melted-cheese.webp"
-                alt="Melted stretchy Swiss cheese"
-                width={1000}
-                height={545}
-                loading="eager"
-                onLoad={handleLayerImageLoad}
-                className="w-full h-auto object-contain select-none"
-              />
-              <IngredientCallout
-                name="MELTED SWISS CHEESE"
-                detail="Plancha Melted & Stretchy"
-                side="right"
-              />
-            </div>
+              {/* Capa 2: Pepinillos encurtidos y mostaza criolla (IZQUIERDA) */}
+              <div
+                ref={picklesRef}
+                className="absolute inset-0 flex items-center justify-center will-change-transform z-40 pointer-events-none overflow-visible"
+                style={{ willChange: "transform" }}
+              >
+                <div className="relative w-full h-full flex items-center justify-center animate-layer-2">
+                  <img
+                    src="/sandwich/02-pickles.webp"
+                    alt="Tangy dill pickles and yellow mustard slices"
+                    width={1000}
+                    height={545}
+                    loading="eager"
+                    onLoad={handleLayerImageLoad}
+                    className="w-full h-auto object-contain select-none"
+                  />
+                  <IngredientCallout
+                    name="CRISP PICKLES & MUSTARD"
+                    detail="Crunchy Dill Spears & Yellow Mustard"
+                    side="left"
+                  />
+                </div>
+              </div>
 
-            {/* Capa 4: Pernil asado al mojo cítrico y jamón dulce (IZQUIERDA) */}
-            <div
-              ref={mojoPorkRef}
-              className="absolute inset-0 flex items-center justify-center will-change-transform z-20 pointer-events-none overflow-visible"
-              style={{ willChange: "transform" }}
-            >
-              <img
-                src="/sandwich/04-mojo-pork.webp"
-                alt="Slow-roasted 4-hour citrus mojo pork and sweet cured ham"
-                width={1000}
-                height={545}
-                loading="eager"
-                onLoad={handleLayerImageLoad}
-                className="w-full h-auto object-contain select-none"
-              />
-              <IngredientCallout
-                name="CITRUS MOJO ROAST PORK"
-                detail="Slow-Roasted 4h in Sour Orange & Garlic"
-                side="left"
-              />
-            </div>
+              {/* Capa 3: Queso suizo fundido (DERECHA) */}
+              <div
+                ref={cheeseRef}
+                className="absolute inset-0 flex items-center justify-center will-change-transform z-30 pointer-events-none overflow-visible"
+                style={{ willChange: "transform" }}
+              >
+                <div className="relative w-full h-full flex items-center justify-center animate-layer-3">
+                  <img
+                    src="/sandwich/03-melted-cheese.webp"
+                    alt="Melted stretchy Swiss cheese"
+                    width={1000}
+                    height={545}
+                    loading="eager"
+                    onLoad={handleLayerImageLoad}
+                    className="w-full h-auto object-contain select-none"
+                  />
+                  <IngredientCallout
+                    name="MELTED SWISS CHEESE"
+                    detail="Plancha Melted & Stretchy"
+                    side="right"
+                  />
+                </div>
+              </div>
 
-            {/* Capa 5: Tapa inferior de pan cubano prensado (DERECHA) */}
-            <div
-              ref={bottomBreadRef}
-              className="absolute inset-0 flex items-center justify-center will-change-transform z-10 pointer-events-none overflow-visible"
-              style={{ willChange: "transform", transform: "rotateX(20deg)" }}
-            >
-              <img
-                src="/sandwich/05-bottom-bread.webp"
-                alt="Bottom crust of plancha-pressed Cuban bread"
-                width={1000}
-                height={545}
-                loading="eager"
-                onLoad={handleLayerImageLoad}
-                className="w-full h-auto object-contain select-none"
-              />
-              <IngredientCallout
-                name="CRUNCHY PLANCHA BASE"
-                detail="Toasted with Rich Griddle Juices"
-                side="right"
-              />
+              {/* Capa 4: Pernil asado al mojo cítrico y jamón dulce (IZQUIERDA) */}
+              <div
+                ref={mojoPorkRef}
+                className="absolute inset-0 flex items-center justify-center will-change-transform z-20 pointer-events-none overflow-visible"
+                style={{ willChange: "transform" }}
+              >
+                <div className="relative w-full h-full flex items-center justify-center animate-layer-4">
+                  <img
+                    src="/sandwich/04-mojo-pork.webp"
+                    alt="Slow-roasted 4-hour citrus mojo pork and sweet cured ham"
+                    width={1000}
+                    height={545}
+                    loading="eager"
+                    onLoad={handleLayerImageLoad}
+                    className="w-full h-auto object-contain select-none"
+                  />
+                  <IngredientCallout
+                    name="CITRUS MOJO ROAST PORK"
+                    detail="Slow-Roasted 4h in Sour Orange & Garlic"
+                    side="left"
+                  />
+                </div>
+              </div>
+
+              {/* Capa 5: Tapa inferior de pan cubano prensado (DERECHA) */}
+              <div
+                ref={bottomBreadRef}
+                className="absolute inset-0 flex items-center justify-center will-change-transform z-10 pointer-events-none overflow-visible"
+                style={{ willChange: "transform", transform: "rotateX(20deg)" }}
+              >
+                <div className="relative w-full h-full flex items-center justify-center animate-layer-5">
+                  <img
+                    src="/sandwich/05-bottom-bread.webp"
+                    alt="Bottom crust of plancha-pressed Cuban bread"
+                    width={1000}
+                    height={545}
+                    loading="eager"
+                    onLoad={handleLayerImageLoad}
+                    className="w-full h-auto object-contain select-none"
+                  />
+                  <IngredientCallout
+                    name="CRUNCHY PLANCHA BASE"
+                    detail="Toasted with Rich Griddle Juices"
+                    side="right"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

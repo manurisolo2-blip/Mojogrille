@@ -379,3 +379,94 @@
 .animate-float-reverse {
   animation: float-reverse 4.5s ease-in-out infinite;
 }
+
+/* Animación de Levitación Orgánica para el Sandwich Cubano */
+@keyframes sandwich-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(-0.6deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-7px) rotate(0.6deg);
+  }
+}
+
+@keyframes sandwich-shadow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.22;
+    filter: blur(16px);
+  }
+  50% {
+    transform: scale(0.8);
+    opacity: 0.08;
+    filter: blur(24px);
+  }
+}
+
+/* Micro-respiraciones desfasadas por capa para sensación de ingravidez */
+@keyframes layer-breathe-1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(-0.4deg); }
+}
+
+@keyframes layer-breathe-2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(2.5px) rotate(0.5deg); }
+}
+
+@keyframes layer-breathe-3 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes layer-breathe-4 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(3px) rotate(-0.3deg); }
+}
+
+@keyframes layer-breathe-5 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-2.5px) rotate(0.3deg); }
+}
+
+.animate-sandwich-float {
+  animation: sandwich-float 5s ease-in-out infinite;
+}
+
+.animate-sandwich-shadow {
+  animation: sandwich-shadow 5s ease-in-out infinite;
+}
+
+.animate-layer-1 {
+  animation: layer-breathe-1 4.2s ease-in-out infinite;
+}
+.animate-layer-2 {
+  animation: layer-breathe-2 4.8s ease-in-out infinite;
+}
+.animate-layer-3 {
+  animation: layer-breathe-3 4.4s ease-in-out infinite;
+}
+.animate-layer-4 {
+  animation: layer-breathe-4 5.2s ease-in-out infinite;
+}
+.animate-layer-5 {
+  animation: layer-breathe-5 4.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-sandwich-float,
+  .animate-sandwich-shadow,
+  .animate-layer-1,
+  .animate-layer-2,
+  .animate-layer-3,
+  .animate-layer-4,
+  .animate-layer-5 {
+    animation: none !important;
+  }
+}
