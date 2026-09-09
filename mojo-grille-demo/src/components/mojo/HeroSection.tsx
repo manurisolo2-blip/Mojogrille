@@ -75,8 +75,30 @@ export function HeroSection({
         The Authentic Criollo Flavor of Miami, Marinado to Perfection.
       </p>
 
+      {/*
+        Fondo fotográfico atenuado. Es decoración, no contenido: el mensaje ya
+        está en el titular, así que va oculto a lectores de pantalla.
+        La foto queda al 20% bajo un velo crema en degradado; en el peor caso
+        (un píxel negro justo detrás) el titular conserva 5.7:1, por encima del
+        4.5:1 que pide AA. El degradado cierra en crema opaco para fundir con la
+        sección siguiente sin dejar un corte duro.
+      */}
+      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+        <img
+          src="/assets/mojo-bowl-ropa-vieja.jpg"
+          alt=""
+          aria-hidden="true"
+          decoding="async"
+          fetchPriority="high"
+          className="h-full w-full object-cover object-center opacity-20"
+        />
+        {/* Velo crema en degradado: calma el centro donde vive el texto y cierra
+            en crema opaco para fundir con la sección siguiente sin corte duro. */}
+        <div className="absolute inset-0 bg-gradient-to-b from-cream-bg/50 via-cream-bg/45 to-cream-bg" />
+      </div>
+
       {/* Bloque Principal Hero */}
-      <div className={`relative pt-12 pb-16 md:pt-20 md:pb-24 ${animContainerClass}`}>
+      <div className={`relative z-10 pt-12 pb-16 md:pt-20 md:pb-24 ${animContainerClass}`}>
         <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
           
           {/* Encabezado Monumental Centrado */}
