@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 
 export interface JellyWaveTransitionProps {
   /** Color de la sección superior (HEX o clase CSS) */
@@ -16,11 +17,22 @@ export interface JellyWaveTransitionProps {
 
 // Trazados SVG con coordenadas que se extienden más allá de los bordes (-8 a 1544 horizontal, -4 a 224 vertical)
 // para evitar cualquier línea o artefacto por subpixel rendering o antialiasing del navegador.
+//
+// Nota: la cobertura del hueco que abre la traslación NO se resuelve dentro del
+// SVG. El elemento raíz <svg> recorta a su viewBox (overflow: hidden de la hoja
+// de estilos del navegador), así que un <rect> de sangrado fuera del viewBox no
+// se dibuja. Se usa una banda DOM (BLEED_PX) que viaja con el wrapper animado.
 const DOWN_PATHS = {
   a: "M 1544 -4 L -8 -4 L -8 135 C 250 55, 450 180, 768 120 C 1080 60, 1320 170, 1544 100 Z",
   b: "M 1544 -4 L -8 -4 L -8 115 C 250 85, 450 150, 768 135 C 1080 85, 1320 145, 1544 120 Z",
   c: "M 1544 -4 L -8 -4 L -8 145 C 250 35, 450 195, 768 105 C 1080 45, 1320 185, 1544 85 Z",
 };
+
+/**
+ * Alto de la banda de sangrado, en px. Debe superar con holgura el
+ * desplazamiento máximo del wrapper (±32px) en cualquier breakpoint.
+ */
+const BLEED_PX = 240;
 
 const UP_PATHS = {
   a: "M 1544 224 L -8 224 L -8 85 C 250 165, 450 40, 768 100 C 1080 160, 1320 50, 1544 120 Z",
@@ -36,6 +48,7 @@ export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
   className = "",
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
 
   const isDown = direction === "down";
   const paths = isDown ? DOWN_PATHS : UP_PATHS;
@@ -97,14 +110,31 @@ export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
     >
       {/* Contenedor animado al scroll con física de subida/bajada y oleaje elástico */}
       <motion.div
-        style={{
-          y,
-          scaleY,
-          x,
-          transformOrigin: isDown ? "top center" : "bottom center",
-        }}
-        className="w-full h-full will-change-transform"
+        style={
+          reducedMotion
+            ? { transformOrigin: isDown ? "top center" : "bottom center" }
+            : {
+                y,
+                scaleY,
+                x,
+                transformOrigin: isDown ? "top center" : "bottom center",
+              }
+        }
+        className="relative w-full h-full will-change-transform"
       >
+        {/*
+          Banda de sangrado: vive DENTRO del wrapper animado, así se traslada
+          junto al SVG y tapa el fondo del contenedor que la traslación deja al
+          descubierto (una línea del color de la sección destino). Se extiende
+          hacia el borde por el que se puede abrir la costura: arriba cuando la
+          onda baja, abajo cuando sube.
+        */}
+        <div
+          aria-hidden="true"
+          className={`pointer-events-none absolute inset-x-0 ${isDown ? "bottom-full" : "top-full"}`}
+          style={{ height: BLEED_PX, backgroundColor: waveFill }}
+        />
+
         <svg
           viewBox="0 0 1536 220"
           preserveAspectRatio="none"
@@ -119,14 +149,16 @@ export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
 
           <motion.path
             d={paths.a}
-            animate={{
-              d: [paths.a, paths.b, paths.c, paths.a],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            {...(reducedMotion
+              ? {}
+              : {
+                  animate: { d: [paths.a, paths.b, paths.c, paths.a] },
+                  transition: {
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut" as const,
+                  },
+                })}
             fill={waveFill}
           />
         </svg>
@@ -135,23 +167,21 @@ export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
       {/* Stickers de Guarnición Flotante con rebote en scroll (Inspiración Crav Burgers en la curva de la ola) */}
       {showGarnish && (
         <motion.div
-          style={{
-            y: stickerY,
-            rotate: stickerRotate,
-          }}
+          style={reducedMotion ? {} : { y: stickerY, rotate: stickerRotate }}
           className="absolute top-1/2 -translate-y-1/2 left-6 sm:left-14 md:left-24 z-30 pointer-events-auto flex items-center gap-2 sm:gap-3 will-change-transform"
         >
           {/* Sticker 1: Cilantro fresco criollo */}
           <motion.div
-            animate={{
-              y: [0, -7, 0],
-              rotate: [-3, 5, -3],
-            }}
-            transition={{
-              duration: 4.2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            {...(reducedMotion
+              ? {}
+              : {
+                  animate: { y: [0, -7, 0], rotate: [-3, 5, -3] },
+                  transition: {
+                    duration: 4.2,
+                    repeat: Infinity,
+                    ease: "easeInOut" as const,
+                  },
+                })}
             whileHover={{ scale: 1.15, rotate: 10 }}
             className="group relative flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-cream-bg border border-charcoal-ink/15 shadow-lg shadow-black/10 cursor-pointer"
             title="100% Cilantro Criollo Fresco"
@@ -169,15 +199,16 @@ export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
 
           {/* Sticker 2: Naranja agria de Sevilla / Mojo */}
           <motion.div
-            animate={{
-              y: [0, 7, 0],
-              rotate: [3, -5, 3],
-            }}
-            transition={{
-              duration: 4.8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            {...(reducedMotion
+              ? {}
+              : {
+                  animate: { y: [0, 7, 0], rotate: [3, -5, 3] },
+                  transition: {
+                    duration: 4.8,
+                    repeat: Infinity,
+                    ease: "easeInOut" as const,
+                  },
+                })}
             whileHover={{ scale: 1.15, rotate: -10 }}
             className="group relative flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-cream-bg border border-charcoal-ink/15 shadow-lg shadow-black/10 cursor-pointer"
             title="Naranja Agria de Sevilla — Mojo Signature"
