@@ -444,9 +444,6 @@ export function CubanDeconstruction() {
           <h3 className="font-display text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-charcoal-ink mt-0.5 sm:mt-1 leading-none">
             THE UNFORGIVING CUBANO
           </h3>
-          <p className="font-sans text-[10px] sm:text-xs md:text-base font-bold uppercase tracking-[0.18em] text-charcoal-ink/80 mt-1 sm:mt-2">
-            SCROLL TO DECONSTRUCT EVERY LAYER PRESSED AL MOMENTO
-          </p>
         </div>
 
         {/* Contenedor central del sándwich monumental y unificado */}
