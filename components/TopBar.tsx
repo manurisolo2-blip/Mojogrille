@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { ChevronDown, MapPin, Menu, X, User, Phone, ArrowRight } from 'lucide-react';
 import { LatinMarketBagIcon } from './LatinMarketBagIcon';
 import { AuthSwitch } from './ui/auth-switch';
@@ -54,8 +54,36 @@ export function TopBar({
   const [open, setOpen] = useState(false);
   const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
   const [accountModalOpen, setAccountModalOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [selectedLoc, setSelectedLoc] = useState<LocationItem>(currentLocation);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    // Si estamos cerca del tope o cualquier modal/drawer está abierto, mantener visible
+    if (latest <= 60 || menuDrawerOpen || accountModalOpen) {
+      setIsVisible(true);
+      return;
+    }
+
+    const previous = scrollY.getPrevious() ?? 0;
+    const diff = latest - previous;
+
+    // Umbral de 5px para filtrar inercia o micro-scrolls
+    if (diff > 5) {
+      setIsVisible(false);
+      if (open) setOpen(false);
+    } else if (diff < -5) {
+      setIsVisible(true);
+    }
+  });
+
+  useEffect(() => {
+    if (menuDrawerOpen || accountModalOpen) {
+      setIsVisible(true);
+    }
+  }, [menuDrawerOpen, accountModalOpen]);
 
   useEffect(() => {
     setSelectedLoc(currentLocation);
@@ -101,7 +129,12 @@ export function TopBar({
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-cream-bg transition-colors duration-200">
+      <motion.header
+        initial={false}
+        animate={{ y: isVisible ? "0%" : "-100%" }}
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        className="sticky top-0 z-40 bg-cream-bg transition-colors duration-200 shadow-none will-change-transform"
+      >
         <div className="bg-cream-bg">
           <nav className="w-full flex items-center justify-between gap-4 px-4 sm:px-6 md:px-8 lg:px-12 py-3.5">
             {/* Extremo Izquierdo: Titular Monumental MOJO GRILLE */}
@@ -160,7 +193,7 @@ export function TopBar({
             </div>
           </nav>
         </div>
-      </header>
+      </motion.header>
 
       {/* Menú Lateral Desplegable (Slide-over Drawer) */}
       <AnimatePresence>

@@ -1,10 +1,35 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 
 export function Navbar() {
+  const [isVisible, setIsVisible] = useState(true);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    if (latest <= 60) {
+      setIsVisible(true);
+      return;
+    }
+    const previous = scrollY.getPrevious() ?? 0;
+    const diff = latest - previous;
+
+    if (diff > 5) {
+      setIsVisible(false);
+    } else if (diff < -5) {
+      setIsVisible(true);
+    }
+  });
+
   return (
-    <header className="sticky top-0 z-40 w-full bg-cream-bg transition-all duration-300">
+    <motion.header
+      initial={false}
+      animate={{ y: isVisible ? '0%' : '-100%' }}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      className="sticky top-0 z-40 w-full bg-cream-bg transition-colors duration-200 shadow-none will-change-transform"
+    >
       <div className="mx-auto flex h-20 max-w-[1600px] w-full items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand name en grande sin logo ni subtitulo */}
         <Link
@@ -56,7 +81,7 @@ export function Navbar() {
           </a>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }
 
