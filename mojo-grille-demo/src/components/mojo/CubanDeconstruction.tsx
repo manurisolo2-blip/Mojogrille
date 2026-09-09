@@ -18,14 +18,14 @@ function IngredientCallout({ name, detail, side = "right" }: IngredientCalloutPr
         isLeft ? "ingredient-callout-left" : "ingredient-callout-right"
       } absolute ${
         isLeft
-          ? "left-1 sm:left-3 md:left-auto md:right-[97%] lg:right-[99%] xl:right-[101%]"
-          : "right-1 sm:right-3 md:right-auto md:left-[97%] lg:left-[99%] xl:left-[101%]"
+          ? "left-2 sm:left-5 md:left-auto md:right-[88%] lg:right-[90%] xl:right-[92%]"
+          : "right-2 sm:right-5 md:right-auto md:left-[88%] lg:left-[90%] xl:left-[92%]"
       } top-1/2 -translate-y-1/2 flex items-center gap-1.5 sm:gap-2.5 md:gap-3 pointer-events-auto select-none opacity-0 will-change-transform z-30`}
     >
       {isLeft ? (
         <>
           {/* Ficha Tipográfica Izquierda (Alineada a la derecha) */}
-          <div className="flex flex-col text-right items-end max-w-[95px] sm:max-w-[140px] md:max-w-none pr-0.5 sm:pr-1">
+          <div className="flex flex-col text-right items-end max-w-[110px] sm:max-w-[155px] md:max-w-none pr-0.5 sm:pr-1">
             <span className="font-display text-xs sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
               {name}
             </span>
@@ -37,12 +37,12 @@ function IngredientCallout({ name, detail, side = "right" }: IngredientCalloutPr
           {/* Flecha y Conector Izquierdo apuntando al sándwich (derecha) */}
           <div className="flex items-center shrink-0">
             <span
-              className="h-[2px] w-3 sm:w-8 md:w-16 lg:w-24 xl:w-32 bg-brand-fire inline-block shrink-0 opacity-90"
+              className="h-[2px] w-8 sm:w-14 md:w-28 lg:w-40 xl:w-52 bg-brand-fire inline-block shrink-0 opacity-95"
               aria-hidden="true"
             />
             {/* Punta de Flecha Directa al Plato */}
             <svg
-              className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-brand-fire fill-current -ml-0.5 shrink-0"
+              className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 text-brand-fire fill-current -ml-0.5 shrink-0"
               viewBox="0 0 24 24"
               aria-hidden="true"
             >
@@ -56,20 +56,20 @@ function IngredientCallout({ name, detail, side = "right" }: IngredientCalloutPr
           <div className="flex items-center shrink-0">
             {/* Punta de Flecha Directa al Plato */}
             <svg
-              className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-brand-fire fill-current -mr-0.5 shrink-0 rotate-180"
+              className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 text-brand-fire fill-current -mr-0.5 shrink-0 rotate-180"
               viewBox="0 0 24 24"
               aria-hidden="true"
             >
               <path d="M5 3l14 9-14 9V3z" />
             </svg>
             <span
-              className="h-[2px] w-3 sm:w-8 md:w-16 lg:w-24 xl:w-32 bg-brand-fire inline-block shrink-0 opacity-90"
+              className="h-[2px] w-8 sm:w-14 md:w-28 lg:w-40 xl:w-52 bg-brand-fire inline-block shrink-0 opacity-95"
               aria-hidden="true"
             />
           </div>
 
           {/* Ficha Tipográfica Derecha (Alineada a la izquierda) */}
-          <div className="flex flex-col text-left items-start max-w-[95px] sm:max-w-[140px] md:max-w-none pl-0.5 sm:pl-1">
+          <div className="flex flex-col text-left items-start max-w-[110px] sm:max-w-[155px] md:max-w-none pl-0.5 sm:pl-1">
             <span className="font-display text-xs sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
               {name}
             </span>
