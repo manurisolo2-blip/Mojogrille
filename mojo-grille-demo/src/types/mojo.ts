@@ -200,6 +200,15 @@ export interface CartState {
   location: Location;
 }
 
+/**
+ * Transient "added to your order" confirmation surfaced after `add()`.
+ */
+export interface CartToastNotification {
+  id: string;
+  message: string;
+  itemName: string;
+}
+
 export interface CartContextType extends CartState {
   availableLocations: readonly Location[];
   setLocation: (locationId: LocationId) => void;
@@ -207,6 +216,16 @@ export interface CartContextType extends CartState {
   remove: (key: string) => void;
   clear: () => void;
   updateQty: (key: string, qty: number) => void;
+
+  // Cart drawer UI state (single source of truth for every cart surface)
+  isOpen: boolean;
+  openCart: () => void;
+  closeCart: () => void;
+  toggleCart: () => void;
+
+  // Transient add-to-cart confirmation
+  toast: CartToastNotification | null;
+  dismissToast: () => void;
 }
 
 // ----------------------------------------------------------------------------

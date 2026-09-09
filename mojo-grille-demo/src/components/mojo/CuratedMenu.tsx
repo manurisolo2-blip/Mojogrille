@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { Plus } from "lucide-react";
-import { useCartStore } from "@/store/useCartStore";
+import { useCart } from "./cart";
 import { MagneticButton } from "./MagneticButton";
 import { RebelChefBadge } from "./RebelChefBadge";
 
@@ -83,7 +83,7 @@ export const CURATED_ITEMS: CuratedMenuItem[] = [
 ];
 
 export function CuratedMenu() {
-  const addItem = useCartStore((state) => state.addItem);
+  const { add } = useCart();
   const [activeItem, setActiveItem] = useState<CuratedMenuItem>(CURATED_ITEMS[0]!);
   const [isHovering, setIsHovering] = useState(false);
 
@@ -153,13 +153,11 @@ export function CuratedMenu() {
   };
 
   const handleAddToCart = (item: CuratedMenuItem) => {
-    addItem({
-      id: item.id,
+    add({
+      itemId: item.id,
       name: item.name,
       price: item.price,
-      image: item.imageUrl,
-      imageUrl: item.imageUrl,
-      quantity: 1,
+      sides: [],
     });
   };
 

@@ -1,18 +1,42 @@
+import { useEffect } from "react";
 import { Minus, Plus, MapPin, ShoppingBag, X } from "lucide-react";
 import { currency } from "@/data/menu";
 import { useCart } from "./cart";
 import { whatsappHref } from "./whatsapp";
 
-export function CartSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const { lines, total, count, add, remove, clear, location } = useCart();
-  if (!open) return null;
+export function CartSheet() {
+  const { lines, total, count, add, remove, clear, location, isOpen, closeCart } =
+    useCart();
+
+  // Dismiss with Escape
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeCart();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, closeCart]);
+
+  // Lock background scroll while open, restoring whatever value was there
+  // before (never hardcode a value — other surfaces manage overflow too).
+  useEffect(() => {
+    if (!isOpen || typeof document === "undefined") return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
       <button
         type="button"
         aria-label="Close cart"
-        onClick={onClose}
+        onClick={closeCart}
         className="absolute inset-0 bg-charcoal-ink/60 backdrop-blur-sm"
       />
       <aside
@@ -25,7 +49,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
           <h2 className="truncate font-display text-2xl font-bold uppercase tracking-tight text-charcoal-ink">Your Order</h2>
           <button
             type="button"
-            onClick={onClose}
+            onClick={closeCart}
             aria-label="Close"
             className="grid h-8 w-8 shrink-0 place-items-center rounded-none text-charcoal-ink transition-colors hover:bg-brand-fire hover:text-cream-bg cursor-pointer"
           >

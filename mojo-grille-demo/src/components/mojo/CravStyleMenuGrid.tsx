@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Plus, Check } from "lucide-react";
 import { useCart } from "./cart";
-import { useCartStore } from "@/store/useCartStore";
 import { type MenuItem } from "@/data/menu";
 
 import chickenImg from "@/assets/mojo-pollo-bowl.jpg";
@@ -183,12 +182,6 @@ export function CravStyleMenuGrid({
         price: item.price,
         sides: [],
       });
-      useCartStore.getState().addItem({
-        id: item.id,
-        name: item.name,
-        price: item.price,
-        image: item.imageUrl,
-      });
     }
   };
 
@@ -332,7 +325,7 @@ export function CravStyleMenuGrid({
           </p>
           <div className="mt-5">
             <a
-              href="https://wa.me/13055550123"
+              href={`https://wa.me/${cart.location.phoneRaw}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"

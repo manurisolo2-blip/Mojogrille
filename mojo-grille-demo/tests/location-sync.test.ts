@@ -207,8 +207,8 @@ for (const store of expectedStores) {
   const cartSheetHtml = ReactDOMServer.renderToString(
     React.createElement(
       CartProvider,
-      { defaultLocationId: store.id },
-      React.createElement(CartSheet, { open: true, onClose: () => {} }),
+      { defaultLocationId: store.id, defaultOpen: true },
+      React.createElement(CartSheet, null),
     ),
   );
 

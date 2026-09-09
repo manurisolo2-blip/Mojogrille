@@ -2,16 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Clock, MapPin, Phone } from "lucide-react";
-import { CartProvider } from "@/components/mojo/cart";
+import { Phone } from "lucide-react";
+import { CartProvider, useCart } from "@/components/mojo/cart";
 import { TopBar } from "@/components/mojo/TopBar";
 import { HeroSection } from "@/components/mojo/HeroSection";
-import { CategoryTabs } from "@/components/mojo/CategoryTabs";
-import { MenuGrid } from "@/components/mojo/MenuGrid";
 import { CravStyleMenuGrid } from "@/components/mojo/CravStyleMenuGrid";
 import { QuickOrderModal } from "@/components/mojo/QuickOrderModal";
 import { CartSheet } from "@/components/mojo/CartSheet";
-import { CartDrawer } from "@/components/mojo/CartDrawer";
+import { CartToast } from "@/components/mojo/CartToast";
 import { MobileActionBar } from "@/components/mojo/MobileActionBar";
 import { Preloader } from "@/components/mojo/Preloader";
 import { CubanDeconstruction } from "@/components/mojo/CubanDeconstruction";
@@ -20,8 +18,7 @@ import { GoogleReviewsSection } from "@/components/mojo/GoogleReviewsSection";
 import { EditorialFooter } from "@/components/mojo/EditorialFooter";
 import { NoiseOverlay } from "@/components/mojo/NoiseOverlay";
 import { JellyWaveTransition } from "@/components/mojo/JellyWaveTransition";
-import { itemsForCategory, type CategoryId, type MenuItem } from "@/data/menu";
-import { locationsList } from "@/data/locations";
+import type { MenuItem } from "@/data/menu";
 
 const title = "Mojo Grille | Authentic Cuban Kitchen & Bowls in Miami";
 const description =
@@ -63,9 +60,20 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const [category, setCategory] = useState<CategoryId>("favoritos");
+  return (
+    <CartProvider>
+      <IndexContent />
+    </CartProvider>
+  );
+}
+
+/**
+ * Page body. Lives inside CartProvider so every cart surface (TopBar counter,
+ * drawer, mobile bar, toast) reads and writes the exact same cart state.
+ */
+function IndexContent() {
+  const { openCart } = useCart();
   const [selected, setSelected] = useState<MenuItem | null>(null);
-  const [cartOpen, setCartOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Refresco de ScrollTrigger al completar la carga de todas las imágenes del DOM
@@ -114,10 +122,8 @@ function Index() {
     };
   }, []);
 
-  const items = itemsForCategory(category);
-
   return (
-    <CartProvider>
+    <>
       {/* Editorial Preloader & Cinematic Curtain Exit */}
       <Preloader onComplete={() => setIsLoaded(true)} />
 
@@ -125,7 +131,7 @@ function Index() {
       <NoiseOverlay />
 
       <div className="min-h-dvh bg-cream-bg text-charcoal-ink">
-        <TopBar onOpenCart={() => setCartOpen(true)} />
+        <TopBar onOpenCart={openCart} />
         <main className="bg-transparent pb-20 md:pb-0">
           <HeroSection
             menuAnchorId="menu"
@@ -196,14 +202,14 @@ function Index() {
           />
 
           {/* Editorial Footer de Alto Impacto */}
-          <EditorialFooter onOpenCart={() => setCartOpen(true)} />
+          <EditorialFooter onOpenCart={openCart} />
         </main>
 
         <QuickOrderModal item={selected} onClose={() => setSelected(null)} />
-        <CartSheet open={cartOpen} onClose={() => setCartOpen(false)} />
-        <CartDrawer />
-        <MobileActionBar onOpenCart={() => setCartOpen(true)} />
+        <CartSheet />
+        <CartToast />
+        <MobileActionBar onOpenCart={openCart} />
       </div>
-    </CartProvider>
+    </>
   );
 }

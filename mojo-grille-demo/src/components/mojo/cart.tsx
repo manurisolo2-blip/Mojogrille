@@ -1,8 +1,18 @@
-import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import type {
   CartLine,
   CartState,
   CartContextType,
+  CartToastNotification,
   AddCartItemInput,
   LocationId,
   Location,
@@ -14,24 +24,55 @@ import {
 } from "@/data/locations";
 
 // Re-export type contracts for backward compatibility and clean ergonomics
-export type { CartLine, CartState, CartContextType, AddCartItemInput };
+export type {
+  CartLine,
+  CartState,
+  CartContextType,
+  CartToastNotification,
+  AddCartItemInput,
+};
 
 const CartContext = createContext<CartContextType | null>(null);
+
+/** How long the "added to your order" confirmation stays on screen. */
+const TOAST_DURATION_MS = 3200;
 
 export function CartProvider({
   children,
   defaultLocationId = DEFAULT_LOCATION_ID,
+  defaultOpen = false,
 }: {
   children: ReactNode;
   defaultLocationId?: LocationId;
+  /** Initial drawer state. Useful for SSR snapshots and tests. */
+  defaultOpen?: boolean;
 }) {
   const [lines, setLines] = useState<CartLine[]>([]);
   const [selectedLocationId, setSelectedLocationId] =
     useState<LocationId>(defaultLocationId);
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const [toast, setToast] = useState<CartToastNotification | null>(null);
+
+  const toastTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearToastTimeout = useCallback(() => {
+    if (toastTimeout.current) {
+      clearTimeout(toastTimeout.current);
+      toastTimeout.current = null;
+    }
+  }, []);
+
+  // Never leave a timer running past unmount
+  useEffect(() => clearToastTimeout, [clearToastTimeout]);
 
   const currentLocation = useMemo<Location>(() => {
     return resolveLocation(selectedLocationId);
   }, [selectedLocationId]);
+
+  const dismissToast = useCallback(() => {
+    clearToastTimeout();
+    setToast(null);
+  }, [clearToastTimeout]);
 
   const api = useMemo<CartContextType>(() => {
     return {
@@ -57,6 +98,19 @@ export function CartProvider({
           }
           return [...prev, { ...line, sides: sortedSides, key, qty: 1 }];
         });
+
+        // Surface the transient confirmation, restarting any in-flight timer
+        clearToastTimeout();
+        const toastId = `${key}-${Date.now()}`;
+        setToast({
+          id: toastId,
+          message: "¡Añadido al pedido criollo!",
+          itemName: line.name,
+        });
+        toastTimeout.current = setTimeout(() => {
+          setToast((current) => (current?.id === toastId ? null : current));
+          toastTimeout.current = null;
+        }, TOAST_DURATION_MS);
       },
       remove: (key: string) =>
         setLines((prev) =>
@@ -74,8 +128,24 @@ export function CartProvider({
         );
       },
       clear: () => setLines([]),
+
+      isOpen,
+      openCart: () => setIsOpen(true),
+      closeCart: () => setIsOpen(false),
+      toggleCart: () => setIsOpen((prev) => !prev),
+
+      toast,
+      dismissToast,
     };
-  }, [lines, selectedLocationId, currentLocation]);
+  }, [
+    lines,
+    selectedLocationId,
+    currentLocation,
+    isOpen,
+    toast,
+    dismissToast,
+    clearToastTimeout,
+  ]);
 
   return <CartContext.Provider value={api}>{children}</CartContext.Provider>;
 }

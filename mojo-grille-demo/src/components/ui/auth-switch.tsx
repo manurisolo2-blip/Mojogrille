@@ -194,7 +194,9 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
       if (typeof window !== "undefined") {
         try {
           localStorage.setItem("mojo_club_user", JSON.stringify(socialUser));
-        } catch {}
+        } catch {
+          // ignore
+        }
       }
       setUser(socialUser);
       setIsSubmitting(false);
