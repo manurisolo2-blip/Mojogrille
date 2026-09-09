@@ -150,9 +150,9 @@ export function GoogleReviewsSection() {
             </p>
           </div>
 
-          {/* Tarjeta Resumen de Calificación Google */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-surface-sand p-5 border border-charcoal-ink/15 shrink-0">
-            <div className="flex items-center gap-3">
+          {/* Tarjeta Resumen de Calificación Google Incorporada al Fondo */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6 shrink-0">
+            <div className="flex items-center gap-3.5">
               <span className="font-display text-5xl sm:text-6xl font-black text-charcoal-ink leading-none">
                 4.7
               </span>
@@ -162,7 +162,7 @@ export function GoogleReviewsSection() {
                     <Star key={i} className="h-4 w-4 fill-current" aria-hidden="true" />
                   ))}
                 </div>
-                <span className="font-sans text-xs font-bold text-charcoal-ink/80 mt-1">
+                <span className="font-sans text-xs font-bold text-charcoal-ink mt-1">
                   +3,000 Verified Ratings
                 </span>
                 <span className="font-sans text-[10px] text-charcoal-ink/60 uppercase tracking-wider">
@@ -171,13 +171,11 @@ export function GoogleReviewsSection() {
               </div>
             </div>
 
-            <div className="h-px w-full sm:h-12 sm:w-px bg-charcoal-ink/15 my-1 sm:my-0" />
-
             <a
               href={GOOGLE_MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-charcoal-ink hover:bg-brand-fire text-cream-bg text-xs font-bold uppercase tracking-wider px-4 py-2.5 transition-colors group cursor-pointer"
+              className="inline-flex items-center gap-2 bg-charcoal-ink hover:bg-brand-fire text-cream-bg text-xs font-bold uppercase tracking-wider px-5 py-2.5 transition-all group cursor-pointer shadow-xs hover:scale-105 active:scale-95"
             >
               <span>SEE ON MAPS</span>
               <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
