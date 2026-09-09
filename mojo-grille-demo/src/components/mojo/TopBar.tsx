@@ -95,7 +95,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
               className="flex min-w-0 items-center group cursor-pointer select-none"
               aria-label="Mojo Grille Home"
             >
-              <span className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-charcoal-ink leading-none transition-colors group-hover:text-brand-fire">
+              <span className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-charcoal-ink leading-none transition-colors group-hover:text-brand-fire truncate">
                 MOJO GRILLE
               </span>
             </a>

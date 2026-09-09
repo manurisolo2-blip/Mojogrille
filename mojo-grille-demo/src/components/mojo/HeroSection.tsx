@@ -74,8 +74,8 @@ export function HeroSection({
               <HoverHighlightText
                 as="h1"
                 text="HOT CAST IRON. CRUSHED GARLIC. SLOW-ROASTED PERNIL."
-                baseClassName="font-display text-5xl sm:text-7xl lg:text-[7.2vw] font-black uppercase tracking-tight text-charcoal-ink/35 leading-[0.88] text-center"
-                highlightClassName="font-display text-5xl sm:text-7xl lg:text-[7.2vw] font-black uppercase tracking-tight text-brand-fire leading-[0.88] text-center"
+                baseClassName="font-display text-4xl sm:text-7xl lg:text-[7.2vw] font-black uppercase tracking-tight text-charcoal-ink/35 leading-[0.9] sm:leading-[0.88] text-center"
+                highlightClassName="font-display text-4xl sm:text-7xl lg:text-[7.2vw] font-black uppercase tracking-tight text-brand-fire leading-[0.9] sm:leading-[0.88] text-center"
                 strokeColor="#E52516"
                 strokeWidth={1.5}
                 spotlightRadius={180}
@@ -92,10 +92,28 @@ export function HeroSection({
           </div>
 
           {/* Elemento Fotográfico Central y Placas Editoriales */}
-          <div className={`relative mx-auto mt-10 w-full max-w-4xl ${animCardClass}`}>
+          <div className={`relative mx-auto mt-6 sm:mt-10 w-full max-w-4xl flex flex-col items-center sm:block ${animCardClass}`}>
             
+            {/* Badge Superior: Social Proof Rating (En móvil centrado arriba sin colisiones, en desktop anclado a la esquina) */}
+            <div
+              role="status"
+              aria-label="Average customer rating in Miami"
+              className="sm:absolute sm:-top-5 sm:-right-4 md:-right-6 z-20 rounded-none bg-surface-sand px-3.5 py-2 sm:px-4 sm:py-2.5 select-none cursor-pointer hover:bg-surface-sand/90 transition-colors mb-3 sm:mb-0 inline-flex items-center shadow-xs"
+            >
+              <div className="flex items-center gap-2">
+                <div className="text-left">
+                  <p className="font-sans text-xs font-black text-charcoal-ink leading-tight">
+                    4.7 Stars across +3,000 orders in Miami
+                  </p>
+                  <p className="font-sans text-[10px] text-charcoal-ink/70">
+                    UberEats &amp; Google Miami (4.7 across 3K+ Reviews)
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Contenedor Fotográfico con Marco Rígido Editorial */}
-            <div className="group relative overflow-hidden rounded-none bg-surface-sand">
+            <div className="group relative overflow-hidden rounded-none bg-surface-sand w-full">
               <img
                 src={imageUrl}
                 alt="Signature Mojo Grille dish: The Authentic Criollo Flavor of Miami, Marinado to Perfection - Artisanal Cuban bowl marinated in citrus mojo"
@@ -110,19 +128,19 @@ export function HeroSection({
               <button
                 type="button"
                 onClick={onOrderClick}
-                className="absolute bottom-4 left-4 z-20 inline-flex items-center gap-2 rounded-none bg-charcoal-ink text-cream-bg px-4 py-2 font-sans text-[11px] font-bold uppercase tracking-[0.18em] border border-cream-bg/20 hover:bg-brand-fire transition-colors cursor-pointer select-none"
+                className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-20 inline-flex items-center gap-2 rounded-none bg-charcoal-ink text-cream-bg px-3 py-1.5 sm:px-4 sm:py-2 font-sans text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] border border-cream-bg/20 hover:bg-brand-fire transition-colors cursor-pointer select-none"
               >
                 <span>GRAB THIS BOWL</span>
                 <span>→</span>
               </button>
 
               {/* Tag de Precio en formato ticket */}
-              <div className="absolute top-4 left-4 z-20 flex items-center gap-2 rounded-none bg-charcoal-ink px-3.5 py-1.5 border border-cream-bg/20 text-cream-bg">
-                <span className="font-sans text-base font-black text-mojo-citrus tracking-tight">
+              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 flex items-center gap-2 rounded-none bg-charcoal-ink px-2.5 py-1 sm:px-3.5 sm:py-1.5 border border-cream-bg/20 text-cream-bg">
+                <span className="font-sans text-sm sm:text-base font-black text-mojo-citrus tracking-tight">
                   $15.50
                 </span>
                 <span className="h-3 w-px bg-cream-bg/20" />
-                <span className="font-sans text-[11px] font-semibold uppercase tracking-wider text-cream-bg">
+                <span className="font-sans text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-cream-bg">
                   Al Momento
                 </span>
               </div>
@@ -133,26 +151,8 @@ export function HeroSection({
               </div>
             </div>
 
-            {/* Badge Superior Derecho: Social Proof Rating (WCAG & Test Invariant) */}
-            <div
-              role="status"
-              aria-label="Average customer rating in Miami"
-              className="absolute -top-4 -right-3 sm:-top-5 sm:-right-4 md:-right-6 z-20 rounded-none bg-surface-sand px-4 py-2.5 select-none cursor-pointer hover:bg-surface-sand/90 transition-colors"
-            >
-              <div className="flex items-center gap-2">
-                <div className="text-left">
-                  <p className="font-sans text-xs font-black text-charcoal-ink leading-tight">
-                    4.7 Stars across +3,000 orders in Miami
-                  </p>
-                  <p className="font-sans text-[10px] text-charcoal-ink/70">
-                    UberEats &amp; Google Miami (4.7 across 3K+ Reviews)
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Badge Inferior Desplazado: Ficha de Metadato Editorial */}
-            <div className="absolute -bottom-4 right-4 sm:-bottom-5 sm:right-32 md:sm:right-36 z-20 rounded-none bg-leaf-green px-4 py-2.5 text-cream-bg select-none cursor-pointer">
+            {/* Badge Inferior Desplazado: Ficha de Metadato Editorial (Visible en tablet/desktop para no empujar CTAs en móvil) */}
+            <div className="hidden sm:flex absolute -bottom-5 right-32 md:right-36 z-20 rounded-none bg-leaf-green px-4 py-2.5 text-cream-bg select-none cursor-pointer">
               <div className="flex items-center gap-2">
                 <div className="text-left">
                   <p className="font-sans text-xs font-black text-cream-bg leading-tight uppercase tracking-wide">

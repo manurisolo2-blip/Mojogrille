@@ -18,54 +18,62 @@ function IngredientCallout({ name, detail, side = "right" }: IngredientCalloutPr
         isLeft ? "ingredient-callout-left" : "ingredient-callout-right"
       } absolute ${
         isLeft
-          ? "right-[90%] sm:right-[94%] md:right-[97%] lg:right-[99%] xl:right-[101%]"
-          : "left-[90%] sm:left-[94%] md:left-[97%] lg:left-[99%] xl:left-[101%]"
-      } top-1/2 -translate-y-1/2 flex items-center gap-2 sm:gap-3 pointer-events-auto select-none whitespace-nowrap opacity-0 will-change-transform z-30`}
+          ? "left-1 sm:left-3 md:left-auto md:right-[97%] lg:right-[99%] xl:right-[101%]"
+          : "right-1 sm:right-3 md:right-auto md:left-[97%] lg:left-[99%] xl:left-[101%]"
+      } top-1/2 -translate-y-1/2 flex items-center gap-1.5 sm:gap-2.5 md:gap-3 pointer-events-auto select-none opacity-0 will-change-transform z-30`}
     >
       {isLeft ? (
         <>
           {/* Ficha Tipográfica Izquierda (Alineada a la derecha) */}
-          <div className="flex flex-col text-right items-end pr-0.5 sm:pr-1">
+          <div className="flex flex-col text-right items-end max-w-[95px] sm:max-w-[140px] md:max-w-none pr-0.5 sm:pr-1">
             <span className="font-display text-xs sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
               {name}
             </span>
-            <span className="font-sans text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-bold uppercase tracking-wider text-charcoal-ink/75 leading-none mt-0.5 sm:mt-1">
+            <span className="font-sans text-[7.5px] sm:text-[10px] md:text-xs lg:text-sm font-bold uppercase tracking-wider text-charcoal-ink/75 leading-tight mt-0.5 sm:mt-1">
               {detail}
             </span>
           </div>
 
-          {/* Línea Recta y Punto Conector Izquierdo */}
-          <div className="flex items-center">
+          {/* Flecha y Conector Izquierdo apuntando al sándwich (derecha) */}
+          <div className="flex items-center shrink-0">
             <span
-              className="h-[2px] w-5 sm:w-10 md:w-16 lg:w-24 xl:w-32 bg-brand-fire inline-block shrink-0 opacity-90"
+              className="h-[2px] w-3 sm:w-8 md:w-16 lg:w-24 xl:w-32 bg-brand-fire inline-block shrink-0 opacity-90"
               aria-hidden="true"
             />
-            <span
-              className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-brand-fire inline-block shrink-0 shadow-sm"
+            {/* Punta de Flecha Directa al Plato */}
+            <svg
+              className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-brand-fire fill-current -ml-0.5 shrink-0"
+              viewBox="0 0 24 24"
               aria-hidden="true"
-            />
+            >
+              <path d="M5 3l14 9-14 9V3z" />
+            </svg>
           </div>
         </>
       ) : (
         <>
-          {/* Línea Recta y Punto Conector Derecho */}
-          <div className="flex items-center">
-            <span
-              className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-brand-fire inline-block shrink-0 shadow-sm"
+          {/* Flecha y Conector Derecho apuntando al sándwich (izquierda) */}
+          <div className="flex items-center shrink-0">
+            {/* Punta de Flecha Directa al Plato */}
+            <svg
+              className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-brand-fire fill-current -mr-0.5 shrink-0 rotate-180"
+              viewBox="0 0 24 24"
               aria-hidden="true"
-            />
+            >
+              <path d="M5 3l14 9-14 9V3z" />
+            </svg>
             <span
-              className="h-[2px] w-5 sm:w-10 md:w-16 lg:w-24 xl:w-32 bg-brand-fire inline-block shrink-0 opacity-90"
+              className="h-[2px] w-3 sm:w-8 md:w-16 lg:w-24 xl:w-32 bg-brand-fire inline-block shrink-0 opacity-90"
               aria-hidden="true"
             />
           </div>
 
           {/* Ficha Tipográfica Derecha (Alineada a la izquierda) */}
-          <div className="flex flex-col text-left items-start pl-0.5 sm:pl-1">
+          <div className="flex flex-col text-left items-start max-w-[95px] sm:max-w-[140px] md:max-w-none pl-0.5 sm:pl-1">
             <span className="font-display text-xs sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
               {name}
             </span>
-            <span className="font-sans text-[8px] sm:text-[10px] md:text-xs lg:text-sm font-bold uppercase tracking-wider text-charcoal-ink/75 leading-none mt-0.5 sm:mt-1">
+            <span className="font-sans text-[7.5px] sm:text-[10px] md:text-xs lg:text-sm font-bold uppercase tracking-wider text-charcoal-ink/75 leading-tight mt-0.5 sm:mt-1">
               {detail}
             </span>
           </div>
@@ -192,8 +200,8 @@ export function CubanDeconstruction() {
         };
       },
 
-      // 2. Móviles y tabletas (max-width: 1023px): Sándwich UNIDO y deconstrucción proporcional
-      "(max-width: 1023px)": function () {
+      // 2. Tabletas (min-width: 640px) and (max-width: 1023px): Separación intermedia
+      "(min-width: 640px) and (max-width: 1023px)": function () {
         gsap.set(topBreadRef.current, { y: -36, rotate: 0 });
         gsap.set(picklesRef.current, { y: -18, rotate: 0 });
         gsap.set(cheeseRef.current, { y: -4, rotate: 0 });
@@ -215,7 +223,7 @@ export function CubanDeconstruction() {
         tl.to(
           topBreadRef.current,
           {
-            y: -195,
+            y: -175,
             rotate: -1.5,
             ease: "power1.out",
           },
@@ -224,7 +232,7 @@ export function CubanDeconstruction() {
           .to(
             picklesRef.current,
             {
-              y: -95,
+              y: -88,
               rotate: 1.5,
               ease: "power1.out",
             },
@@ -241,7 +249,7 @@ export function CubanDeconstruction() {
           .to(
             mojoPorkRef.current,
             {
-              y: 95,
+              y: 88,
               rotate: 1,
               ease: "power1.out",
             },
@@ -250,7 +258,7 @@ export function CubanDeconstruction() {
           .to(
             bottomBreadRef.current,
             {
-              y: 195,
+              y: 175,
               rotate: -1,
               ease: "power1.out",
             },
@@ -275,6 +283,96 @@ export function CubanDeconstruction() {
               ease: "power1.out",
             },
             0.08
+          );
+
+        return () => {
+          tl.kill();
+        };
+      },
+
+      // 3. Celulares Móviles (max-width: 639px): Recorridos ajustados para evitar colisiones y desbordes
+      "(max-width: 639px)": function () {
+        gsap.set(topBreadRef.current, { y: -20, rotate: 0 });
+        gsap.set(picklesRef.current, { y: -10, rotate: 0 });
+        gsap.set(cheeseRef.current, { y: -2, rotate: 0 });
+        gsap.set(mojoPorkRef.current, { y: 6, rotate: 0 });
+        gsap.set(bottomBreadRef.current, { y: 18, rotate: 0 });
+        gsap.set(".ingredient-callout-right", { opacity: 0, x: 8 });
+        gsap.set(".ingredient-callout-left", { opacity: 0, x: -8 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            pin: pinRef.current,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1.1,
+          },
+        });
+
+        tl.to(
+          topBreadRef.current,
+          {
+            y: -110,
+            rotate: -1,
+            ease: "power1.out",
+          },
+          0
+        )
+          .to(
+            picklesRef.current,
+            {
+              y: -55,
+              rotate: 1,
+              ease: "power1.out",
+            },
+            0
+          )
+          .to(
+            cheeseRef.current,
+            {
+              y: 0,
+              ease: "power1.out",
+            },
+            0
+          )
+          .to(
+            mojoPorkRef.current,
+            {
+              y: 55,
+              rotate: 0.8,
+              ease: "power1.out",
+            },
+            0
+          )
+          .to(
+            bottomBreadRef.current,
+            {
+              y: 110,
+              rotate: -0.8,
+              ease: "power1.out",
+            },
+            0
+          )
+          .to(
+            ".ingredient-callout-right",
+            {
+              opacity: 1,
+              x: 0,
+              stagger: 0.02,
+              ease: "power1.out",
+            },
+            0.05
+          )
+          .to(
+            ".ingredient-callout-left",
+            {
+              opacity: 1,
+              x: 0,
+              stagger: 0.02,
+              ease: "power1.out",
+            },
+            0.05
           );
 
         return () => {
@@ -342,21 +440,21 @@ export function CubanDeconstruction() {
         </div>
 
         {/* Encabezado Superior de Sección en Inglés */}
-        <div className="absolute top-4 sm:top-8 left-0 right-0 text-center px-4 pointer-events-none z-10">
-          <h3 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-charcoal-ink mt-0.5 sm:mt-1">
+        <div className="absolute top-3 sm:top-8 left-0 right-0 text-center px-4 pointer-events-none z-10">
+          <h3 className="font-display text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-charcoal-ink mt-0.5 sm:mt-1 leading-none">
             THE UNFORGIVING CUBANO
           </h3>
-          <p className="font-sans text-xs sm:text-sm md:text-base font-bold uppercase tracking-[0.2em] text-charcoal-ink/80 mt-1 sm:mt-2">
+          <p className="font-sans text-[10px] sm:text-xs md:text-base font-bold uppercase tracking-[0.18em] text-charcoal-ink/80 mt-1 sm:mt-2">
             SCROLL TO DECONSTRUCT EVERY LAYER PRESSED AL MOMENTO
           </p>
         </div>
 
         {/* Contenedor central del sándwich monumental y unificado */}
-        <div className="relative w-full max-w-[1700px] px-2 sm:px-6 md:px-12 flex items-center justify-center pt-4 sm:pt-8">
-          <div className="relative w-[340px] h-[520px] sm:w-[540px] sm:h-[600px] md:w-[740px] md:h-[680px] lg:w-[960px] lg:h-[760px] xl:w-[1100px] xl:h-[820px] flex items-center justify-center overflow-visible mx-auto">
+        <div className="relative w-full max-w-[1700px] px-2 sm:px-6 md:px-12 flex items-center justify-center pt-2 sm:pt-8">
+          <div className="relative w-full max-w-[390px] h-[460px] sm:max-w-[540px] sm:h-[600px] md:max-w-[740px] md:h-[680px] lg:max-w-[960px] lg:h-[760px] xl:max-w-[1100px] xl:h-[820px] flex items-center justify-center overflow-visible mx-auto">
             {/* Sombra de Contacto Dinámica en el Piso */}
             <div
-              className="absolute -bottom-8 sm:-bottom-14 w-[85%] max-w-[750px] h-7 sm:h-12 rounded-[100%] bg-charcoal-ink/20 blur-2xl pointer-events-none animate-sandwich-shadow"
+              className="absolute -bottom-6 sm:-bottom-14 w-[85%] max-w-[750px] h-6 sm:h-12 rounded-[100%] bg-charcoal-ink/20 blur-2xl pointer-events-none animate-sandwich-shadow"
               aria-hidden="true"
             />
 
@@ -375,7 +473,7 @@ export function CubanDeconstruction() {
                     height={1536}
                     loading="eager"
                     onLoad={handleLayerImageLoad}
-                    className="w-full max-w-[320px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[160px] sm:max-h-[220px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
+                    className="w-full max-w-[160px] sm:max-w-[280px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[90px] sm:max-h-[160px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
                   />
                   <IngredientCallout
                     name="ARTISANAL TOP CRUST"
@@ -398,7 +496,7 @@ export function CubanDeconstruction() {
                     height={1536}
                     loading="eager"
                     onLoad={handleLayerImageLoad}
-                    className="w-full max-w-[300px] sm:max-w-[470px] md:max-w-[660px] lg:max-w-[850px] xl:max-w-[970px] max-h-[160px] sm:max-h-[220px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
+                    className="w-full max-w-[150px] sm:max-w-[260px] md:max-w-[660px] lg:max-w-[850px] xl:max-w-[970px] max-h-[90px] sm:max-h-[160px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
                   />
                   <IngredientCallout
                     name="CRISP PICKLES & MUSTARD"
@@ -421,7 +519,7 @@ export function CubanDeconstruction() {
                     height={1536}
                     loading="eager"
                     onLoad={handleLayerImageLoad}
-                    className="w-full max-w-[320px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[160px] sm:max-h-[220px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
+                    className="w-full max-w-[160px] sm:max-w-[280px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[90px] sm:max-h-[160px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
                   />
                   <IngredientCallout
                     name="MELTED SWISS CHEESE"
@@ -444,7 +542,7 @@ export function CubanDeconstruction() {
                     height={1536}
                     loading="eager"
                     onLoad={handleLayerImageLoad}
-                    className="w-full max-w-[320px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[160px] sm:max-h-[220px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
+                    className="w-full max-w-[160px] sm:max-w-[280px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[90px] sm:max-h-[160px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
                   />
                   <IngredientCallout
                     name="CITRUS MOJO ROAST PORK"
@@ -467,7 +565,7 @@ export function CubanDeconstruction() {
                     height={1536}
                     loading="eager"
                     onLoad={handleLayerImageLoad}
-                    className="w-full max-w-[320px] sm:max-w-[500px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[160px] sm:max-h-[220px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
+                    className="w-full max-w-[160px] sm:max-w-[280px] md:max-w-[700px] lg:max-w-[900px] xl:max-w-[1020px] max-h-[90px] sm:max-h-[160px] md:max-h-[290px] lg:max-h-[360px] xl:max-h-[400px] object-contain select-none drop-shadow-xl"
                   />
                   <IngredientCallout
                     name="CRUNCHY PLANCHA BASE"
@@ -481,10 +579,10 @@ export function CubanDeconstruction() {
         </div>
 
         {/* Botón Flotante para Ordenar el Cubano en Inglés */}
-        <div className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 z-30 flex items-center">
+        <div className="absolute bottom-4 right-4 sm:bottom-10 sm:right-10 z-30 flex items-center">
           <a
             href="#curated-menu"
-            className="bg-charcoal-ink hover:bg-brand-fire text-cream-bg py-3 px-5 sm:px-6 text-xs font-bold uppercase tracking-widest transition-colors flex items-center gap-3 rounded-none cursor-pointer group shadow-none"
+            className="bg-charcoal-ink hover:bg-brand-fire text-cream-bg py-2.5 px-4 sm:py-3 sm:px-6 text-xs font-bold uppercase tracking-widest transition-colors flex items-center gap-2.5 sm:gap-3 rounded-none cursor-pointer group shadow-none"
           >
             <span className="flex items-center gap-2">
               <span>ORDER LIVE-FIRE</span>
@@ -497,8 +595,8 @@ export function CubanDeconstruction() {
           </a>
         </div>
 
-        {/* Indicador de scroll */}
-        <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-cream-bg font-sans text-xs sm:text-sm tracking-wider uppercase font-bold pointer-events-none bg-charcoal-ink px-4 py-1.5 shadow-md">
+        {/* Indicador de scroll (visible solo en tablet/desktop para no solapar controles en móviles) */}
+        <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 hidden sm:flex items-center gap-2 text-cream-bg font-sans text-xs sm:text-sm tracking-wider uppercase font-bold pointer-events-none bg-charcoal-ink px-4 py-1.5 shadow-md">
           <span className="animate-bounce text-brand-fire">↓</span>
           <span>Scroll to deconstruct · Scroll up to assemble</span>
         </div>

@@ -131,6 +131,16 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
 ];
 
 export function GoogleReviewsSection() {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <section
       id="reviews"
@@ -184,17 +194,17 @@ export function GoogleReviewsSection() {
         </div>
 
         {/* 3D CardStack Integrado */}
-        <div className="relative w-full py-4">
+        <div className="relative w-full py-4 overflow-hidden">
             <CardStack
               items={GOOGLE_REVIEWS}
               initialIndex={0}
-              cardWidth={560}
-              cardHeight={340}
-              overlap={0.44}
-              spreadDeg={36}
+              cardWidth={isMobile ? (typeof window !== "undefined" ? Math.min(320, window.innerWidth - 36) : 320) : 560}
+              cardHeight={isMobile ? 310 : 340}
+              overlap={isMobile ? 0.62 : 0.44}
+              spreadDeg={isMobile ? 14 : 36}
               perspectivePx={1200}
-              depthPx={110}
-              tiltXDeg={8}
+              depthPx={isMobile ? 40 : 110}
+              tiltXDeg={isMobile ? 4 : 8}
               activeScale={1.03}
               inactiveScale={0.93}
               autoAdvance={false}

@@ -126,7 +126,7 @@ function Index() {
 
       <div className="min-h-dvh bg-cream-bg text-charcoal-ink">
         <TopBar onOpenCart={() => setCartOpen(true)} />
-        <main className="bg-transparent">
+        <main className="bg-transparent pb-20 md:pb-0">
           <HeroSection
             menuAnchorId="menu"
             cateringHref="#catering"

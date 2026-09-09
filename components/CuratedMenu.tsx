@@ -1,11 +1,9 @@
-'use client';
-
-import React, { useState, useRef, useEffect } from 'react';
-import gsap from 'gsap';
-import { Plus } from 'lucide-react';
-import { useCartStore } from '../store/useCartStore';
-import { MagneticButton } from './hero/MagneticButton';
-import { RebelChefBadge } from './RebelChefBadge';
+import React, { useState, useRef, useEffect } from "react";
+import gsap from "gsap";
+import { Plus } from "lucide-react";
+import { useCartStore } from "@/store/useCartStore";
+import { MagneticButton } from "./MagneticButton";
+import { RebelChefBadge } from "./RebelChefBadge";
 
 export interface CuratedMenuItem {
   id: string;
@@ -23,64 +21,64 @@ export interface CuratedMenuItem {
 
 export const CURATED_ITEMS: CuratedMenuItem[] = [
   {
-    id: 'mojo-pork-bowl',
-    name: 'Mojo Pork Bowl',
+    id: "mojo-pork-bowl",
+    name: "Mojo Pork Bowl",
     price: 13.5,
-    feature: '4h Braised',
+    feature: "4h Braised",
     description:
-      'Slow-roasted pork shoulder braised for 4 hours in Seville citrus mojo, served over moro rice and plancha-caramelized sweet onions.',
-    imageUrl: '/assets/mojo-bowl-ropa-vieja.jpg',
-    authorNote: 'slow-roasted pernil & caramelized onions',
+      "Slow-roasted pork shoulder braised for 4 hours in Seville citrus mojo, served over moro rice and plancha-caramelized sweet onions.",
+    imageUrl: "/assets/mojo-bowl-ropa-vieja.jpg",
+    authorNote: "slow-roasted pernil & caramelized onions",
   },
   {
-    id: 'classic-cubano-press',
-    name: 'Classic Cubano Press',
+    id: "classic-cubano-press",
+    name: "Classic Cubano Press",
     price: 12.95,
-    feature: 'Plancha Crunch',
+    feature: "Plancha Crunch",
     description:
-      'Pressed Cuban bread with toasted butter, slow-roasted lechón, sweet smoked ham, melted Swiss, crisp pickles & yellow mustard.',
-    imageUrl: '/assets/mojo-cubano.jpg',
-    authorNote: 'crispy golden crust & sweet ham fold',
+      "Pressed Cuban bread with toasted butter, slow-roasted lechón, sweet smoked ham, melted Swiss, crisp pickles & yellow mustard.",
+    imageUrl: "/assets/mojo-cubano.jpg",
+    authorNote: "crispy golden crust & sweet ham fold",
   },
   {
-    id: 'picadillo-meltadilla',
-    name: 'Picadillo Meltadilla',
+    id: "picadillo-meltadilla",
+    name: "Picadillo Meltadilla",
     price: 11.5,
-    feature: 'Queso Fundido',
+    feature: "Queso Fundido",
     description:
-      'Ground beef seasoned with Cuban sofrito, Spanish olives & sweet peppers, plancha-pressed with melted Swiss cheese and garlic mojo.',
-    imageUrl: '/assets/mojo-cubano.jpg',
-    authorNote: 'seasoned ground beef & melted swiss',
+      "Ground beef seasoned with Cuban sofrito, Spanish olives & sweet peppers, plancha-pressed with melted Swiss cheese and garlic mojo.",
+    imageUrl: "/assets/mojo-cubano.jpg",
+    authorNote: "seasoned ground beef & melted swiss",
   },
   {
-    id: 'loaded-pork-tostones',
-    name: 'Loaded Pork Tostones',
+    id: "loaded-pork-tostones",
+    name: "Loaded Pork Tostones",
     price: 10.75,
-    feature: 'Doble Fritura',
+    feature: "Doble Fritura",
     description:
-      'Handcrafted double-fried crispy green plantain tostones, topped with mojo roasted pernil, caramelized onions & fresh cilantro.',
-    imageUrl: '/assets/mojo-tostones.jpg',
-    authorNote: 'double-fried plantain & crushed garlic',
+      "Handcrafted double-fried crispy green plantain tostones, topped with mojo roasted pernil, caramelized onions & fresh cilantro.",
+    imageUrl: "/assets/mojo-tostones.jpg",
+    authorNote: "double-fried plantain & crushed garlic",
   },
   {
-    id: 'chicken-fresco-bowl',
-    name: 'Chicken Fresco Bowl',
+    id: "chicken-fresco-bowl",
+    name: "Chicken Fresco Bowl",
     price: 13.0,
-    feature: 'Pechuga Marinada',
+    feature: "Pechuga Marinada",
     description:
-      'Tender plancha-grilled chicken breast marinated 24 hours in sour orange & garlic, served with white rice, black beans & Hass avocado.',
-    imageUrl: '/assets/mojo-pollo-bowl.jpg',
-    authorNote: '24h citrus mojo & grilled hass avocado',
+      "Tender plancha-grilled chicken breast marinated 24 hours in sour orange & garlic, served with white rice, black beans & Hass avocado.",
+    imageUrl: "/assets/mojo-pollo-bowl.jpg",
+    authorNote: "24h citrus mojo & grilled hass avocado",
   },
   {
-    id: 'pepper-steak-platter',
-    name: 'Pepper Steak Platter',
+    id: "pepper-steak-platter",
+    name: "Pepper Steak Platter",
     price: 14.5,
-    feature: 'Salteado Criollo',
+    feature: "Salteado Criollo",
     description:
-      'Tender beef strips wok-seared over live flame with peppers and onions in rich criollo sofrito reduction, served with yuca con mojo.',
-    imageUrl: '/assets/mojo-bowl-ropa-vieja.jpg',
-    authorNote: 'flame-seared wok beef & tender yuca',
+      "Tender beef strips wok-seared over live flame with peppers and onions in rich criollo sofrito reduction, served with yuca con mojo.",
+    imageUrl: "/assets/mojo-bowl-ropa-vieja.jpg",
+    authorNote: "flame-seared wok beef & tender yuca",
   },
 ];
 
@@ -94,11 +92,11 @@ export function CuratedMenu() {
   const yTo = useRef<((value: number) => void) | null>(null);
 
   useEffect(() => {
-    if (!previewRef.current || typeof window === 'undefined') return;
+    if (!previewRef.current || typeof window === "undefined") return;
 
     // quickTo para seguimiento fluido del cursor a 60fps sin tirones
-    xTo.current = gsap.quickTo(previewRef.current, 'x', { duration: 0.35, ease: 'power3.out' });
-    yTo.current = gsap.quickTo(previewRef.current, 'y', { duration: 0.35, ease: 'power3.out' });
+    xTo.current = gsap.quickTo(previewRef.current, "x", { duration: 0.35, ease: "power3.out" });
+    yTo.current = gsap.quickTo(previewRef.current, "y", { duration: 0.35, ease: "power3.out" });
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -107,7 +105,7 @@ export function CuratedMenu() {
       const previewHeight = 220;
       let targetX = e.clientX + 28;
       // Invertir posición si el cursor está cerca del borde derecho del viewport
-      if (typeof window !== 'undefined' && targetX + previewWidth > window.innerWidth - 24) {
+      if (typeof window !== "undefined" && targetX + previewWidth > window.innerWidth - 24) {
         targetX = e.clientX - previewWidth - 28;
       }
       const targetY = e.clientY - previewHeight / 2;
@@ -124,7 +122,7 @@ export function CuratedMenu() {
         const previewWidth = 320;
         const previewHeight = 220;
         let startX = e.clientX + 28;
-        if (typeof window !== 'undefined' && startX + previewWidth > window.innerWidth - 24) {
+        if (typeof window !== "undefined" && startX + previewWidth > window.innerWidth - 24) {
           startX = e.clientX - previewWidth - 28;
         }
         const startY = e.clientY - previewHeight / 2;
@@ -135,8 +133,8 @@ export function CuratedMenu() {
         opacity: 1,
         scale: 1,
         duration: 0.25,
-        ease: 'power2.out',
-        overwrite: 'auto',
+        ease: "power2.out",
+        overwrite: "auto",
       });
     }
   };
@@ -148,8 +146,8 @@ export function CuratedMenu() {
         opacity: 0,
         scale: 0.88,
         duration: 0.25,
-        ease: 'power2.in',
-        overwrite: 'auto',
+        ease: "power2.in",
+        overwrite: "auto",
       });
     }
   };
@@ -176,7 +174,7 @@ export function CuratedMenu() {
         ref={previewRef}
         aria-hidden="true"
         className="pointer-events-none fixed top-0 left-0 z-50 hidden lg:flex flex-col overflow-hidden rounded-none bg-charcoal-ink border border-cream-bg/30 shadow-2xl opacity-0 w-80 h-52 select-none will-change-transform"
-        style={{ transform: 'translate3d(-9999px, -9999px, 0)' }}
+        style={{ transform: "translate3d(-9999px, -9999px, 0)" }}
       >
         <div className="relative h-full w-full overflow-hidden bg-charcoal-ink">
           <img
@@ -259,15 +257,15 @@ export function CuratedMenu() {
               </div>
 
               {/* Centro: Descripción sensorial criolla (En escritorio) */}
-              <div className="hidden md:flex items-center lg:w-[30%] px-2">
+              <div className="hidden md:flex items-center lg:w-[32%] px-2">
                 <p className="font-sans text-xs sm:text-[13px] text-cream-bg/85 leading-relaxed text-left line-clamp-2 group-hover:text-cream-bg transition-colors">
                   {item.description}
                 </p>
               </div>
 
               {/* Derecha: Precio en gran escala y botón de corte limpio con anchos balanceados y alineación uniforme */}
-              <div className="flex items-center justify-between md:justify-end gap-4 sm:gap-6 lg:w-[30%] shrink-0">
-                <span className="w-24 sm:w-28 text-right font-display text-3xl sm:text-4xl font-bold tracking-tight text-cream-bg group-hover:text-mojo-citrus transition-colors duration-200 shrink-0 tabular-nums">
+              <div className="flex items-center justify-between md:justify-end gap-3 sm:gap-6 w-full md:w-[30%] shrink-0 mt-1 md:mt-0">
+                <span className="text-left md:text-right font-display text-2xl sm:text-4xl font-bold tracking-tight text-cream-bg group-hover:text-mojo-citrus transition-colors duration-200 shrink-0 tabular-nums">
                   ${item.price.toFixed(2)}
                 </span>
                 <MagneticButton
@@ -277,16 +275,16 @@ export function CuratedMenu() {
                     e.stopPropagation();
                     handleAddToCart(item);
                   }}
-                  className="w-44 sm:w-52 h-11 px-3 sm:px-4 font-sans font-bold uppercase tracking-wider text-xs sm:text-sm bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center justify-center gap-1.5 cursor-pointer shrink-0 shadow-md select-none"
+                  className="flex-1 sm:flex-none sm:w-48 h-10 sm:h-11 px-3 sm:px-4 font-sans font-bold uppercase tracking-wider text-xs sm:text-sm bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center justify-center gap-1.5 cursor-pointer shrink-0 shadow-md select-none"
                   aria-label={`Add ${item.name} to order for $${item.price.toFixed(2)}`}
                 >
                   <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[3]" aria-hidden="true" />
                   <span className="truncate">
-                    {item.id.includes('bowl')
-                      ? 'GRAB THIS BOWL'
-                      : item.id.includes('tostones')
-                        ? 'ORDER HOT'
-                        : 'FROM THE PLANCHA'}
+                    {item.id.includes("bowl")
+                      ? "GRAB THIS BOWL"
+                      : item.id.includes("tostones")
+                        ? "ORDER HOT"
+                        : "FROM THE PLANCHA"}
                   </span>
                 </MagneticButton>
               </div>

@@ -264,8 +264,8 @@ export function CuratedMenu() {
               </div>
 
               {/* Derecha: Precio en gran escala y botón de corte limpio con anchos balanceados y alineación uniforme */}
-              <div className="flex items-center justify-between md:justify-end gap-4 sm:gap-6 lg:w-[30%] shrink-0">
-                <span className="w-24 sm:w-28 text-right font-display text-3xl sm:text-4xl font-bold tracking-tight text-cream-bg group-hover:text-mojo-citrus transition-colors duration-200 shrink-0 tabular-nums">
+              <div className="flex items-center justify-between md:justify-end gap-3 sm:gap-6 w-full md:w-[30%] shrink-0 mt-1 md:mt-0">
+                <span className="text-left md:text-right font-display text-2xl sm:text-4xl font-bold tracking-tight text-cream-bg group-hover:text-mojo-citrus transition-colors duration-200 shrink-0 tabular-nums">
                   ${item.price.toFixed(2)}
                 </span>
                 <MagneticButton
@@ -275,7 +275,7 @@ export function CuratedMenu() {
                     e.stopPropagation();
                     handleAddToCart(item);
                   }}
-                  className="w-44 sm:w-52 h-11 px-3 sm:px-4 font-sans font-bold uppercase tracking-wider text-xs sm:text-sm bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center justify-center gap-1.5 cursor-pointer shrink-0 shadow-md select-none"
+                  className="flex-1 sm:flex-none sm:w-48 h-10 sm:h-11 px-3 sm:px-4 font-sans font-bold uppercase tracking-wider text-xs sm:text-sm bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center justify-center gap-1.5 cursor-pointer shrink-0 shadow-md select-none"
                   aria-label={`Add ${item.name} to order for $${item.price.toFixed(2)}`}
                 >
                   <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[3]" aria-hidden="true" />
