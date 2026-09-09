@@ -3,6 +3,7 @@ import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "lenis/dist/lenis.css";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 
 export interface SmoothScrollProps {
   children: ReactNode;
@@ -10,11 +11,20 @@ export interface SmoothScrollProps {
 
 export function SmoothScroll({ children }: SmoothScrollProps) {
   const lenisRef = useRef<Lenis | null>(null);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     // Registrar ScrollTrigger con GSAP en cliente
     if (typeof window !== "undefined") {
       gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // El scroll inercial es un disparador vestibular clásico: con
+    // prefers-reduced-motion se deja el scroll nativo del navegador y sólo se
+    // mantiene ScrollTrigger sincronizado.
+    if (reducedMotion) {
+      ScrollTrigger.refresh();
+      return undefined;
     }
 
     // 1. Instanciar Lenis con física fluida
@@ -53,7 +63,7 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
         delete (window as unknown as { lenis?: Lenis }).lenis;
       }
     };
-  }, []);
+  }, [reducedMotion]);
 
   return <>{children}</>;
 }

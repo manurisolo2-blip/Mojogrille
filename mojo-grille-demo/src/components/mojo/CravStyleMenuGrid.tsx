@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Plus, Check } from "lucide-react";
 import { useCart } from "./cart";
+import { isBadgeType, isCategoryId } from "@/types/mojo";
 import { type MenuItem } from "@/data/menu";
 
 import chickenImg from "@/assets/mojo-pollo-bowl.jpg";
@@ -144,6 +145,24 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
   },
 ];
 
+/**
+ * Convierte una fila del catálogo local a `MenuItem` validando los campos
+ * acotados en vez de castearlos a ciegas: una categoría o un badge fuera del
+ * dominio se descartan en lugar de propagar un MenuItem inválido.
+ */
+function toMenuItem(item: CravMenuItem): MenuItem {
+  return {
+    id: item.id,
+    name: item.name,
+    category: isCategoryId(item.category) ? item.category : "favoritos",
+    price: item.price,
+    description: item.description,
+    image: item.imageUrl,
+    badge: isBadgeType(item.badgeText) ? item.badgeText : undefined,
+    sidesAllowed: Boolean(item.sidesAllowed),
+  };
+}
+
 export function CravStyleMenuGrid({
   onSelect,
 }: {
@@ -165,16 +184,7 @@ export function CravStyleMenuGrid({
     setTimeout(() => setClickedItemId(null), 1200);
 
     if (item.sidesAllowed && onSelect) {
-      onSelect({
-        id: item.id,
-        name: item.name,
-        category: item.category as any,
-        price: item.price,
-        description: item.description,
-        image: item.imageUrl,
-        badge: item.badgeText as any,
-        sidesAllowed: true,
-      });
+      onSelect({ ...toMenuItem(item), sidesAllowed: true });
     } else {
       cart.add({
         itemId: item.id,
@@ -243,16 +253,7 @@ export function CravStyleMenuGrid({
                 <div>
                   {/* Contenedor de Fotografía */}
                   <div
-                    onClick={() => onSelect && onSelect({
-                      id: item.id,
-                      name: item.name,
-                      category: item.category as any,
-                      price: item.price,
-                      description: item.description,
-                      image: item.imageUrl,
-                      badge: item.badgeText as any,
-                      sidesAllowed: Boolean(item.sidesAllowed),
-                    })}
+                    onClick={() => onSelect?.(toMenuItem(item))}
                     className="relative aspect-4/3 w-full overflow-hidden rounded-none bg-transparent cursor-pointer"
                   >
                     <img

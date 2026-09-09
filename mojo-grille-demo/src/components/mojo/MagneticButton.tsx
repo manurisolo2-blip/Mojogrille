@@ -1,7 +1,16 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 
-export interface MagneticButtonProps {
+/** Atributos extra pasados al <a> o <button> subyacente. */
+type PassthroughProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
+  React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+export interface MagneticButtonProps
+  extends Omit<
+    PassthroughProps,
+    "onClick" | "onMouseLeave" | "type" | "className" | "id" | "children"
+  > {
   children: React.ReactNode;
   as?: "a" | "button";
   href?: string;
@@ -9,12 +18,11 @@ export interface MagneticButtonProps {
   proximityThreshold?: number;
   magneticStrength?: number;
   type?: "button" | "submit" | "reset";
-  onClick?: (e: React.MouseEvent<any>) => void;
-  onMouseLeave?: (e: React.MouseEvent<any>) => void;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  onMouseLeave?: (e: React.MouseEvent<HTMLElement>) => void;
   "aria-label"?: string;
   id?: string;
   disabled?: boolean;
-  [key: string]: any;
 }
 
 export function MagneticButton({
@@ -32,11 +40,17 @@ export function MagneticButton({
   disabled,
   ...props
 }: MagneticButtonProps) {
-  const buttonRef = useRef<any>(null);
+  const buttonRef = useRef<HTMLAnchorElement & HTMLButtonElement>(null);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     const button = buttonRef.current;
     if (!button || typeof window === "undefined") return;
+    // El botón que persigue al cursor es movimiento no solicitado: se omite.
+    if (reducedMotion) {
+      gsap.set(button, { x: 0, y: 0 });
+      return;
+    }
 
     let isMagnetic = false;
 
@@ -98,9 +112,9 @@ export function MagneticButton({
       button.removeEventListener("mouseleave", handleMouseLeave);
       gsap.killTweensOf(button);
     };
-  }, [proximityThreshold, magneticStrength]);
+  }, [proximityThreshold, magneticStrength, reducedMotion]);
 
-  const handleComponentMouseLeave = (e: React.MouseEvent<any>) => {
+  const handleComponentMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
     if (buttonRef.current) {
       gsap.to(buttonRef.current, {
         x: 0,

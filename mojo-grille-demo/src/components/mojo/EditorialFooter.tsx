@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { ArrowUp, MapPin, Clock, Send, Sparkles, Heart } from "lucide-react";
+import { ArrowUp, MapPin, Clock, Sparkles, Heart } from "lucide-react";
 import gsap from "gsap";
 
 export interface EditorialFooterProps {

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { Plus } from "lucide-react";
 import { useCart } from "./cart";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import { MagneticButton } from "./MagneticButton";
 import { RebelChefBadge } from "./RebelChefBadge";
 
@@ -19,7 +20,7 @@ export interface CuratedMenuItem {
   techSpecs?: string;
 }
 
-export const CURATED_ITEMS: CuratedMenuItem[] = [
+const CURATED_ITEMS: CuratedMenuItem[] = [
   {
     id: "mojo-pork-bowl",
     name: "Mojo Pork Bowl",
@@ -90,14 +91,24 @@ export function CuratedMenu() {
   const previewRef = useRef<HTMLDivElement>(null);
   const xTo = useRef<((value: number) => void) | null>(null);
   const yTo = useRef<((value: number) => void) | null>(null);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (!previewRef.current || typeof window === "undefined") return;
 
+    // La miniatura de 320x220 persiguiendo al cursor es movimiento no
+    // solicitado: con prefers-reduced-motion no se engancha el seguimiento.
+    if (reducedMotion) {
+      xTo.current = null;
+      yTo.current = null;
+      gsap.set(previewRef.current, { autoAlpha: 0 });
+      return;
+    }
+
     // quickTo para seguimiento fluido del cursor a 60fps sin tirones
     xTo.current = gsap.quickTo(previewRef.current, "x", { duration: 0.35, ease: "power3.out" });
     yTo.current = gsap.quickTo(previewRef.current, "y", { duration: 0.35, ease: "power3.out" });
-  }, []);
+  }, [reducedMotion]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (xTo.current && yTo.current) {
@@ -117,6 +128,7 @@ export function CuratedMenu() {
 
   const handleRowMouseEnter = (item: CuratedMenuItem, e: React.MouseEvent) => {
     setActiveItem(item);
+    if (reducedMotion) return;
     if (previewRef.current) {
       if (!isHovering) {
         const previewWidth = 320;

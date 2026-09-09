@@ -31,7 +31,7 @@ export interface AuthSwitchProps {
 
 export const AuthSwitch: React.FC<AuthSwitchProps> = ({
   className,
-  title,
+  title: _title,
   initialMode = "login",
   onAuthSuccess,
 }) => {

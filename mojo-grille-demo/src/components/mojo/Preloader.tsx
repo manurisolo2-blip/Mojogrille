@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 
 export interface PreloaderProps {
   /**
@@ -14,68 +15,116 @@ export interface PreloaderProps {
   duration?: number;
 }
 
+/** Margen sobre la duración nominal tras el cual la cortina se retira sola. */
+const FAILSAFE_GRACE_MS = 2500;
+
 export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const reducedMotion = useReducedMotion();
+
+  // El callback vive en una ref para que su identidad (una arrow inline en el
+  // padre) no vuelva a disparar el efecto y mate la animación en pleno vuelo.
+  const onCompleteRef = useRef(onComplete);
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
+
+  // El teardown corre una sola vez, venga de la animación, del failsafe o de
+  // que la persona decida saltearlo.
+  const finishedRef = useRef(false);
+  const restoreOverflowRef = useRef<(() => void) | null>(null);
+
+  const finish = useCallback(() => {
+    if (finishedRef.current) return;
+    finishedRef.current = true;
+
+    restoreOverflowRef.current?.();
+    restoreOverflowRef.current = null;
+
+    setIsVisible(false);
+    onCompleteRef.current?.();
+  }, []);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined") return undefined;
 
-    // Bloquear scroll nativo e inercial de Lenis durante la precarga
-    const originalOverflow = document.body.style.overflow;
+    // Bloquear scroll nativo e inercial de Lenis durante la precarga,
+    // recordando el valor previo en vez de asumir uno.
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    if ((window as unknown as { lenis?: { stop: () => void } }).lenis) {
-      (window as unknown as { lenis: { stop: () => void } }).lenis.stop();
+    const lenis = (window as unknown as { lenis?: { stop: () => void; start: () => void } })
+      .lenis;
+    lenis?.stop();
+
+    restoreOverflowRef.current = () => {
+      document.body.style.overflow = previousOverflow;
+      lenis?.start();
+    };
+
+    // Sin animación vestibular: se muestra el 100% y se retira de inmediato.
+    if (reducedMotion) {
+      if (counterRef.current) counterRef.current.textContent = "100%";
+      const raf = requestAnimationFrame(finish);
+      return () => cancelAnimationFrame(raf);
     }
 
     const counter = { val: 0 };
     const tl = gsap.timeline();
 
-    // 1. Conteo dinámico de 0% a 100% en exactamente 1.8 segundos
+    // 1. Conteo dinámico de 0% a 100%
     tl.to(counter, {
       val: 100,
-      duration: duration,
+      duration,
       ease: "power2.inOut",
       onUpdate: () => {
-        const currentVal = Math.round(counter.val);
         if (counterRef.current) {
-          counterRef.current.textContent = `${currentVal}%`;
+          counterRef.current.textContent = `${Math.round(counter.val)}%`;
         }
       },
     });
 
-    // 2. Breve micro-pausa de 0.05s para percibir el 100% completo
+    // 2. Breve micro-pausa para percibir el 100% completo
     tl.to({}, { duration: 0.05 });
 
-    // 3. Cortina de salida deslizándose hacia arriba con curva cinematográfica
-    tl.to(containerRef.current, {
-      yPercent: -100,
-      duration: 0.9,
-      ease: "power4.inOut",
-      onComplete: () => {
-        setIsLoaded(true);
-        setIsVisible(false);
-        document.body.style.overflow = originalOverflow;
+    // 3. Cortina de salida deslizándose hacia arriba
+    if (containerRef.current) {
+      tl.to(containerRef.current, {
+        yPercent: -100,
+        duration: 0.9,
+        ease: "power4.inOut",
+        onComplete: finish,
+      });
+    } else {
+      tl.call(finish);
+    }
 
-        // Desbloquear scroll inercial de Lenis
-        if ((window as unknown as { lenis?: { start: () => void } }).lenis) {
-          (window as unknown as { lenis: { start: () => void } }).lenis.start();
-        }
-
-        onComplete?.();
-      },
-    });
+    // Failsafe: si el reloj de animación nunca avanza (pestaña en segundo
+    // plano, rAF congelado, GSAP caído), la cortina se retira igual en vez de
+    // dejar el sitio invisible para siempre.
+    const failsafe = setTimeout(
+      finish,
+      (duration + 0.95) * 1000 + FAILSAFE_GRACE_MS,
+    );
 
     return () => {
+      clearTimeout(failsafe);
       tl.kill();
-      document.body.style.overflow = originalOverflow;
-      if ((window as unknown as { lenis?: { start: () => void } }).lenis) {
-        (window as unknown as { lenis: { start: () => void } }).lenis.start();
-      }
+      restoreOverflowRef.current?.();
+      restoreOverflowRef.current = null;
     };
-  }, [duration, onComplete]);
+  }, [duration, reducedMotion, finish]);
+
+  // Salida manual: nadie queda atrapado detrás de la cortina.
+  useEffect(() => {
+    if (!isVisible || typeof window === "undefined") return undefined;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" || e.key === "Enter" || e.key === " ") finish();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isVisible, finish]);
 
   if (!isVisible) {
     return null;
@@ -87,8 +136,9 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
       role="status"
       aria-live="polite"
       aria-label="Loading Mojo Grille artisanal dining experience"
-      data-loaded={isLoaded}
-      className="fixed inset-0 z-[9999] bg-brand-fire text-cream-bg flex items-center justify-center p-6 md:p-12 overflow-hidden select-none will-change-transform shadow-none"
+      data-loaded={false}
+      onClick={finish}
+      className="fixed inset-0 z-[9999] bg-brand-fire text-cream-bg flex items-center justify-center p-6 md:p-12 overflow-hidden select-none will-change-transform shadow-none cursor-pointer"
     >
       {/* Centro Monumental: Contador Display + Titular Editorial */}
       <div className="text-center flex flex-col items-center justify-center">
@@ -102,6 +152,9 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
         </div>
         <p className="mt-6 sm:mt-8 font-sans text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest text-cream-bg/90">
           HEATING UP THE CRIOLLO PLANCHA...
+        </p>
+        <p className="mt-4 font-sans text-[10px] uppercase tracking-widest text-cream-bg/60">
+          Tap or press Esc to skip
         </p>
       </div>
     </aside>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ShoppingBag, X, MessageCircle, MapPin, CheckCircle2 } from "lucide-react";
+import { ShoppingBag, X, MessageCircle, CheckCircle2 } from "lucide-react";
 import { currency } from "@/data/menu";
 import { useCart } from "./cart";
 import { whatsappHref } from "./whatsapp";

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { UtensilsCrossed, CalendarHeart } from "lucide-react";
 import { MagneticButton } from "./MagneticButton";
 import { HoverHighlightText } from "@/components/ui/hover-highlight-text";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 
 export interface HeroSectionProps {
   onOrderClick?: () => void;
   menuAnchorId?: string;
   cateringHref?: string;
-  imageUrl?: string;
   /**
    * Triggers the cinematic entrance animation for Hero headline and CTAs.
    */
@@ -18,21 +18,26 @@ export function HeroSection({
   onOrderClick,
   menuAnchorId = "menu",
   cateringHref = "#catering",
-  imageUrl,
   shouldAnimateIn = true,
 }: HeroSectionProps) {
   const [animReady, setAnimReady] = useState(false);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     // Si shouldAnimateIn es false (esperando preloader), no mostramos animación aún
     if (!shouldAnimateIn) {
       return undefined;
     }
+    // Sin movimiento vestibular no hay por qué escalonar la entrada.
+    if (reducedMotion) {
+      setAnimReady(true);
+      return undefined;
+    }
     const timer = setTimeout(() => setAnimReady(true), 150);
     return () => clearTimeout(timer);
-  }, [shouldAnimateIn]);
+  }, [shouldAnimateIn, reducedMotion]);
 
-  const handleScrollToMenu = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleScrollToMenu = (e: React.MouseEvent<HTMLElement>) => {
     const target = document.getElementById(menuAnchorId);
     if (target) {
       e.preventDefault();
@@ -41,14 +46,23 @@ export function HeroSection({
     onOrderClick?.();
   };
 
-  // Clases dinámicas de animación de entrada sincronizada
-  const animContainerClass = animReady
-    ? "opacity-100 translate-y-0 transition-all duration-700 ease-out"
-    : "opacity-0 translate-y-6";
+  // Clases dinámicas de entrada. Con prefers-reduced-motion se sustituye el
+  // desplazamiento por un fundido corto (nunca traslación ni escalonado).
+  const animContainerClass = reducedMotion
+    ? animReady
+      ? "opacity-100 transition-opacity duration-200 ease-out"
+      : "opacity-0"
+    : animReady
+      ? "opacity-100 translate-y-0 transition-all duration-700 ease-out"
+      : "opacity-0 translate-y-6";
 
-  const animItemClass = animReady
-    ? "opacity-100 translate-y-0 transition-all duration-500 delay-200 ease-out"
-    : "opacity-0 translate-y-4";
+  const animItemClass = reducedMotion
+    ? animReady
+      ? "opacity-100 transition-opacity duration-200 ease-out"
+      : "opacity-0"
+    : animReady
+      ? "opacity-100 translate-y-0 transition-all duration-500 delay-200 ease-out"
+      : "opacity-0 translate-y-4";
 
   return (
     <section

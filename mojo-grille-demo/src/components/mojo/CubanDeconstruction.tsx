@@ -400,13 +400,17 @@ export function CubanDeconstruction() {
       ScrollTrigger.refresh();
     }, 800);
 
+    // Se captura el nodo ahora: para cuando corra el cleanup, containerRef.current
+    // puede haber cambiado y los ScrollTrigger de este montaje no se matarían.
+    const container = containerRef.current;
+
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
       window.removeEventListener("load", handleWindowLoad);
       ScrollTrigger.clearMatchMedia();
       ScrollTrigger.getAll().forEach((t) => {
-        if (t.trigger === containerRef.current) {
+        if (t.trigger === container) {
           t.kill();
         }
       });

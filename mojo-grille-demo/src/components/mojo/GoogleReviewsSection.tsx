@@ -16,10 +16,10 @@ export interface GoogleReviewItem extends CardStackItem {
   avatarUrl?: string;
 }
 
-export const GOOGLE_MAPS_URL =
+const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/place/Mojo+Grille+Cuban+Kitchen/@25.8231985,-80.2430227,17z/data=!3m1!5s0x88d9b0dba01bba4f:0x7eb1c5ecaaf581ac!4m8!3m7!1s0x88d9b1962e47381b:0x801c01a9757d037c!8m2!3d25.8231937!4d-80.2404478!9m1!1b1!16s%2Fg%2F11tjhpc09g?entry=ttu";
 
-export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
+const GOOGLE_REVIEWS: GoogleReviewItem[] = [
   {
     id: "review-1",
     title: "Carlos Morales",
@@ -43,7 +43,7 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
     title: "Stephanie Rodriguez",
     description:
       "Best Cuban sandwich in the area! Pressed hot on the plancha, crisp bread with the right balance of mustard and pickles. You can taste the slow-roasted pork marinade.",
-    imageSrc: "/assets/cuban-sandwich.jpg",
+    imageSrc: "/assets/mojo-cubano.jpg",
     href: GOOGLE_MAPS_URL,
     author: "Stephanie Rodriguez",
     role: "Local Guide · 19 reviews",
@@ -61,7 +61,7 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
     title: "David Chen",
     description:
       "Ordered catering for 35 people at our office in Doral. Delivery was on point, portions were generous, and the mojo chicken mojo rice disappeared in minutes.",
-    imageSrc: "/assets/mojo-chicken-platter.jpg",
+    imageSrc: "/assets/mojo-catering.jpg",
     href: GOOGLE_MAPS_URL,
     author: "David Chen",
     role: "Verified Diner · 8 reviews",
@@ -79,7 +79,7 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
     title: "Elena Vazquez",
     description:
       "The maduros and black beans taste just like abuela used to make them. True authentic criollo comfort food without cutting corners.",
-    imageSrc: "/assets/cuban-maduros.jpg",
+    imageSrc: "/assets/mojo-bowl-ropa-vieja.jpg",
     href: GOOGLE_MAPS_URL,
     author: "Elena Vazquez",
     role: "Local Guide · 63 reviews",
@@ -97,7 +97,7 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
     title: "Marcus Brody",
     description:
       "The Garlic Mojo crunch on the pork is unreal. Great music, quick counter service, and ice-cold Materva. A must-stop spot in Miami.",
-    imageSrc: "/assets/crispy-yuca-bites.jpg",
+    imageSrc: "/assets/mojo-pollo-bowl.jpg",
     href: GOOGLE_MAPS_URL,
     author: "Marcus Brody",
     role: "Verified Diner · 15 reviews",
@@ -115,7 +115,7 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
     title: "Maria K.",
     description:
       "Unbelievable quality for the price. Fresh ingredients, no corporate taste. Real live-fire Cuban food that Miami-Dade should be proud of.",
-    imageSrc: "/assets/flan-de-leche.jpg",
+    imageSrc: "/assets/mojo-cafecito.jpg",
     href: GOOGLE_MAPS_URL,
     author: "Maria K.",
     role: "Local Guide · 31 reviews",
@@ -210,7 +210,7 @@ export function GoogleReviewsSection() {
               autoAdvance={false}
               pauseOnHover={true}
               showDots={true}
-              renderCard={(item, { active }) => {
+              renderCard={(item) => {
                 const review = item as GoogleReviewItem;
                 return (
                   <div className="relative h-full w-full overflow-hidden bg-charcoal-ink flex flex-col justify-between p-6">
@@ -219,7 +219,10 @@ export function GoogleReviewsSection() {
                       {review.imageSrc ? (
                         <img
                           src={review.imageSrc}
-                          alt={review.dish}
+                          alt=""
+                          aria-hidden="true"
+                          loading="lazy"
+                          decoding="async"
                           className="h-full w-full object-cover opacity-35"
                           draggable={false}
                         />
@@ -325,6 +328,4 @@ export function GoogleReviewsSection() {
   );
 }
 
-// Compatibilidad retroactiva con importaciones existentes de DistrictsCatering
-export const DistrictsCatering = GoogleReviewsSection;
 export default GoogleReviewsSection;
