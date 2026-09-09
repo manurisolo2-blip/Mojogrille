@@ -58,16 +58,17 @@ export function HeroSection({
       aria-label="Welcome to Mojo Grille Cuban Kitchen"
       className="relative overflow-hidden bg-transparent border-b border-charcoal-ink/10 select-none"
     >
-      {/* 1. Fotografía de Fondo Criollo Bowls con Fusión Editorial */}
+      {/* 1. Fotografía de Fondo Criollo Bowls con Alta Visibilidad */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <img
           src={bgImageUrl}
           alt="The Authentic Criollo Flavor of Miami, Marinado to Perfection - Artisanal Mojo bowls feast"
-          className="h-full w-full object-cover object-center opacity-35 sm:opacity-45 mix-blend-multiply filter contrast-105"
+          className="h-full w-full object-cover object-center opacity-85 sm:opacity-90"
         />
-        {/* Capa de atmósfera y degradado Criollo Cream para garantizar contraste WCAG 2.1 AA */}
-        <div className="absolute inset-0 bg-gradient-to-b from-cream-bg/90 via-cream-bg/75 to-cream-bg" />
-        <div className="absolute inset-0 bg-radial from-transparent via-cream-bg/35 to-cream-bg/85" />
+        {/* Velo ligero translúcido para armonizar con el fondo Criollo Cream sin tapar los bowls */}
+        <div className="absolute inset-0 bg-cream-bg/25" />
+        {/* Suave degradado inferior para conectar con el scroll */}
+        <div className="absolute inset-0 bg-gradient-to-b from-cream-bg/20 via-transparent to-cream-bg/85" />
       </div>
 
       {/* Elementos accesibles y SEO para lectores de pantalla e invariantes de QA */}
@@ -90,8 +91,8 @@ export function HeroSection({
               <HoverHighlightText
                 as="h1"
                 text="HOT CAST IRON CRUSHED GARLIC SLOW ROASTED PERNIL"
-                baseClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[9.2vw] font-black uppercase tracking-tight text-charcoal-ink/40 leading-[0.84] text-center"
-                highlightClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[9.2vw] font-black uppercase tracking-tight text-brand-fire leading-[0.84] text-center"
+                baseClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[9.2vw] font-black uppercase tracking-tight text-charcoal-ink leading-[0.84] text-center drop-shadow-[0_2px_12px_rgba(242,236,225,0.9)]"
+                highlightClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[9.2vw] font-black uppercase tracking-tight text-brand-fire leading-[0.84] text-center drop-shadow-[0_2px_16px_rgba(242,236,225,0.9)]"
                 strokeColor="#E52516"
                 strokeWidth={1.5}
                 spotlightRadius={220}
@@ -100,8 +101,8 @@ export function HeroSection({
               />
             </div>
 
-            {/* Subtítulo Narrativo Visceral Editorial Amplio */}
-            <p className={`mt-4 max-w-4xl font-sans text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-charcoal-ink/90 text-center font-normal ${animItemClass}`}>
+            {/* Subtítulo Narrativo Visceral Editorial Amplio con Placa Translúcida */}
+            <p className={`mt-4 max-w-4xl font-sans text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-charcoal-ink font-semibold text-center ${animItemClass} bg-cream-bg/80 backdrop-blur-xs px-6 py-3 border border-charcoal-ink/10 shadow-sm`}>
               No corporate bowls. We cook generational family recipes of slow-roasted pork marinated for 4 hours in Seville sour orange, pressed{" "}
               <span className="font-bold text-brand-fire">al momento</span> in the heart of Brownsville.
             </p>
