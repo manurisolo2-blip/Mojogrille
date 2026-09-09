@@ -2,9 +2,13 @@
 
 import React from "react";
 import { Star, ExternalLink, CheckCircle2 } from "lucide-react";
-import { CardStack, type CardStackItem } from "@/components/ui/card-stack";
 
-export interface GoogleReviewItem extends CardStackItem {
+export interface GoogleReviewItem {
+  id: string;
+  title: string;
+  description?: string;
+  imageSrc?: string;
+  href?: string;
   author: string;
   role: string;
   rating: number;
@@ -131,21 +135,11 @@ export const GOOGLE_REVIEWS: GoogleReviewItem[] = [
 ];
 
 export function GoogleReviewsSection() {
-  const [isMobile, setIsMobile] = React.useState(false);
-
-  React.useEffect(() => {
-    if (typeof window === "undefined") return;
-    const checkMobile = () => setIsMobile(window.innerWidth < 640);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
   return (
     <section
       id="reviews"
       aria-label="Google Maps Customer Reviews"
-      className="relative w-full bg-transparent py-16 sm:py-24 select-none overflow-hidden"
+      className="relative w-full bg-transparent py-16 sm:py-24 select-none"
     >
       <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
         
@@ -193,119 +187,103 @@ export function GoogleReviewsSection() {
           </div>
         </div>
 
-        {/* 3D CardStack Integrado */}
-        <div className="relative w-full py-4 overflow-hidden">
-            <CardStack
-              items={GOOGLE_REVIEWS}
-              initialIndex={0}
-              cardWidth={isMobile ? (typeof window !== "undefined" ? Math.min(320, window.innerWidth - 36) : 320) : 560}
-              cardHeight={isMobile ? 310 : 340}
-              overlap={isMobile ? 0.62 : 0.44}
-              spreadDeg={isMobile ? 14 : 36}
-              perspectivePx={1200}
-              depthPx={isMobile ? 40 : 110}
-              tiltXDeg={isMobile ? 4 : 8}
-              activeScale={1.03}
-              inactiveScale={0.93}
-              autoAdvance={false}
-              pauseOnHover={true}
-              showDots={true}
-              renderCard={(item, { active }) => {
-                const review = item as GoogleReviewItem;
-                return (
-                  <div className="relative h-full w-full overflow-hidden bg-charcoal-ink flex flex-col justify-between p-6">
-                    {/* Imagen de Fondo del Plato */}
-                    <div className="absolute inset-0">
-                      {review.imageSrc ? (
-                        <img
-                          src={review.imageSrc}
-                          alt={review.dish}
-                          className="h-full w-full object-cover opacity-35"
-                          draggable={false}
-                        />
-                      ) : null}
-                    </div>
+        {/* Retícula de Reseñas: 100% armadas, sin cortes ni recuadros rígidos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {GOOGLE_REVIEWS.map((review) => (
+            <article
+              key={review.id}
+              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-charcoal-ink p-6 sm:p-7 border border-charcoal-ink/20 shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-brand-fire/40"
+            >
+              {/* Imagen de Fondo del Plato con sutil zoom en hover */}
+              <div className="absolute inset-0">
+                {review.imageSrc ? (
+                  <img
+                    src={review.imageSrc}
+                    alt={review.dish}
+                    className="h-full w-full object-cover opacity-30 transition-transform duration-500 group-hover:scale-105 group-hover:opacity-35"
+                    draggable={false}
+                    loading="lazy"
+                  />
+                ) : null}
+              </div>
 
-                    {/* Capas de Gradiente para Legibilidad Óptima */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-charcoal-ink via-charcoal-ink/75 to-charcoal-ink/50" />
+              {/* Capas de Gradiente para Máxima Legibilidad */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-charcoal-ink via-charcoal-ink/85 to-charcoal-ink/60" />
 
-                    {/* Cabecera de la Tarjeta */}
-                    <div className="relative z-10 flex items-start justify-between gap-3">
-                      <div className="flex items-center gap-3">
-                        {/* Foto de Perfil en el Circulito */}
-                        <div className="relative h-11 w-11 rounded-full overflow-hidden shrink-0 ring-2 ring-cream-bg/25 bg-charcoal-ink flex items-center justify-center">
-                          {review.avatarUrl ? (
-                            <img
-                              src={review.avatarUrl}
-                              alt={review.author}
-                              className="h-full w-full object-cover rounded-full select-none"
-                              loading="lazy"
-                            />
-                          ) : (
-                            <span
-                              className={`h-full w-full ${review.avatarBg} text-cream-bg flex items-center justify-center font-sans font-bold text-xs uppercase`}
-                            >
-                              {review.initials}
-                            </span>
-                          )}
-                        </div>
-                        <div>
-                          <div className="font-sans font-bold text-sm text-cream-bg leading-tight flex items-center gap-1.5">
-                            <span>{review.author}</span>
-                            <CheckCircle2 className="h-3.5 w-3.5 text-leaf-green" aria-label="Verified Reviewer" />
-                          </div>
-                          <p className="font-sans text-[11px] font-medium text-cream-bg/70 mt-0.5">
-                            {review.role}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Estrellas y Marca Google */}
-                      <div className="flex flex-col items-end">
-                        <span className="font-sans font-black text-xs text-cream-bg/40 tracking-tighter uppercase mb-1">
-                          Google Review
-                        </span>
-                        <div className="flex items-center gap-1 text-mojo-citrus">
-                          {[...Array(review.rating)].map((_, i) => (
-                            <Star key={i} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Contenido Central: Plato (sin recuadros ni guiones, letra más grande en negrita) y Cita */}
-                    <div className="relative z-10 my-auto py-2">
-                      <h4 className="font-sans text-base sm:text-lg font-bold text-mojo-citrus leading-snug tracking-tight mb-2 select-none">
-                        {review.dish}
-                      </h4>
-                      <p className="font-sans text-sm sm:text-base text-cream-bg font-normal leading-relaxed line-clamp-3">
-                        &ldquo;{review.content}&rdquo;
-                      </p>
-                    </div>
-
-                    {/* Pie de la Tarjeta */}
-                    <div className="relative z-10 pt-3 border-t border-cream-bg/15 flex items-center justify-between text-cream-bg/60 font-sans text-[10px] uppercase tracking-wider">
-                      <span className="flex items-center gap-1.5 text-leaf-green font-semibold">
-                        <CheckCircle2 className="h-3 w-3" />
-                        <span>{review.date} · Dine-in / Takeout</span>
-                      </span>
-
-                      <a
-                        href={review.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-cream-bg/80 hover:text-brand-fire transition-colors"
-                        onClick={(e) => e.stopPropagation()}
+              {/* Cabecera de la Tarjeta */}
+              <div className="relative z-10 flex items-start justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  {/* Foto de Perfil en el Círculo */}
+                  <div className="relative h-11 w-11 rounded-full overflow-hidden shrink-0 ring-2 ring-cream-bg/25 bg-charcoal-ink flex items-center justify-center">
+                    {review.avatarUrl ? (
+                      <img
+                        src={review.avatarUrl}
+                        alt={review.author}
+                        className="h-full w-full object-cover rounded-full select-none"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <span
+                        className={`h-full w-full ${review.avatarBg} text-cream-bg flex items-center justify-center font-sans font-bold text-xs uppercase`}
                       >
-                        <span>Open on Maps</span>
-                        <ExternalLink className="h-3 w-3" />
-                      </a>
-                    </div>
+                        {review.initials}
+                      </span>
+                    )}
                   </div>
-                );
-              }}
-            />
-          </div>
+                  <div>
+                    <div className="font-sans font-bold text-sm text-cream-bg leading-tight flex items-center gap-1.5">
+                      <span>{review.author}</span>
+                      <CheckCircle2 className="h-3.5 w-3.5 text-leaf-green" aria-label="Verified Reviewer" />
+                    </div>
+                    <p className="font-sans text-[11px] font-medium text-cream-bg/70 mt-0.5">
+                      {review.role}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Estrellas y Marca Google */}
+                <div className="flex flex-col items-end shrink-0">
+                  <span className="font-sans font-black text-xs text-cream-bg/40 tracking-tighter uppercase mb-1">
+                    Google Review
+                  </span>
+                  <div className="flex items-center gap-1 text-mojo-citrus">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <Star key={i} className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Contenido Central: Plato Destacado y Cita Completa */}
+              <div className="relative z-10 my-5 py-1">
+                <h3 className="font-sans text-base sm:text-lg font-bold text-mojo-citrus leading-snug tracking-tight mb-2.5 select-none">
+                  {review.dish}
+                </h3>
+                <p className="font-sans text-sm sm:text-base text-cream-bg font-normal leading-relaxed">
+                  &ldquo;{review.content}&rdquo;
+                </p>
+              </div>
+
+              {/* Pie de la Tarjeta: Verificación y Link a Google Maps */}
+              <div className="relative z-10 pt-3.5 border-t border-cream-bg/15 flex items-center justify-between text-cream-bg/65 font-sans text-[10px] uppercase tracking-wider">
+                <span className="flex items-center gap-1.5 text-leaf-green font-semibold">
+                  <CheckCircle2 className="h-3 w-3" />
+                  <span>{review.date} · Dine-in / Takeout</span>
+                </span>
+
+                <a
+                  href={review.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-cream-bg/85 hover:text-brand-fire transition-colors"
+                >
+                  <span>Open on Maps</span>
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
 
         {/* Fila Inferior de Conversión a Google Maps */}
         <div className="mt-12 text-center">
