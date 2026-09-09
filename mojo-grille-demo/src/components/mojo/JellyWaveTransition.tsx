@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 export interface JellyWaveTransitionProps {
   /** Color de la sección superior (HEX o clase CSS) */
@@ -45,6 +45,49 @@ export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
   const containerBg = isDown ? bottomColor : topColor;
   const waveFill = isDown ? topColor : bottomColor;
 
+  // Seguimiento reactivo del scroll
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Animación física de bajada o subida al hacer scroll:
+  // Si direction === "down", la onda baja de -32px a +32px
+  // Si direction === "up", la onda sube de +32px a -32px
+  const yRaw = useTransform(
+    scrollYProgress,
+    [0, 1],
+    isDown ? [-32, 32] : [32, -32]
+  );
+  const y = useSpring(yRaw, { stiffness: 130, damping: 26, mass: 0.75 });
+
+  // Expansión / oleaje dinámico de la onda al entrar en pantalla
+  const scaleYRaw = useTransform(scrollYProgress, [0, 0.5, 1], [0.88, 1.25, 0.9]);
+  const scaleY = useSpring(scaleYRaw, { stiffness: 130, damping: 26, mass: 0.75 });
+
+  // Desplazamiento horizontal de marea
+  const xRaw = useTransform(
+    scrollYProgress,
+    [0, 1],
+    isDown ? [-20, 20] : [20, -20]
+  );
+  const x = useSpring(xRaw, { stiffness: 130, damping: 26, mass: 0.75 });
+
+  // Parallax reactivo para los stickers de guarnición
+  const stickerYRaw = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    isDown ? [-22, 16, -12] : [22, -16, 12]
+  );
+  const stickerY = useSpring(stickerYRaw, { stiffness: 140, damping: 24 });
+
+  const stickerRotateRaw = useTransform(
+    scrollYProgress,
+    [0, 1],
+    isDown ? [-8, 14] : [8, -14]
+  );
+  const stickerRotate = useSpring(stickerRotateRaw, { stiffness: 140, damping: 24 });
+
   return (
     <div
       ref={containerRef}
@@ -52,29 +95,52 @@ export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
       className={`relative w-full overflow-hidden select-none pointer-events-none leading-none -my-px z-20 ${className}`}
       style={{ backgroundColor: containerBg }}
     >
-      {/* SVG de onda continua y limpia sin transformaciones de inclinación (skew) para evitar artefactos visuales */}
-      <svg
-        viewBox="0 0 1536 220"
-        preserveAspectRatio="none"
-        className="block w-full h-16 sm:h-24 md:h-32 lg:h-36 pointer-events-none"
+      {/* Contenedor animado al scroll con física de subida/bajada y oleaje elástico */}
+      <motion.div
+        style={{
+          y,
+          scaleY,
+          x,
+          transformOrigin: isDown ? "top center" : "bottom center",
+        }}
+        className="w-full h-full will-change-transform"
       >
-        <motion.path
-          d={paths.a}
-          animate={{
-            d: [paths.a, paths.b, paths.c, paths.a],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          fill={waveFill}
-        />
-      </svg>
+        <svg
+          viewBox="0 0 1536 220"
+          preserveAspectRatio="none"
+          className="block w-full h-16 sm:h-24 md:h-32 lg:h-36 pointer-events-none"
+        >
+          {/* Rectángulos de sangrado (Bleed rects) para garantizar cobertura total sin hendiduras */}
+          {isDown ? (
+            <rect x="-64" y="-80" width="1664" height="85" fill={waveFill} />
+          ) : (
+            <rect x="-64" y="215" width="1664" height="85" fill={waveFill} />
+          )}
 
-      {/* Stickers de Guarnición Flotante (Inspiración Crav Burgers en la curva de la ola) */}
+          <motion.path
+            d={paths.a}
+            animate={{
+              d: [paths.a, paths.b, paths.c, paths.a],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            fill={waveFill}
+          />
+        </svg>
+      </motion.div>
+
+      {/* Stickers de Guarnición Flotante con rebote en scroll (Inspiración Crav Burgers en la curva de la ola) */}
       {showGarnish && (
-        <div className="absolute top-1/2 -translate-y-1/2 left-6 sm:left-14 md:left-24 z-30 pointer-events-auto flex items-center gap-2 sm:gap-3">
+        <motion.div
+          style={{
+            y: stickerY,
+            rotate: stickerRotate,
+          }}
+          className="absolute top-1/2 -translate-y-1/2 left-6 sm:left-14 md:left-24 z-30 pointer-events-auto flex items-center gap-2 sm:gap-3 will-change-transform"
+        >
           {/* Sticker 1: Cilantro fresco criollo */}
           <motion.div
             animate={{
@@ -123,7 +189,7 @@ export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
               Mojo Citrus
             </span>
           </motion.div>
-        </div>
+        </motion.div>
       )}
     </div>
   );
