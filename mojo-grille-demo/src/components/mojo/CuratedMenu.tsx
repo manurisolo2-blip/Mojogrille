@@ -248,7 +248,7 @@ export function CuratedMenu() {
                     <RebelChefBadge />
                   )}
                 </div>
-                <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg/80 mt-0.5 group-hover:text-mojo-citrus transition-colors leading-snug">
+                <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg mt-0.5 group-hover:text-mojo-citrus transition-colors leading-snug">
                   {item.authorNote}
                 </span>
               </div>
@@ -261,14 +261,14 @@ export function CuratedMenu() {
                   className="w-16 h-16 object-cover shrink-0 border border-cream-bg/20"
                   loading="lazy"
                 />
-                <p className="font-sans text-xs text-cream-bg/85 line-clamp-2">
+                <p className="font-sans text-xs text-cream-bg line-clamp-2">
                   {item.description}
                 </p>
               </div>
 
               {/* Centro: Descripción sensorial criolla (En escritorio) */}
               <div className="hidden md:flex items-center lg:w-[32%] px-2">
-                <p className="font-sans text-xs sm:text-[13px] text-cream-bg/85 leading-relaxed text-left line-clamp-2 group-hover:text-cream-bg transition-colors">
+                <p className="font-sans text-xs sm:text-[13px] text-cream-bg leading-relaxed text-left line-clamp-2 group-hover:text-cream-bg transition-colors">
                   {item.description}
                 </p>
               </div>

@@ -51,7 +51,7 @@ export function CartToast() {
           type="button"
           onClick={dismissToast}
           tabIndex={toast ? 0 : -1}
-          className="text-cream-bg/60 hover:text-cream-bg p-1 cursor-pointer"
+          className="tap-target text-cream-bg/60 hover:text-cream-bg p-1 cursor-pointer"
           aria-label="Dismiss notification"
         >
           <X className="h-4 w-4" aria-hidden="true" />

@@ -90,7 +90,7 @@ export function HeroSection({
               <HoverHighlightText
                 as="h1"
                 text="HOT CAST IRON CRUSHED GARLIC SLOW ROASTED PERNIL"
-                baseClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[9.2vw] font-black uppercase tracking-tight text-charcoal-ink/35 leading-[0.84] text-center"
+                baseClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[9.2vw] font-black uppercase tracking-tight text-charcoal-ink/70 leading-[0.84] text-center"
                 highlightClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[9.2vw] font-black uppercase tracking-tight text-brand-fire leading-[0.84] text-center"
                 strokeColor="#E52516"
                 strokeWidth={1.5}

@@ -513,3 +513,73 @@
     border: 2px solid var(--color-charcoal-ink, #141210);
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Foco visible por teclado
+   Un único anillo consistente para toda la interfaz, con los colores de la
+   paleta. Sólo aparece en navegación por teclado (:focus-visible), así que no
+   cambia nada para quien usa el mouse. Se define de forma global en vez de
+   componente por componente para que ningún control nuevo quede sin foco.
+--------------------------------------------------------------------------- */
+/* Se marca !important porque varios controles (los inputs del newsletter y del
+   formulario de cuenta) traen `focus:outline-hidden`, que anula el foco tambien
+   para teclado. El anillo es la linea base de accesibilidad y debe ganar; sólo
+   se aplica en :focus-visible, así que el mouse sigue sin verlo. */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-brand-fire, #e52516) !important;
+  outline-offset: 2px !important;
+  border-radius: 1px;
+}
+
+/* Sobre superficies Mojo Scarlet el anillo rojo se pierde: se invierte a crema. */
+.bg-brand-fire
+  :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline-color: var(--color-cream-bg, #f2ece1) !important;
+}
+
+/* ---------------------------------------------------------------------------
+   Área táctil mínima
+   Amplía la zona pulsable a 44x44px sin alterar el tamaño visual del control,
+   para los botones compactos (contadores de cantidad, cerrar, descartar).
+--------------------------------------------------------------------------- */
+@utility tap-target {
+  position: relative;
+}
+
+.tap-target::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------------------------------------------------------------------------
+   Feedback de pulsación
+   El feedback llega al presionar, no al soltar: sin esto un control sólo
+   reacciona en el hover (y en táctil, no reacciona nunca hasta que la acción ya
+   ocurrió). Un hundido mínimo y corto, suficiente para que el control se sienta
+   físico sin desplazar el layout.
+   Nota: no alcanza a MagneticButton, cuyo transform lo controla GSAP en línea,
+   y ese ya tiene su propia respuesta al cursor.
+--------------------------------------------------------------------------- */
+button:not(:disabled):active,
+a[class*="bg-brand-fire"]:active,
+a[class*="bg-charcoal-ink"]:active,
+a[class*="bg-surface-sand"]:active,
+a[class*="bg-cream-bg"]:active {
+  transform: scale(0.97);
+  transition: transform 100ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button:not(:disabled):active,
+  a[class*="bg-brand-fire"]:active,
+  a[class*="bg-charcoal-ink"]:active,
+  a[class*="bg-surface-sand"]:active,
+  a[class*="bg-cream-bg"]:active {
+    transform: none;
+  }
+}

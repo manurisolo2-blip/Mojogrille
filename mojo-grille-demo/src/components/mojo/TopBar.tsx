@@ -314,7 +314,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
               </div>
 
               {/* Pie del Menú Drawer */}
-              <div className="pt-8 flex items-center justify-between text-[11px] text-charcoal-ink/50 font-sans uppercase tracking-widest font-bold">
+              <div className="pt-8 flex items-center justify-between text-[11px] text-charcoal-ink/70 font-sans uppercase tracking-widest font-bold">
                 <span>Miami Cuban Kitchen</span>
                 <span className="text-brand-fire">Al Momento</span>
               </div>

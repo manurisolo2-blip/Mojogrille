@@ -121,7 +121,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
           <div className="space-y-1 font-sans text-sm text-cream-bg/90">
             <p className="font-bold text-base text-cream-bg">Brownsville Central Kitchen</p>
             <p>2920 NW 27th Ave, Miami, FL 33142</p>
-            <p className="text-xs text-cream-bg/70">Pickup hubs: Little Havana, Brickell, Doral</p>
+            <p className="text-xs text-cream-bg">Pickup hubs: Little Havana, Brickell, Doral</p>
           </div>
 
           <div className="pt-2 border-t border-cream-bg/20 space-y-1 font-sans text-xs text-cream-bg/85 leading-relaxed">
@@ -206,7 +206,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 placeholder="your-email@miami.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-transparent font-sans text-sm text-cream-bg placeholder:text-cream-bg/50 focus:outline-hidden"
+                className="w-full bg-transparent font-sans text-sm text-cream-bg placeholder:text-cream-bg/80 focus:outline-hidden"
               />
               <button
                 type="submit"
@@ -222,7 +222,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
             )}
           </form>
 
-          <p className="text-[11px] font-sans text-cream-bg/70 pt-1">
+          <p className="text-[11px] font-sans text-cream-bg pt-1">
             No spam. Pure plancha heat, culture, and high-craft criollo food.
           </p>
         </div>
@@ -230,7 +230,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
       </div>
 
       {/* 3. Barra Inferior Legal & Marca de Agua */}
-      <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-cream-bg/75">
+      <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-cream-bg">
         <p>© {new Date().getFullYear()} MOJO GRILLE LLC ALL RIGHTS RESERVED MIAMI-LATIN MODERNISM</p>
         <div className="flex items-center gap-4">
           <span>25.7617° N, 80.1918° W</span>

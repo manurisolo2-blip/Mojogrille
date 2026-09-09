@@ -51,7 +51,7 @@ export function CartSheet() {
             type="button"
             onClick={closeCart}
             aria-label="Close"
-            className="grid h-8 w-8 shrink-0 place-items-center rounded-none text-charcoal-ink transition-colors hover:bg-brand-fire hover:text-cream-bg cursor-pointer"
+            className="tap-target grid h-8 w-8 shrink-0 place-items-center rounded-none text-charcoal-ink transition-colors hover:bg-brand-fire hover:text-cream-bg cursor-pointer"
           >
             <X className="h-5 w-5" />
           </button>
@@ -74,7 +74,7 @@ export function CartSheet() {
         <div className="flex-1 overflow-y-auto px-5 py-4">
           {count === 0 ? (
             <div className="mt-12 text-center">
-              <ShoppingBag className="mx-auto h-8 w-8 text-charcoal-ink/50" />
+              <ShoppingBag className="mx-auto h-8 w-8 text-charcoal-ink/70" />
               <p className="mt-3 font-sans text-sm text-charcoal-ink/70">
                 Your cart is empty. Start with our signature favorites!
               </p>
@@ -107,7 +107,7 @@ export function CartSheet() {
                       type="button"
                       onClick={() => remove(line.key)}
                       aria-label={`Decrease quantity of ${line.name}`}
-                      className="grid h-7 w-7 place-items-center rounded-none bg-cream-bg text-charcoal-ink transition-colors hover:bg-charcoal-ink hover:text-cream-bg cursor-pointer"
+                      className="tap-target grid h-7 w-7 place-items-center rounded-none bg-cream-bg text-charcoal-ink transition-colors hover:bg-charcoal-ink hover:text-cream-bg cursor-pointer"
                     >
                       <Minus className="h-3.5 w-3.5" />
                     </button>
@@ -125,7 +125,7 @@ export function CartSheet() {
                         })
                       }
                       aria-label={`Increase quantity of ${line.name}`}
-                      className="grid h-7 w-7 place-items-center rounded-none bg-cream-bg text-charcoal-ink transition-colors hover:bg-charcoal-ink hover:text-cream-bg cursor-pointer"
+                      className="tap-target grid h-7 w-7 place-items-center rounded-none bg-cream-bg text-charcoal-ink transition-colors hover:bg-charcoal-ink hover:text-cream-bg cursor-pointer"
                     >
                       <Plus className="h-3.5 w-3.5" />
                     </button>
