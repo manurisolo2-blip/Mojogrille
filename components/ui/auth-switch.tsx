@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
   User,
   Mail,
@@ -30,20 +29,6 @@ export interface AuthSwitchProps {
   onAuthSuccess?: (user: MojoUser) => void;
 }
 
-// Trazados para la onda vertical orgánica en el borde del panel deslizante (Jelly Wave)
-const WAVE_PATHS = {
-  a: "M 0,0 L 40,0 C 110,140 140,260 120,360 C 100,460 50,540 0,600 L 0,0 Z",
-  b: "M 0,0 L 50,0 C 90,130 145,280 110,380 C 85,470 60,530 0,600 L 0,0 Z",
-  c: "M 0,0 L 30,0 C 120,150 135,250 130,350 C 115,450 40,550 0,600 L 0,0 Z",
-};
-
-// Trazados para la onda horizontal en vista móvil
-const HORIZONTAL_WAVE_PATHS = {
-  a: "M 0 0 L 600 0 L 600 25 C 480 75, 360 10, 240 65 C 150 80, 60 25, 0 35 Z",
-  b: "M 0 0 L 600 0 L 600 20 C 450 55, 320 80, 200 35 C 130 15, 40 60, 0 25 Z",
-  c: "M 0 0 L 600 0 L 600 30 C 490 80, 380 15, 250 70 C 170 85, 70 20, 0 28 Z",
-};
-
 export const AuthSwitch: React.FC<AuthSwitchProps> = ({
   className,
   title,
@@ -51,21 +36,23 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
   onAuthSuccess,
 }) => {
   const [mode, setMode] = useState<"signup" | "login">(initialMode);
+  const isSignUp = mode === "signup";
+
   const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState<MojoUser | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
-  // Form State para Sign Up
+  // Form State Sign Up
   const [signupName, setSignupName] = useState("");
   const [signupEmail, setSignupEmail] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
 
-  // Form State para Sign In
+  // Form State Sign In
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  // Cargar usuario existente de localStorage al montar
+  // Cargar usuario persistido en localStorage
   useEffect(() => {
     if (typeof window !== "undefined") {
       try {
@@ -246,14 +233,9 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
   // ESTADO 1: SOCIO IDENTIFICADO (PASAPORTE VIP)
   if (user) {
     return (
-      <motion.div
-        key="passport-view"
-        initial={{ opacity: 0, scale: 0.98, y: 8 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.98, y: -8 }}
-        transition={{ type: "spring", stiffness: 450, damping: 32 }}
+      <div
         className={cn(
-          "relative flex flex-col bg-cream-bg text-charcoal-ink p-8 sm:p-12",
+          "relative flex flex-col bg-cream-bg text-charcoal-ink p-8 sm:p-12 animate-in fade-in duration-300",
           className
         )}
       >
@@ -308,7 +290,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
             <span>CERRAR SESIÓN</span>
           </button>
         </div>
-      </motion.div>
+      </div>
     );
   }
 
@@ -388,141 +370,237 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
   return (
     <div
       className={cn(
-        "relative w-full bg-cream-bg text-charcoal-ink overflow-hidden select-none min-h-[600px]",
+        "mojo-auth-container relative w-full bg-cream-bg text-charcoal-ink overflow-hidden select-none min-h-[620px] md:min-h-[580px]",
+        isSignUp ? "sign-up-mode" : "",
         className
       )}
     >
-      {/* ========================================================================= */}
-      {/* VISTA DESKTOP: SLIDING DOUBLE-PANEL CONTAINER CON ONDA JELLY ORGÁNICA     */}
-      {/* ========================================================================= */}
-      <div className="hidden md:block relative w-full min-h-[600px] overflow-hidden">
-        {/* ======================================================================= */}
-        {/* 1. FORMULARIO SIGN UP (LADO IZQUIERDO ESTÁTICO)                          */}
-        {/* ======================================================================= */}
-        <motion.div
-          animate={{
-            opacity: mode === "signup" ? 1 : 0,
-            x: mode === "signup" ? "0%" : "-15%",
-            pointerEvents: mode === "signup" ? "auto" : "none",
-          }}
-          transition={{ duration: 0.65, ease: [0.65, 0, 0.35, 1] }}
-          className="absolute top-0 left-0 w-1/2 h-full z-10 p-8 lg:p-12 flex flex-col justify-center items-center"
-        >
-          <div className="w-full max-w-xs mx-auto text-charcoal-ink">
-            <h2 className="font-display text-4xl lg:text-5xl font-black uppercase tracking-tight text-charcoal-ink text-center mb-6">
-              Sign up
-            </h2>
+      <style>{`
+        /* ESTILOS DE TRANSICIÓN AUTÉNTICA DEL SLIDING AUTH COMPONENT */
+        .mojo-auth-container .circle-layer {
+          position: absolute;
+          height: 1900px;
+          width: 1900px;
+          top: -12%;
+          right: 48%;
+          transform: translateY(-50%);
+          background: #E52516;
+          transition: 1.1s cubic-bezier(0.77, 0, 0.175, 1);
+          border-radius: 50%;
+          z-index: 6;
+          pointer-events: none;
+        }
 
-            <form onSubmit={handleRegister} className="space-y-3.5">
-              {/* Username Pill */}
-              <div className="relative flex items-center rounded-full bg-surface-sand/90 px-4 py-3.5 focus-within:ring-2 focus-within:ring-brand-fire/30 focus-within:bg-surface-sand transition-all">
-                <User className="h-4 w-4 text-charcoal-ink/50 ml-1 mr-3 shrink-0" />
-                <input
-                  type="text"
-                  placeholder="Username"
-                  value={signupName}
-                  onChange={(e) => setSignupName(e.target.value)}
-                  className="w-full bg-transparent text-xs sm:text-sm font-sans text-charcoal-ink placeholder:text-charcoal-ink/40 outline-none"
-                  required
-                />
-              </div>
+        .mojo-auth-container.sign-up-mode .circle-layer {
+          transform: translate(100%, -50%);
+          right: 52%;
+        }
 
-              {/* Email Pill */}
-              <div className="relative flex items-center rounded-full bg-surface-sand/90 px-4 py-3.5 focus-within:ring-2 focus-within:ring-brand-fire/30 focus-within:bg-surface-sand transition-all">
-                <Mail className="h-4 w-4 text-charcoal-ink/50 ml-1 mr-3 shrink-0" />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  value={signupEmail}
-                  onChange={(e) => setSignupEmail(e.target.value)}
-                  className="w-full bg-transparent text-xs sm:text-sm font-sans text-charcoal-ink placeholder:text-charcoal-ink/40 outline-none"
-                  required
-                />
-              </div>
+        .mojo-auth-container .forms-layer {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+        }
 
-              {/* Password Pill */}
-              <div className="relative flex items-center rounded-full bg-surface-sand/90 px-4 py-3.5 focus-within:ring-2 focus-within:ring-brand-fire/30 focus-within:bg-surface-sand transition-all">
-                <Lock className="h-4 w-4 text-charcoal-ink/50 ml-1 mr-3 shrink-0" />
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Password"
-                  value={signupPassword}
-                  onChange={(e) => setSignupPassword(e.target.value)}
-                  className="w-full bg-transparent text-xs sm:text-sm font-sans text-charcoal-ink placeholder:text-charcoal-ink/40 outline-none"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  aria-label={showPassword ? "Ocultar contraseña" : "Ver contraseña"}
-                  className="text-charcoal-ink/50 hover:text-charcoal-ink p-1 cursor-pointer"
-                >
-                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                </button>
-              </div>
+        .mojo-auth-container .signin-signup-group {
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          left: 75%;
+          width: 50%;
+          transition: 1s 0.25s cubic-bezier(0.77, 0, 0.175, 1);
+          display: grid;
+          grid-template-columns: 1fr;
+          z-index: 5;
+        }
 
-              {/* Feedback */}
-              {feedback && (
-                <div
-                  className={`text-[11px] font-sans font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 ${
-                    feedback.type === "error"
-                      ? "text-brand-fire bg-brand-fire/10"
-                      : "text-leaf-green bg-leaf-green/10"
-                  }`}
-                >
-                  {feedback.type === "error" ? (
-                    <AlertCircle className="h-3.5 w-3.5 shrink-0" />
-                  ) : (
-                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
-                  )}
-                  <span>{feedback.message}</span>
-                </div>
-              )}
+        .mojo-auth-container.sign-up-mode .signin-signup-group {
+          left: 25%;
+        }
 
-              {/* Solid Submit Button */}
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full rounded-full bg-brand-fire hover:bg-charcoal-ink text-cream-bg font-sans font-bold text-xs uppercase tracking-wider py-3.5 transition-all shadow-md active:scale-[0.99] cursor-pointer mt-2"
-              >
-                {isSubmitting ? "SIGNING UP..." : "SIGN UP"}
-              </button>
-            </form>
+        .mojo-auth-container .form-view {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          padding: 0 2rem;
+          grid-column: 1 / 2;
+          grid-row: 1 / 2;
+          transition: opacity 0.25s 0.3s ease-in-out, transform 0.25s 0.3s ease-in-out;
+        }
 
-            <SocialButtons label="Or sign up with social platforms" />
+        .mojo-auth-container .form-view.sign-up-form {
+          opacity: 0;
+          pointer-events: none;
+          z-index: 1;
+        }
 
-            <div className="mt-4 text-center">
-              <button
-                type="button"
-                onClick={() => fillDemoData("signup")}
-                className="text-[11px] font-sans font-bold text-charcoal-ink/50 hover:text-brand-fire transition-colors underline cursor-pointer"
-              >
-                Autocompletar demo
-              </button>
-            </div>
-          </div>
-        </motion.div>
+        .mojo-auth-container .form-view.sign-in-form {
+          opacity: 1;
+          pointer-events: all;
+          z-index: 2;
+        }
 
-        {/* ======================================================================= */}
-        {/* 2. FORMULARIO SIGN IN (LADO DERECHO ESTÁTICO)                           */}
-        {/* ======================================================================= */}
-        <motion.div
-          animate={{
-            opacity: mode === "login" ? 1 : 0,
-            x: mode === "login" ? "0%" : "15%",
-            pointerEvents: mode === "login" ? "auto" : "none",
-          }}
-          transition={{ duration: 0.65, ease: [0.65, 0, 0.35, 1] }}
-          className="absolute top-0 right-0 w-1/2 h-full z-10 p-8 lg:p-12 flex flex-col justify-center items-center"
-        >
-          <div className="w-full max-w-xs mx-auto text-charcoal-ink">
+        .mojo-auth-container.sign-up-mode .form-view.sign-up-form {
+          opacity: 1;
+          pointer-events: all;
+          z-index: 2;
+        }
+
+        .mojo-auth-container.sign-up-mode .form-view.sign-in-form {
+          opacity: 0;
+          pointer-events: none;
+          z-index: 1;
+        }
+
+        .mojo-auth-container .panels-group {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          top: 0;
+          left: 0;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          z-index: 7;
+          pointer-events: none;
+        }
+
+        .mojo-auth-container .panel-box {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 2rem 2.5rem;
+        }
+
+        .mojo-auth-container .panel-box.left-panel {
+          pointer-events: all;
+        }
+
+        .mojo-auth-container .panel-box.right-panel {
+          pointer-events: none;
+        }
+
+        .mojo-auth-container.sign-up-mode .panel-box.left-panel {
+          pointer-events: none;
+        }
+
+        .mojo-auth-container.sign-up-mode .panel-box.right-panel {
+          pointer-events: all;
+        }
+
+        .mojo-auth-container .panel-box .panel-text {
+          color: #F2ECE1;
+          transition: transform 0.9s 0.25s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.4s 0.25s;
+        }
+
+        .mojo-auth-container .right-panel .panel-text {
+          transform: translateX(800px);
+          opacity: 0;
+        }
+
+        .mojo-auth-container.sign-up-mode .left-panel .panel-text {
+          transform: translateX(-800px);
+          opacity: 0;
+        }
+
+        .mojo-auth-container.sign-up-mode .right-panel .panel-text {
+          transform: translateX(0%);
+          opacity: 1;
+        }
+
+        /* ADAPTACIÓN MÓVIL (< 768px) */
+        @media (max-width: 767px) {
+          .mojo-auth-container .circle-layer {
+            width: 1350px;
+            height: 1350px;
+            transform: translateX(-50%);
+            left: 50%;
+            top: initial;
+            bottom: 64%;
+            right: initial;
+            transition: 1.1s cubic-bezier(0.77, 0, 0.175, 1);
+          }
+
+          .mojo-auth-container.sign-up-mode .circle-layer {
+            transform: translate(-50%, 100%);
+            bottom: 36%;
+            right: initial;
+          }
+
+          .mojo-auth-container .signin-signup-group {
+            width: 100%;
+            top: 92%;
+            transform: translate(-50%, -100%);
+            left: 50%;
+            transition: 1s 0.25s cubic-bezier(0.77, 0, 0.175, 1);
+          }
+
+          .mojo-auth-container.sign-up-mode .signin-signup-group {
+            top: 8%;
+            transform: translate(-50%, 0);
+            left: 50%;
+          }
+
+          .mojo-auth-container .panels-group {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 2fr 1fr;
+          }
+
+          .mojo-auth-container .panel-box {
+            padding: 1.5rem 1rem;
+            grid-column: 1 / 2;
+          }
+
+          .mojo-auth-container .left-panel {
+            grid-row: 1 / 2;
+          }
+
+          .mojo-auth-container .right-panel {
+            grid-row: 3 / 4;
+          }
+
+          .mojo-auth-container .left-panel .panel-text {
+            transform: translateY(0);
+          }
+
+          .mojo-auth-container.sign-up-mode .left-panel .panel-text {
+            transform: translateY(-300px);
+          }
+
+          .mojo-auth-container .right-panel .panel-text {
+            transform: translateY(300px);
+          }
+
+          .mojo-auth-container.sign-up-mode .right-panel .panel-text {
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+
+      {/* 1. Capa del Círculo Rojo Mojo Scarlet Deslizante con Borde Curvo */}
+      <div className="circle-layer shadow-2xl">
+        {/* Glow interior sutil */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 via-transparent to-black/20 pointer-events-none" />
+      </div>
+
+      {/* 2. Capa de Formularios (Sign in a la derecha, Sign up a la izquierda al alternar) */}
+      <div className="forms-layer">
+        <div className="signin-signup-group">
+          {/* ================================================================= */}
+          {/* FORMULARIO: SIGN IN                                               */}
+          {/* ================================================================= */}
+          <div className="form-view sign-in-form w-full max-w-xs mx-auto">
             <h2 className="font-display text-4xl lg:text-5xl font-black uppercase tracking-tight text-charcoal-ink text-center mb-6">
               Sign in
             </h2>
 
-            <form onSubmit={handleLogin} className="space-y-3.5">
-              {/* Email Pill */}
-              <div className="relative flex items-center rounded-full bg-surface-sand/90 px-4 py-3.5 focus-within:ring-2 focus-within:ring-brand-fire/30 focus-within:bg-surface-sand transition-all">
+            <form onSubmit={handleLogin} className="w-full space-y-3.5">
+              {/* Email Pill Input */}
+              <div className="relative flex items-center rounded-full bg-surface-sand/80 px-4 py-3.5 border border-charcoal-ink/10 focus-within:border-brand-fire/50 focus-within:ring-2 focus-within:ring-brand-fire/20 transition-all">
                 <Mail className="h-4 w-4 text-charcoal-ink/50 ml-1 mr-3 shrink-0" />
                 <input
                   type="email"
@@ -534,8 +612,8 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
                 />
               </div>
 
-              {/* Password Pill */}
-              <div className="relative flex items-center rounded-full bg-surface-sand/90 px-4 py-3.5 focus-within:ring-2 focus-within:ring-brand-fire/30 focus-within:bg-surface-sand transition-all">
+              {/* Password Pill Input */}
+              <div className="relative flex items-center rounded-full bg-surface-sand/80 px-4 py-3.5 border border-charcoal-ink/10 focus-within:border-brand-fire/50 focus-within:ring-2 focus-within:ring-brand-fire/20 transition-all">
                 <Lock className="h-4 w-4 text-charcoal-ink/50 ml-1 mr-3 shrink-0" />
                 <input
                   type={showPassword ? "text" : "password"}
@@ -555,7 +633,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
                 </button>
               </div>
 
-              {/* Feedback */}
+              {/* Feedback Message */}
               {feedback && (
                 <div
                   className={`text-[11px] font-sans font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 ${
@@ -573,7 +651,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
                 </div>
               )}
 
-              {/* Solid Submit Button */}
+              {/* Solid Mojo Scarlet Submit Button */}
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -595,428 +673,204 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
               </button>
             </div>
           </div>
-        </motion.div>
 
-        {/* ======================================================================= */}
-        {/* 3. PANEL DESLIZANTE ROJO MOJO SCARLET (DESPLAZAMIENTO REAL x: 0% -> 100%)*/}
-        {/* ======================================================================= */}
-        <motion.div
-          animate={{
-            x: mode === "signup" ? "100%" : "0%",
-          }}
-          transition={{
-            duration: 0.75,
-            ease: [0.65, 0, 0.35, 1],
-          }}
-          className="absolute top-0 bottom-0 left-0 w-1/2 h-full bg-brand-fire text-cream-bg z-20 overflow-visible"
-        >
-          {/* BORDE DE ONDA JELLY ORGÁNICA VECTORIAL EN EL BORDE CONDUCTOR */}
-          <motion.div
-            animate={{
-              left: mode === "signup" ? -138 : "auto",
-              right: mode === "login" ? -138 : "auto",
-              scaleX: mode === "signup" ? -1 : 1,
-            }}
-            transition={{
-              duration: 0.75,
-              ease: [0.65, 0, 0.35, 1],
-            }}
-            className="absolute top-0 bottom-0 h-full w-[140px] pointer-events-none z-30"
-          >
-            <svg
-              viewBox="0 0 140 600"
-              preserveAspectRatio="none"
-              className="w-full h-full fill-brand-fire block"
-            >
-              <motion.path
-                d={WAVE_PATHS.a}
-                animate={{
-                  d: [WAVE_PATHS.a, WAVE_PATHS.b, WAVE_PATHS.c, WAVE_PATHS.a],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-            </svg>
-          </motion.div>
+          {/* ================================================================= */}
+          {/* FORMULARIO: SIGN UP                                               */}
+          {/* ================================================================= */}
+          <div className="form-view sign-up-form w-full max-w-xs mx-auto">
+            <h2 className="font-display text-4xl lg:text-5xl font-black uppercase tracking-tight text-charcoal-ink text-center mb-6">
+              Sign up
+            </h2>
 
-          {/* STICKERS DE GUARNICIÓN ARTESANAL FLOTANTE SOBRE LA CRESTA DE LA ONDA */}
-          <motion.div
-            animate={{
-              left: mode === "signup" ? -28 : "auto",
-              right: mode === "login" ? -28 : "auto",
-            }}
-            transition={{
-              duration: 0.75,
-              ease: [0.65, 0, 0.35, 1],
-            }}
-            className="absolute top-1/2 -translate-y-1/2 z-40 flex items-center gap-2 pointer-events-auto select-none"
-          >
-            <motion.div
-              animate={{ y: [0, -5, 0], rotate: [-4, 4, -4] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              whileHover={{ scale: 1.25, rotate: 12 }}
-              className="flex h-8 w-8 lg:h-9 lg:w-9 items-center justify-center rounded-full bg-cream-bg border border-charcoal-ink/15 shadow-md shadow-black/10 cursor-pointer"
-              title="100% Cilantro Criollo Fresco"
-            >
-              <span className="text-sm select-none" role="img" aria-label="Cilantro">
-                🌿
-              </span>
-            </motion.div>
+            <form onSubmit={handleRegister} className="w-full space-y-3.5">
+              {/* Username Pill Input */}
+              <div className="relative flex items-center rounded-full bg-surface-sand/80 px-4 py-3.5 border border-charcoal-ink/10 focus-within:border-brand-fire/50 focus-within:ring-2 focus-within:ring-brand-fire/20 transition-all">
+                <User className="h-4 w-4 text-charcoal-ink/50 ml-1 mr-3 shrink-0" />
+                <input
+                  type="text"
+                  placeholder="Username"
+                  value={signupName}
+                  onChange={(e) => setSignupName(e.target.value)}
+                  className="w-full bg-transparent text-xs sm:text-sm font-sans text-charcoal-ink placeholder:text-charcoal-ink/40 outline-none"
+                  required
+                />
+              </div>
 
-            <div className="h-0.5 w-3 bg-charcoal-ink/20" />
+              {/* Email Pill Input */}
+              <div className="relative flex items-center rounded-full bg-surface-sand/80 px-4 py-3.5 border border-charcoal-ink/10 focus-within:border-brand-fire/50 focus-within:ring-2 focus-within:ring-brand-fire/20 transition-all">
+                <Mail className="h-4 w-4 text-charcoal-ink/50 ml-1 mr-3 shrink-0" />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={signupEmail}
+                  onChange={(e) => setSignupEmail(e.target.value)}
+                  className="w-full bg-transparent text-xs sm:text-sm font-sans text-charcoal-ink placeholder:text-charcoal-ink/40 outline-none"
+                  required
+                />
+              </div>
 
-            <motion.div
-              animate={{ y: [0, 5, 0], rotate: [4, -4, 4] }}
-              transition={{ duration: 4.6, repeat: Infinity, ease: "easeInOut" }}
-              whileHover={{ scale: 1.25, rotate: -12 }}
-              className="flex h-8 w-8 lg:h-9 lg:w-9 items-center justify-center rounded-full bg-cream-bg border border-charcoal-ink/15 shadow-md shadow-black/10 cursor-pointer"
-              title="Naranja Agria de Sevilla — Mojo Signature"
-            >
-              <span className="text-sm select-none" role="img" aria-label="Sour Orange">
-                🍊
-              </span>
-            </motion.div>
-          </motion.div>
+              {/* Password Pill Input */}
+              <div className="relative flex items-center rounded-full bg-surface-sand/80 px-4 py-3.5 border border-charcoal-ink/10 focus-within:border-brand-fire/50 focus-within:ring-2 focus-within:ring-brand-fire/20 transition-all">
+                <Lock className="h-4 w-4 text-charcoal-ink/50 ml-1 mr-3 shrink-0" />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={signupPassword}
+                  onChange={(e) => setSignupPassword(e.target.value)}
+                  className="w-full bg-transparent text-xs sm:text-sm font-sans text-charcoal-ink placeholder:text-charcoal-ink/40 outline-none"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? "Ocultar contraseña" : "Ver contraseña"}
+                  className="text-charcoal-ink/50 hover:text-charcoal-ink p-1 cursor-pointer"
+                >
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
 
-          {/* CONTENIDO INTERNO CON PARALLAX Y DESLIZAMIENTO CONTRALATERAL */}
-          <div className="relative w-full h-full overflow-hidden">
-            {/* 1. Panel "New here?" (Visible cuando mode === 'login') */}
-            <motion.div
-              animate={{
-                x: mode === "login" ? "0%" : "-35%",
-                opacity: mode === "login" ? 1 : 0,
-                pointerEvents: mode === "login" ? "auto" : "none",
-              }}
-              transition={{ duration: 0.65, ease: [0.65, 0, 0.35, 1] }}
-              className="absolute inset-0 flex flex-col justify-center items-center px-10 text-center text-cream-bg"
-            >
-              <h3 className="font-display text-4xl lg:text-5xl font-black uppercase tracking-tight text-cream-bg mb-3">
-                New here?
-              </h3>
-              <p className="font-sans text-xs lg:text-sm text-cream-bg/90 leading-relaxed mb-8 max-w-xs">
-                Join us today and discover a world of possibilities. Create your account in seconds and unlock your welcome cafecito cubano!
-              </p>
+              {/* Feedback Message */}
+              {feedback && (
+                <div
+                  className={`text-[11px] font-sans font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 ${
+                    feedback.type === "error"
+                      ? "text-brand-fire bg-brand-fire/10"
+                      : "text-leaf-green bg-leaf-green/10"
+                  }`}
+                >
+                  {feedback.type === "error" ? (
+                    <AlertCircle className="h-3.5 w-3.5 shrink-0" />
+                  ) : (
+                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
+                  )}
+                  <span>{feedback.message}</span>
+                </div>
+              )}
 
+              {/* Solid Mojo Scarlet Submit Button */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full rounded-full bg-brand-fire hover:bg-charcoal-ink text-cream-bg font-sans font-bold text-xs uppercase tracking-wider py-3.5 transition-all shadow-md active:scale-[0.99] cursor-pointer mt-2"
+              >
+                {isSubmitting ? "SIGNING UP..." : "SIGN UP"}
+              </button>
+            </form>
+
+            <SocialButtons label="Or sign up with social platforms" />
+
+            <div className="mt-4 text-center">
               <button
                 type="button"
-                onClick={() => {
-                  setFeedback(null);
-                  setMode("signup");
-                }}
-                className="rounded-full border-2 border-cream-bg text-cream-bg hover:bg-cream-bg hover:text-brand-fire font-sans font-bold text-xs uppercase tracking-wider px-8 py-3 transition-all cursor-pointer shadow-sm hover:scale-105 active:scale-95"
+                onClick={() => fillDemoData("signup")}
+                className="text-[11px] font-sans font-bold text-charcoal-ink/50 hover:text-brand-fire transition-colors underline cursor-pointer"
               >
-                SIGN UP
+                Autocompletar demo
               </button>
-
-              <div className="mt-8 flex items-center gap-2 text-cream-bg/80 text-xs font-sans font-bold uppercase tracking-widest">
-                <Coffee className="h-4 w-4 text-mojo-citrus" />
-                <span>Cafecito Cubano de Bienvenida</span>
-              </div>
-            </motion.div>
-
-            {/* 2. Panel "One of us?" (Visible cuando mode === 'signup') */}
-            <motion.div
-              animate={{
-                x: mode === "signup" ? "0%" : "35%",
-                opacity: mode === "signup" ? 1 : 0,
-                pointerEvents: mode === "signup" ? "auto" : "none",
-              }}
-              transition={{ duration: 0.65, ease: [0.65, 0, 0.35, 1] }}
-              className="absolute inset-0 flex flex-col justify-center items-center px-10 text-center text-cream-bg"
-            >
-              <h3 className="font-display text-4xl lg:text-5xl font-black uppercase tracking-tight text-cream-bg mb-3">
-                One of us?
-              </h3>
-              <p className="font-sans text-xs lg:text-sm text-cream-bg/90 leading-relaxed mb-8 max-w-xs">
-                Welcome back! Sign in to continue your journey with us. Check your Mojo points, unlock secret drops, and redeem your perks.
-              </p>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setFeedback(null);
-                  setMode("login");
-                }}
-                className="rounded-full border-2 border-cream-bg text-cream-bg hover:bg-cream-bg hover:text-brand-fire font-sans font-bold text-xs uppercase tracking-wider px-8 py-3 transition-all cursor-pointer shadow-sm hover:scale-105 active:scale-95"
-              >
-                SIGN IN
-              </button>
-
-              <div className="mt-8 flex items-center gap-2 text-cream-bg/80 text-xs font-sans font-bold uppercase tracking-widest">
-                <Flame className="h-4 w-4 text-mojo-citrus fill-current" />
-                <span>Sabor Criollo Auténtico Miami</span>
-              </div>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* ========================================================================= */}
-      {/* VISTA MÓVIL: STACK FLUIDO CON DESLIZAMIENTO Y ONDA JELLY HORIZONTAL      */}
-      {/* ========================================================================= */}
-      <div className="block md:hidden w-full overflow-hidden">
-        {/* Banner Superior en Rojo Mojo Scarlet */}
-        <div className="bg-brand-fire text-cream-bg px-6 pt-8 pb-4 text-center">
-          <AnimatePresence mode="wait">
-            {mode === "login" ? (
-              <motion.div
-                key="mobile-new-here"
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 8 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-2"
+      {/* 3. Capa de Paneles con Copy Editorial & Botones de Conmutación */}
+      <div className="panels-group">
+        {/* PANEL IZQUIERDO: "New here?" (Visible cuando mode === 'login') */}
+        <div className="panel-box left-panel">
+          <div className="panel-text flex flex-col items-center justify-center max-w-xs mx-auto">
+            {/* Insignias de Guarnición Flotante 🌿 y 🍊 */}
+            <div className="mb-4 flex items-center gap-2 select-none">
+              <div
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-cream-bg border border-charcoal-ink/15 shadow-md shadow-black/10"
+                title="100% Cilantro Criollo Fresco"
               >
-                <h3 className="font-display text-3xl font-black uppercase tracking-tight text-cream-bg">
-                  New here?
-                </h3>
-                <p className="font-sans text-xs text-cream-bg/90 max-w-xs mx-auto">
-                  Join Club Mojo for VIP criollo perks and an instant cafecito cubano.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setFeedback(null);
-                    setMode("signup");
-                  }}
-                  className="mt-2 inline-block rounded-full border-2 border-cream-bg text-cream-bg hover:bg-cream-bg hover:text-brand-fire font-sans font-bold text-xs uppercase tracking-wider px-6 py-2 transition-all cursor-pointer"
-                >
-                  SIGN UP
-                </button>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="mobile-one-of-us"
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 8 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-2"
+                <span className="text-sm select-none" role="img" aria-label="Cilantro">
+                  🌿
+                </span>
+              </div>
+              <div className="h-0.5 w-3 bg-cream-bg/40" />
+              <div
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-cream-bg border border-charcoal-ink/15 shadow-md shadow-black/10"
+                title="Naranja Agria de Sevilla — Mojo Signature"
               >
-                <h3 className="font-display text-3xl font-black uppercase tracking-tight text-cream-bg">
-                  One of us?
-                </h3>
-                <p className="font-sans text-xs text-cream-bg/90 max-w-xs mx-auto">
-                  Sign in to check your Mojo points and redeem your benefits.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setFeedback(null);
-                    setMode("login");
-                  }}
-                  className="mt-2 inline-block rounded-full border-2 border-cream-bg text-cream-bg hover:bg-cream-bg hover:text-brand-fire font-sans font-bold text-xs uppercase tracking-wider px-6 py-2 transition-all cursor-pointer"
-                >
-                  SIGN IN
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* Onda Divisoria Horizontal Orgánica */}
-        <div className="relative w-full overflow-hidden bg-cream-bg select-none pointer-events-none -mt-px">
-          <svg viewBox="0 0 600 80" preserveAspectRatio="none" className="block w-full h-8 sm:h-12">
-            <motion.path
-              d={HORIZONTAL_WAVE_PATHS.a}
-              animate={{
-                d: [
-                  HORIZONTAL_WAVE_PATHS.a,
-                  HORIZONTAL_WAVE_PATHS.b,
-                  HORIZONTAL_WAVE_PATHS.c,
-                  HORIZONTAL_WAVE_PATHS.a,
-                ],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              fill="#E52516"
-            />
-          </svg>
-        </div>
-
-        {/* Formularios Móviles con Deslizamiento Horizontal Fluido */}
-        <div className="relative w-full overflow-hidden bg-cream-bg min-h-[460px]">
-          <motion.div
-            animate={{ x: mode === "login" ? "0%" : "-100%" }}
-            transition={{ duration: 0.55, ease: [0.65, 0, 0.35, 1] }}
-            className="flex w-[200%]"
-          >
-            {/* Formulario 1: Sign in */}
-            <div className="w-1/2 p-6 sm:p-8">
-              <div className="max-w-xs mx-auto">
-                <h2 className="font-display text-3xl font-black uppercase tracking-tight text-charcoal-ink text-center mb-5">
-                  Sign in
-                </h2>
-
-                <form onSubmit={handleLogin} className="space-y-3">
-                  <div className="relative flex items-center rounded-full bg-surface-sand/90 px-4 py-3 focus-within:ring-2 focus-within:ring-brand-fire/30 focus-within:bg-surface-sand transition-all">
-                    <Mail className="h-4 w-4 text-charcoal-ink/50 ml-1 mr-3 shrink-0" />
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      value={loginEmail}
-                      onChange={(e) => setLoginEmail(e.target.value)}
-                      className="w-full bg-transparent text-xs font-sans text-charcoal-ink placeholder:text-charcoal-ink/40 outline-none"
-                      required
-                    />
-                  </div>
-
-                  <div className="relative flex items-center rounded-full bg-surface-sand/90 px-4 py-3 focus-within:ring-2 focus-within:ring-brand-fire/30 focus-within:bg-surface-sand transition-all">
-                    <Lock className="h-4 w-4 text-charcoal-ink/50 ml-1 mr-3 shrink-0" />
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Password"
-                      value={loginPassword}
-                      onChange={(e) => setLoginPassword(e.target.value)}
-                      className="w-full bg-transparent text-xs font-sans text-charcoal-ink placeholder:text-charcoal-ink/40 outline-none"
-                      required
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="text-charcoal-ink/50 hover:text-charcoal-ink p-1 cursor-pointer"
-                    >
-                      {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                    </button>
-                  </div>
-
-                  {feedback && (
-                    <div
-                      className={`text-[11px] font-sans font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 ${
-                        feedback.type === "error"
-                          ? "text-brand-fire bg-brand-fire/10"
-                          : "text-leaf-green bg-leaf-green/10"
-                      }`}
-                    >
-                      {feedback.type === "error" ? (
-                        <AlertCircle className="h-3.5 w-3.5 shrink-0" />
-                      ) : (
-                        <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
-                      )}
-                      <span>{feedback.message}</span>
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full rounded-full bg-brand-fire hover:bg-charcoal-ink text-cream-bg font-sans font-bold text-xs uppercase tracking-wider py-3.5 transition-all shadow-md active:scale-[0.99] cursor-pointer mt-2"
-                  >
-                    {isSubmitting ? "LOGGING IN..." : "LOGIN"}
-                  </button>
-                </form>
-
-                <SocialButtons label="Or sign in with social platforms" />
-
-                <div className="mt-3 text-center">
-                  <button
-                    type="button"
-                    onClick={() => fillDemoData("login")}
-                    className="text-[11px] font-sans font-bold text-charcoal-ink/50 hover:text-brand-fire transition-colors underline cursor-pointer"
-                  >
-                    Autocompletar demo
-                  </button>
-                </div>
+                <span className="text-sm select-none" role="img" aria-label="Sour Orange">
+                  🍊
+                </span>
               </div>
             </div>
 
-            {/* Formulario 2: Sign up */}
-            <div className="w-1/2 p-6 sm:p-8">
-              <div className="max-w-xs mx-auto">
-                <h2 className="font-display text-3xl font-black uppercase tracking-tight text-charcoal-ink text-center mb-5">
-                  Sign up
-                </h2>
+            <h3 className="font-display text-4xl lg:text-5xl font-black uppercase tracking-tight text-cream-bg mb-3">
+              New here?
+            </h3>
+            <p className="font-sans text-xs lg:text-sm text-cream-bg/90 leading-relaxed mb-8">
+              Join us today and discover a world of possibilities. Create your account in seconds!
+            </p>
 
-                <form onSubmit={handleRegister} className="space-y-3">
-                  <div className="relative flex items-center rounded-full bg-surface-sand/90 px-4 py-3 focus-within:ring-2 focus-within:ring-brand-fire/30 focus-within:bg-surface-sand transition-all">
-                    <User className="h-4 w-4 text-charcoal-ink/50 ml-1 mr-3 shrink-0" />
-                    <input
-                      type="text"
-                      placeholder="Username"
-                      value={signupName}
-                      onChange={(e) => setSignupName(e.target.value)}
-                      className="w-full bg-transparent text-xs font-sans text-charcoal-ink placeholder:text-charcoal-ink/40 outline-none"
-                      required
-                    />
-                  </div>
+            <button
+              type="button"
+              onClick={() => {
+                setFeedback(null);
+                setMode("signup");
+              }}
+              className="rounded-full border-2 border-cream-bg text-cream-bg hover:bg-cream-bg hover:text-brand-fire font-sans font-bold text-xs uppercase tracking-wider px-8 py-3 transition-all cursor-pointer shadow-sm hover:scale-105 active:scale-95"
+            >
+              SIGN UP
+            </button>
 
-                  <div className="relative flex items-center rounded-full bg-surface-sand/90 px-4 py-3 focus-within:ring-2 focus-within:ring-brand-fire/30 focus-within:bg-surface-sand transition-all">
-                    <Mail className="h-4 w-4 text-charcoal-ink/50 ml-1 mr-3 shrink-0" />
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      value={signupEmail}
-                      onChange={(e) => setSignupEmail(e.target.value)}
-                      className="w-full bg-transparent text-xs font-sans text-charcoal-ink placeholder:text-charcoal-ink/40 outline-none"
-                      required
-                    />
-                  </div>
+            <div className="mt-8 flex items-center gap-2 text-cream-bg/80 text-[11px] font-sans font-bold uppercase tracking-widest">
+              <Coffee className="h-4 w-4 text-mojo-citrus" />
+              <span>Cafecito Cubano de Bienvenida</span>
+            </div>
+          </div>
+        </div>
 
-                  <div className="relative flex items-center rounded-full bg-surface-sand/90 px-4 py-3 focus-within:ring-2 focus-within:ring-brand-fire/30 focus-within:bg-surface-sand transition-all">
-                    <Lock className="h-4 w-4 text-charcoal-ink/50 ml-1 mr-3 shrink-0" />
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Password"
-                      value={signupPassword}
-                      onChange={(e) => setSignupPassword(e.target.value)}
-                      className="w-full bg-transparent text-xs font-sans text-charcoal-ink placeholder:text-charcoal-ink/40 outline-none"
-                      required
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="text-charcoal-ink/50 hover:text-charcoal-ink p-1 cursor-pointer"
-                    >
-                      {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                    </button>
-                  </div>
-
-                  {feedback && (
-                    <div
-                      className={`text-[11px] font-sans font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 ${
-                        feedback.type === "error"
-                          ? "text-brand-fire bg-brand-fire/10"
-                          : "text-leaf-green bg-leaf-green/10"
-                      }`}
-                    >
-                      {feedback.type === "error" ? (
-                        <AlertCircle className="h-3.5 w-3.5 shrink-0" />
-                      ) : (
-                        <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
-                      )}
-                      <span>{feedback.message}</span>
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full rounded-full bg-brand-fire hover:bg-charcoal-ink text-cream-bg font-sans font-bold text-xs uppercase tracking-wider py-3.5 transition-all shadow-md active:scale-[0.99] cursor-pointer mt-2"
-                  >
-                    {isSubmitting ? "SIGNING UP..." : "SIGN UP"}
-                  </button>
-                </form>
-
-                <SocialButtons label="Or sign up with social platforms" />
-
-                <div className="mt-3 text-center">
-                  <button
-                    type="button"
-                    onClick={() => fillDemoData("signup")}
-                    className="text-[11px] font-sans font-bold text-charcoal-ink/50 hover:text-brand-fire transition-colors underline cursor-pointer"
-                  >
-                    Autocompletar demo
-                  </button>
-                </div>
+        {/* PANEL DERECHO: "One of us?" (Visible cuando mode === 'signup') */}
+        <div className="panel-box right-panel">
+          <div className="panel-text flex flex-col items-center justify-center max-w-xs mx-auto">
+            {/* Insignias de Guarnición Flotante 🌿 y 🍊 */}
+            <div className="mb-4 flex items-center gap-2 select-none">
+              <div
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-cream-bg border border-charcoal-ink/15 shadow-md shadow-black/10"
+                title="100% Cilantro Criollo Fresco"
+              >
+                <span className="text-sm select-none" role="img" aria-label="Cilantro">
+                  🌿
+                </span>
+              </div>
+              <div className="h-0.5 w-3 bg-cream-bg/40" />
+              <div
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-cream-bg border border-charcoal-ink/15 shadow-md shadow-black/10"
+                title="Naranja Agria de Sevilla — Mojo Signature"
+              >
+                <span className="text-sm select-none" role="img" aria-label="Sour Orange">
+                  🍊
+                </span>
               </div>
             </div>
-          </motion.div>
+
+            <h3 className="font-display text-4xl lg:text-5xl font-black uppercase tracking-tight text-cream-bg mb-3">
+              One of us?
+            </h3>
+            <p className="font-sans text-xs lg:text-sm text-cream-bg/90 leading-relaxed mb-8">
+              Welcome back! Sign in to continue your journey with us.
+            </p>
+
+            <button
+              type="button"
+              onClick={() => {
+                setFeedback(null);
+                setMode("login");
+              }}
+              className="rounded-full border-2 border-cream-bg text-cream-bg hover:bg-cream-bg hover:text-brand-fire font-sans font-bold text-xs uppercase tracking-wider px-8 py-3 transition-all cursor-pointer shadow-sm hover:scale-105 active:scale-95"
+            >
+              SIGN IN
+            </button>
+
+            <div className="mt-8 flex items-center gap-2 text-cream-bg/80 text-[11px] font-sans font-bold uppercase tracking-widest">
+              <Flame className="h-4 w-4 text-mojo-citrus fill-current" />
+              <span>Sabor Criollo Auténtico Miami</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
