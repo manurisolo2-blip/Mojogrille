@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mojo-grille-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "./mojo-grille-demo", "run", "dev"],
+      "port": 8080
+    }
+  ]
+}
