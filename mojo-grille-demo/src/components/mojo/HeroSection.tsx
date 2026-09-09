@@ -8,7 +8,6 @@ export interface HeroSectionProps {
   menuAnchorId?: string;
   cateringHref?: string;
   imageUrl?: string;
-  bgImageUrl?: string;
   /**
    * Triggers the cinematic entrance animation for Hero headline and CTAs.
    */
@@ -20,7 +19,6 @@ export function HeroSection({
   menuAnchorId = "menu",
   cateringHref = "#catering",
   imageUrl,
-  bgImageUrl = "/hero-bowls-bg.png",
   shouldAnimateIn = true,
 }: HeroSectionProps) {
   const [animReady, setAnimReady] = useState(false);
@@ -58,19 +56,6 @@ export function HeroSection({
       aria-label="Welcome to Mojo Grille Cuban Kitchen"
       className="relative overflow-hidden bg-transparent border-b border-charcoal-ink/10 select-none"
     >
-      {/* 1. Fotografía de Fondo Criollo Bowls con Alta Visibilidad */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-        <img
-          src={bgImageUrl}
-          alt="The Authentic Criollo Flavor of Miami, Marinado to Perfection - Artisanal Mojo bowls feast"
-          className="h-full w-full object-cover object-center opacity-85 sm:opacity-90"
-        />
-        {/* Velo ligero translúcido para armonizar con el fondo Criollo Cream sin tapar los bowls */}
-        <div className="absolute inset-0 bg-cream-bg/25" />
-        {/* Suave degradado inferior para conectar con el scroll */}
-        <div className="absolute inset-0 bg-gradient-to-b from-cream-bg/20 via-transparent to-cream-bg/85" />
-      </div>
-
       {/* Elementos accesibles y SEO para lectores de pantalla e invariantes de QA */}
       <div
         role="status"
@@ -80,8 +65,8 @@ export function HeroSection({
         4.7 Stars across +3,000 orders in Miami. The Authentic Criollo Flavor of Miami, Marinado to Perfection.
       </div>
 
-      {/* 2. Bloque Principal Hero */}
-      <div className={`relative z-10 pt-16 pb-20 md:pt-24 md:pb-28 ${animContainerClass}`}>
+      {/* Bloque Principal Hero */}
+      <div className={`relative pt-12 pb-16 md:pt-20 md:pb-24 ${animContainerClass}`}>
         <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
           
           {/* Encabezado Monumental Centrado */}
@@ -91,8 +76,8 @@ export function HeroSection({
               <HoverHighlightText
                 as="h1"
                 text="HOT CAST IRON CRUSHED GARLIC SLOW ROASTED PERNIL"
-                baseClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[9.2vw] font-black uppercase tracking-tight text-charcoal-ink leading-[0.84] text-center drop-shadow-[0_2px_12px_rgba(242,236,225,0.9)]"
-                highlightClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[9.2vw] font-black uppercase tracking-tight text-brand-fire leading-[0.84] text-center drop-shadow-[0_2px_16px_rgba(242,236,225,0.9)]"
+                baseClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[9.2vw] font-black uppercase tracking-tight text-charcoal-ink/35 leading-[0.84] text-center"
+                highlightClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[9.2vw] font-black uppercase tracking-tight text-brand-fire leading-[0.84] text-center"
                 strokeColor="#E52516"
                 strokeWidth={1.5}
                 spotlightRadius={220}
@@ -101,8 +86,8 @@ export function HeroSection({
               />
             </div>
 
-            {/* Subtítulo Narrativo Visceral Editorial Amplio con Placa Translúcida */}
-            <p className={`mt-4 max-w-4xl font-sans text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-charcoal-ink font-semibold text-center ${animItemClass} bg-cream-bg/80 backdrop-blur-xs px-6 py-3 border border-charcoal-ink/10 shadow-sm`}>
+            {/* Subtítulo Narrativo Visceral Editorial Amplio */}
+            <p className={`mt-4 max-w-4xl font-sans text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-charcoal-ink/90 text-center font-normal ${animItemClass}`}>
               No corporate bowls. We cook generational family recipes of slow-roasted pork marinated for 4 hours in Seville sour orange, pressed{" "}
               <span className="font-bold text-brand-fire">al momento</span> in the heart of Brownsville.
             </p>
@@ -112,7 +97,7 @@ export function HeroSection({
               <MagneticButton
                 href={`#${menuAnchorId}`}
                 onClick={handleScrollToMenu}
-                className="group relative inline-flex items-center justify-center gap-3 rounded-none bg-brand-fire px-9 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none shadow-xl"
+                className="group relative inline-flex items-center justify-center gap-3 rounded-none bg-brand-fire px-9 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none shadow-lg"
               >
                 <UtensilsCrossed className="h-4 w-4 transition-transform group-hover:rotate-12" aria-hidden="true" />
                 <span>ORDER HOT</span>
@@ -123,7 +108,7 @@ export function HeroSection({
 
               <a
                 href={cateringHref}
-                className="inline-flex items-center justify-center gap-2.5 rounded-none bg-surface-sand/90 backdrop-blur-xs px-7 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors select-none shadow-md border border-charcoal-ink/10"
+                className="inline-flex items-center justify-center gap-2.5 rounded-none bg-surface-sand px-7 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors select-none shadow-sm"
               >
                 <CalendarHeart className="h-4 w-4 text-leaf-green" aria-hidden="true" />
                 <span>Catering &amp; Events</span>
