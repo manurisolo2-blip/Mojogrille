@@ -30,9 +30,18 @@ const DOWN_PATHS = {
 
 /**
  * Alto de la banda de sangrado, en px. Debe superar con holgura el
- * desplazamiento máximo del wrapper (±32px) en cualquier breakpoint.
+ * desplazamiento vertical máximo del wrapper (±32px) en cualquier breakpoint.
  */
 const BLEED_PX = 240;
+
+/**
+ * Sobreancho del wrapper animado a cada lado, en px. El wrapper también se
+ * desplaza en horizontal (±20px), así que tanto el SVG como la banda deben
+ * sobresalir del contenedor más que ese recorrido; si midieran justo el 100%,
+ * el desplazamiento destaparía el fondo del contenedor por un costado. El
+ * `overflow-hidden` del contenedor recorta el sobrante.
+ */
+const BLEED_X_PX = 64;
 
 const UP_PATHS = {
   a: "M 1544 224 L -8 224 L -8 85 C 250 165, 450 40, 768 100 C 1080 160, 1320 50, 1544 120 Z",
@@ -110,17 +119,13 @@ export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
     >
       {/* Contenedor animado al scroll con física de subida/bajada y oleaje elástico */}
       <motion.div
-        style={
-          reducedMotion
-            ? { transformOrigin: isDown ? "top center" : "bottom center" }
-            : {
-                y,
-                scaleY,
-                x,
-                transformOrigin: isDown ? "top center" : "bottom center",
-              }
-        }
-        className="relative w-full h-full will-change-transform"
+        style={{
+          width: `calc(100% + ${BLEED_X_PX * 2}px)`,
+          marginLeft: -BLEED_X_PX,
+          transformOrigin: isDown ? "top center" : "bottom center",
+          ...(reducedMotion ? {} : { y, scaleY, x }),
+        }}
+        className="relative h-full will-change-transform"
       >
         {/*
           Banda de sangrado: vive DENTRO del wrapper animado, así se traslada
