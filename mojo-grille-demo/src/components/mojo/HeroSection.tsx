@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { UtensilsCrossed, CalendarHeart, Star } from "lucide-react";
 import { MagneticButton } from "./MagneticButton";
 import { HoverHighlightText } from "@/components/ui/hover-highlight-text";
@@ -21,6 +23,8 @@ export function HeroSection({
   cateringHref = "#catering",
   shouldAnimateIn = true,
 }: HeroSectionProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const [animReady, setAnimReady] = useState(false);
   const reducedMotion = useReducedMotion();
 
@@ -37,6 +41,29 @@ export function HeroSection({
     const timer = setTimeout(() => setAnimReady(true), 150);
     return () => clearTimeout(timer);
   }, [shouldAnimateIn, reducedMotion]);
+
+  // Desvanecimiento suave del texto del hero a medida que la parte de abajo sube
+  useEffect(() => {
+    if (reducedMotion || !sectionRef.current || !contentRef.current) return undefined;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      gsap.to(contentRef.current, {
+        opacity: 0,
+        y: -40,
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [reducedMotion]);
 
   const handleScrollToMenu = (e: React.MouseEvent<HTMLElement>) => {
     const target = document.getElementById(menuAnchorId);
@@ -67,9 +94,10 @@ export function HeroSection({
 
   return (
     <section
+      ref={sectionRef}
       id="top"
       aria-label="Welcome to Mojo Grille Cuban Kitchen"
-      className="relative overflow-hidden bg-transparent border-b border-charcoal-ink/10 select-none"
+      className="relative z-10 min-h-[calc(100vh-68px)] md:min-h-screen flex flex-col justify-center bg-transparent select-none"
     >
       {/* Descriptor editorial para lectores de pantalla y buscadores */}
       <p className="sr-only">
@@ -77,23 +105,19 @@ export function HeroSection({
       </p>
 
       {/*
-        Fondo en movimiento: bucle ambiental de una cocina bajo un velo crema.
-        Es decoración, no contenido, así que va oculto a lectores de pantalla y
-        el mensaje sigue viviendo en el titular. La foto de antes pasa a póster:
-        se ve mientras carga el vídeo y es el respaldo permanente cuando hay
-        prefers-reduced-motion, ahorro de datos o el vídeo falla. La opacidad la
-        fija el componente en 0.2, que es lo que sostiene el 5.7:1 del titular.
+        Fondo de vídeo estático fijo al viewport: no se desplaza con el scroll.
       */}
       <HeroVideoBackground
-        // Metraje: Pexels 8626681 "A smoky hot pan", 1280x720, 23 s.
-        // Licencia Pexels: uso comercial libre, sin atribución obligatoria.
         videoSrc="/assets/hero-kitchen-loop.mp4"
         posterSrc="/assets/mojo-bowl-ropa-vieja.jpg"
         opacity={0.45}
       />
 
-      {/* Bloque Principal Hero */}
-      <div className={`relative z-10 pt-12 pb-16 md:pt-20 md:pb-24 ${animContainerClass}`}>
+      {/* Bloque Principal Hero con desvanecimiento al scrollear */}
+      <div
+        ref={contentRef}
+        className={`relative z-10 py-12 md:py-20 will-change-transform ${animContainerClass}`}
+      >
         <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
           
           {/* Encabezado Monumental Centrado */}

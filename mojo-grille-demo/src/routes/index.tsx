@@ -139,70 +139,73 @@ function IndexContent() {
             shouldAnimateIn={isLoaded}
           />
 
-          {/* Fase 5: El Elemento Estrella: Deconstrucción en Scroll (CubanDeconstruction) */}
-          <CubanDeconstruction />
+          {/* La parte de abajo: sube cubriendo el video estático como una cortina editorial */}
+          <div className="relative z-20 bg-cream-bg shadow-[0_-24px_50px_rgba(20,18,16,0.10)] border-t border-charcoal-ink/10">
+            {/* Fase 5: El Elemento Estrella: Deconstrucción en Scroll (CubanDeconstruction) */}
+            <CubanDeconstruction />
 
-          {/* Transición 1: Onda Orgánica Jelly (Criollo Cream -> Mojo Scarlet) con stickers de guarnición */}
-          <JellyWaveTransition
-            topColor="#F2ECE1"
-            bottomColor="#E52516"
-            direction="down"
-            showGarnish
-          />
+            {/* Transición 1: Onda Orgánica Jelly (Criollo Cream -> Mojo Scarlet) con stickers de guarnición */}
+            <JellyWaveTransition
+              topColor="#F2ECE1"
+              bottomColor="#E52516"
+              direction="down"
+              showGarnish
+            />
 
-          {/* Selección de la Plancha: 6 Platos Estelares Curados (Mojo Scarlet Live-Fire Section) */}
-          <CuratedMenu />
+            {/* Selección de la Plancha: 6 Platos Estelares Curados (Mojo Scarlet Live-Fire Section) */}
+            <CuratedMenu />
 
-          {/* Transición 2: Onda Orgánica Jelly (Mojo Scarlet -> Criollo Cream) */}
-          <JellyWaveTransition
-            topColor="#E52516"
-            bottomColor="#F2ECE1"
-            direction="up"
-          />
+            {/* Transición 2: Onda Orgánica Jelly (Mojo Scarlet -> Criollo Cream) */}
+            <JellyWaveTransition
+              topColor="#E52516"
+              bottomColor="#F2ECE1"
+              direction="up"
+            />
 
-          <section id="menu" className="scroll-mt-32">
-            <CravStyleMenuGrid onSelect={setSelected} />
-          </section>
+            <section id="menu" className="scroll-mt-32">
+              <CravStyleMenuGrid onSelect={setSelected} />
+            </section>
 
-          {/* Reseñas Verificadas de Google Maps */}
-          <GoogleReviewsSection />
+            {/* Reseñas Verificadas de Google Maps */}
+            <GoogleReviewsSection />
 
-          <section
-            id="catering"
-            className="bg-transparent px-4 py-16 sm:px-6 lg:px-8"
-          >
-            <div className="mx-auto max-w-4xl text-center">
-              <h2 className="font-display text-4xl sm:text-6xl font-black tracking-tight uppercase text-charcoal-ink leading-none">
-                Authentic Criollo Catering for your next celebration
-              </h2>
-              <p className="mx-auto mt-3 max-w-2xl font-sans text-sm text-charcoal-ink/80 sm:text-base leading-relaxed">
-                Family-style bandejas, live pressed Cubano stations, and hot cafecito for
-                corporate offices, weddings, and quinces. Booked with 48h notice.
-              </p>
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <a
-                  href="tel:+13055550123"
-                  className="inline-flex items-center gap-2.5 rounded-none bg-brand-fire px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
-                >
-                  <Phone className="h-4 w-4" />
-                  <span>Talk to Catering Team: (305) 555-0123</span>
-                </a>
+            <section
+              id="catering"
+              className="bg-transparent px-4 py-16 sm:px-6 lg:px-8"
+            >
+              <div className="mx-auto max-w-4xl text-center">
+                <h2 className="font-display text-4xl sm:text-6xl font-black tracking-tight uppercase text-charcoal-ink leading-none">
+                  Authentic Criollo Catering for your next celebration
+                </h2>
+                <p className="mx-auto mt-3 max-w-2xl font-sans text-sm text-charcoal-ink/80 sm:text-base leading-relaxed">
+                  Family-style bandejas, live pressed Cubano stations, and hot cafecito for
+                  corporate offices, weddings, and quinces. Booked with 48h notice.
+                </p>
+                <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  <a
+                    href="tel:+13055550123"
+                    className="inline-flex items-center gap-2.5 rounded-none bg-brand-fire px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
+                  >
+                    <Phone className="h-4 w-4" />
+                    <span>Talk to Catering Team: (305) 555-0123</span>
+                  </a>
+                </div>
+                <p className="mt-4 font-sans text-xs font-semibold text-charcoal-ink/70 uppercase tracking-wider">
+                  Serving Little Havana, Brickell, Doral &amp; greater Miami-Dade, instant quotes al momento
+                </p>
               </div>
-              <p className="mt-4 font-sans text-xs font-semibold text-charcoal-ink/70 uppercase tracking-wider">
-                Serving Little Havana, Brickell, Doral &amp; greater Miami-Dade, instant quotes al momento
-              </p>
-            </div>
-          </section>
+            </section>
 
-          {/* Transición hacia el Footer Rojo Mojo Scarlet */}
-          <JellyWaveTransition
-            topColor="#F2ECE1"
-            bottomColor="#E52516"
-            direction="down"
-          />
+            {/* Transición hacia el Footer Rojo Mojo Scarlet */}
+            <JellyWaveTransition
+              topColor="#F2ECE1"
+              bottomColor="#E52516"
+              direction="down"
+            />
 
-          {/* Editorial Footer de Alto Impacto */}
-          <EditorialFooter onOpenCart={openCart} />
+            {/* Editorial Footer de Alto Impacto */}
+            <EditorialFooter onOpenCart={openCart} />
+          </div>
         </main>
 
         <QuickOrderModal item={selected} onClose={() => setSelected(null)} />
