@@ -89,6 +89,7 @@ export function HeroSection({
         // Licencia Pexels: uso comercial libre, sin atribución obligatoria.
         videoSrc="/assets/hero-kitchen-loop.mp4"
         posterSrc="/assets/mojo-bowl-ropa-vieja.jpg"
+        opacity={0.45}
       />
 
       {/* Bloque Principal Hero */}
@@ -98,15 +99,12 @@ export function HeroSection({
           {/* Encabezado Monumental Centrado */}
           <div className="flex flex-col items-center text-center space-y-6 max-w-7xl mx-auto">
             {/*
-              Prueba social. Estaba escrita pero oculta en un sr-only: la señal
-              de confianza más fuerte del sitio no la veía nadie. Ahora abre el
-              hero y de paso orienta antes del titular, que es sensorial y no
-              dice qué es el local.
+              Prueba social con contenedor translúcido/glass sutil
             */}
             <div
               role="status"
               aria-label="Average customer rating in Miami"
-              className={`inline-flex items-center gap-2.5 border border-charcoal-ink/15 bg-surface-sand px-4 py-2 ${animItemClass}`}
+              className={`inline-flex items-center gap-2.5 border border-charcoal-ink/10 bg-cream-bg/25 backdrop-blur-md px-4 py-2 ${animItemClass}`}
             >
               <Star
                 className="h-4 w-4 shrink-0 fill-mojo-citrus text-mojo-citrus"
@@ -122,7 +120,7 @@ export function HeroSection({
               <HoverHighlightText
                 as="h1"
                 text="HOT CAST IRON CRUSHED GARLIC SLOW ROASTED PERNIL"
-                baseClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(4rem,9.2vw,9.5rem)] font-black uppercase tracking-tight text-charcoal-ink/70 leading-[0.84] text-center"
+                baseClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(4rem,9.2vw,9.5rem)] font-black uppercase tracking-tight text-charcoal-ink/80 leading-[0.84] text-center drop-shadow-[0_1px_2px_rgba(242,236,225,0.7)]"
                 highlightClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(4rem,9.2vw,9.5rem)] font-black uppercase tracking-tight text-brand-fire leading-[0.84] text-center"
                 strokeColor="#E52516"
                 strokeWidth={1.5}
@@ -133,7 +131,7 @@ export function HeroSection({
             </div>
 
             {/* Subtítulo Narrativo Visceral Editorial Amplio */}
-            <p className={`max-w-4xl text-balance font-sans text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-charcoal-ink/90 text-center font-normal ${animItemClass}`}>
+            <p className={`max-w-4xl text-balance font-sans text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-charcoal-ink/90 text-center font-normal drop-shadow-[0_1px_1px_rgba(242,236,225,0.6)] ${animItemClass}`}>
               No corporate bowls. We cook generational family recipes of slow-roasted pork marinated for 4 hours in Seville sour orange, pressed{" "}
               <span className="font-bold text-brand-fire">al momento</span> in the heart of Brownsville.
             </p>
@@ -154,7 +152,7 @@ export function HeroSection({
 
               <a
                 href={cateringHref}
-                className="inline-flex items-center justify-center gap-2.5 rounded-none bg-surface-sand px-7 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors select-none"
+                className="inline-flex items-center justify-center gap-2.5 rounded-none border border-charcoal-ink/15 bg-cream-bg/30 backdrop-blur-md px-7 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-charcoal-ink hover:bg-cream-bg/60 transition-colors select-none"
               >
                 <CalendarHeart className="h-4 w-4 text-leaf-green" aria-hidden="true" />
                 <span>Catering &amp; Events</span>

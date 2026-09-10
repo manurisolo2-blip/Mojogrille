@@ -33,9 +33,8 @@ export interface HeroVideoBackgroundProps {
   /** Fotograma de respaldo. Se pinta siempre primero y es el fallback definitivo. */
   posterSrc: string;
   /**
-   * Opacidad de la imagen bajo el velo crema. El 0.2 heredado de la foto es lo
-   * que mantiene el titular en 5.7:1 contra el peor píxel posible, por encima
-   * del 4.5:1 que pide AA. Subirlo obliga a rehacer esa cuenta.
+   * Opacidad de la imagen bajo el velo crema. Se ajusta a 0.45 para dar
+   * transparencia y permitir apreciar el vídeo y textura de fondo con claridad.
    */
   opacity?: number;
 }
@@ -50,7 +49,7 @@ export interface HeroVideoBackgroundProps {
 export function HeroVideoBackground({
   videoSrc,
   posterSrc,
-  opacity = 0.2,
+  opacity = 0.45,
 }: HeroVideoBackgroundProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
@@ -227,9 +226,9 @@ export function HeroVideoBackground({
         ) : null}
       </div>
 
-      {/* Velo crema en degradado: calma el centro donde vive el texto y cierra
-          en crema opaco para fundir con la sección siguiente sin corte duro. */}
-      <div className="absolute inset-0 bg-gradient-to-b from-cream-bg/50 via-cream-bg/45 to-cream-bg" />
+      {/* Velo crema en degradado sutil y muy transparente para que el
+          vídeo y textura de fondo se aprecien con gran claridad. */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cream-bg/15 to-cream-bg/35" />
 
       {/* Segundo velo, conducido por el scroll. Empieza invisible. */}
       <div ref={veilRef} className="absolute inset-0 bg-cream-bg opacity-0" />

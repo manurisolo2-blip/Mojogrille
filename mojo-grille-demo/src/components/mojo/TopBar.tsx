@@ -85,9 +85,9 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
         initial={false}
         animate={{ y: isVisible ? "0%" : "-100%" }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="sticky top-0 z-40 bg-cream-bg transition-colors duration-200 shadow-none will-change-transform"
+        className="sticky top-0 z-40 bg-[#F2ECE1]/55 backdrop-blur-xl backdrop-saturate-150 border-b border-white/40 shadow-[0_8px_32px_0_rgba(20,18,16,0.05),inset_0_1px_1px_0_rgba(255,255,255,0.7)] transition-all duration-200 will-change-transform"
       >
-        <div className="bg-cream-bg">
+        <div className="w-full">
           <nav className="w-full flex items-center justify-between gap-4 px-4 sm:px-6 md:px-8 lg:px-12 py-3.5">
             {/* Extremo Izquierdo: Titular Monumental MOJO GRILLE */}
             <a
@@ -100,37 +100,37 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
               </span>
             </a>
 
-            {/* Extremo Derecho: Botones de Cuenta, Menú y Bolsa de Compra (Incorporados al fondo) */}
-            <div className="flex shrink-0 items-center gap-3 sm:gap-4">
-              {/* Opción de Cuenta / Club Mojo: Incorporado al fondo de la cabecera */}
+            {/* Extremo Derecho: Botones de Cuenta, Menú y Bolsa de Compra (Liquid Glass) */}
+            <div className="flex shrink-0 items-center gap-2.5 sm:gap-3.5">
+              {/* Opción de Cuenta / Club Mojo: Píldora Liquid Glass */}
               <button
                 type="button"
                 onClick={() => setAccountModalOpen(true)}
                 aria-label="Abrir apartado de creación de cuenta y Club Mojo"
-                className="flex items-center gap-1.5 bg-transparent px-2 sm:px-2.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink transition-colors hover:text-brand-fire hover:bg-charcoal-ink/5 cursor-pointer select-none"
+                className="flex items-center gap-1.5 rounded-full bg-white/25 hover:bg-white/50 backdrop-blur-md border border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)] px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-all cursor-pointer select-none"
               >
                 <User className="h-4 w-4 stroke-[2.2]" />
                 <span className="hidden sm:inline">CUENTA</span>
               </button>
 
-              {/* Opción de Menú: Incorporado al fondo de la cabecera */}
+              {/* Opción de Menú: Píldora Liquid Glass */}
               <button
                 type="button"
                 onClick={() => setMenuDrawerOpen(true)}
                 aria-label="Abrir menú de navegación y sedes"
                 aria-expanded={menuDrawerOpen}
-                className="flex items-center gap-1.5 bg-transparent px-2 sm:px-2.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink transition-colors hover:text-brand-fire hover:bg-charcoal-ink/5 cursor-pointer select-none"
+                className="flex items-center gap-1.5 rounded-full bg-white/25 hover:bg-white/50 backdrop-blur-md border border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)] px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-all cursor-pointer select-none"
               >
                 <Menu className="h-4 w-4 stroke-[2.2]" />
                 <span className="hidden sm:inline">MENÚ</span>
               </button>
 
-              {/* Bolsa de Compra: Círculo Rojo con Bolsa de Supermercado Latinoamericano */}
+              {/* Bolsa de Compra: Círculo Rojo con Anillo y Sombra Liquid Glass */}
               <button
                 type="button"
                 onClick={onOpenCart}
                 aria-label="View shopping bag"
-                className="relative grid h-10 w-10 sm:h-11 sm:w-11 place-items-center rounded-full bg-brand-fire text-cream-bg shadow-none transition-all hover:bg-charcoal-ink active:scale-95 cursor-pointer select-none"
+                className="relative grid h-10 w-10 sm:h-11 sm:w-11 place-items-center rounded-full bg-brand-fire text-cream-bg ring-2 ring-white/60 shadow-lg transition-all hover:bg-charcoal-ink hover:ring-white/80 active:scale-95 cursor-pointer select-none"
               >
                 <LatinMarketBagIcon className="h-5 w-5 stroke-[2] text-cream-bg" />
                 {count > 0 && (
