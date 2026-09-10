@@ -94,7 +94,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Cuban food Miami, Cuban restaurant Little Havana, lechón asado, Cuban bowls, cubano sandwich, ropa vieja, catering Miami, cafecito cubano, mojo criollo, Brickell Cuban food, Doral takeout",
       },
-      { name: "theme-color", content: "#D95327" },
+      { name: "theme-color", content: "#C41B0E" },
       { name: "author", content: "Mojo Grille Cuban Kitchen" },
 
       // OpenGraph Metadata
