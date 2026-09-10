@@ -8,25 +8,42 @@ interface IngredientCalloutProps {
   name: string;
   detail: string;
   side?: "left" | "right";
+  /**
+   * Anclaje horizontal a medida, en clases de Tailwind.
+   *
+   * El anclaje por defecto está calculado sobre el borde de la caja de la
+   * imagen, que es igual para las cinco capas. Pero cada webp ocupa un ancho
+   * distinto dentro de esa caja: los pepinillos son una tira estrecha que no
+   * llega al borde, así que con el anclaje común su ficha quedaba a 180px del
+   * ingrediente mientras las demás rondaban los 40. Esta prop existe para
+   * corregir esa capa sin desalinear el resto.
+   */
+  anchorClassName?: string;
 }
 
-function IngredientCallout({ name, detail, side = "right" }: IngredientCalloutProps) {
+/** Anclaje por defecto: pega la ficha al borde de la caja de la imagen. */
+const ANCHOR_RIGHT = "left-[68%] sm:left-[73%] md:left-[86%] lg:left-[83%] xl:left-[80%]";
+const ANCHOR_LEFT = "right-[68%] sm:right-[73%] md:right-[86%] lg:right-[83%] xl:right-[80%]";
+
+function IngredientCallout({
+  name,
+  detail,
+  side = "right",
+  anchorClassName,
+}: IngredientCalloutProps) {
   const isLeft = side === "left";
+  const anchor = anchorClassName ?? (isLeft ? ANCHOR_LEFT : ANCHOR_RIGHT);
 
   return (
     <div
       className={`ingredient-callout ${
         isLeft ? "ingredient-callout-left" : "ingredient-callout-right"
-      } absolute ${
-        isLeft
-          ? "left-2 sm:left-5 md:left-auto md:right-[88%] lg:right-[90%] xl:right-[92%]"
-          : "right-2 sm:right-5 md:right-auto md:left-[88%] lg:left-[90%] xl:left-[92%]"
-      } top-1/2 -translate-y-1/2 flex items-center gap-1.5 sm:gap-2.5 md:gap-3 pointer-events-auto select-none opacity-0 will-change-transform z-30`}
+      } absolute ${anchor} top-1/2 -translate-y-1/2 flex items-center gap-1 sm:gap-1.5 pointer-events-auto select-none opacity-0 will-change-transform z-30`}
     >
       {isLeft ? (
         <>
           {/* Ficha Tipográfica Izquierda (Alineada a la derecha) */}
-          <div className="flex flex-col text-right items-end max-w-[110px] sm:max-w-[155px] md:max-w-none pr-0.5 sm:pr-1">
+          <div className="flex flex-col text-right items-end max-w-[110px] sm:max-w-[155px] md:max-w-[200px] lg:max-w-[240px]">
             <span className="font-display text-xs sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
               {name}
             </span>
@@ -38,7 +55,7 @@ function IngredientCallout({ name, detail, side = "right" }: IngredientCalloutPr
           {/* Flecha y Conector Izquierdo apuntando al sándwich (derecha) */}
           <div className="flex items-center shrink-0">
             <span
-              className="h-[2px] w-8 sm:w-14 md:w-28 lg:w-40 xl:w-52 bg-brand-fire inline-block shrink-0 opacity-95"
+              className="h-[2px] w-3 sm:w-4 md:w-6 lg:w-8 xl:w-10 bg-brand-fire inline-block shrink-0 opacity-95"
               aria-hidden="true"
             />
             {/* Punta de Flecha Directa al Plato */}
@@ -64,13 +81,13 @@ function IngredientCallout({ name, detail, side = "right" }: IngredientCalloutPr
               <path d="M5 3l14 9-14 9V3z" />
             </svg>
             <span
-              className="h-[2px] w-8 sm:w-14 md:w-28 lg:w-40 xl:w-52 bg-brand-fire inline-block shrink-0 opacity-95"
+              className="h-[2px] w-3 sm:w-4 md:w-6 lg:w-8 xl:w-10 bg-brand-fire inline-block shrink-0 opacity-95"
               aria-hidden="true"
             />
           </div>
 
           {/* Ficha Tipográfica Derecha (Alineada a la izquierda) */}
-          <div className="flex flex-col text-left items-start max-w-[110px] sm:max-w-[155px] md:max-w-none pl-0.5 sm:pl-1">
+          <div className="flex flex-col text-left items-start max-w-[110px] sm:max-w-[155px] md:max-w-[200px] lg:max-w-[240px]">
             <span className="font-display text-xs sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
               {name}
             </span>
@@ -504,6 +521,9 @@ export function CubanDeconstruction() {
                     name="CRISP PICKLES & MUSTARD"
                     detail="Crunchy Dill Spears & Yellow Mustard"
                     side="left"
+                    // Los pepinillos no llenan su caja: sin este ajuste la
+                    // ficha queda a 180px del ingrediente en vez de a 40.
+                    anchorClassName="right-[57%] sm:right-[62%] md:right-[75%] lg:right-[70%] xl:right-[69%]"
                   />
                 </div>
               </div>
