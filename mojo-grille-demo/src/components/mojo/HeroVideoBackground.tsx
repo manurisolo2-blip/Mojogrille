@@ -193,9 +193,19 @@ export function HeroVideoBackground({
         ) : null}
       </div>
 
-      {/* Velo crema en degradado sutil y muy transparente para que el
-          vídeo y textura de fondo se aprecien con gran claridad. */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cream-bg/15 to-cream-bg/35" />
+      {/*
+        Velo crema. No es decorativo: es lo que garantiza que el titular se
+        lea sobre un vídeo cuyos fotogramas no controlamos.
+
+        El peor caso es un fotograma negro al 45% de opacidad sobre la crema,
+        que deja el fondo en #85827C. Con el titular en charcoal-ink opaco eso
+        da 4.88:1, sin margen. El punto más flojo de este degradado es el 25%
+        del centro, que sube el fondo a #A09C95 y el titular a 6.84:1.
+
+        Bajar cualquiera de estas paradas por debajo de 0.25 vuelve a dejar el
+        hero por debajo de AA en los fotogramas oscuros del bucle.
+      */}
+      <div className="absolute inset-0 bg-gradient-to-b from-cream-bg/35 via-cream-bg/25 to-cream-bg/45" />
     </div>
   );
 }

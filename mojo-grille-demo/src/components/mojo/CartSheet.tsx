@@ -1,12 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Minus, Plus, MapPin, ShoppingBag, X } from "lucide-react";
 import { currency } from "@/data/menu";
 import { useCart } from "./cart";
 import { whatsappHref } from "./whatsapp";
+import { useFocusTrap } from "@/lib/useFocusTrap";
+import { useBodyScrollLock } from "@/lib/useBodyScrollLock";
 
 export function CartSheet() {
   const { lines, total, count, add, remove, clear, location, isOpen, closeCart } =
     useCart();
+  const panelRef = useRef<HTMLElement>(null);
+
+  useFocusTrap(panelRef, isOpen);
+  useBodyScrollLock(isOpen);
 
   // Dismiss with Escape
   useEffect(() => {
@@ -18,28 +24,23 @@ export function CartSheet() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, closeCart]);
 
-  // Lock background scroll while open, restoring whatever value was there
-  // before (never hardcode a value — other surfaces manage overflow too).
-  useEffect(() => {
-    if (!isOpen || typeof document === "undefined") return undefined;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [isOpen]);
-
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
-      <button
-        type="button"
-        aria-label="Close cart"
+      {/*
+        El fondo era un <button> a pantalla completa: entraba en el recorrido
+        del tabulador y se anunciaba antes que el propio diálogo. Cerrar con
+        clic fuera lo sigue haciendo, pero el camino accesible para cerrar es
+        el botón de la cabecera y la tecla Escape.
+      */}
+      <div
+        aria-hidden="true"
         onClick={closeCart}
         className="absolute inset-0 bg-charcoal-ink/60 backdrop-blur-sm"
       />
       <aside
+        ref={panelRef}
         role="dialog"
         aria-label="Your Order Shopping Cart"
         aria-modal="true"
@@ -59,14 +60,14 @@ export function CartSheet() {
 
         {/* Selected Store Location Banner */}
         <div className="flex items-center justify-between gap-2 border-b border-charcoal-ink/10 bg-surface-sand px-5 py-2.5">
-          <div className="flex min-w-0 items-center gap-2 text-xs">
+          <div className="flex min-w-0 items-center gap-2 text-sm">
             <MapPin className="h-4 w-4 shrink-0 text-brand-fire" />
             <div className="min-w-0">
               <span className="font-bold text-charcoal-ink">{location.name} Store</span>
               <span className="ml-1.5 hidden text-charcoal-ink/60 sm:inline">, {location.address.street}</span>
             </div>
           </div>
-          <span className="shrink-0 rounded-none bg-cream-bg px-2 py-0.5 font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink">
+          <span className="shrink-0 rounded-none bg-cream-bg px-2 py-0.5 font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink">
             Pickup
           </span>
         </div>
@@ -149,14 +150,14 @@ export function CartSheet() {
           >
             Order via WhatsApp
           </a>
-          <p className="mt-2 text-center font-sans text-[11px] text-charcoal-ink/60">
+          <p className="mt-2 text-center font-sans text-sm text-charcoal-ink/60">
             Instant order confirmation directly with our {location.name} kitchen
           </p>
           {count > 0 && (
             <button
               type="button"
               onClick={clear}
-              className="mt-2 w-full py-2 font-sans text-xs font-semibold text-charcoal-ink/60 transition-colors hover:text-charcoal-ink"
+              className="mt-2 min-h-11 w-full py-2 font-sans text-sm font-semibold text-charcoal-ink/60 transition-colors hover:text-charcoal-ink"
             >
               Clear Cart
             </button>

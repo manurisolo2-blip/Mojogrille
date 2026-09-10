@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Plus, Check } from "lucide-react";
+import { useRef, useState, type KeyboardEvent } from "react";
+import { Plus, Check, ArrowRight } from "lucide-react";
 import { useCart } from "./cart";
 import { isBadgeType, isCategoryId } from "@/types/mojo";
 import { type MenuItem } from "@/data/menu";
@@ -171,6 +171,34 @@ export function CravStyleMenuGrid({
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("favorites");
   const [clickedItemId, setClickedItemId] = useState<string | null>(null);
   const cart = useCart();
+  const tablistRef = useRef<HTMLDivElement>(null);
+
+  /**
+   * Navegación por flechas del patrón ARIA de pestañas. Sin esto el tablist
+   * anuncia "pestaña 1 de 5" y luego no responde a las teclas con las que un
+   * usuario de lector de pantalla espera moverse entre ellas.
+   *
+   * Home y End saltan a los extremos; el recorrido es circular.
+   */
+  const handleTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    const lastIndex = CATEGORIES.length - 1;
+    let nextIndex: number | null = null;
+
+    if (event.key === "ArrowRight") nextIndex = index === lastIndex ? 0 : index + 1;
+    else if (event.key === "ArrowLeft") nextIndex = index === 0 ? lastIndex : index - 1;
+    else if (event.key === "Home") nextIndex = 0;
+    else if (event.key === "End") nextIndex = lastIndex;
+
+    if (nextIndex === null) return;
+    event.preventDefault();
+
+    const next = CATEGORIES[nextIndex];
+    if (!next) return;
+    setSelectedCategory(next.id);
+    tablistRef.current
+      ?.querySelector<HTMLButtonElement>(`#tab-${next.id}`)
+      ?.focus();
+  };
 
   const filteredItems = CRAV_MENU_ITEMS.filter((item) => {
     if (selectedCategory === "favorites") {
@@ -204,31 +232,43 @@ export function CravStyleMenuGrid({
           <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-charcoal-ink leading-none">
             SLOW ROASTED, SERVED <span className="text-brand-fire">AL MOMENTO</span>.
           </h2>
-          <p className="mt-2 font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-brand-fire">
+          <p className="mt-2 font-sans text-sm font-bold uppercase tracking-[0.18em] text-brand-fire">
             AUTHENTIC CRIOLLO FLAVORS GENERATIONAL RECIPES
           </p>
-          <p className="mt-3 font-sans text-sm sm:text-base text-charcoal-ink/80 leading-relaxed max-w-2xl mx-auto">
+          <p className="mt-3 font-sans text-base text-charcoal-ink/80 leading-relaxed max-w-2xl mx-auto">
             Prepared fresh in Little Havana, Brickell, and Doral with 24 hours of marinade in Seville sour orange, crushed garlic, and fresh oregano.
           </p>
         </div>
 
         {/* 1. Pestañas de Categorías con Retícula de Ángulo Recto (100% Unificado) */}
-        <div className="sticky top-[56px] sm:top-[64px] z-30 mb-10 py-2.5 bg-cream-bg">
+        {/*
+          El desplazamiento pegajoso arranca a 88px, que es lo que mide la
+          cabecera en escritorio (68px en móvil). Con los 64px de antes, 24px
+          de esta barra quedaban tapados debajo del header.
+        */}
+        <div className="sticky top-[68px] lg:top-[88px] z-30 mb-10 py-2.5 bg-cream-bg">
           <div
+            ref={tablistRef}
             role="tablist"
             aria-label="Menu Categories"
             className="no-scrollbar flex items-center justify-start sm:justify-center gap-1.5 overflow-x-auto p-1 rounded-none bg-transparent max-w-4xl mx-auto"
           >
-            {CATEGORIES.map((category) => {
+            {CATEGORIES.map((category, index) => {
               const isSelected = selectedCategory === category.id;
               return (
                 <button
                   key={category.id}
+                  id={`tab-${category.id}`}
                   role="tab"
                   aria-selected={isSelected}
+                  aria-controls="menu-grid-panel"
+                  // Foco itinerante: sólo la pestaña activa está en el
+                  // recorrido del tabulador, el resto se alcanza con flechas.
+                  tabIndex={isSelected ? 0 : -1}
                   type="button"
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`relative shrink-0 rounded-none px-5 py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none ${
+                  onKeyDown={(event) => handleTabKeyDown(event, index)}
+                  className={`relative flex min-h-11 shrink-0 items-center rounded-none px-5 py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none ${
                     isSelected
                       ? "bg-charcoal-ink text-cream-bg"
                       : "bg-transparent text-charcoal-ink hover:text-brand-fire hover:bg-charcoal-ink/5"
@@ -242,7 +282,12 @@ export function CravStyleMenuGrid({
         </div>
 
         {/* 2. Retícula Editorial de Platos */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div
+          id="menu-grid-panel"
+          role="tabpanel"
+          aria-labelledby={`tab-${selectedCategory}`}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+        >
           {filteredItems.map((item) => {
             const isAdded = clickedItemId === item.id;
             return (
@@ -251,10 +296,17 @@ export function CravStyleMenuGrid({
                 className="group relative flex flex-col justify-between rounded-none bg-transparent transition-colors duration-200"
               >
                 <div>
-                  {/* Contenedor de Fotografía */}
-                  <div
+                  {/*
+                    Contenedor de Fotografía. Es un <button>, no un <div
+                    onClick>: abrir la ficha con ingredientes y guarniciones
+                    era imposible con teclado porque este era el único acceso
+                    desde la tarjeta.
+                  */}
+                  <button
+                    type="button"
                     onClick={() => onSelect?.(toMenuItem(item))}
-                    className="relative aspect-4/3 w-full overflow-hidden rounded-none bg-transparent cursor-pointer"
+                    aria-label={`View details for ${item.name}`}
+                    className="relative block aspect-4/3 w-full overflow-hidden rounded-none bg-transparent cursor-pointer"
                   >
                     <img
                       src={item.imageUrl}
@@ -262,14 +314,14 @@ export function CravStyleMenuGrid({
                       loading="lazy"
                       className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                     />
-                  </div>
+                  </button>
 
                   {/* Información del Plato */}
                   <div className="mt-4">
                     <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors">
                       {item.name}
                     </h3>
-                    <p className="mt-2 font-sans text-xs sm:text-sm text-charcoal-ink/75 line-clamp-3 leading-relaxed">
+                    <p className="mt-2 font-sans text-base text-charcoal-ink/75 line-clamp-3 leading-relaxed">
                       {item.description}
                     </p>
                   </div>
@@ -292,7 +344,7 @@ export function CravStyleMenuGrid({
                     onClick={() => handleQuickAdd(item)}
                     aria-label={`Add ${item.name} to order`}
                     title="Add to order"
-                    className={`relative inline-flex items-center gap-1.5 rounded-none px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none ${
+                    className={`relative inline-flex min-h-11 items-center gap-1.5 rounded-none px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none ${
                       isAdded
                         ? "bg-leaf-green text-cream-bg"
                         : "bg-charcoal-ink text-cream-bg hover:bg-brand-fire"
@@ -321,7 +373,7 @@ export function CravStyleMenuGrid({
           <p className="font-display text-2xl sm:text-3xl uppercase tracking-tight text-charcoal-ink font-bold">
             NEED INGREDIENT DETAILS OR A CUSTOM ORDER?
           </p>
-          <p className="mt-2 font-sans text-xs sm:text-sm text-charcoal-ink/80 max-w-xl mx-auto">
+          <p className="mt-2 font-sans text-base text-charcoal-ink/80 max-w-xl mx-auto">
             Our team in Little Havana and Brickell is ready to answer questions and customize your order al momento.
           </p>
           <div className="mt-5">
@@ -329,10 +381,10 @@ export function CravStyleMenuGrid({
               href={`https://wa.me/${cart.location.phoneRaw}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
+              className="inline-flex min-h-11 items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
             >
               <span>Inquire via WhatsApp</span>
-              <span>➔</span>
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { UtensilsCrossed, CalendarHeart, Star } from "lucide-react";
+import { UtensilsCrossed, CalendarHeart, Star, ArrowRight } from "lucide-react";
 import { MagneticButton } from "./MagneticButton";
 import { HoverHighlightText } from "@/components/ui/hover-highlight-text";
 import { HeroVideoBackground } from "./HeroVideoBackground";
@@ -97,7 +97,7 @@ export function HeroSection({
       ref={sectionRef}
       id="top"
       aria-label="Welcome to Mojo Grille Cuban Kitchen"
-      className="relative z-10 min-h-[calc(100vh-68px)] md:min-h-screen flex flex-col justify-center bg-transparent select-none"
+      className="relative z-10 min-h-[calc(100vh-68px)] md:min-h-screen flex flex-col justify-center bg-transparent"
     >
       {/* Descriptor editorial para lectores de pantalla y buscadores */}
       <p className="sr-only">
@@ -123,18 +123,18 @@ export function HeroSection({
           {/* Encabezado Monumental Centrado */}
           <div className="flex flex-col items-center text-center space-y-6 max-w-7xl mx-auto">
             {/*
-              Prueba social con contenedor translúcido/glass sutil
+              Prueba social con contenedor translúcido/glass sutil.
+              No lleva role="status": es contenido fijo, y una región viva
+              haría que se anunciara sola al cargar, pisando el titular.
             */}
             <div
-              role="status"
-              aria-label="Average customer rating in Miami"
               className={`inline-flex items-center gap-2.5 border border-charcoal-ink/10 bg-cream-bg/25 backdrop-blur-md px-4 py-2 ${animItemClass}`}
             >
               <Star
                 className="h-4 w-4 shrink-0 fill-mojo-citrus text-mojo-citrus"
                 aria-hidden="true"
               />
-              <span className="font-sans text-[11px] sm:text-xs font-bold uppercase tracking-[0.08em] sm:tracking-[0.14em] text-charcoal-ink">
+              <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.08em] sm:tracking-[0.14em] text-charcoal-ink">
                 4.7 Stars across +3,000 orders in Miami
               </span>
             </div>
@@ -144,7 +144,7 @@ export function HeroSection({
               <HoverHighlightText
                 as="h1"
                 text="HOT CAST IRON CRUSHED GARLIC SLOW ROASTED PERNIL"
-                baseClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(4rem,9.2vw,9.5rem)] font-black uppercase tracking-tight text-charcoal-ink/80 leading-[0.84] text-center drop-shadow-[0_1px_2px_rgba(242,236,225,0.7)]"
+                baseClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(4rem,9.2vw,9.5rem)] font-black uppercase tracking-tight text-charcoal-ink leading-[0.84] text-center"
                 highlightClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(4rem,9.2vw,9.5rem)] font-black uppercase tracking-tight text-brand-fire leading-[0.84] text-center"
                 strokeColor="#E52516"
                 strokeWidth={1.5}
@@ -155,8 +155,13 @@ export function HeroSection({
             </div>
 
             {/* Subtítulo Narrativo Visceral Editorial Amplio */}
-            <p className={`max-w-4xl text-balance font-sans text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-charcoal-ink/90 text-center font-normal drop-shadow-[0_1px_1px_rgba(242,236,225,0.6)] ${animItemClass}`}>
-              No corporate bowls. We cook generational family recipes of slow-roasted pork marinated for 4 hours in Seville sour orange, pressed{" "}
+            {/*
+              24 horas, no 4: es la cifra que repiten la meta description, la
+              rejilla de menú y el footer. Antes el hero se contradecía con el
+              resto del sitio.
+            */}
+            <p className={`max-w-4xl text-balance font-sans text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-charcoal-ink text-center font-normal ${animItemClass}`}>
+              No corporate bowls. We cook generational family recipes of slow-roasted pork marinated for 24 hours in Seville sour orange, pressed{" "}
               <span className="font-bold text-brand-fire">al momento</span> in the heart of Brownsville.
             </p>
 
@@ -169,9 +174,10 @@ export function HeroSection({
               >
                 <UtensilsCrossed className="h-4 w-4 transition-transform group-hover:rotate-12" aria-hidden="true" />
                 <span>ORDER HOT</span>
-                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 font-bold" aria-hidden="true">
-                  →
-                </span>
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
               </MagneticButton>
 
               <a

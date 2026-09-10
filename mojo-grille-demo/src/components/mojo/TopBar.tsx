@@ -4,6 +4,8 @@ import { ChevronDown, MapPin, Menu, X, User, Phone, ArrowRight } from "lucide-re
 import { LatinMarketBagIcon } from "./LatinMarketBagIcon";
 import { useCart } from "./cart";
 import { AuthSwitch } from "../ui/auth-switch";
+import { useFocusTrap } from "@/lib/useFocusTrap";
+import { useBodyScrollLock } from "@/lib/useBodyScrollLock";
 
 export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
   const { count, location, setLocation, availableLocations } = useCart();
@@ -12,6 +14,13 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
   const [accountModalOpen, setAccountModalOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
+  const accountModalRef = useRef<HTMLDivElement>(null);
+
+  // Los dos overlays retienen el foco y congelan el scroll de detrás.
+  useFocusTrap(drawerRef, menuDrawerOpen);
+  useFocusTrap(accountModalRef, accountModalOpen);
+  useBodyScrollLock(menuDrawerOpen || accountModalOpen);
 
   const { scrollY } = useScroll();
 
@@ -103,34 +112,43 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
             {/* Extremo Derecho: Botones de Cuenta, Menú y Bolsa de Compra (Liquid Glass) */}
             <div className="flex shrink-0 items-center gap-2.5 sm:gap-3.5">
               {/* Opción de Cuenta / Club Mojo: Píldora Liquid Glass */}
+              {/*
+                min-h-11 / min-w-11 son los 44px de área táctil. El relleno
+                visual sigue siendo el mismo: lo que crece es la zona pulsable,
+                que antes medía 32x28 en móvil.
+              */}
               <button
                 type="button"
                 onClick={() => setAccountModalOpen(true)}
-                aria-label="Abrir apartado de creación de cuenta y Club Mojo"
-                className="flex items-center gap-1.5 rounded-full bg-white/25 hover:bg-white/50 backdrop-blur-md border border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)] px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-all cursor-pointer select-none"
+                aria-label="Open account and Club Mojo panel"
+                className="flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full bg-white/25 hover:bg-white/50 backdrop-blur-md border border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)] px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-all cursor-pointer select-none"
               >
-                <User className="h-4 w-4 stroke-[2.2]" />
-                <span className="hidden sm:inline">CUENTA</span>
+                <User className="h-4 w-4 stroke-[2.2]" aria-hidden="true" />
+                <span lang="es" className="hidden sm:inline">CUENTA</span>
               </button>
 
               {/* Opción de Menú: Píldora Liquid Glass */}
               <button
                 type="button"
                 onClick={() => setMenuDrawerOpen(true)}
-                aria-label="Abrir menú de navegación y sedes"
+                aria-label="Open navigation menu and locations"
                 aria-expanded={menuDrawerOpen}
-                className="flex items-center gap-1.5 rounded-full bg-white/25 hover:bg-white/50 backdrop-blur-md border border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)] px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-all cursor-pointer select-none"
+                className="flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full bg-white/25 hover:bg-white/50 backdrop-blur-md border border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)] px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-all cursor-pointer select-none"
               >
-                <Menu className="h-4 w-4 stroke-[2.2]" />
-                <span className="hidden sm:inline">MENÚ</span>
+                <Menu className="h-4 w-4 stroke-[2.2]" aria-hidden="true" />
+                <span lang="es" className="hidden sm:inline">MENÚ</span>
               </button>
 
               {/* Bolsa de Compra: Círculo Rojo con Anillo y Sombra Liquid Glass */}
               <button
                 type="button"
                 onClick={onOpenCart}
-                aria-label="View shopping bag"
-                className="relative grid h-10 w-10 sm:h-11 sm:w-11 place-items-center rounded-full bg-brand-fire text-cream-bg ring-2 ring-white/60 shadow-lg transition-all hover:bg-charcoal-ink hover:ring-white/80 active:scale-95 cursor-pointer select-none"
+                aria-label={
+                  count > 0
+                    ? `View shopping bag, ${count} ${count === 1 ? "item" : "items"}`
+                    : "View shopping bag, empty"
+                }
+                className="relative grid h-11 w-11 place-items-center rounded-full bg-brand-fire text-cream-bg ring-2 ring-white/60 shadow-lg transition-all hover:bg-charcoal-ink hover:ring-white/80 active:scale-95 cursor-pointer select-none"
               >
                 <LatinMarketBagIcon className="h-5 w-5 stroke-[2] text-cream-bg" />
                 {count > 0 && (
@@ -164,12 +182,20 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
 
             {/* Panel Lateral Drawer en Criollo Cream */}
             {/* Panel Lateral Drawer en Criollo Cream (Minimalista, sin líneas ni recuadros) */}
+            {/*
+              lang="es": el panel entero está en español dentro de un documento
+              declarado en inglés. Sin esto un lector de pantalla pronuncia
+              "SEDES MIAMI" y "Abierto hoy" con voz inglesa.
+            */}
             <motion.aside
+              ref={drawerRef}
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 380, damping: 36 }}
               role="dialog"
+              aria-modal="true"
+              lang="es"
               aria-label="Menú de navegación y sedes"
               className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-md bg-cream-bg p-6 sm:p-8 flex flex-col justify-between overflow-y-auto shadow-2xl"
             >
@@ -183,9 +209,9 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     type="button"
                     onClick={() => setMenuDrawerOpen(false)}
                     aria-label="Cerrar menú"
-                    className="p-1.5 text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer"
+                    className="grid h-11 w-11 shrink-0 place-items-center text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer"
                   >
-                    <X className="h-6 w-6 stroke-[2.2]" />
+                    <X className="h-6 w-6 stroke-[2.2]" aria-hidden="true" />
                   </button>
                 </div>
 
@@ -196,7 +222,9 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                   </span>
                   {[
                     { href: "#menu", label: "Menú & Bowls Criollos" },
-                    { href: "#cubanos", label: "El Sándwich Cubano 3D" },
+                    // Era #cubanos, que no existe en el DOM: el id real de la
+                    // sección de deconstrucción es #cuban-deconstruction.
+                    { href: "#cuban-deconstruction", label: "El Sándwich Cubano 3D" },
                     { href: "#reviews", label: "Reseñas Verificadas" },
                     { href: "#catering", label: "Catering para Eventos" },
                   ].map((item) => (
@@ -233,7 +261,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                       aria-haspopup="listbox"
                       aria-expanded={open}
                       aria-label={`Select location, currently ${location.name}`}
-                      className="flex items-center gap-2 font-display text-2xl font-black uppercase tracking-tight text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer select-none"
+                      className="flex min-h-11 items-center gap-2 font-display text-2xl font-black uppercase tracking-tight text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer select-none"
                     >
                       <MapPin className="h-4 w-4 text-brand-fire stroke-[2.2] shrink-0" />
                       <span>{location.name}</span>
@@ -258,7 +286,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                                 setLocation(loc.id);
                                 setOpen(false);
                               }}
-                              className={`block w-full px-3 py-2 text-left font-sans text-xs uppercase tracking-wider font-bold transition-colors ${
+                              className={`block min-h-11 w-full px-3 py-2 text-left font-sans text-xs uppercase tracking-wider font-bold transition-colors ${
                                 loc.id === location.id
                                   ? "font-black text-brand-fire"
                                   : "text-charcoal-ink hover:text-brand-fire"
@@ -283,9 +311,9 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                   </p>
                   <a
                     href={`tel:${location.phone.replace(/[^0-9+]/g, "")}`}
-                    className="inline-flex items-center gap-1.5 text-brand-fire font-bold text-xs uppercase tracking-wider hover:underline pt-0.5"
+                    className="inline-flex min-h-11 items-center gap-1.5 text-brand-fire font-bold text-xs uppercase tracking-wider hover:underline"
                   >
-                    <Phone className="h-3 w-3" />
+                    <Phone className="h-3 w-3" aria-hidden="true" />
                     <span>{location.phone}</span>
                   </a>
                 </div>
@@ -340,12 +368,14 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
 
           {/* Contenedor del Modal Dual-Panel */}
           <motion.div
+            ref={accountModalRef}
             initial={{ opacity: 0, scale: 0.96, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 12 }}
             transition={{ type: "spring", stiffness: 450, damping: 32 }}
             role="dialog"
             aria-modal="true"
+            lang="es"
             aria-label="Apartado de cuenta y Club Mojo"
             className="relative z-50 w-full max-w-3xl lg:max-w-4xl bg-cream-bg rounded-3xl sm:rounded-[28px] shadow-2xl my-auto overflow-hidden border border-charcoal-ink/10"
           >
@@ -354,9 +384,9 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
               type="button"
               onClick={() => setAccountModalOpen(false)}
               aria-label="Cerrar apartado de cuenta"
-              className="absolute top-3.5 right-3.5 z-40 p-2 rounded-full text-charcoal-ink hover:text-brand-fire bg-cream-bg/80 backdrop-blur-xs hover:bg-cream-bg shadow-sm transition-all cursor-pointer"
+              className="absolute top-3.5 right-3.5 z-40 grid h-11 w-11 place-items-center rounded-full text-charcoal-ink hover:text-brand-fire bg-cream-bg/80 backdrop-blur-xs hover:bg-cream-bg shadow-sm transition-all cursor-pointer"
             >
-              <X className="h-5 w-5 stroke-[2.2]" />
+              <X className="h-5 w-5 stroke-[2.2]" aria-hidden="true" />
             </button>
 
             {/* Módulo de Autenticación / Pasaporte Dual Panel */}

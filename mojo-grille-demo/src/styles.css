@@ -43,25 +43,47 @@
   --font-serif: "Instrument Serif", "Playfair Display", Georgia, serif;
   --font-mono: "Space Mono", monospace;
 
-  /* Miami-Latin Modernism Color Palette */
+/*
+ * Miami-Latin Modernism Color Palette
+ *
+ * Los valores están elegidos por contraste medido, no por gusto. Ratios
+ * WCAG 2.1 relevantes (texto normal necesita 4.5:1, texto grande 3:1):
+ *
+ *   charcoal-ink sobre cream-bg .......... 15.89:1
+ *   cream-bg sobre brand-fire .............. 5.09:1
+ *   brand-fire sobre cream-bg .............. 5.09:1
+ *   cream-bg sobre charcoal-ink ........... 15.89:1
+ *   leaf-green sobre cream-bg .............. 5.42:1
+ *   leaf-green-soft sobre charcoal-ink ..... 5.76:1
+ *   mojo-citrus sobre charcoal-ink ......... 9.68:1
+ *   mojo-citrus sobre brand-fire ........... 3.10:1  <- SOLO texto grande
+ *
+ * El rojo era #E52516, que dejaba el par crema/rojo en 3.88:1 y hundía todo
+ * el bloque rojo del sitio (CuratedMenu, footer, preloader) por debajo de AA.
+ *
+ * mojo-citrus sobre rojo sólo vale para display de 24px o más. Para texto
+ * pequeño sobre rojo, usar cream-bg. leaf-green sólo vale sobre crema: sobre
+ * tinta se queda en 2.93:1, para eso está leaf-green-soft.
+ */
   --color-cream-bg: #F2ECE1;
-  --color-brand-fire: #E52516;
+  --color-brand-fire: #C41B0E;
   --color-charcoal-ink: #141210;
   --color-surface-sand: #ECE4D5;
   --color-mojo-citrus: #FFA826;
   --color-leaf-green: #2F6A4F;
+  --color-leaf-green-soft: #4E9E76;
 
   /* Backward Compatibility Aliases */
   --color-cream: #F2ECE1;
   --color-surface-white: #FFFFFF;
-  --color-mojo-terracotta: #E52516;
+  --color-mojo-terracotta: #C41B0E;
   --color-mojo-terracotta-dark: #C71F12;
   --color-charcoal: #141210;
   --color-text-charcoal: #141210;
   --color-text-muted: #78716C;
   --color-mojo-lime: #2F6A4F;
   --color-mojo-gold: #FFA826;
-  --color-mojo-red: #E52516;
+  --color-mojo-red: #C41B0E;
   --color-sand: #ECE4D5;
   --color-subtle: #ECE4D5;
   --color-border-subtle: #ECE4D5;
@@ -204,13 +226,13 @@
   color: #F2ECE1;
 }
 @utility bg-brand-fire {
-  background-color: #E52516;
+  background-color: #C41B0E;
 }
 @utility text-brand-fire {
-  color: #E52516;
+  color: #C41B0E;
 }
 @utility border-brand-fire {
-  border-color: #E52516;
+  border-color: #C41B0E;
 }
 @utility bg-charcoal-ink {
   background-color: #141210;
@@ -242,6 +264,14 @@
 @utility text-leaf-green {
   color: #2F6A4F;
 }
+/* Verde para superficies oscuras: el leaf-green normal se queda en 2.93:1
+   sobre charcoal-ink, este llega a 5.76:1. */
+@utility text-leaf-green-soft {
+  color: #4E9E76;
+}
+@utility bg-leaf-green-soft {
+  background-color: #4E9E76;
+}
 @utility font-display {
   font-family: var(--font-display);
 }
@@ -260,10 +290,10 @@
   color: #ECE4D5;
 }
 @utility bg-mojoRed {
-  background-color: #E6421E;
+  background-color: #C41B0E;
 }
 @utility text-mojoRed {
-  color: #E6421E;
+  color: #C41B0E;
 }
 @utility surface-white {
   background-color: #FFFFFF;
@@ -329,10 +359,10 @@
   background-color: #F59E0B;
 }
 @utility text-mojoRed {
-  color: #E52516;
+  color: #C41B0E;
 }
 @utility bg-mojoRed {
-  background-color: #E52516;
+  background-color: #C41B0E;
 }
 
 @keyframes marquee {
@@ -526,7 +556,7 @@
    para teclado. El anillo es la linea base de accesibilidad y debe ganar; sólo
    se aplica en :focus-visible, así que el mouse sigue sin verlo. */
 :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
-  outline: 2px solid var(--color-brand-fire, #e52516) !important;
+  outline: 2px solid var(--color-brand-fire, #c41b0e) !important;
   outline-offset: 2px !important;
   border-radius: 1px;
 }

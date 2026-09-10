@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Check, X } from "lucide-react";
 import { currency, sideOptions, type MenuItem } from "@/data/menu";
 import { useCart } from "./cart";
+import { useFocusTrap } from "@/lib/useFocusTrap";
+import { useBodyScrollLock } from "@/lib/useBodyScrollLock";
 
 export function QuickOrderModal({
   item,
@@ -12,6 +14,10 @@ export function QuickOrderModal({
 }) {
   const { add } = useCart();
   const [sides, setSides] = useState<string[]>([]);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  useFocusTrap(panelRef, item !== null);
+  useBodyScrollLock(item !== null);
 
   useEffect(() => {
     setSides([]);
@@ -41,13 +47,17 @@ export function QuickOrderModal({
       aria-labelledby="modal-dish-title"
       className="fixed inset-0 z-50 flex items-end justify-center sm:items-center"
     >
-      <button
-        type="button"
-        aria-label="Close modal backdrop"
+      {/* Fondo decorativo: cerrar con clic fuera sigue funcionando, pero ya no
+          ocupa un puesto en el recorrido del tabulador delante del diálogo. */}
+      <div
+        aria-hidden="true"
         onClick={onClose}
         className="absolute inset-0 bg-charcoal-ink/60 backdrop-blur-sm"
       />
-      <div className="relative max-h-[92dvh] w-full max-w-lg overflow-y-auto rounded-none bg-cream-bg shadow-none sm:rounded-none">
+      <div
+        ref={panelRef}
+        className="relative max-h-[92dvh] w-full max-w-lg overflow-y-auto rounded-none bg-cream-bg shadow-none sm:rounded-none"
+      >
         <div className="relative">
           <img
             src={item.image}

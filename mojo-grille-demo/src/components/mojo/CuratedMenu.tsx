@@ -177,7 +177,7 @@ export function CuratedMenu() {
     <section
       id="curated-menu"
       aria-label="Hot Plancha Selection - Mojo Grille Signature Dishes"
-      className="relative bg-brand-fire py-16 sm:py-24 select-none overflow-hidden"
+      className="relative bg-brand-fire py-16 sm:py-24 overflow-hidden"
     >
       {/* Miniatura Fotográfica Flotante al Cursor (Solo Desktop) */}
       <div
@@ -196,7 +196,7 @@ export function CuratedMenu() {
           
           {/* Metadato superior de previsualización */}
           <div className="absolute top-2.5 left-3 flex items-center">
-            <span className="font-sans text-[9px] font-bold uppercase tracking-[0.18em] text-cream-bg bg-brand-fire px-2 py-0.5 border border-cream-bg/20">
+            <span className="font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-cream-bg bg-brand-fire px-2 py-0.5 border border-cream-bg/20">
               MADE AL MOMENTO 100% FRESH
             </span>
           </div>
@@ -206,7 +206,7 @@ export function CuratedMenu() {
             <span className="font-display text-lg uppercase tracking-tight text-cream-bg font-black">
               {activeItem.name}
             </span>
-            <span className="font-sans font-bold uppercase text-[11px] tracking-wider text-mojo-citrus">
+            <span className="font-sans font-bold uppercase text-xs tracking-wider text-mojo-citrus">
               {activeItem.authorNote}
             </span>
           </div>
@@ -219,7 +219,11 @@ export function CuratedMenu() {
         <h2 className="font-display text-5xl md:text-7xl uppercase tracking-tight text-cream-bg leading-none">
           HOT PLANCHA SELECTION
         </h2>
-        <p className="mt-2 sm:mt-3 font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-mojo-citrus">
+        {/*
+          Era text-mojo-citrus: 3.10:1 sobre el rojo, por debajo del 4.5:1 que
+          pide este tamaño. El ámbar sólo aguanta aquí en display de 24px o más.
+        */}
+        <p className="mt-2 sm:mt-3 font-sans text-sm font-bold uppercase tracking-[0.18em] text-cream-bg">
           MADE AL MOMENTO SEASONED WITH MOJO
         </p>
       </div>
@@ -235,9 +239,15 @@ export function CuratedMenu() {
             <div
               key={item.id}
               onMouseEnter={(e) => handleRowMouseEnter(item, e)}
-              onClick={() => handleAddToCart(item)}
-              className="border-b border-cream-bg/20 py-7 md:py-8 px-4 sm:px-6 flex flex-col md:flex-row md:items-center justify-between group transition-colors duration-300 hover:bg-black/15 relative cursor-pointer gap-4 md:gap-6"
+              className="border-b border-cream-bg/20 py-7 md:py-8 px-4 sm:px-6 flex flex-col md:flex-row md:items-center justify-between group transition-colors duration-300 hover:bg-black/15 relative gap-4 md:gap-6"
             >
+              {/*
+                La fila ya no añade al carrito al hacer clic. Era un <div
+                onClick> sin role ni tabIndex: inalcanzable con teclado, y un
+                clic en cualquier hueco de la fila metía el plato en el pedido
+                sin confirmación. El botón dedicado de la derecha ya hace eso, y
+                es un control real.
+              */}
               {/* Izquierda: Nombre del plato font-display + Badge Rebelde de Chef (Item 01) + Subtítulo con mayor grosor */}
               <div className="flex flex-col gap-1.5 lg:w-[40%]">
                 <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
@@ -248,7 +258,7 @@ export function CuratedMenu() {
                     <RebelChefBadge />
                   )}
                 </div>
-                <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg mt-0.5 group-hover:text-mojo-citrus transition-colors leading-snug">
+                <span className="font-sans text-sm font-bold uppercase tracking-wider text-cream-bg mt-0.5 leading-snug">
                   {item.authorNote}
                 </span>
               </div>
@@ -261,14 +271,14 @@ export function CuratedMenu() {
                   className="w-16 h-16 object-cover shrink-0 border border-cream-bg/20"
                   loading="lazy"
                 />
-                <p className="font-sans text-xs text-cream-bg line-clamp-2">
+                <p className="font-sans text-base text-cream-bg line-clamp-2">
                   {item.description}
                 </p>
               </div>
 
               {/* Centro: Descripción sensorial criolla (En escritorio) */}
               <div className="hidden md:flex items-center lg:w-[32%] px-2">
-                <p className="font-sans text-xs sm:text-[13px] text-cream-bg leading-relaxed text-left line-clamp-2 group-hover:text-cream-bg transition-colors">
+                <p className="font-sans text-base text-cream-bg leading-relaxed text-left line-clamp-2">
                   {item.description}
                 </p>
               </div>
@@ -285,7 +295,7 @@ export function CuratedMenu() {
                     e.stopPropagation();
                     handleAddToCart(item);
                   }}
-                  className="flex-1 sm:flex-none sm:w-48 h-10 sm:h-11 px-3 sm:px-4 font-sans font-bold uppercase tracking-wider text-xs sm:text-sm bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center justify-center gap-1.5 cursor-pointer shrink-0 shadow-md select-none"
+                  className="flex-1 sm:flex-none sm:w-48 h-11 px-3 sm:px-4 font-sans font-bold uppercase tracking-wider text-sm bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center justify-center gap-1.5 cursor-pointer shrink-0 shadow-md select-none"
                   aria-label={`Add ${item.name} to order for $${item.price.toFixed(2)}`}
                 >
                   <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[3]" aria-hidden="true" />

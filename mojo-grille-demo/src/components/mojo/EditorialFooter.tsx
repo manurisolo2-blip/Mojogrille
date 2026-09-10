@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useId, useState, useRef, useEffect } from "react";
 import { ArrowUp, MapPin, Clock, Sparkles, Heart } from "lucide-react";
 import gsap from "gsap";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 
 export interface EditorialFooterProps {
   onOpenCart?: () => void;
@@ -10,11 +11,20 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const backToTopRef = useRef<HTMLButtonElement>(null);
+  const emailFieldId = useId();
+  const reducedMotion = useReducedMotion();
 
-  // Efecto magnético interactivo en el microbotón 'Volver Arriba' con GSAP
+  // Efecto magnético interactivo en el microbotón 'Volver Arriba' con GSAP.
+  // Con prefers-reduced-motion ni siquiera se engancha el listener: además de
+  // ser movimiento no solicitado, escuchaba `mousemove` en `window` durante
+  // toda la vida de la página y calculaba una hipotenusa en cada píxel.
   useEffect(() => {
     const btn = backToTopRef.current;
     if (!btn || typeof window === "undefined") return;
+    if (reducedMotion) {
+      gsap.set(btn, { x: 0, y: 0 });
+      return;
+    }
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = btn.getBoundingClientRect();
@@ -60,7 +70,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
       window.removeEventListener("mousemove", handleMouseMove);
       btn.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, []);
+  }, [reducedMotion]);
 
   const handleScrollToTop = () => {
     if (typeof window === "undefined") return;
@@ -91,16 +101,25 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
     <footer
       id="footer"
       aria-label="Mojo Grille editorial footer"
-      className="relative bg-brand-fire text-cream-bg pt-16 pb-28 md:pb-12 px-6 md:px-12 select-none overflow-hidden"
+      className="relative bg-brand-fire text-cream-bg pt-16 pb-28 md:pb-12 px-6 md:px-12 overflow-hidden"
     >
-      {/* 1. Titular Masivo Superior (Width Completo) */}
+      {/*
+        1. Marca de agua superior. Era un <h1>, que daba dos h1 en la home (el
+        otro es el titular del hero) y ponía el encabezado principal del
+        documento en un adorno del pie. Es decorativo, así que ahora es un div
+        oculto a lectores de pantalla: el nombre del negocio ya está en el
+        <title>, en el logo de la cabecera y en los datos estructurados.
+      */}
       <div className="w-full border-b border-cream-bg/20 pb-10 sm:pb-14 overflow-hidden">
-        <h1 className="text-[12vw] font-display uppercase tracking-tight text-cream-bg leading-none select-none text-center sm:text-left transition-colors duration-300 hover:text-mojo-citrus">
+        <div
+          aria-hidden="true"
+          className="text-[12vw] font-display uppercase tracking-tight text-cream-bg leading-none select-none text-center sm:text-left"
+        >
           MOJO GRILLE
-        </h1>
-        <div className="flex flex-col sm:flex-row items-center justify-between mt-3 text-xs sm:text-sm font-sans uppercase tracking-widest text-cream-bg/85">
+        </div>
+        <div className="flex flex-col sm:flex-row items-center justify-between mt-3 text-sm font-sans uppercase tracking-widest text-cream-bg">
           <p className="font-semibold">CUBAN KITCHEN &amp; ARTISANAL PLANCHA MIAMI, FL</p>
-          <p className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-mojo-citrus mt-1 sm:mt-0">
+          <p className="font-sans text-sm font-bold uppercase tracking-[0.15em] text-cream-bg mt-1 sm:mt-0">
             AUTHENTIC CRIOLLO FLAVOR 24-HOUR CITRUS MOJO
           </p>
         </div>
@@ -111,22 +130,22 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
         
         {/* Columna 1: Horarios de Plancha y Ubicación Física */}
         <div className="md:col-span-4 space-y-4">
-          <div className="flex items-center gap-2 text-mojo-citrus">
+          <div className="flex items-center gap-2 text-cream-bg">
             <MapPin className="h-4 w-4" />
             <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-cream-bg">
               Location &amp; Plancha Hours
             </h3>
           </div>
 
-          <div className="space-y-1 font-sans text-sm text-cream-bg/90">
+          <div className="space-y-1 font-sans text-base text-cream-bg">
             <p className="font-bold text-base text-cream-bg">Brownsville Central Kitchen</p>
             <p>2920 NW 27th Ave, Miami, FL 33142</p>
-            <p className="text-xs text-cream-bg">Pickup hubs: Little Havana, Brickell, Doral</p>
+            <p className="text-sm text-cream-bg">Pickup hubs: Little Havana, Brickell, Doral</p>
           </div>
 
-          <div className="pt-2 border-t border-cream-bg/20 space-y-1 font-sans text-xs text-cream-bg/85 leading-relaxed">
+          <div className="pt-2 border-t border-cream-bg/20 space-y-1 font-sans text-sm text-cream-bg leading-relaxed">
             <div className="flex items-center gap-1.5 font-bold text-cream-bg">
-              <Clock className="h-3.5 w-3.5 text-mojo-citrus" />
+              <Clock className="h-3.5 w-3.5" aria-hidden="true" />
               <span>Plancha Active al Momento:</span>
             </div>
             <p>Monday to Thursday: 11:00 AM to 10:00 PM</p>
@@ -137,18 +156,18 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
 
         {/* Columna 2: Enlaces de Navegación Rápida */}
         <div className="md:col-span-4 space-y-4">
-          <div className="flex items-center gap-2 text-mojo-citrus">
+          <div className="flex items-center gap-2 text-cream-bg">
             <Sparkles className="h-4 w-4" />
             <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-cream-bg">
               Quick Navigation
             </h3>
           </div>
 
-          <ul className="space-y-2.5 font-sans text-sm font-semibold text-cream-bg/85">
+          <ul className="space-y-2.5 font-sans text-sm font-semibold text-cream-bg">
             <li>
               <a
                 href="#menu"
-                className="hover:text-mojo-citrus hover:translate-x-1 inline-flex transition-transform duration-200"
+                className="inline-flex min-h-11 items-center hover:underline hover:translate-x-1 transition-transform duration-200"
               >
                 Full Menu &amp; Criollo Bowls
               </a>
@@ -156,7 +175,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
             <li>
               <a
                 href="#cuban-deconstruction"
-                className="hover:text-mojo-citrus hover:translate-x-1 inline-flex transition-transform duration-200"
+                className="inline-flex min-h-11 items-center hover:underline hover:translate-x-1 transition-transform duration-200"
               >
                 Deconstruction of the Pressed Cubano
               </a>
@@ -164,15 +183,15 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
             <li>
               <a
                 href="#curated-menu"
-                className="hover:text-mojo-citrus hover:translate-x-1 inline-flex transition-transform duration-200"
+                className="inline-flex min-h-11 items-center hover:underline hover:translate-x-1 transition-transform duration-200"
               >
                 Plancha Selection (Signature Dishes)
               </a>
             </li>
             <li>
               <a
-                href="#districts-catering"
-                className="hover:text-mojo-citrus hover:translate-x-1 inline-flex transition-transform duration-200"
+                href="#catering"
+                className="inline-flex min-h-11 items-center hover:underline hover:translate-x-1 transition-transform duration-200"
               >
                 Thermal Packaging &amp; Corporate Catering
               </a>
@@ -181,7 +200,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
               <button
                 type="button"
                 onClick={onOpenCart}
-                className="hover:text-mojo-citrus hover:translate-x-1 inline-flex items-center gap-1.5 transition-transform duration-200 cursor-pointer text-left"
+                className="inline-flex min-h-11 items-center gap-1.5 hover:underline hover:translate-x-1 transition-transform duration-200 cursor-pointer text-left"
               >
                 View Order / Order Drawer
               </button>
@@ -194,35 +213,48 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
           <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-cream-bg">
             Criollo Dispatch &amp; Secret Drops
           </h3>
-          <p className="font-sans text-xs sm:text-sm text-cream-bg/85 leading-relaxed">
+          <p className="font-sans text-base text-cream-bg leading-relaxed">
             Get early access to exclusive small-batch citrus mojo, pop-up tastings, and secret perks for Miami gatherings.
           </p>
 
           <form onSubmit={handleNewsletterSubmit} className="pt-2">
+            {/*
+              Etiqueta real, no sólo placeholder: el placeholder desaparece en
+              cuanto escribes y muchos lectores de pantalla no lo anuncian, así
+              que el campo se presentaba sin nombre.
+            */}
+            <label htmlFor={emailFieldId} className="sr-only">
+              Email address for the Criollo Dispatch newsletter
+            </label>
             <div className="flex items-center border-b-2 border-cream-bg/40 pb-2 focus-within:border-cream-bg transition-colors">
               <input
+                id={emailFieldId}
                 type="email"
                 required
+                autoComplete="email"
                 placeholder="your-email@miami.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-transparent font-sans text-sm text-cream-bg placeholder:text-cream-bg/80 focus:outline-hidden"
+                className="w-full min-h-11 bg-transparent font-sans text-base text-cream-bg placeholder:text-cream-bg/80 focus:outline-hidden"
               />
               <button
                 type="submit"
-                className="shrink-0 font-sans text-xs font-extrabold uppercase tracking-widest bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer px-3 py-1.5 shadow-sm"
+                className="shrink-0 min-h-11 font-sans text-xs font-extrabold uppercase tracking-widest bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer px-4 py-1.5 shadow-sm"
               >
                 JOIN
               </button>
             </div>
-            {subscribed && (
-              <p className="mt-2 text-xs font-sans font-bold text-mojo-citrus animate-in fade-in">
-                You're on the list! Welcome to the Mojo Grille table.
-              </p>
-            )}
+            {/*
+              role="status" en un contenedor siempre presente: si la región
+              viva se monta a la vez que el texto, muchos lectores no la
+              anuncian. Vacío mientras no hay alta.
+            */}
+            <p role="status" className="mt-2 text-sm font-sans font-bold text-cream-bg">
+              {subscribed ? "You're on the list! Welcome to the Mojo Grille table." : ""}
+            </p>
           </form>
 
-          <p className="text-[11px] font-sans text-cream-bg pt-1">
+          <p className="text-sm font-sans text-cream-bg pt-1">
             No spam. Pure plancha heat, culture, and high-craft criollo food.
           </p>
         </div>
@@ -235,7 +267,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
         <div className="flex items-center gap-4">
           <span>25.7617° N, 80.1918° W</span>
           <span className="inline-flex items-center gap-1">
-            Crafted with <Heart className="h-3 w-3 text-mojo-citrus fill-mojo-citrus" /> and Seville Sour Orange
+            Crafted with <Heart className="h-3 w-3" aria-hidden="true" /> and Seville Sour Orange
           </span>
         </div>
       </div>
@@ -246,7 +278,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
         type="button"
         onClick={handleScrollToTop}
         aria-label="Back to top of page"
-        className="fixed bottom-6 right-6 z-40 h-12 w-12 rounded-none bg-charcoal-ink text-cream-bg shadow-none flex items-center justify-center hover:bg-cream-bg hover:text-brand-fire transition-colors duration-200 cursor-pointer active:scale-95 group"
+        className="fixed bottom-[calc(6.5rem+env(safe-area-inset-bottom))] md:bottom-6 right-6 z-40 h-12 w-12 rounded-none bg-charcoal-ink text-cream-bg shadow-none flex items-center justify-center hover:bg-cream-bg hover:text-brand-fire transition-colors duration-200 cursor-pointer active:scale-95 group"
       >
         <ArrowUp className="h-5 w-5 stroke-[2.5] group-hover:-translate-y-0.5 transition-transform duration-200" />
       </button>

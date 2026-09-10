@@ -1,0 +1,19 @@
+{
+  "name": "Mojo Grille Cuban Kitchen",
+  "short_name": "Mojo Grille",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#183320",
+  "background_color": "#F2ECE1",
+  "display": "standalone"
+}
