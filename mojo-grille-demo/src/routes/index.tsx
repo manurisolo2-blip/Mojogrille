@@ -144,8 +144,12 @@ function IndexContent() {
             </div>
           </div>
 
-          {/* El fondo inferior que sube y tapa el hero */}
-          <div className="relative z-20 -mt-[100dvh] bg-cream-bg shadow-[0_-24px_50px_rgba(20,18,16,0.14)] border-t border-charcoal-ink/10">
+          {/*
+            El fondo inferior que sube y tapa el hero. Sin border-top: el
+            filete de 1px era una arista de tarjeta sobre un canto que ya se
+            lee por la sombra proyectada del borde de la cortina.
+          */}
+          <div className="relative z-20 -mt-[100dvh] bg-cream-bg shadow-[0_-24px_50px_rgba(20,18,16,0.14)]">
             {/* Fase 5: El Elemento Estrella: Deconstrucción en Scroll (CubanDeconstruction) */}
             <CubanDeconstruction />
 

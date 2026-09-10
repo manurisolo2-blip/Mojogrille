@@ -264,7 +264,7 @@ export function CuratedMenu() {
           <div className="mt-6 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
             <div className="lg:max-w-[58%]">
               <div className="flex flex-wrap items-center gap-3">
-                <span className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-cream-bg">
+                <span className="font-sans text-sm sm:text-xs font-bold uppercase tracking-[0.2em] text-cream-bg">
                   Plato de la casa
                 </span>
                 <RebelChefBadge />

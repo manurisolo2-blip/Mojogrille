@@ -155,7 +155,7 @@ export function GoogleReviewsSection() {
                 <span className="font-sans text-sm font-bold text-charcoal-ink mt-1">
                   +3,000 ratings in Miami
                 </span>
-                <span className="font-sans text-xs text-charcoal-ink/60 uppercase tracking-wider">
+                <span className="font-sans text-sm sm:text-xs text-charcoal-ink/60 uppercase tracking-wider">
                   Google &amp; Miami Delivery
                 </span>
               </div>
@@ -165,7 +165,7 @@ export function GoogleReviewsSection() {
               href={GOOGLE_MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 bg-charcoal-ink hover:bg-brand-fire text-cream-bg text-xs font-bold uppercase tracking-wider px-5 py-2.5 transition-colors group cursor-pointer"
+              className="inline-flex min-h-11 items-center gap-2 bg-charcoal-ink hover:bg-brand-fire text-cream-bg text-sm sm:text-xs font-bold uppercase tracking-wider px-5 py-2.5 transition-colors group cursor-pointer"
             >
               <span>SEE ON MAPS</span>
               <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
@@ -234,7 +234,7 @@ export function GoogleReviewsSection() {
                           <div className="font-sans font-bold text-sm text-cream-bg leading-tight">
                             {review.author}
                           </div>
-                          <p className="font-sans text-xs font-medium text-cream-bg/70 mt-0.5">
+                          <p className="font-sans text-sm sm:text-xs font-medium text-cream-bg/70 mt-0.5">
                             Guest testimonial
                           </p>
                         </div>
@@ -257,16 +257,21 @@ export function GoogleReviewsSection() {
 
                     {/* Contenido Central: Plato (sin recuadros ni guiones, letra más grande en negrita) y Cita */}
                     <div className="relative z-10">
-                      <h4 className="font-sans text-base sm:text-lg font-bold text-mojo-citrus leading-snug tracking-tight mb-2">
+                      {/*
+                        h3, no h4: el único encabezado por encima en esta
+                        sección es el h2 "WHAT MIAMI SAYS", así que h4 saltaba
+                        un nivel y rompía el esquema del documento.
+                      */}
+                      <h3 className="font-sans text-base sm:text-lg font-bold text-mojo-citrus leading-snug tracking-tight mb-2">
                         {review.dish}
-                      </h4>
+                      </h3>
                       <p className="font-sans text-base text-cream-bg font-normal leading-relaxed">
                         &ldquo;{review.content}&rdquo;
                       </p>
                     </div>
 
                     {/* Pie de la Tarjeta */}
-                    <div className="relative z-10 pt-3 border-t border-cream-bg/15 flex items-center justify-between gap-3 text-cream-bg/70 font-sans text-xs uppercase tracking-wider">
+                    <div className="relative z-10 pt-3 border-t border-cream-bg/15 flex items-center justify-between gap-3 text-cream-bg/70 font-sans text-sm sm:text-xs uppercase tracking-wider">
                       <span className="text-leaf-green-soft font-semibold">
                         Dine-in / Takeout
                       </span>

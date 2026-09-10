@@ -44,10 +44,10 @@ function IngredientCallout({
         <>
           {/* Ficha Tipográfica Izquierda (Alineada a la derecha) */}
           <div className="flex flex-col text-right items-end max-w-[110px] sm:max-w-[155px] md:max-w-[200px] lg:max-w-[240px]">
-            <span className="font-display text-xs sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
+            <span className="font-display text-sm sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
               {name}
             </span>
-            <span className="font-sans text-xs md:text-sm lg:text-base font-bold uppercase tracking-wider text-charcoal-ink/75 leading-tight mt-0.5 sm:mt-1">
+            <span className="font-sans text-sm md:text-sm lg:text-base font-bold uppercase tracking-wider text-charcoal-ink/75 leading-tight mt-0.5 sm:mt-1">
               {detail}
             </span>
           </div>
@@ -88,10 +88,10 @@ function IngredientCallout({
 
           {/* Ficha Tipográfica Derecha (Alineada a la izquierda) */}
           <div className="flex flex-col text-left items-start max-w-[110px] sm:max-w-[155px] md:max-w-[200px] lg:max-w-[240px]">
-            <span className="font-display text-xs sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
+            <span className="font-display text-sm sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
               {name}
             </span>
-            <span className="font-sans text-xs md:text-sm lg:text-base font-bold uppercase tracking-wider text-charcoal-ink/75 leading-tight mt-0.5 sm:mt-1">
+            <span className="font-sans text-sm md:text-sm lg:text-base font-bold uppercase tracking-wider text-charcoal-ink/75 leading-tight mt-0.5 sm:mt-1">
               {detail}
             </span>
           </div>
@@ -568,7 +568,7 @@ export function CubanDeconstruction() {
                   />
                   <IngredientCallout
                     name="CITRUS MOJO ROAST PORK"
-                    detail="Slow-Roasted 4h in Sour Orange & Garlic"
+                    detail="Slow-Roasted 24h in Sour Orange & Garlic"
                     side="left"
                   />
                 </div>
@@ -604,14 +604,14 @@ export function CubanDeconstruction() {
         <div className="absolute bottom-4 right-4 sm:bottom-10 sm:right-10 z-30 flex items-center">
           <a
             href="#curated-menu"
-            className="bg-charcoal-ink hover:bg-brand-fire text-cream-bg min-h-11 py-2.5 px-4 sm:py-3 sm:px-6 text-xs font-bold uppercase tracking-widest transition-colors flex items-center gap-2.5 sm:gap-3 rounded-none cursor-pointer group shadow-none"
+            className="bg-charcoal-ink hover:bg-brand-fire text-cream-bg min-h-11 py-2.5 px-4 sm:py-3 sm:px-6 text-sm sm:text-xs font-bold uppercase tracking-widest transition-colors flex items-center gap-2.5 sm:gap-3 rounded-none cursor-pointer group shadow-none"
           >
             <span className="flex items-center gap-2">
               <span>ORDER LIVE-FIRE</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </span>
             <span className="h-3 w-px bg-cream-bg/30" />
-            <span className="font-sans text-xs font-black tracking-tight text-cream-bg">
+            <span className="font-sans text-sm sm:text-xs font-black tracking-tight text-cream-bg">
               $12.95
             </span>
           </a>

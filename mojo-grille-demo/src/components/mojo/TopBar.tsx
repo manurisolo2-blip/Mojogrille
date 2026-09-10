@@ -173,7 +173,20 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                 <span lang="es" className="hidden sm:inline">MENÚ</span>
               </button>
 
-              {/* Bolsa de Compra: Círculo Rojo con Anillo y Sombra Liquid Glass */}
+              {/*
+                Bolsa de Compra: círculo rojo plano.
+
+                Sobre el hero lleva contorno de tinta. El disco rojo solo se
+                queda en 2.50:1 contra el peor fondo del hero: un fotograma
+                negro del bucle al 45% sobre la crema y bajo el velo al 35%
+                deja el fondo en ~#ABA79F. Ese fondo nunca baja de ahí, así
+                que un filete charcoal-ink da 7.80:1 en el peor caso y 3.12:1
+                contra el propio relleno rojo, por encima de los 3:1 que pide
+                WCAG 1.4.11 para el contorno de un control.
+
+                Pasado el hero la cabecera es crema translúcida y el rojo ya
+                da 5.09:1 por sí solo, así que ahí el filete sobra.
+              */}
               <button
                 type="button"
                 onClick={onOpenCart}
@@ -182,7 +195,9 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     ? `View shopping bag, ${count} ${count === 1 ? "item" : "items"}`
                     : "View shopping bag, empty"
                 }
-                className="relative grid h-11 w-11 place-items-center rounded-full bg-brand-fire text-cream-bg transition-colors hover:bg-charcoal-ink active:scale-95 cursor-pointer select-none"
+                className={`relative grid h-11 w-11 place-items-center rounded-full bg-brand-fire text-cream-bg transition-colors hover:bg-charcoal-ink active:scale-95 cursor-pointer select-none ${
+                  isPastHero ? "" : "border-2 border-charcoal-ink"
+                }`}
               >
                 <LatinMarketBagIcon className="h-5 w-5 stroke-[2] text-cream-bg" />
                 {count > 0 && (
@@ -282,7 +297,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     <span className="font-sans text-[11px] font-black uppercase tracking-widest text-brand-fire">
                       SEDES MIAMI
                     </span>
-                    <span className="font-sans text-xs font-bold text-leaf-green">
+                    <span className="font-sans text-sm sm:text-xs font-bold text-leaf-green">
                       ● Abierto hoy
                     </span>
                   </div>
@@ -320,7 +335,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                                 setLocation(loc.id);
                                 setOpen(false);
                               }}
-                              className={`block min-h-11 w-full px-3 py-2 text-left font-sans text-xs uppercase tracking-wider font-bold transition-colors ${
+                              className={`block min-h-11 w-full px-3 py-2 text-left font-sans text-sm sm:text-xs uppercase tracking-wider font-bold transition-colors ${
                                 loc.id === location.id
                                   ? "font-black text-brand-fire"
                                   : "text-charcoal-ink hover:text-brand-fire"
@@ -341,7 +356,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     href={`https://maps.google.com/?q=${encodeURIComponent(location.address.fullAddress)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block font-sans text-xs text-charcoal-ink/80 hover:text-brand-fire hover:underline transition-colors cursor-pointer"
+                    className="block font-sans text-sm sm:text-xs text-charcoal-ink/80 hover:text-brand-fire hover:underline transition-colors cursor-pointer"
                     aria-label={`View ${location.address.fullAddress} on Google Maps`}
                   >
                     {location.address.fullAddress}
@@ -351,7 +366,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                   </p>
                   <a
                     href={`tel:${location.phone.replace(/[^0-9+]/g, "")}`}
-                    className="inline-flex min-h-11 items-center gap-1.5 text-brand-fire font-bold text-xs uppercase tracking-wider hover:underline"
+                    className="inline-flex min-h-11 items-center gap-1.5 text-brand-fire font-bold text-sm sm:text-xs uppercase tracking-wider hover:underline"
                   >
                     <Phone className="h-3 w-3" aria-hidden="true" />
                     <span>{location.phone}</span>

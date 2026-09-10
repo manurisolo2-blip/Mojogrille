@@ -67,7 +67,7 @@ export function CartSheet() {
               <span className="ml-1.5 hidden text-charcoal-ink/60 sm:inline">, {location.address.street}</span>
             </div>
           </div>
-          <span className="shrink-0 rounded-none bg-cream-bg px-2 py-0.5 font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink">
+          <span className="shrink-0 rounded-none bg-cream-bg px-2 py-0.5 font-sans text-sm sm:text-xs font-bold uppercase tracking-wider text-charcoal-ink">
             Pickup
           </span>
         </div>
@@ -95,7 +95,7 @@ export function CartSheet() {
                       {line.qty}× {line.name}
                     </p>
                     {line.sides.length > 0 && (
-                      <p className="mt-1 font-sans text-xs text-charcoal-ink/60">
+                      <p className="mt-1 font-sans text-sm sm:text-xs text-charcoal-ink/60">
                         {line.sides.join(", ")}
                       </p>
                     )}

@@ -87,7 +87,7 @@ export function QuickOrderModal({
 
           {item.sidesAllowed ? (
             <>
-              <p className="mt-6 font-sans text-xs font-bold uppercase tracking-widest text-charcoal-ink/80 border-b border-charcoal-ink/15 pb-2">
+              <p className="mt-6 font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-charcoal-ink/80 border-b border-charcoal-ink/15 pb-2">
                 CHOOSE YOUR SIDES & EXTRAS
               </p>
               <ul className="mt-3 space-y-2">

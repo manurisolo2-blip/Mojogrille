@@ -132,7 +132,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
         <div className="md:col-span-4 space-y-4">
           <div className="flex items-center gap-2 text-cream-bg">
             <MapPin className="h-4 w-4" />
-            <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-cream-bg">
+            <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-cream-bg">
               Location &amp; Plancha Hours
             </h3>
           </div>
@@ -143,7 +143,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
               href="https://maps.google.com/?q=2920+NW+27th+Ave,+Miami,+FL+33142"
               target="_blank"
               rel="noopener noreferrer"
-              className="block hover:underline transition-colors cursor-pointer"
+              className="inline-flex min-h-11 items-center hover:underline transition-colors cursor-pointer"
               aria-label="View 2920 NW 27th Ave, Miami on Google Maps"
             >
               2920 NW 27th Ave, Miami, FL 33142
@@ -166,7 +166,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
         <div className="md:col-span-4 space-y-4">
           <div className="flex items-center gap-2 text-cream-bg">
             <Sparkles className="h-4 w-4" />
-            <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-cream-bg">
+            <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-cream-bg">
               Quick Navigation
             </h3>
           </div>
@@ -218,7 +218,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
 
         {/* Columna 3: Registro a Newsletter en una Sola Línea */}
         <div className="md:col-span-4 space-y-4">
-          <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-cream-bg">
+          <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-cream-bg">
             Criollo Dispatch &amp; Secret Drops
           </h3>
           <p className="font-sans text-base text-cream-bg leading-relaxed">
@@ -247,7 +247,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
               />
               <button
                 type="submit"
-                className="shrink-0 min-h-11 font-sans text-xs font-extrabold uppercase tracking-widest bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer px-4 py-1.5"
+                className="shrink-0 min-h-11 font-sans text-sm sm:text-xs font-extrabold uppercase tracking-widest bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer px-4 py-1.5"
               >
                 JOIN
               </button>
@@ -270,14 +270,14 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
       </div>
 
       {/* 3. Barra Inferior Legal & Marca de Agua */}
-      <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-cream-bg">
+      <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm sm:text-xs font-sans text-cream-bg">
         <p>© {new Date().getFullYear()} MOJO GRILLE LLC ALL RIGHTS RESERVED MIAMI-LATIN MODERNISM</p>
         <div className="flex items-center gap-4">
           <a
             href="https://maps.google.com/?q=2920+NW+27th+Ave,+Miami,+FL+33142"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 hover:underline transition-colors cursor-pointer text-cream-bg"
+            className="inline-flex min-h-11 items-center gap-1 hover:underline transition-colors cursor-pointer text-cream-bg"
             aria-label="View 2920 NW 27th Ave, Miami on Google Maps"
           >
             <MapPin className="h-3 w-3 shrink-0" aria-hidden="true" />

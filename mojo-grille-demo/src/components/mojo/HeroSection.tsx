@@ -68,11 +68,17 @@ export function HeroSection({
       : "opacity-0 translate-y-4";
 
   return (
+    /*
+      Sin select-none en el contenedor: colgado en el <section> impedía
+      copiar el titular, el subtítulo y el "4.7 Stars". El bloqueo de
+      selección sólo tiene sentido en los controles, y esos lo llevan por
+      su cuenta.
+    */
     <section
       ref={sectionRef}
       id="top"
       aria-label="Welcome to Mojo Grille Cuban Kitchen"
-      className="relative z-10 w-full h-full min-h-dvh flex flex-col justify-center bg-transparent select-none"
+      className="relative z-10 w-full h-full min-h-dvh flex flex-col justify-center bg-transparent"
     >
       {/* Descriptor editorial para lectores de pantalla y buscadores */}
       <p className="sr-only">
@@ -113,7 +119,7 @@ export function HeroSection({
                 className="h-4 w-4 shrink-0 fill-mojo-citrus text-mojo-citrus"
                 aria-hidden="true"
               />
-              <span className="font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.08em] sm:tracking-[0.14em] text-charcoal-ink">
+              <span className="font-sans text-sm font-bold uppercase tracking-[0.08em] sm:tracking-[0.14em] text-charcoal-ink">
                 4.7 Stars across +3,000 orders in Miami
               </span>
             </div>

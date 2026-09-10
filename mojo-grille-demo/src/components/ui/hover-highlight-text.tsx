@@ -115,9 +115,15 @@ export function HoverHighlightText({
         containerClassName,
       )}
     >
+      {/*
+        La capa base es el texto real del encabezado y se puede seleccionar y
+        copiar. El select-none se queda sólo en la capa de resaltado de abajo,
+        que repite el mismo texto para pintar el foco: si también fuera
+        seleccionable, copiar el titular lo devolvería duplicado.
+      */}
       <Tag
         className={cn(
-          "select-none text-balance text-center text-4xl font-semibold tracking-tight text-zinc-300/35 sm:text-5xl md:text-6xl dark:text-white/15",
+          "text-balance text-center text-4xl font-semibold tracking-tight text-zinc-300/35 sm:text-5xl md:text-6xl dark:text-white/15",
           baseClassName,
         )}
         style={{ color: baseColor }}

@@ -58,7 +58,7 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
           </div>
 
           <div aria-hidden="true" className="flex flex-col text-left">
-            <span className="font-sans text-xs font-bold uppercase tracking-wider text-cream-bg/70">
+            <span className="font-sans text-sm sm:text-xs font-bold uppercase tracking-wider text-cream-bg/70">
               {count > 0 ? `${count} item${count > 1 ? "s" : ""}` : "Your Order"}
             </span>
             <span className="font-display text-lg font-bold tracking-tight text-cream-bg leading-tight">

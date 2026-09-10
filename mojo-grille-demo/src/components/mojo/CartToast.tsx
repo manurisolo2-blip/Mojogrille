@@ -43,7 +43,7 @@ export function CartToast() {
             openCart();
           }}
           tabIndex={toast ? 0 : -1}
-          className="h-11 shrink-0 rounded-none bg-cream-bg px-3 py-1 font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink hover:bg-brand-fire hover:text-cream-bg transition-colors cursor-pointer"
+          className="h-11 shrink-0 rounded-none bg-cream-bg px-3 py-1 font-sans text-sm sm:text-xs font-bold uppercase tracking-wider text-charcoal-ink hover:bg-brand-fire hover:text-cream-bg transition-colors cursor-pointer"
         >
           View
         </button>

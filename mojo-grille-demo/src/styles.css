@@ -215,6 +215,21 @@
   }
 }
 
+/*
+ * Tamaño mínimo de texto en móvil
+ *
+ * Por debajo de 640px ningún texto de lectura baja de 14px. El patrón es
+ * `text-sm sm:text-xs`: móvil gana legibilidad y el escritorio conserva sus
+ * etiquetas de 12px, que ahí se leen a distancia de monitor.
+ *
+ * Excepciones deliberadas, todas medidas y ninguna es texto de lectura:
+ *   - contadores dentro de una chapa de 20px (bolsa, barra móvil)
+ *   - RebelChefBadge: rótulo gráfico de cinta rasgada, pointer-events-none y
+ *     con aria-label completo; a 14px deja de ser una cinta
+ *   - los rótulos de las guarniciones de JellyWaveTransition: sólo aparecen
+ *     en hover, que en táctil no se dispara
+ */
+
 /* Official Miami-Latin Modernism Design Token Utilities */
 @utility bg-cream-bg {
   background-color: #F2ECE1;

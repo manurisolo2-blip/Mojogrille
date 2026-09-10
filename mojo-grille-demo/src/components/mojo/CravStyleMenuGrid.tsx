@@ -337,7 +337,7 @@ export function CravStyleMenuGrid({
                   type="button"
                   onClick={() => setSelectedCategory(category.id)}
                   onKeyDown={(event) => handleTabKeyDown(event, index)}
-                  className={`relative flex min-h-11 shrink-0 items-center rounded-none px-5 py-2.5 font-sans text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none ${
+                  className={`relative flex min-h-11 shrink-0 items-center rounded-none px-5 py-2.5 font-sans text-sm sm:text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none ${
                     isSelected
                       ? "bg-charcoal-ink text-cream-bg"
                       : "bg-transparent text-charcoal-ink hover:text-brand-fire hover:bg-charcoal-ink/5"
@@ -369,7 +369,7 @@ export function CravStyleMenuGrid({
 
             const priceBlock = (
               <div className="shrink-0">
-                <span className="font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink/60 block">
+                <span className="font-sans text-sm sm:text-xs font-bold uppercase tracking-wider text-charcoal-ink/60 block">
                   PRICE
                 </span>
                 <span className="font-display text-3xl font-black text-charcoal-ink tabular-nums">
@@ -387,7 +387,7 @@ export function CravStyleMenuGrid({
                     ? `Choose sides for ${item.name} and add to order`
                     : `Add ${item.name} to order`
                 }
-                className={`relative inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-none px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none ${
+                className={`relative inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-none px-4 py-2.5 font-sans text-sm sm:text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none ${
                   isAdded
                     ? "bg-leaf-green text-cream-bg"
                     : "bg-charcoal-ink text-cream-bg hover:bg-brand-fire"
@@ -480,7 +480,7 @@ export function CravStyleMenuGrid({
               href={`https://wa.me/${cart.location.phoneRaw}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
+              className="inline-flex min-h-11 items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-sm font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
             >
               <span>Inquire via WhatsApp</span>
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
