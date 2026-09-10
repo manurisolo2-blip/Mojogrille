@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { UtensilsCrossed, CalendarHeart, Star } from "lucide-react";
 import { MagneticButton } from "./MagneticButton";
 import { HoverHighlightText } from "@/components/ui/hover-highlight-text";
+import { HeroVideoBackground } from "./HeroVideoBackground";
 import { useReducedMotion } from "@/lib/useReducedMotion";
 
 export interface HeroSectionProps {
@@ -76,26 +77,19 @@ export function HeroSection({
       </p>
 
       {/*
-        Fondo fotográfico atenuado. Es decoración, no contenido: el mensaje ya
-        está en el titular, así que va oculto a lectores de pantalla.
-        La foto queda al 20% bajo un velo crema en degradado; en el peor caso
-        (un píxel negro justo detrás) el titular conserva 5.7:1, por encima del
-        4.5:1 que pide AA. El degradado cierra en crema opaco para fundir con la
-        sección siguiente sin dejar un corte duro.
+        Fondo en movimiento: bucle ambiental de una cocina bajo un velo crema.
+        Es decoración, no contenido, así que va oculto a lectores de pantalla y
+        el mensaje sigue viviendo en el titular. La foto de antes pasa a póster:
+        se ve mientras carga el vídeo y es el respaldo permanente cuando hay
+        prefers-reduced-motion, ahorro de datos o el vídeo falla. La opacidad la
+        fija el componente en 0.2, que es lo que sostiene el 5.7:1 del titular.
       */}
-      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-        <img
-          src="/assets/mojo-bowl-ropa-vieja.jpg"
-          alt=""
-          aria-hidden="true"
-          decoding="async"
-          fetchPriority="high"
-          className="h-full w-full object-cover object-center opacity-20"
-        />
-        {/* Velo crema en degradado: calma el centro donde vive el texto y cierra
-            en crema opaco para fundir con la sección siguiente sin corte duro. */}
-        <div className="absolute inset-0 bg-gradient-to-b from-cream-bg/50 via-cream-bg/45 to-cream-bg" />
-      </div>
+      <HeroVideoBackground
+        // Metraje: Pexels 8626681 "A smoky hot pan", 1280x720, 23 s.
+        // Licencia Pexels: uso comercial libre, sin atribución obligatoria.
+        videoSrc="/assets/hero-kitchen-loop.mp4"
+        posterSrc="/assets/mojo-bowl-ropa-vieja.jpg"
+      />
 
       {/* Bloque Principal Hero */}
       <div className={`relative z-10 pt-12 pb-16 md:pt-20 md:pb-24 ${animContainerClass}`}>
