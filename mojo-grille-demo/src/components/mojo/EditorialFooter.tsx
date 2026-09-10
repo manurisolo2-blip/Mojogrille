@@ -139,7 +139,15 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
 
           <div className="space-y-1 font-sans text-base text-cream-bg">
             <p className="font-bold text-base text-cream-bg">Brownsville Central Kitchen</p>
-            <p>2920 NW 27th Ave, Miami, FL 33142</p>
+            <a
+              href="https://maps.google.com/?q=2920+NW+27th+Ave,+Miami,+FL+33142"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block hover:underline transition-colors cursor-pointer"
+              aria-label="View 2920 NW 27th Ave, Miami on Google Maps"
+            >
+              2920 NW 27th Ave, Miami, FL 33142
+            </a>
             <p className="text-sm text-cream-bg">Pickup hubs: Little Havana, Brickell, Doral</p>
           </div>
 
@@ -265,7 +273,16 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
       <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-cream-bg">
         <p>© {new Date().getFullYear()} MOJO GRILLE LLC ALL RIGHTS RESERVED MIAMI-LATIN MODERNISM</p>
         <div className="flex items-center gap-4">
-          <span>25.7617° N, 80.1918° W</span>
+          <a
+            href="https://maps.google.com/?q=2920+NW+27th+Ave,+Miami,+FL+33142"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 hover:underline transition-colors cursor-pointer text-cream-bg"
+            aria-label="View 2920 NW 27th Ave, Miami on Google Maps"
+          >
+            <MapPin className="h-3 w-3 shrink-0" aria-hidden="true" />
+            <span>2920 NW 27th Ave, Miami, FL 33142</span>
+          </a>
           <span className="inline-flex items-center gap-1">
             Crafted with <Heart className="h-3 w-3" aria-hidden="true" /> and Seville Sour Orange
           </span>

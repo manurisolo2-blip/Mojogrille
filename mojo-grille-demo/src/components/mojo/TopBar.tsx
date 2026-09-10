@@ -231,9 +231,9 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
               aria-modal="true"
               lang="es"
               aria-label="Menú de navegación y sedes"
-              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-md bg-cream-bg p-6 sm:p-8 flex flex-col justify-between overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-none md:max-w-md bg-cream-bg px-6 py-8 md:p-8 flex flex-col justify-between overflow-y-auto"
             >
-              <div className="space-y-8">
+              <div className="space-y-12 md:space-y-8">
                 {/* Encabezado del Menú Drawer */}
                 <div className="flex items-center justify-between">
                   <span className="font-display text-3xl sm:text-4xl font-black uppercase tracking-tight text-charcoal-ink">
@@ -266,9 +266,9 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                       key={item.href}
                       href={item.href}
                       onClick={() => setMenuDrawerOpen(false)}
-                      className="group flex items-center justify-between py-2 text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer"
+                      className="group flex min-h-11 items-center justify-between py-2.5 md:py-2 text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer"
                     >
-                      <span className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight">
+                      <span className="font-display text-3xl font-black uppercase tracking-tight">
                         {item.label}
                       </span>
                       <ArrowRight className="h-5 w-5 text-brand-fire opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
@@ -327,7 +327,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                               }`}
                             >
                               <div>{loc.name}</div>
-                              <div className="text-[11px] text-charcoal-ink/60 font-normal">
+                              <div className="hidden md:block text-xs text-charcoal-ink/60 font-normal">
                                 {loc.address.street}
                               </div>
                             </button>
@@ -337,10 +337,16 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     )}
                   </div>
 
-                  <p className="font-sans text-xs text-charcoal-ink/80">
+                  <a
+                    href={`https://maps.google.com/?q=${encodeURIComponent(location.address.fullAddress)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block font-sans text-xs text-charcoal-ink/80 hover:text-brand-fire hover:underline transition-colors cursor-pointer"
+                    aria-label={`View ${location.address.fullAddress} on Google Maps`}
+                  >
                     {location.address.fullAddress}
-                  </p>
-                  <p className="font-sans text-xs text-charcoal-ink/60">
+                  </a>
+                  <p className="hidden md:block font-sans text-xs text-charcoal-ink/60">
                     Horario: 11:00 AM – 10:00 PM · Cocina criolla al momento
                   </p>
                   <a
@@ -368,7 +374,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     <p className="font-display text-2xl font-black uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors">
                       MI PASAPORTE & BENEFICIOS →
                     </p>
-                    <p className="font-sans text-xs text-charcoal-ink/75 mt-0.5">
+                    <p className="hidden md:block font-sans text-xs text-charcoal-ink/75 mt-0.5">
                       Gana 1 cafecito de bienvenida y acumula puntos en cada orden.
                     </p>
                   </button>
@@ -376,7 +382,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
               </div>
 
               {/* Pie del Menú Drawer */}
-              <div className="pt-8 flex items-center justify-between text-[11px] text-charcoal-ink/70 font-sans uppercase tracking-widest font-bold">
+              <div className="hidden md:flex pt-8 items-center justify-between text-xs text-charcoal-ink/70 font-sans uppercase tracking-widest font-bold">
                 <span>Miami Cuban Kitchen</span>
                 <span className="text-brand-fire">Al Momento</span>
               </div>
