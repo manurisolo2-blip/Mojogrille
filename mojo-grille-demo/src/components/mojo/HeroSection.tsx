@@ -136,14 +136,16 @@ export function HeroSection({
           {/* Encabezado Monumental Centrado */}
           <div className="flex flex-col items-center text-center space-y-6 max-w-7xl mx-auto">
             {/*
-              Prueba social con contenedor translúcido/glass sutil.
+              Prueba social sin cápsula. Estaba metida en un rectángulo
+              translúcido con borde y desenfoque; la estrella y el texto se
+              apoyan solos sobre el fondo y se leen igual.
 
               Deliberadamente sin región viva: es contenido fijo, y marcarlo
               como tal hacía que se anunciara solo al cargar, pisando la
               lectura del titular. El texto ya se lee como contenido normal.
             */}
             <div
-              className={`inline-flex items-center gap-2.5 border border-charcoal-ink/10 bg-cream-bg/25 backdrop-blur-md px-4 py-2 ${animItemClass}`}
+              className={`inline-flex items-center gap-2.5 ${animItemClass}`}
             >
               <Star
                 className="h-4 w-4 shrink-0 fill-mojo-citrus text-mojo-citrus"
@@ -200,7 +202,7 @@ export function HeroSection({
 
               <a
                 href={cateringHref}
-                className="inline-flex items-center justify-center gap-2.5 rounded-none border border-charcoal-ink/15 bg-cream-bg/30 backdrop-blur-md px-7 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-charcoal-ink hover:bg-cream-bg/60 transition-colors select-none"
+                className="inline-flex items-center justify-center gap-2.5 rounded-none bg-surface-sand px-7 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors select-none"
               >
                 <CalendarHeart className="h-4 w-4 text-leaf-green" aria-hidden="true" />
                 <span>Catering &amp; Events</span>

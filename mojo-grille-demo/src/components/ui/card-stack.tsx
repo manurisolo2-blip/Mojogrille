@@ -221,15 +221,6 @@ export function CardStack<T extends CardStackItem>({
         tabIndex={0}
         onKeyDown={onKeyDown}
       >
-        {/* background wash / spotlight */}
-        <div
-          className="pointer-events-none absolute inset-x-0 top-6 mx-auto h-48 w-[70%] rounded-full bg-black/5 blur-3xl dark:bg-white/5"
-          aria-hidden="true"
-        />
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 mx-auto h-40 w-[76%] rounded-full bg-black/10 blur-3xl dark:bg-black/30"
-          aria-hidden="true"
-        />
 
         <div
           className="absolute inset-0 flex items-end justify-center"
@@ -283,15 +274,17 @@ export function CardStack<T extends CardStackItem>({
                   }
                 : {};
 
+              // Sin redondeo, sin borde y sin sombra: la profundidad del mazo
+              // la dan la perspectiva, la escala y el solapamiento, no una
+              // elevación pintada. La tarjeta activa se distingue por su
+              // escala y por estar delante, no por un anillo de color.
               return (
                 <motion.div
                   key={item.id}
                   className={cn(
-                    "absolute bottom-0 rounded-2xl border border-charcoal-ink/20 dark:border-white/10 overflow-hidden shadow-xl",
+                    "absolute bottom-0 overflow-hidden",
                     "will-change-transform select-none",
-                    isActive
-                      ? "cursor-grab active:cursor-grabbing ring-2 ring-brand-fire/40"
-                      : "cursor-pointer",
+                    isActive ? "cursor-grab active:cursor-grabbing" : "cursor-pointer",
                   )}
                   style={{
                     width: cardWidth,

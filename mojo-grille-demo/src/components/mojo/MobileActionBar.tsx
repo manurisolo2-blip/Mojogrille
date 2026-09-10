@@ -46,7 +46,7 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
               : "Open cart, empty"
           }
         >
-          <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-none bg-charcoal-ink/90 border border-cream-bg/20">
+          <div className="relative flex h-11 w-11 shrink-0 items-center justify-center">
             <ShoppingBag className="h-5 w-5 text-cream-bg" aria-hidden="true" />
             {/* Badge Verde Cilantro (#2F6A4F / leaf-green) */}
             <span

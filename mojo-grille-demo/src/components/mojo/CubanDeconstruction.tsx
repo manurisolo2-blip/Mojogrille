@@ -618,7 +618,7 @@ export function CubanDeconstruction() {
         </div>
 
         {/* Indicador de scroll (visible solo en tablet/desktop para no solapar controles en móviles) */}
-        <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 hidden sm:flex items-center gap-2 text-cream-bg font-sans text-xs sm:text-sm tracking-wider uppercase font-bold pointer-events-none bg-charcoal-ink px-4 py-1.5 shadow-md">
+        <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 hidden sm:flex items-center gap-2 text-cream-bg font-sans text-xs sm:text-sm tracking-wider uppercase font-bold pointer-events-none bg-charcoal-ink px-4 py-1.5">
           <span className="animate-bounce text-brand-fire">↓</span>
           <span>Scroll to deconstruct · Scroll up to assemble</span>
         </div>

@@ -183,7 +183,7 @@ export function CuratedMenu() {
       <div
         ref={previewRef}
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-50 hidden lg:flex flex-col overflow-hidden rounded-none bg-charcoal-ink border border-cream-bg/30 shadow-2xl opacity-0 w-80 h-52 select-none will-change-transform"
+        className="pointer-events-none fixed top-0 left-0 z-50 hidden lg:flex flex-col overflow-hidden rounded-none bg-charcoal-ink opacity-0 w-80 h-52 select-none will-change-transform"
         style={{ transform: "translate3d(-9999px, -9999px, 0)" }}
       >
         <div className="relative h-full w-full overflow-hidden bg-charcoal-ink">
@@ -196,7 +196,7 @@ export function CuratedMenu() {
           
           {/* Metadato superior de previsualización */}
           <div className="absolute top-2.5 left-3 flex items-center">
-            <span className="font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-cream-bg bg-brand-fire px-2 py-0.5 border border-cream-bg/20">
+            <span className="font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-cream-bg bg-brand-fire px-2 py-0.5">
               MADE AL MOMENTO 100% FRESH
             </span>
           </div>
@@ -268,7 +268,7 @@ export function CuratedMenu() {
                 <img
                   src={item.imageUrl}
                   alt={item.name}
-                  className="w-16 h-16 object-cover shrink-0 border border-cream-bg/20"
+                  className="w-16 h-16 object-cover shrink-0"
                   loading="lazy"
                 />
                 <p className="font-sans text-base text-cream-bg line-clamp-2">
@@ -295,7 +295,7 @@ export function CuratedMenu() {
                     e.stopPropagation();
                     handleAddToCart(item);
                   }}
-                  className="flex-1 sm:flex-none sm:w-48 h-11 px-3 sm:px-4 font-sans font-bold uppercase tracking-wider text-sm bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center justify-center gap-1.5 cursor-pointer shrink-0 shadow-md select-none"
+                  className="flex-1 sm:flex-none sm:w-48 h-11 px-3 sm:px-4 font-sans font-bold uppercase tracking-wider text-sm bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center justify-center gap-1.5 cursor-pointer shrink-0 select-none"
                   aria-label={`Add ${item.name} to order for $${item.price.toFixed(2)}`}
                 >
                   <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[3]" aria-hidden="true" />

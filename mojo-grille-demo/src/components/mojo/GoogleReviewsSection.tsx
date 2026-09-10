@@ -165,7 +165,7 @@ export function GoogleReviewsSection() {
               href={GOOGLE_MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 bg-charcoal-ink hover:bg-brand-fire text-cream-bg text-xs font-bold uppercase tracking-wider px-5 py-2.5 transition-colors group cursor-pointer shadow-xs"
+              className="inline-flex min-h-11 items-center gap-2 bg-charcoal-ink hover:bg-brand-fire text-cream-bg text-xs font-bold uppercase tracking-wider px-5 py-2.5 transition-colors group cursor-pointer"
             >
               <span>SEE ON MAPS</span>
               <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
@@ -220,7 +220,7 @@ export function GoogleReviewsSection() {
                           de personas reales presentadas como quienes firman
                           estas opiniones.
                         */}
-                        <div className="relative h-11 w-11 rounded-full overflow-hidden shrink-0 ring-2 ring-cream-bg/25 bg-charcoal-ink flex items-center justify-center">
+                        <div className="relative h-11 w-11 rounded-full overflow-hidden shrink-0 bg-charcoal-ink flex items-center justify-center">
                           <span
                             aria-hidden="true"
                             className={`h-full w-full ${review.avatarBg} text-cream-bg flex items-center justify-center font-sans font-bold text-sm uppercase`}

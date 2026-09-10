@@ -52,7 +52,7 @@ export function QuickOrderModal({
       <div
         aria-hidden="true"
         onClick={onClose}
-        className="absolute inset-0 bg-charcoal-ink/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-charcoal-ink/60"
       />
       <div
         ref={panelRef}
@@ -108,7 +108,7 @@ export function QuickOrderModal({
                           "grid min-h-11 w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-none px-4 py-3 text-left font-sans transition-colors cursor-pointer " +
                           (selected
                             ? "bg-surface-sand text-charcoal-ink font-bold"
-                            : "bg-surface-sand/40 text-charcoal-ink hover:bg-surface-sand")
+                            : "text-charcoal-ink hover:bg-surface-sand")
                         }
                       >
                         <span
@@ -116,7 +116,7 @@ export function QuickOrderModal({
                             "grid h-5 w-5 shrink-0 place-items-center rounded-none transition-colors " +
                             (selected
                               ? "bg-brand-fire text-cream-bg"
-                              : "bg-cream-bg")
+                              : "bg-surface-sand")
                           }
                         >
                           {selected && <Check className="h-3.5 w-3.5 stroke-[3]" aria-hidden="true" />}

@@ -140,7 +140,7 @@ function IndexContent() {
           />
 
           {/* La parte de abajo: sube cubriendo el video estático como una cortina editorial */}
-          <div className="relative z-20 bg-cream-bg shadow-[0_-24px_50px_rgba(20,18,16,0.10)] border-t border-charcoal-ink/10">
+          <div className="relative z-20 bg-cream-bg">
             {/* Fase 5: El Elemento Estrella: Deconstrucción en Scroll (CubanDeconstruction) */}
             <CubanDeconstruction />
 

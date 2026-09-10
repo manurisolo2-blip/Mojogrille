@@ -37,7 +37,7 @@ export function CartSheet() {
       <div
         aria-hidden="true"
         onClick={closeCart}
-        className="absolute inset-0 bg-charcoal-ink/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-charcoal-ink/60"
       />
       <aside
         ref={panelRef}

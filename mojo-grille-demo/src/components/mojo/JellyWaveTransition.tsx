@@ -198,13 +198,13 @@ export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
                   },
                 })}
             whileHover={{ scale: 1.15, rotate: 10 }}
-            className="group relative flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-cream-bg border border-charcoal-ink/15 shadow-lg shadow-black/10 cursor-pointer"
+            className="group relative flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-cream-bg cursor-pointer"
             title="100% Cilantro Criollo Fresco"
           >
             <span className="text-base sm:text-lg select-none" role="img" aria-label="Cilantro Leaf">
               🌿
             </span>
-            <span className="pointer-events-none absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-charcoal-ink text-cream-bg text-[9px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 opacity-0 transition-opacity group-hover:opacity-100 rounded-none shadow-sm">
+            <span className="pointer-events-none absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-charcoal-ink text-cream-bg text-[9px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 opacity-0 transition-opacity group-hover:opacity-100 rounded-none">
               Cilantro
             </span>
           </motion.div>
@@ -225,13 +225,13 @@ export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
                   },
                 })}
             whileHover={{ scale: 1.15, rotate: -10 }}
-            className="group relative flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-cream-bg border border-charcoal-ink/15 shadow-lg shadow-black/10 cursor-pointer"
+            className="group relative flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-cream-bg cursor-pointer"
             title="Naranja Agria de Sevilla — Mojo Signature"
           >
             <span className="text-base sm:text-lg select-none" role="img" aria-label="Sour Orange">
               🍊
             </span>
-            <span className="pointer-events-none absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-charcoal-ink text-cream-bg text-[9px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 opacity-0 transition-opacity group-hover:opacity-100 rounded-none shadow-sm">
+            <span className="pointer-events-none absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-charcoal-ink text-cream-bg text-[9px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 opacity-0 transition-opacity group-hover:opacity-100 rounded-none">
               Mojo Citrus
             </span>
           </motion.div>

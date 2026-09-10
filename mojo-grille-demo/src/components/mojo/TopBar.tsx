@@ -94,7 +94,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
         initial={false}
         animate={{ y: isVisible ? "0%" : "-100%" }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="sticky top-0 z-40 bg-[#F2ECE1]/55 backdrop-blur-xl backdrop-saturate-150 border-b border-white/40 shadow-[0_8px_32px_0_rgba(20,18,16,0.05),inset_0_1px_1px_0_rgba(255,255,255,0.7)] transition-all duration-200 will-change-transform"
+        className="sticky top-0 z-40 bg-cream-bg will-change-transform"
       >
         <div className="w-full">
           <nav className="w-full flex items-center justify-between gap-4 px-4 sm:px-6 md:px-8 lg:px-12 py-3.5">
@@ -121,7 +121,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                 type="button"
                 onClick={() => setAccountModalOpen(true)}
                 aria-label="Open account and Club Mojo panel"
-                className="flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full bg-white/25 hover:bg-white/50 backdrop-blur-md border border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)] px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-all cursor-pointer select-none"
+                className="flex min-h-11 min-w-11 items-center justify-center gap-1.5 px-2 sm:px-2.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer select-none"
               >
                 <User className="h-4 w-4 stroke-[2.2]" aria-hidden="true" />
                 <span lang="es" className="hidden sm:inline">CUENTA</span>
@@ -133,7 +133,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                 onClick={() => setMenuDrawerOpen(true)}
                 aria-label="Open navigation menu and locations"
                 aria-expanded={menuDrawerOpen}
-                className="flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full bg-white/25 hover:bg-white/50 backdrop-blur-md border border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)] px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-all cursor-pointer select-none"
+                className="flex min-h-11 min-w-11 items-center justify-center gap-1.5 px-2 sm:px-2.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer select-none"
               >
                 <Menu className="h-4 w-4 stroke-[2.2]" aria-hidden="true" />
                 <span lang="es" className="hidden sm:inline">MENÚ</span>
@@ -148,7 +148,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     ? `View shopping bag, ${count} ${count === 1 ? "item" : "items"}`
                     : "View shopping bag, empty"
                 }
-                className="relative grid h-11 w-11 place-items-center rounded-full bg-brand-fire text-cream-bg ring-2 ring-white/60 shadow-lg transition-all hover:bg-charcoal-ink hover:ring-white/80 active:scale-95 cursor-pointer select-none"
+                className="relative grid h-11 w-11 place-items-center rounded-full bg-brand-fire text-cream-bg transition-colors hover:bg-charcoal-ink active:scale-95 cursor-pointer select-none"
               >
                 <LatinMarketBagIcon className="h-5 w-5 stroke-[2] text-cream-bg" />
                 {count > 0 && (
@@ -175,7 +175,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="fixed inset-0 bg-charcoal-ink/40 backdrop-blur-xs"
+              className="fixed inset-0 bg-charcoal-ink/50"
               onClick={() => setMenuDrawerOpen(false)}
               aria-hidden="true"
             />
@@ -197,7 +197,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
               aria-modal="true"
               lang="es"
               aria-label="Menú de navegación y sedes"
-              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-md bg-cream-bg p-6 sm:p-8 flex flex-col justify-between overflow-y-auto shadow-2xl"
+              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-md bg-cream-bg p-6 sm:p-8 flex flex-col justify-between overflow-y-auto"
             >
               <div className="space-y-8">
                 {/* Encabezado del Menú Drawer */}
@@ -276,7 +276,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                       <ul
                         role="listbox"
                         aria-label="Miami restaurant locations"
-                        className="absolute left-0 right-0 top-full mt-2 py-2 bg-cream-bg shadow-xl z-50 space-y-1"
+                        className="absolute left-0 right-0 top-full mt-2 py-2 bg-cream-bg z-50 space-y-1"
                       >
                         {availableLocations.map((loc) => (
                           <li key={loc.id} role="option" aria-selected={loc.id === location.id}>
@@ -361,7 +361,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 bg-charcoal-ink/60 backdrop-blur-xs"
+            className="fixed inset-0 bg-charcoal-ink/60"
             onClick={() => setAccountModalOpen(false)}
             aria-hidden="true"
           />
@@ -377,14 +377,14 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
             aria-modal="true"
             lang="es"
             aria-label="Apartado de cuenta y Club Mojo"
-            className="relative z-50 w-full max-w-3xl lg:max-w-4xl bg-cream-bg rounded-3xl sm:rounded-[28px] shadow-2xl my-auto overflow-hidden border border-charcoal-ink/10"
+            className="relative z-50 w-full max-w-3xl lg:max-w-4xl bg-cream-bg my-auto overflow-hidden"
           >
             {/* Botón de Cierre Flotante Minimalista */}
             <button
               type="button"
               onClick={() => setAccountModalOpen(false)}
               aria-label="Cerrar apartado de cuenta"
-              className="absolute top-3.5 right-3.5 z-40 grid h-11 w-11 place-items-center rounded-full text-charcoal-ink hover:text-brand-fire bg-cream-bg/80 backdrop-blur-xs hover:bg-cream-bg shadow-sm transition-all cursor-pointer"
+              className="absolute top-3.5 right-3.5 z-40 grid h-11 w-11 place-items-center text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer"
             >
               <X className="h-5 w-5 stroke-[2.2]" aria-hidden="true" />
             </button>

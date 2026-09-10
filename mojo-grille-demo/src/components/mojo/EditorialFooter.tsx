@@ -239,7 +239,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
               />
               <button
                 type="submit"
-                className="shrink-0 min-h-11 font-sans text-xs font-extrabold uppercase tracking-widest bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer px-4 py-1.5 shadow-sm"
+                className="shrink-0 min-h-11 font-sans text-xs font-extrabold uppercase tracking-widest bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer px-4 py-1.5"
               >
                 JOIN
               </button>
