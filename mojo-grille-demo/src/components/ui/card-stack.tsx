@@ -153,8 +153,16 @@ export function CardStack<T extends CardStackItem>({
       // queremos: el alto de maquetación, no el visual de la tarjeta activa.
       if (el.offsetHeight > tallest) tallest = el.offsetHeight;
     });
-    if (tallest > 0) setStackHeight(tallest);
-  }, []);
+    if (tallest <= 0) return;
+
+    // Holgura. Las tarjetas se anclan a `bottom-0` y el escenario recorta, así
+    // que ceñirlo al alto exacto de la más alta cortaría por arriba la tarjeta
+    // activa, que se eleva `activeLiftPx` y escala `activeScale`; y por abajo
+    // las del fondo, que bajan 10px por posición de distancia.
+    const lift = activeLiftPx + Math.ceil(tallest * Math.max(0, activeScale - 1));
+    const drop = Math.max(0, Math.floor(maxVisible / 2)) * 10;
+    setStackHeight(tallest + lift + drop + 8);
+  }, [activeLiftPx, activeScale, maxVisible]);
 
   const registerCard = React.useCallback(
     (id: string | number, el: HTMLElement | null) => {
