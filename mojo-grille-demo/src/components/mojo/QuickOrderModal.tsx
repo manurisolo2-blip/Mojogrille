@@ -71,9 +71,9 @@ export function QuickOrderModal({
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-none bg-cream-bg text-charcoal-ink transition-colors hover:bg-brand-fire hover:text-cream-bg cursor-pointer"
+            className="absolute right-3 top-3 grid h-11 w-11 place-items-center rounded-none bg-cream-bg text-charcoal-ink transition-colors hover:bg-brand-fire hover:text-cream-bg cursor-pointer"
           >
-            <X className="h-5 w-5" />
+            <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
 
@@ -81,7 +81,7 @@ export function QuickOrderModal({
           <h3 id="modal-dish-title" className="font-display text-3xl font-bold uppercase tracking-tight text-charcoal-ink leading-none">
             {item.name}
           </h3>
-          <p className="mt-2 font-sans text-sm leading-relaxed text-charcoal-ink/80">
+          <p className="mt-2 font-sans text-base leading-relaxed text-charcoal-ink/80">
             {item.description}
           </p>
 
@@ -95,11 +95,17 @@ export function QuickOrderModal({
                   const selected = sides.includes(side.id);
                   return (
                     <li key={side.id}>
+                      {/*
+                        aria-pressed convierte esto en un conmutador para el
+                        lector de pantalla. Antes se anunciaba sólo como
+                        "botón", sin decir si la guarnición estaba elegida.
+                      */}
                       <button
                         type="button"
                         onClick={() => toggle(side.id)}
+                        aria-pressed={selected}
                         className={
-                          "grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-none px-4 py-3 text-left font-sans transition-colors cursor-pointer " +
+                          "grid min-h-11 w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-none px-4 py-3 text-left font-sans transition-colors cursor-pointer " +
                           (selected
                             ? "bg-surface-sand text-charcoal-ink font-bold"
                             : "bg-surface-sand/40 text-charcoal-ink hover:bg-surface-sand")
@@ -113,12 +119,12 @@ export function QuickOrderModal({
                               : "bg-cream-bg")
                           }
                         >
-                          {selected && <Check className="h-3.5 w-3.5 stroke-[3]" />}
+                          {selected && <Check className="h-3.5 w-3.5 stroke-[3]" aria-hidden="true" />}
                         </span>
                         <span className="min-w-0 truncate text-sm font-semibold text-charcoal-ink">
                           {side.name}
                         </span>
-                        <span className="shrink-0 font-sans text-xs font-bold text-charcoal-ink/70">
+                        <span className="shrink-0 font-sans text-sm font-bold text-charcoal-ink/70">
                           {side.price === 0 ? "INCLUDED" : `+${currency(side.price)}`}
                         </span>
                       </button>
@@ -128,7 +134,7 @@ export function QuickOrderModal({
               </ul>
             </>
           ) : (
-            <p className="mt-6 rounded-none bg-leaf-green/10 px-4 py-3 font-sans text-xs font-bold uppercase text-leaf-green">
+            <p className="mt-6 rounded-none bg-leaf-green/10 px-4 py-3 font-sans text-sm font-bold uppercase text-leaf-green">
               MADE AL MOMENTO 100% ARTISANAL MIAMI
             </p>
           )}
