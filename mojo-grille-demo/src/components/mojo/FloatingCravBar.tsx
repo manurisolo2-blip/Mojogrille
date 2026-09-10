@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ShoppingBag, X, MessageCircle, CheckCircle2 } from "lucide-react";
+import { ShoppingBag, X, MessageCircle, CheckCircle2, ArrowRight } from "lucide-react";
 import { currency } from "@/data/menu";
 import { useCart } from "./cart";
 import { whatsappHref } from "./whatsapp";
@@ -59,17 +59,18 @@ export function FloatingCravBar({ onOpenFullCart }: { onOpenFullCart?: () => voi
             </div>
           </div>
 
-          {/* Lado Derecho: Botón Rojo Mojo Scarlet (#E52516 / brand-fire) */}
+          {/* Lado Derecho: Botón Rojo Mojo Scarlet (#C41B0E / brand-fire) */}
           <button
             type="button"
             onClick={() => setIsModalOpen(true)}
             aria-label="Order via WhatsApp"
-            className="group flex items-center justify-center gap-2 rounded-none bg-brand-fire px-5 py-3 font-sans text-sm font-bold text-cream-bg shadow-none transition-colors duration-150 hover:bg-cream-bg hover:text-charcoal-ink focus:outline-none"
+            className="group flex min-h-11 items-center justify-center gap-2 rounded-none bg-brand-fire px-5 py-3 font-sans text-sm font-bold text-cream-bg shadow-none transition-colors duration-150 hover:bg-cream-bg hover:text-charcoal-ink focus:outline-none"
           >
             <span>Order Now</span>
-            <span className="font-bold text-base transition-transform group-hover:translate-x-1">
-              ➔
-            </span>
+            <ArrowRight
+              className="h-4 w-4 transition-transform group-hover:translate-x-1"
+              aria-hidden="true"
+            />
           </button>
 
         </div>

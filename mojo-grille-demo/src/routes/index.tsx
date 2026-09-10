@@ -147,7 +147,7 @@ function IndexContent() {
             {/* Transición 1: Onda Orgánica Jelly (Criollo Cream -> Mojo Scarlet) con stickers de guarnición */}
             <JellyWaveTransition
               topColor="#F2ECE1"
-              bottomColor="#E52516"
+              bottomColor="#C41B0E"
               direction="down"
               showGarnish
             />
@@ -157,40 +157,40 @@ function IndexContent() {
 
             {/* Transición 2: Onda Orgánica Jelly (Mojo Scarlet -> Criollo Cream) */}
             <JellyWaveTransition
-              topColor="#E52516"
+              topColor="#C41B0E"
               bottomColor="#F2ECE1"
               direction="up"
             />
 
-            <section id="menu" className="scroll-mt-32">
+            <section id="menu" className="scroll-mt-[124px] lg:scroll-mt-[144px]">
               <CravStyleMenuGrid onSelect={setSelected} />
             </section>
 
-            {/* Reseñas Verificadas de Google Maps */}
+            {/* Testimonios de clientes con enlace a las reseñas reales de Google Maps */}
             <GoogleReviewsSection />
 
             <section
               id="catering"
-              className="bg-transparent px-4 py-16 sm:px-6 lg:px-8"
+              className="scroll-mt-[124px] lg:scroll-mt-[144px] bg-transparent px-4 py-16 sm:px-6 lg:px-8"
             >
               <div className="mx-auto max-w-4xl text-center">
                 <h2 className="font-display text-4xl sm:text-6xl font-black tracking-tight uppercase text-charcoal-ink leading-none">
                   Authentic Criollo Catering for your next celebration
                 </h2>
-                <p className="mx-auto mt-3 max-w-2xl font-sans text-sm text-charcoal-ink/80 sm:text-base leading-relaxed">
+                <p className="mx-auto mt-3 max-w-2xl font-sans text-base text-charcoal-ink/80 leading-relaxed">
                   Family-style bandejas, live pressed Cubano stations, and hot cafecito for
                   corporate offices, weddings, and quinces. Booked with 48h notice.
                 </p>
                 <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <a
                     href="tel:+13055550123"
-                    className="inline-flex items-center gap-2.5 rounded-none bg-brand-fire px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
+                    className="inline-flex min-h-11 items-center gap-2.5 rounded-none bg-brand-fire px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
                   >
-                    <Phone className="h-4 w-4" />
+                    <Phone className="h-4 w-4" aria-hidden="true" />
                     <span>Talk to Catering Team: (305) 555-0123</span>
                   </a>
                 </div>
-                <p className="mt-4 font-sans text-xs font-semibold text-charcoal-ink/70 uppercase tracking-wider">
+                <p className="mt-4 font-sans text-sm font-semibold text-charcoal-ink/70 uppercase tracking-wider">
                   Serving Little Havana, Brickell, Doral &amp; greater Miami-Dade, instant quotes al momento
                 </p>
               </div>
@@ -199,7 +199,7 @@ function IndexContent() {
             {/* Transición hacia el Footer Rojo Mojo Scarlet */}
             <JellyWaveTransition
               topColor="#F2ECE1"
-              bottomColor="#E52516"
+              bottomColor="#C41B0E"
               direction="down"
             />
 

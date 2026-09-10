@@ -42,28 +42,41 @@ export function HeroSection({
     return () => clearTimeout(timer);
   }, [shouldAnimateIn, reducedMotion]);
 
-  // Desvanecimiento suave del texto del hero a medida que la parte de abajo sube
+  // Desvanecimiento suave del texto del hero a medida que la parte de abajo sube.
+  //
+  // Depende de animReady y usa fromTo con origen explícito. Con `gsap.to` y sin
+  // esperar, GSAP se montaba mientras el contenido todavía llevaba las clases
+  // de pre-entrada (opacity-0, translate-y-6), tomaba ese opacity: 0 como
+  // estado de partida del scrub y lo escribía en línea. Como el estilo en línea
+  // gana a la clase, cuando animReady pasaba a true y la clase cambiaba a
+  // opacity-100 el hero seguía invisible: titular, subtítulo y los dos CTA no
+  // se veían nunca en escritorio.
   useEffect(() => {
-    if (reducedMotion || !sectionRef.current || !contentRef.current) return undefined;
+    if (reducedMotion || !animReady) return undefined;
+    if (!sectionRef.current || !contentRef.current) return undefined;
 
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      gsap.to(contentRef.current, {
-        opacity: 0,
-        y: -40,
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
+      gsap.fromTo(
+        contentRef.current,
+        { opacity: 1, y: 0 },
+        {
+          opacity: 0,
+          y: -40,
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
         },
-      });
+      );
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [reducedMotion]);
+  }, [reducedMotion, animReady]);
 
   const handleScrollToMenu = (e: React.MouseEvent<HTMLElement>) => {
     const target = document.getElementById(menuAnchorId);
@@ -124,8 +137,10 @@ export function HeroSection({
           <div className="flex flex-col items-center text-center space-y-6 max-w-7xl mx-auto">
             {/*
               Prueba social con contenedor translúcido/glass sutil.
-              No lleva role="status": es contenido fijo, y una región viva
-              haría que se anunciara sola al cargar, pisando el titular.
+
+              Deliberadamente sin región viva: es contenido fijo, y marcarlo
+              como tal hacía que se anunciara solo al cargar, pisando la
+              lectura del titular. El texto ya se lee como contenido normal.
             */}
             <div
               className={`inline-flex items-center gap-2.5 border border-charcoal-ink/10 bg-cream-bg/25 backdrop-blur-md px-4 py-2 ${animItemClass}`}
@@ -140,13 +155,16 @@ export function HeroSection({
             </div>
 
             {/* Titular Central con Efecto Spotlight HoverHighlightText */}
-            <div className={`w-full max-w-7xl mx-auto flex justify-center ${animItemClass}`}>
+            {/* overflow-x-clip contiene el resplandor del titular, que se
+                extiende -1.5rem a cada lado y a 375px se salía del viewport
+                generando scroll horizontal. */}
+            <div className={`w-full max-w-7xl mx-auto flex justify-center overflow-x-clip ${animItemClass}`}>
               <HoverHighlightText
                 as="h1"
                 text="HOT CAST IRON CRUSHED GARLIC SLOW ROASTED PERNIL"
                 baseClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(4rem,9.2vw,9.5rem)] font-black uppercase tracking-tight text-charcoal-ink leading-[0.84] text-center"
                 highlightClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(4rem,9.2vw,9.5rem)] font-black uppercase tracking-tight text-brand-fire leading-[0.84] text-center"
-                strokeColor="#E52516"
+                strokeColor="#C41B0E"
                 strokeWidth={1.5}
                 spotlightRadius={220}
                 spotlightSoftness={0.84}

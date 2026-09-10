@@ -26,10 +26,10 @@ export function CartToast() {
           <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
         </div>
         <div className="text-left">
-          <p className="font-sans text-xs font-bold text-cream-bg">
+          <p className="font-sans text-sm font-bold text-cream-bg">
             {toast?.message || "Added to your order!"}
           </p>
-          <p className="font-sans text-[11px] text-cream-bg/70 line-clamp-1">
+          <p className="font-sans text-sm text-cream-bg/70 line-clamp-1">
             {toast?.itemName}
           </p>
         </div>
@@ -43,7 +43,7 @@ export function CartToast() {
             openCart();
           }}
           tabIndex={toast ? 0 : -1}
-          className="rounded-none bg-cream-bg/20 px-2.5 py-1 font-sans text-[10px] font-bold uppercase tracking-wider text-cream-bg hover:bg-brand-fire transition-colors cursor-pointer"
+          className="h-11 shrink-0 rounded-none bg-cream-bg/20 px-3 py-1 font-sans text-xs font-bold uppercase tracking-wider text-cream-bg hover:bg-brand-fire transition-colors cursor-pointer"
         >
           View
         </button>

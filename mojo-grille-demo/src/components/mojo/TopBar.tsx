@@ -101,7 +101,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
             {/* Extremo Izquierdo: Titular Monumental MOJO GRILLE */}
             <a
               href="#top"
-              className="flex min-w-0 items-center group cursor-pointer select-none"
+              className="flex min-h-11 min-w-0 items-center group cursor-pointer select-none"
               aria-label="Mojo Grille Home"
             >
               <span className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-charcoal-ink leading-none transition-colors group-hover:text-brand-fire truncate">
@@ -152,7 +152,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
               >
                 <LatinMarketBagIcon className="h-5 w-5 stroke-[2] text-cream-bg" />
                 {count > 0 && (
-                  <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full border border-cream-bg bg-leaf-green px-1 font-sans text-[10px] font-black text-cream-bg shadow-none">
+                  <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full border border-cream-bg bg-leaf-green px-1 font-sans text-xs font-black text-cream-bg shadow-none">
                     {count}
                   </span>
                 )}

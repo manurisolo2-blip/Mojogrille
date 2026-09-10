@@ -24,8 +24,6 @@ export interface JellyWaveTransitionProps {
 // se dibuja. Se usa una banda DOM (BLEED_PX) que viaja con el wrapper animado.
 const DOWN_PATHS = {
   a: "M 1544 -4 L -8 -4 L -8 135 C 250 55, 450 180, 768 120 C 1080 60, 1320 170, 1544 100 Z",
-  b: "M 1544 -4 L -8 -4 L -8 115 C 250 85, 450 150, 768 135 C 1080 85, 1320 145, 1544 120 Z",
-  c: "M 1544 -4 L -8 -4 L -8 145 C 250 35, 450 195, 768 105 C 1080 45, 1320 185, 1544 85 Z",
 };
 
 /**
@@ -45,8 +43,6 @@ const BLEED_X_PX = 64;
 
 const UP_PATHS = {
   a: "M 1544 224 L -8 224 L -8 85 C 250 165, 450 40, 768 100 C 1080 160, 1320 50, 1544 120 Z",
-  b: "M 1544 224 L -8 224 L -8 105 C 250 135, 450 70, 768 85 C 1080 135, 1320 75, 1544 100 Z",
-  c: "M 1544 224 L -8 224 L -8 75 C 250 185, 450 25, 768 115 C 1080 175, 1320 35, 1544 135 Z",
 };
 
 export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
@@ -152,12 +148,26 @@ export const JellyWaveTransition: React.FC<JellyWaveTransitionProps> = ({
             <rect x="-64" y="215" width="1664" height="85" fill={waveFill} />
           )}
 
+          {/*
+            La ondulación se hace con transformaciones, no morfeando `d`.
+
+            Antes eran fotogramas clave sobre el atributo `d`. Framer no
+            interpola de forma fiable entre esas cadenas de path: en cada
+            fotograma escribía d="undefined" y el navegador lo rechazaba con
+            "Expected moveto path command", seis errores de consola por carga
+            y un reparseo del path en cada frame.
+
+            Un escalado vertical mínimo alrededor del borde inferior, desfasado
+            del balanceo horizontal, da la misma sensación de gelatina y sale
+            gratis: el compositor lo resuelve sin tocar la geometría.
+          */}
           <motion.path
             d={paths.a}
+            style={{ transformOrigin: "50% 100%" }}
             {...(reducedMotion
               ? {}
               : {
-                  animate: { d: [paths.a, paths.b, paths.c, paths.a] },
+                  animate: { scaleY: [1, 1.07, 0.95, 1], x: [0, -14, 10, 0] },
                   transition: {
                     duration: 6,
                     repeat: Infinity,

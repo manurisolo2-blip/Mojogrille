@@ -35,7 +35,7 @@ export function InkStamp({ className = "", size = 130 }: InkStampProps) {
           cy={center}
           r={radius - 8}
           fill="none"
-          stroke="#E52516"
+          stroke="#C41B0E"
           strokeWidth="1"
           strokeDasharray="4 2"
           className="opacity-70"

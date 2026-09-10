@@ -299,11 +299,21 @@ assert.ok(topBarCode.includes('event.key === "Escape"'), "TopBar must handle Esc
 console.log("  ✓ TopBar: Location dropdown has listbox/option ARIA roles and Escape key handler.");
 
 // Check HeroSection.tsx
+//
+// La insignia de valoración del hero es contenido fijo, así que NO debe ser
+// una región viva. Este test exigía antes role="status" sobre ella, que hacía
+// que se anunciara sola al cargar y pisara la lectura del titular. Una región
+// viva es para lo que cambia después de la carga, y aquí no cambia nada: el
+// texto "4.7 Stars across +3,000 orders in Miami" ya lo lee el lector como
+// contenido normal, sin necesidad de anuncio ni de aria-label que lo duplique.
 const heroCode = fs.readFileSync(path.join(componentsDir, "HeroSection.tsx"), "utf-8");
-assert.ok(heroCode.includes('role="status"'), "Hero rating badge must have role=status");
-assert.ok(heroCode.includes('aria-label="Average customer rating in Miami"'), "Hero rating must have descriptive aria-label");
+assert.ok(!heroCode.includes('role="status"'), "Hero static rating badge must NOT be a live region");
+assert.ok(
+  heroCode.includes("4.7 Stars across +3,000 orders in Miami"),
+  "Hero rating must expose its value as readable text",
+);
 assert.ok(heroCode.includes('aria-hidden="true"'), "Decorative icons must have aria-hidden");
-console.log("  ✓ HeroSection: Social proof badge has role=status and decorative icons are hidden from screen readers.");
+console.log("  ✓ HeroSection: Social proof is plain readable text and decorative icons are hidden from screen readers.");
 
 // Check CategoryTabs.tsx
 const tabsCode = fs.readFileSync(path.join(componentsDir, "CategoryTabs.tsx"), "utf-8");

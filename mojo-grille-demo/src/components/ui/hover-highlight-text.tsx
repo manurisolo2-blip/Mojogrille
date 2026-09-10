@@ -152,7 +152,14 @@ export function HoverHighlightText({
         }}
         transition={{ duration: reduceMotion ? 0.08 : 0.28, ease: "easeOut" }}
       >
-        <Tag
+        {/*
+          Capa de resaltado: es un <div>, no `Tag`. Repite el mismo texto que
+          la capa base sólo para pintar el efecto de foco, así que rendirla
+          como el mismo encabezado dejaba dos <h1> idénticos en el documento.
+          El envoltorio ya va aria-hidden, pero los rastreadores no siempre lo
+          respetan y el segundo h1 contaba igual para el esquema de la página.
+        */}
+        <div
           className={cn(
             "select-none text-balance text-center text-4xl font-semibold tracking-tight text-transparent sm:text-5xl md:text-6xl",
             highlightClassName,
@@ -164,7 +171,7 @@ export function HoverHighlightText({
           }}
         >
           {text}
-        </Tag>
+        </div>
       </motion.div>
     </div>
   );

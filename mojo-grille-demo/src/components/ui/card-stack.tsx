@@ -355,17 +355,25 @@ export function CardStack<T extends CardStackItem>({
             {items.map((it, idx) => {
               const on = idx === active;
               return (
+                // El punto sigue midiendo 10px, pero el botón que lo contiene
+                // ocupa los 44px de área táctil. Antes se pulsaba un objetivo
+                // de 10x10 con el dedo.
                 <button
                   key={it.id}
                   onClick={() => setActive(idx)}
-                  className={cn(
-                    "h-2.5 w-2.5 rounded-full transition-all duration-200 cursor-pointer",
-                    on
-                      ? "bg-brand-fire scale-125"
-                      : "bg-charcoal-ink/30 hover:bg-charcoal-ink/60",
-                  )}
+                  className="grid h-11 w-11 place-items-center cursor-pointer"
                   aria-label={`Go to card ${idx + 1}: ${it.title}`}
-                />
+                >
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      "block h-2.5 w-2.5 rounded-full transition-all duration-200",
+                      on
+                        ? "bg-brand-fire scale-125"
+                        : "bg-charcoal-ink/30 hover:bg-charcoal-ink/60",
+                    )}
+                  />
+                </button>
               );
             })}
           </div>
@@ -374,10 +382,10 @@ export function CardStack<T extends CardStackItem>({
               href={activeItem.href}
               target="_blank"
               rel="noreferrer"
-              className="text-charcoal-ink/60 hover:text-brand-fire transition-colors ml-2"
+              className="grid h-11 w-11 shrink-0 place-items-center text-charcoal-ink/60 hover:text-brand-fire transition-colors"
               aria-label="Open review link"
             >
-              <SquareArrowOutUpRight className="h-4 w-4" />
+              <SquareArrowOutUpRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           ) : null}
         </div>

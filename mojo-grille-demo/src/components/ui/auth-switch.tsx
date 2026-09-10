@@ -386,7 +386,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
           top: -12%;
           right: 48%;
           transform: translateY(-50%);
-          background: #E52516;
+          background: #C41B0E;
           transition: 1.1s cubic-bezier(0.77, 0, 0.175, 1);
           border-radius: 50%;
           z-index: 6;

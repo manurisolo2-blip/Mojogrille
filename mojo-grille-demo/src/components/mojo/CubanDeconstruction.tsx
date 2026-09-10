@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowRight } from "lucide-react";
 import { InkStamp } from "./InkStamp";
 
 interface IngredientCalloutProps {
@@ -29,7 +30,7 @@ function IngredientCallout({ name, detail, side = "right" }: IngredientCalloutPr
             <span className="font-display text-xs sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
               {name}
             </span>
-            <span className="font-sans text-[7.5px] sm:text-[10px] md:text-xs lg:text-sm font-bold uppercase tracking-wider text-charcoal-ink/75 leading-tight mt-0.5 sm:mt-1">
+            <span className="font-sans text-xs md:text-sm lg:text-base font-bold uppercase tracking-wider text-charcoal-ink/75 leading-tight mt-0.5 sm:mt-1">
               {detail}
             </span>
           </div>
@@ -73,7 +74,7 @@ function IngredientCallout({ name, detail, side = "right" }: IngredientCalloutPr
             <span className="font-display text-xs sm:text-base md:text-xl lg:text-2xl font-black uppercase tracking-tight text-charcoal-ink leading-tight">
               {name}
             </span>
-            <span className="font-sans text-[7.5px] sm:text-[10px] md:text-xs lg:text-sm font-bold uppercase tracking-wider text-charcoal-ink/75 leading-tight mt-0.5 sm:mt-1">
+            <span className="font-sans text-xs md:text-sm lg:text-base font-bold uppercase tracking-wider text-charcoal-ink/75 leading-tight mt-0.5 sm:mt-1">
               {detail}
             </span>
           </div>
@@ -422,7 +423,7 @@ export function CubanDeconstruction() {
       ref={containerRef}
       id="cuban-deconstruction"
       aria-label="Interactive Deconstruction of the Mojo Grille Cuban Sandwich"
-      className="relative h-[180vh] bg-transparent select-none overflow-x-clip"
+      className="relative h-[180vh] bg-transparent overflow-x-clip"
     >
       <div
         ref={pinRef}
@@ -445,9 +446,9 @@ export function CubanDeconstruction() {
 
         {/* Encabezado Superior de Sección en Inglés */}
         <div className="absolute top-3 sm:top-8 left-0 right-0 text-center px-4 pointer-events-none z-10">
-          <h3 className="font-display text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-charcoal-ink mt-0.5 sm:mt-1 leading-none">
+          <h2 className="font-display text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-charcoal-ink mt-0.5 sm:mt-1 leading-none">
             THE UNFORGIVING CUBANO
-          </h3>
+          </h2>
         </div>
 
         {/* Contenedor central del sándwich monumental y unificado */}
@@ -583,11 +584,11 @@ export function CubanDeconstruction() {
         <div className="absolute bottom-4 right-4 sm:bottom-10 sm:right-10 z-30 flex items-center">
           <a
             href="#curated-menu"
-            className="bg-charcoal-ink hover:bg-brand-fire text-cream-bg py-2.5 px-4 sm:py-3 sm:px-6 text-xs font-bold uppercase tracking-widest transition-colors flex items-center gap-2.5 sm:gap-3 rounded-none cursor-pointer group shadow-none"
+            className="bg-charcoal-ink hover:bg-brand-fire text-cream-bg min-h-11 py-2.5 px-4 sm:py-3 sm:px-6 text-xs font-bold uppercase tracking-widest transition-colors flex items-center gap-2.5 sm:gap-3 rounded-none cursor-pointer group shadow-none"
           >
             <span className="flex items-center gap-2">
               <span>ORDER LIVE-FIRE</span>
-              <span className="transition-transform group-hover:translate-x-1">➔</span>
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </span>
             <span className="h-3 w-px bg-cream-bg/30" />
             <span className="font-sans text-xs font-black tracking-tight text-cream-bg">

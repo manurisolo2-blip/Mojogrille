@@ -150,10 +150,10 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
             0%
           </span>
         </div>
-        <p className="mt-6 sm:mt-8 font-sans text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest text-cream-bg/90">
+        <p className="mt-6 sm:mt-8 font-sans text-sm md:text-base font-bold uppercase tracking-widest text-cream-bg">
           HEATING UP THE CRIOLLO PLANCHA...
         </p>
-        <p className="mt-4 font-sans text-[10px] uppercase tracking-widest text-cream-bg/60">
+        <p className="mt-4 font-sans text-sm uppercase tracking-widest text-cream-bg">
           Tap or press Esc to skip
         </p>
       </div>
