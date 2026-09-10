@@ -146,6 +146,69 @@ const CRAV_MENU_ITEMS: CravMenuItem[] = [
 ];
 
 /**
+ * Reparto del collage sobre una retícula de 6 columnas.
+ *
+ * El número de platos cambia con la pestaña (favoritos 5, bowls 3, cubanos 1,
+ * pa' picar 2, bebidas 2), así que un patrón fijo dejaría filas a medias. Este
+ * reparto consume los platos en bloques que siempre suman 6 columnas por fila,
+ * y cuando quedan pocos ensancha los últimos para que ninguno se quede solo
+ * ocupando un tercio con dos huecos al lado.
+ *
+ * El ritmo base 4-2-2-2-2 es lo que rompe la sensación de plantilla: una pieza
+ * grande abre, y debajo tres estrechas de proporciones distintas.
+ */
+const SPAN_CLASS: Record<number, string> = {
+  2: "lg:col-span-2",
+  3: "lg:col-span-3",
+  4: "lg:col-span-4",
+  6: "lg:col-span-6",
+};
+
+interface BentoCell {
+  span: number;
+  ratio: string;
+  /** Piezas de media anchura o más: llevan el texto en fila, no apilado. */
+  wide: boolean;
+}
+
+function ratioFor(span: number, index: number): string {
+  if (span === 6) return "aspect-[21/9]";
+  if (span === 4) return "aspect-[16/10]";
+  if (span === 3) return "aspect-[4/3]";
+  // Las estrechas alternan retrato y cuadrado para que no se lean como una fila.
+  return index % 2 === 0 ? "aspect-[3/4]" : "aspect-square";
+}
+
+function bentoLayout(count: number): BentoCell[] {
+  const spans: number[] = [];
+  let i = 0;
+  while (i < count) {
+    const left = count - i;
+    if (left >= 5) {
+      spans.push(4, 2, 2, 2, 2);
+      i += 5;
+    } else if (left === 4) {
+      spans.push(4, 2, 3, 3);
+      i += 4;
+    } else if (left === 3) {
+      spans.push(4, 2, 6);
+      i += 3;
+    } else if (left === 2) {
+      spans.push(4, 2);
+      i += 2;
+    } else {
+      spans.push(6);
+      i += 1;
+    }
+  }
+  return spans.map((span, index) => ({
+    span,
+    ratio: ratioFor(span, index),
+    wide: span >= 4,
+  }));
+}
+
+/**
  * Convierte una fila del catálogo local a `MenuItem` validando los campos
  * acotados en vez de castearlos a ciegas: una categoría o un badge fuera del
  * dominio se descartan en lugar de propagar un MenuItem inválido.
@@ -206,6 +269,8 @@ export function CravStyleMenuGrid({
     }
     return item.category === selectedCategory;
   });
+
+  const layout = bentoLayout(filteredItems.length);
 
   const handleQuickAdd = (item: CravMenuItem) => {
     setClickedItemId(item.id);
@@ -281,88 +346,114 @@ export function CravStyleMenuGrid({
           </div>
         </div>
 
-        {/* 2. Retícula Editorial de Platos */}
+        {/*
+          2. Collage editorial. No es una retícula uniforme: cada plato recibe
+          un ancho y una proporción distintos según su turno en el ritmo, y el
+          bloque de texto cambia de disposición entre las piezas anchas
+          (nombre y descripción a un lado, precio y acción al otro) y las
+          estrechas (todo apilado). Ver `bentoLayout` para el reparto.
+        */}
         <div
           id="menu-grid-panel"
           role="tabpanel"
           aria-labelledby={`tab-${selectedCategory}`}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-x-6 gap-y-10 sm:gap-x-8 sm:gap-y-14"
         >
-          {filteredItems.map((item) => {
+          {filteredItems.map((item, index) => {
             const isAdded = clickedItemId === item.id;
+            const cell = layout[index] ?? { span: 2, ratio: "aspect-square", wide: false };
+
+            const priceBlock = (
+              <div className="shrink-0">
+                <span className="font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink/60 block">
+                  PRICE
+                </span>
+                <span className="font-display text-3xl font-black text-charcoal-ink tabular-nums">
+                  ${item.price.toFixed(2)}
+                </span>
+              </div>
+            );
+
+            const addButton = (
+              <button
+                type="button"
+                onClick={() => handleQuickAdd(item)}
+                aria-label={`Add ${item.name} to order`}
+                className={`relative inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-none px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none ${
+                  isAdded
+                    ? "bg-leaf-green text-cream-bg"
+                    : "bg-charcoal-ink text-cream-bg hover:bg-brand-fire"
+                }`}
+              >
+                {isAdded ? (
+                  <>
+                    <Check className="h-4 w-4 stroke-[3]" aria-hidden="true" />
+                    <span>ADDED</span>
+                  </>
+                ) : (
+                  <>
+                    <Plus className="h-4 w-4 stroke-[3]" aria-hidden="true" />
+                    <span>ADD TO ORDER</span>
+                  </>
+                )}
+              </button>
+            );
+
             return (
               <article
                 key={item.id}
-                className="group relative flex flex-col justify-between rounded-none bg-transparent transition-colors duration-200"
+                className={`group relative flex flex-col ${SPAN_CLASS[cell.span]} ${
+                  cell.wide ? "sm:col-span-2" : ""
+                }`}
               >
-                <div>
-                  {/*
-                    Contenedor de Fotografía. Es un <button>, no un <div
-                    onClick>: abrir la ficha con ingredientes y guarniciones
-                    era imposible con teclado porque este era el único acceso
-                    desde la tarjeta.
-                  */}
-                  <button
-                    type="button"
-                    onClick={() => onSelect?.(toMenuItem(item))}
-                    aria-label={`View details for ${item.name}`}
-                    className="relative block aspect-4/3 w-full overflow-hidden rounded-none bg-transparent cursor-pointer"
-                  >
-                    <img
-                      src={item.imageUrl}
-                      alt={item.name}
-                      loading="lazy"
-                      className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </button>
+                {/*
+                  La foto es un <button>: abrir la ficha con ingredientes y
+                  guarniciones era imposible con teclado porque este es el
+                  único acceso desde la pieza.
+                */}
+                <button
+                  type="button"
+                  onClick={() => onSelect?.(toMenuItem(item))}
+                  aria-label={`View details for ${item.name}`}
+                  className={`relative block w-full overflow-hidden rounded-none cursor-pointer ${cell.ratio}`}
+                >
+                  <img
+                    src={item.imageUrl}
+                    alt={item.name}
+                    loading="lazy"
+                    className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  />
+                </button>
 
-                  {/* Información del Plato */}
-                  <div className="mt-4">
-                    <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors">
+                {cell.wide ? (
+                  <div className="mt-5 flex flex-col gap-5 md:flex-row md:items-end md:justify-between md:gap-10">
+                    <div className="md:max-w-[62%]">
+                      <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors leading-none">
+                        {item.name}
+                      </h3>
+                      <p className="mt-3 font-sans text-base text-charcoal-ink/75 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                    <div className="flex items-end gap-6">
+                      {priceBlock}
+                      {addButton}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mt-4 flex flex-1 flex-col">
+                    <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors leading-tight">
                       {item.name}
                     </h3>
                     <p className="mt-2 font-sans text-base text-charcoal-ink/75 line-clamp-3 leading-relaxed">
                       {item.description}
                     </p>
+                    <div className="mt-auto flex items-end justify-between gap-4 pt-5">
+                      {priceBlock}
+                      {addButton}
+                    </div>
                   </div>
-                </div>
-
-                {/* Fila Inferior de Precio y Botón Táctil (Sin líneas divisorias) */}
-                <div className="mt-5 flex items-center justify-between pt-1">
-                  <div>
-                    <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-charcoal-ink/60 block">
-                      PRICE
-                    </span>
-                    <span className="font-display text-3xl font-black text-charcoal-ink">
-                      ${item.price.toFixed(2)}
-                    </span>
-                  </div>
-
-                  {/* Botón Ortogonal Nítido con Feedback */}
-                  <button
-                    type="button"
-                    onClick={() => handleQuickAdd(item)}
-                    aria-label={`Add ${item.name} to order`}
-                    title="Add to order"
-                    className={`relative inline-flex min-h-11 items-center gap-1.5 rounded-none px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none ${
-                      isAdded
-                        ? "bg-leaf-green text-cream-bg"
-                        : "bg-charcoal-ink text-cream-bg hover:bg-brand-fire"
-                    }`}
-                  >
-                    {isAdded ? (
-                      <>
-                        <Check className="h-4 w-4 stroke-[3]" />
-                        <span>ADDED</span>
-                      </>
-                    ) : (
-                      <>
-                        <Plus className="h-4 w-4 stroke-[3]" />
-                        <span>ADD TO ORDER</span>
-                      </>
-                    )}
-                  </button>
-                </div>
+                )}
               </article>
             );
           })}

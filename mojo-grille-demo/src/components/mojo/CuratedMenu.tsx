@@ -93,6 +93,9 @@ export function CuratedMenu() {
   const yTo = useRef<((value: number) => void) | null>(null);
   const reducedMotion = useReducedMotion();
 
+  const featured = CURATED_ITEMS[0];
+  const listItems = CURATED_ITEMS.slice(1);
+
   useEffect(() => {
     if (!previewRef.current || typeof window === "undefined") return;
 
@@ -213,9 +216,13 @@ export function CuratedMenu() {
         </div>
       </div>
 
-      {/* Encabezado Editorial Monumental */}
-      <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16 text-center">
-        {/* Título Monumental & Subtítulo Editorial */}
+      {/*
+        Encabezado alineado a la izquierda, no centrado: las tres secciones de
+        foto seguidas abrían las tres con un titular centrado y se leían como
+        la misma plantilla repetida.
+      */}
+      <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+        <div>
         <h2 className="font-display text-5xl md:text-7xl uppercase tracking-tight text-cream-bg leading-none">
           HOT PLANCHA SELECTION
         </h2>
@@ -226,7 +233,68 @@ export function CuratedMenu() {
         <p className="mt-2 sm:mt-3 font-sans text-sm font-bold uppercase tracking-[0.18em] text-cream-bg">
           MADE AL MOMENTO SEASONED WITH MOJO
         </p>
+        </div>
+        <span
+          aria-hidden="true"
+          className="font-display text-5xl md:text-7xl leading-none text-cream-bg/70 tabular-nums shrink-0"
+        >
+          {String(CURATED_ITEMS.length).padStart(2, "0")}
+        </span>
       </div>
+
+      {/*
+        Plato destacado a sangre. El resto de la sección es un listado de filas
+        donde la fotografía sólo aparecía como miniatura al pasar el cursor, así
+        que en escritorio esta sección no enseñaba comida. El primer plato pasa
+        a abrir con imagen grande y el texto repartido a los lados, y los otros
+        cinco siguen como listado: dos densidades distintas dentro de la misma
+        sección en vez de seis filas iguales.
+      */}
+      {featured ? (
+        <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16">
+          <div className="relative w-full overflow-hidden aspect-[4/3] sm:aspect-[2/1] lg:aspect-[21/9]">
+            <img
+              src={featured.imageUrl}
+              alt={featured.name}
+              loading="lazy"
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
+
+          <div className="mt-6 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+            <div className="lg:max-w-[58%]">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-cream-bg">
+                  Plato de la casa
+                </span>
+                <RebelChefBadge />
+              </div>
+              <h3 className="mt-2 font-display text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-cream-bg leading-none">
+                {featured.name}
+              </h3>
+              <p className="mt-4 font-sans text-base sm:text-lg text-cream-bg leading-relaxed">
+                {featured.description}
+              </p>
+            </div>
+
+            <div className="flex items-end gap-6 shrink-0">
+              <span className="font-display text-4xl sm:text-6xl font-bold tracking-tight text-cream-bg tabular-nums leading-none">
+                ${featured.price.toFixed(2)}
+              </span>
+              <MagneticButton
+                as="button"
+                type="button"
+                onClick={() => handleAddToCart(featured)}
+                className="h-12 px-6 font-sans font-bold uppercase tracking-wider text-sm bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center justify-center gap-2 cursor-pointer shrink-0 select-none"
+                aria-label={`Add ${featured.name} to order for $${featured.price.toFixed(2)}`}
+              >
+                <Plus className="h-4 w-4 stroke-[3]" aria-hidden="true" />
+                <span>GRAB THIS BOWL</span>
+              </MagneticButton>
+            </div>
+          </div>
+        </div>
+      ) : null}
 
       {/* Listado Dividido Horizontal (Split Rows) */}
       <div
@@ -235,7 +303,7 @@ export function CuratedMenu() {
         onMouseLeave={handleMouseLeaveList}
       >
         <div className="w-full bg-transparent">
-          {CURATED_ITEMS.map((item, index) => (
+          {listItems.map((item) => (
             <div
               key={item.id}
               onMouseEnter={(e) => handleRowMouseEnter(item, e)}
@@ -254,9 +322,6 @@ export function CuratedMenu() {
                   <h3 className="font-display text-3xl sm:text-4xl md:text-5xl uppercase tracking-tight text-cream-bg group-hover:text-mojo-citrus transition-colors duration-200 leading-none">
                     {item.name}
                   </h3>
-                  {index === 0 && (
-                    <RebelChefBadge />
-                  )}
                 </div>
                 <span className="font-sans text-sm font-bold uppercase tracking-wider text-cream-bg mt-0.5 leading-snug">
                   {item.authorNote}

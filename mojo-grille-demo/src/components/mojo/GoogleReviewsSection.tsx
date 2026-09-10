@@ -1,10 +1,14 @@
 "use client";
 
 import React from "react";
-import { Star, ExternalLink } from "lucide-react";
-import { CardStack, type CardStackItem } from "@/components/ui/card-stack";
+import { Star, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 
-export interface GoogleReviewItem extends CardStackItem {
+export interface GoogleReviewItem {
+  id: string;
+  title: string;
+  description?: string;
+  imageSrc?: string;
+  href?: string;
   author: string;
   rating: number;
   dish: string;
@@ -110,15 +114,23 @@ const GOOGLE_REVIEWS: GoogleReviewItem[] = [
 ];
 
 export function GoogleReviewsSection() {
-  const [isMobile, setIsMobile] = React.useState(false);
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const active = GOOGLE_REVIEWS[activeIndex] ?? GOOGLE_REVIEWS[0]!;
 
-  React.useEffect(() => {
-    if (typeof window === "undefined") return;
-    const checkMobile = () => setIsMobile(window.innerWidth < 640);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  const goPrev = () =>
+    setActiveIndex((i) => (i === 0 ? GOOGLE_REVIEWS.length - 1 : i - 1));
+  const goNext = () =>
+    setActiveIndex((i) => (i === GOOGLE_REVIEWS.length - 1 ? 0 : i + 1));
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      goPrev();
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      goNext();
+    }
+  };
 
   return (
     <section
@@ -173,118 +185,100 @@ export function GoogleReviewsSection() {
           </div>
         </div>
 
-        {/* 3D CardStack Integrado */}
-        <div className="relative w-full py-4 overflow-hidden">
-            <CardStack
-              items={GOOGLE_REVIEWS}
-              initialIndex={0}
-              cardWidth={isMobile ? (typeof window !== "undefined" ? Math.min(320, window.innerWidth - 36) : 320) : 560}
-              cardHeight={isMobile ? 310 : 340}
-              overlap={isMobile ? 0.62 : 0.44}
-              spreadDeg={isMobile ? 14 : 36}
-              perspectivePx={1200}
-              depthPx={isMobile ? 40 : 110}
-              tiltXDeg={isMobile ? 4 : 8}
-              activeScale={1.03}
-              inactiveScale={0.93}
-              autoAdvance={false}
-              pauseOnHover={true}
-              showDots={true}
-              renderCard={(item) => {
-                const review = item as GoogleReviewItem;
-                return (
-                  <div className="relative h-full w-full overflow-hidden bg-charcoal-ink flex flex-col justify-between p-6">
-                    {/* Imagen de Fondo del Plato */}
-                    <div className="absolute inset-0">
-                      {review.imageSrc ? (
-                        <img
-                          src={review.imageSrc}
-                          alt=""
-                          aria-hidden="true"
-                          loading="lazy"
-                          decoding="async"
-                          className="h-full w-full object-cover opacity-35"
-                          draggable={false}
-                        />
-                      ) : null}
-                    </div>
-
-                    {/* Capas de Gradiente para Legibilidad Óptima */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-charcoal-ink via-charcoal-ink/75 to-charcoal-ink/50" />
-
-                    {/* Cabecera de la Tarjeta */}
-                    <div className="relative z-10 flex items-start justify-between gap-3">
-                      <div className="flex items-center gap-3">
-                        {/*
-                          Iniciales, no foto. Antes había retratos de Unsplash
-                          de personas reales presentadas como quienes firman
-                          estas opiniones.
-                        */}
-                        <div className="relative h-11 w-11 rounded-full overflow-hidden shrink-0 bg-charcoal-ink flex items-center justify-center">
-                          <span
-                            aria-hidden="true"
-                            className={`h-full w-full ${review.avatarBg} text-cream-bg flex items-center justify-center font-sans font-bold text-sm uppercase`}
-                          >
-                            {review.initials}
-                          </span>
-                        </div>
-                        <div>
-                          <div className="font-sans font-bold text-sm text-cream-bg leading-tight">
-                            {review.author}
-                          </div>
-                          <p className="font-sans text-xs font-medium text-cream-bg/70 mt-0.5">
-                            Guest testimonial
-                          </p>
-                        </div>
-                      </div>
-
-                      {/*
-                        La puntuación en texto para lectores de pantalla: las
-                        estrellas van todas aria-hidden y sin esto la nota de
-                        cada testimonio se perdía por completo.
-                      */}
-                      <div className="flex flex-col items-end">
-                        <span className="sr-only">{review.rating} out of 5 stars</span>
-                        <div className="flex items-center gap-1 text-mojo-citrus" aria-hidden="true">
-                          {[...Array(review.rating)].map((_, i) => (
-                            <Star key={i} className="h-3.5 w-3.5 fill-current" />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Contenido Central: Plato (sin recuadros ni guiones, letra más grande en negrita) y Cita */}
-                    <div className="relative z-10 my-auto py-2">
-                      <h4 className="font-sans text-base sm:text-lg font-bold text-mojo-citrus leading-snug tracking-tight mb-2">
-                        {review.dish}
-                      </h4>
-                      <p className="font-sans text-base text-cream-bg font-normal leading-relaxed line-clamp-3">
-                        &ldquo;{review.content}&rdquo;
-                      </p>
-                    </div>
-
-                    {/* Pie de la Tarjeta */}
-                    <div className="relative z-10 pt-3 border-t border-cream-bg/15 flex items-center justify-between gap-3 text-cream-bg/70 font-sans text-xs uppercase tracking-wider">
-                      <span className="text-leaf-green-soft font-semibold">
-                        Dine-in / Takeout
-                      </span>
-
-                      <a
-                        href={review.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex min-h-11 items-center gap-1 text-cream-bg hover:text-mojo-citrus transition-colors"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <span>Read reviews on Maps</span>
-                        <ExternalLink className="h-3 w-3" aria-hidden="true" />
-                      </a>
-                    </div>
-                  </div>
-                );
-              }}
-            />
+        {/*
+          Bloque 60/40. Antes era un mazo de tarjetas 3D: seis rectángulos del
+          mismo tamaño barajados, que tras quitarles borde y sombra perdieron
+          la separación que hacía legible la pila. Ahora una foto vertical
+          grande a la izquierda y el testimonio a la derecha, con proporción y
+          alturas distintas de las otras dos secciones de foto.
+        */}
+        <div
+          role="group"
+          aria-roledescription="carousel"
+          aria-label="Guest testimonials"
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center"
+        >
+          {/* Retrato del plato: vertical, al contrario que el resto del sitio */}
+          <div className="lg:col-span-7">
+            <div className="relative w-full overflow-hidden aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5]">
+              {active.imageSrc ? (
+                <img
+                  key={active.id}
+                  src={active.imageSrc}
+                  alt={active.dish}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover object-center"
+                />
+              ) : null}
+            </div>
           </div>
+
+          {/* Testimonio */}
+          <div className="lg:col-span-5 flex flex-col">
+            <div aria-live="polite">
+              <span className="sr-only">
+                Testimonial {activeIndex + 1} of {GOOGLE_REVIEWS.length}
+              </span>
+
+              <div className="flex items-center gap-1 text-mojo-citrus" aria-hidden="true">
+                {[...Array(active.rating)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-current" />
+                ))}
+              </div>
+              <span className="sr-only">{active.rating} out of 5 stars</span>
+
+              <blockquote className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-charcoal-ink leading-[0.95]">
+                &ldquo;{active.content}&rdquo;
+              </blockquote>
+
+              <p className="mt-6 font-sans text-base font-bold text-charcoal-ink">
+                {active.author}
+              </p>
+              <p className="font-sans text-sm text-charcoal-ink/70">
+                {active.dish} &middot; Dine-in / Takeout
+              </p>
+            </div>
+
+            {/* Paginación */}
+            <div className="mt-10 flex items-center gap-5">
+              <span
+                aria-hidden="true"
+                className="font-display text-4xl text-charcoal-ink tabular-nums leading-none"
+              >
+                {String(activeIndex + 1).padStart(2, "0")}
+              </span>
+              <span aria-hidden="true" className="h-px w-10 bg-charcoal-ink/30" />
+              <span
+                aria-hidden="true"
+                className="font-sans text-sm text-charcoal-ink/60 tabular-nums"
+              >
+                {String(GOOGLE_REVIEWS.length).padStart(2, "0")}
+              </span>
+
+              <div className="ml-auto flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={goPrev}
+                  aria-label="Previous testimonial"
+                  className="grid h-11 w-11 place-items-center text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer"
+                >
+                  <ChevronLeft className="h-6 w-6" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  onClick={goNext}
+                  aria-label="Next testimonial"
+                  className="grid h-11 w-11 place-items-center text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer"
+                >
+                  <ChevronRight className="h-6 w-6" aria-hidden="true" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Fila Inferior de Conversión a Google Maps */}
         <div className="mt-12 text-center">
