@@ -302,12 +302,12 @@ export function CuratedMenu() {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeaveList}
       >
-        <div className="w-full bg-transparent">
+        <div className="w-full bg-transparent flex flex-col gap-10 md:gap-0">
           {listItems.map((item) => (
             <div
               key={item.id}
               onMouseEnter={(e) => handleRowMouseEnter(item, e)}
-              className="border-b border-cream-bg/20 py-7 md:py-8 px-4 sm:px-6 flex flex-col md:flex-row md:items-center justify-between group transition-colors duration-300 hover:bg-black/15 relative gap-4 md:gap-6"
+              className="md:border-b md:border-cream-bg/20 pb-8 md:py-8 px-0 md:px-6 flex flex-col md:flex-row md:items-center justify-between group transition-colors duration-300 md:hover:bg-black/15 relative gap-4 md:gap-6"
             >
               {/*
                 La fila ya no añade al carrito al hacer clic. Era un <div
@@ -328,15 +328,19 @@ export function CuratedMenu() {
                 </span>
               </div>
 
-              {/* Miniatura fija visible únicamente en móviles (md:hidden) */}
-              <div className="flex md:hidden items-center gap-3 my-1">
+              {/*
+                En móvil la foto manda: era una miniatura de 64px, lo único
+                que se veía del plato en toda la sección, porque la
+                previsualización al cursor es exclusiva de escritorio.
+              */}
+              <div className="md:hidden flex flex-col gap-3">
                 <img
                   src={item.imageUrl}
                   alt={item.name}
-                  className="w-16 h-16 object-cover shrink-0"
+                  className="w-full aspect-[4/3] object-cover object-center"
                   loading="lazy"
                 />
-                <p className="font-sans text-base text-cream-bg line-clamp-2">
+                <p className="font-sans text-base text-cream-bg">
                   {item.description}
                 </p>
               </div>

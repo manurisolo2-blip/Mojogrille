@@ -172,8 +172,12 @@ interface BentoCell {
 }
 
 function ratioFor(span: number, index: number): string {
-  if (span === 6) return "aspect-[21/9]";
-  if (span === 4) return "aspect-[16/10]";
+  // El primer valor es el de móvil, donde la pieza ocupa el ancho completo:
+  // una proporción de 21/9 ahí dejaba la foto en una franja de 147px. Las
+  // proporciones apaisadas del collage entran sólo a partir de lg, que es
+  // cuando la pieza vuelve a ser una columna estrecha.
+  if (span === 6) return "aspect-[4/3] lg:aspect-[21/9]";
+  if (span === 4) return "aspect-square lg:aspect-[16/10]";
   if (span === 3) return "aspect-[4/3]";
   // Las estrechas alternan retrato y cuadrado para que no se lean como una fila.
   return index % 2 === 0 ? "aspect-[3/4]" : "aspect-square";
@@ -357,7 +361,7 @@ export function CravStyleMenuGrid({
           id="menu-grid-panel"
           role="tabpanel"
           aria-labelledby={`tab-${selectedCategory}`}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-x-6 gap-y-10 sm:gap-x-8 sm:gap-y-14"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-x-6 gap-y-12 sm:gap-x-8 sm:gap-y-14"
         >
           {filteredItems.map((item, index) => {
             const isAdded = clickedItemId === item.id;
@@ -378,7 +382,11 @@ export function CravStyleMenuGrid({
               <button
                 type="button"
                 onClick={() => handleQuickAdd(item)}
-                aria-label={`Add ${item.name} to order`}
+                aria-label={
+                  item.sidesAllowed
+                    ? `Choose sides for ${item.name} and add to order`
+                    : `Add ${item.name} to order`
+                }
                 className={`relative inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-none px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none ${
                   isAdded
                     ? "bg-leaf-green text-cream-bg"
@@ -393,7 +401,7 @@ export function CravStyleMenuGrid({
                 ) : (
                   <>
                     <Plus className="h-4 w-4 stroke-[3]" aria-hidden="true" />
-                    <span>ADD TO ORDER</span>
+                    <span>{item.sidesAllowed ? "CHOOSE & ADD" : "ADD TO ORDER"}</span>
                   </>
                 )}
               </button>
