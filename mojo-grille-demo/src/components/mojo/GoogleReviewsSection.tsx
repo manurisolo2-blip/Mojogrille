@@ -179,7 +179,7 @@ export function GoogleReviewsSection() {
               items={GOOGLE_REVIEWS}
               initialIndex={0}
               cardWidth={isMobile ? (typeof window !== "undefined" ? Math.min(320, window.innerWidth - 36) : 320) : 560}
-              cardHeight={isMobile ? 310 : 340}
+              cardHeight={isMobile ? 310 : 340} /* sólo alto inicial: la tarjeta la marca su texto */
               overlap={isMobile ? 0.62 : 0.44}
               spreadDeg={isMobile ? 14 : 36}
               perspectivePx={1200}
@@ -193,9 +193,11 @@ export function GoogleReviewsSection() {
               renderCard={(item) => {
                 const review = item as GoogleReviewItem;
                 return (
-                  <div className="relative h-full w-full overflow-hidden bg-charcoal-ink flex flex-col justify-between p-6">
-                    {/* Imagen de Fondo del Plato */}
-                    <div className="absolute inset-0">
+                  <div className="relative w-full bg-charcoal-ink flex flex-col gap-5 p-6">
+                    {/* Imagen de Fondo del Plato. Conserva su propio
+                        overflow-hidden: recorta la foto a la tarjeta, no el
+                        texto, que ahora manda sobre el alto. */}
+                    <div className="absolute inset-0 overflow-hidden">
                       {review.imageSrc ? (
                         <img
                           src={review.imageSrc}
@@ -254,11 +256,11 @@ export function GoogleReviewsSection() {
                     </div>
 
                     {/* Contenido Central: Plato (sin recuadros ni guiones, letra más grande en negrita) y Cita */}
-                    <div className="relative z-10 my-auto py-2">
+                    <div className="relative z-10">
                       <h4 className="font-sans text-base sm:text-lg font-bold text-mojo-citrus leading-snug tracking-tight mb-2">
                         {review.dish}
                       </h4>
-                      <p className="font-sans text-base text-cream-bg font-normal leading-relaxed line-clamp-3">
+                      <p className="font-sans text-base text-cream-bg font-normal leading-relaxed">
                         &ldquo;{review.content}&rdquo;
                       </p>
                     </div>

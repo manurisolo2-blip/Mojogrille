@@ -132,6 +132,63 @@ export function CardStack<T extends CardStackItem>({
   const reduceMotion = useReducedMotion();
   const len = items.length;
 
+  /**
+   * Alto del escenario, medido a partir de la tarjeta más alta.
+   *
+   * Las tarjetas están posicionadas en absoluto, así que no empujan al padre:
+   * si el escenario no mide, cualquier reseña larga se cortaría. En vez de
+   * fijar un alto y recortar el texto, se observa cada tarjeta y el escenario
+   * se ajusta a la más alta. `cardHeight` ya no limita la tarjeta: sólo sirve
+   * de alto inicial mientras no hay medida, para que no haya un salto de
+   * layout en el primer pintado.
+   */
+  const [stackHeight, setStackHeight] = React.useState<number | null>(null);
+  const cardsRef = React.useRef(new Map<string | number, HTMLElement>());
+  const observerRef = React.useRef<ResizeObserver | null>(null);
+
+  const measure = React.useCallback(() => {
+    let tallest = 0;
+    cardsRef.current.forEach((el) => {
+      // offsetHeight ignora el `scale` del transform, que es justo lo que
+      // queremos: el alto de maquetación, no el visual de la tarjeta activa.
+      if (el.offsetHeight > tallest) tallest = el.offsetHeight;
+    });
+    if (tallest > 0) setStackHeight(tallest);
+  }, []);
+
+  const registerCard = React.useCallback(
+    (id: string | number, el: HTMLElement | null) => {
+      if (el) {
+        cardsRef.current.set(id, el);
+        observerRef.current?.observe(el);
+      } else {
+        const previous = cardsRef.current.get(id);
+        if (previous) observerRef.current?.unobserve(previous);
+        cardsRef.current.delete(id);
+      }
+    },
+    [],
+  );
+
+  React.useEffect(() => {
+    if (typeof ResizeObserver === "undefined") return undefined;
+    const observer = new ResizeObserver(() => measure());
+    observerRef.current = observer;
+    cardsRef.current.forEach((el) => observer.observe(el));
+    measure();
+    return () => {
+      observer.disconnect();
+      observerRef.current = null;
+    };
+  }, [measure]);
+
+  // Las fuentes de display cargan después del primer pintado y cambian el
+  // alto del texto; sin esto el escenario se queda con la medida previa.
+  React.useEffect(() => {
+    if (typeof document === "undefined" || !document.fonts) return;
+    void document.fonts.ready.then(() => measure());
+  }, [measure]);
+
   const [active, setActive] = React.useState(() =>
     wrapIndex(initialIndex, len),
   );
@@ -217,7 +274,7 @@ export function CardStack<T extends CardStackItem>({
       {/* Stage */}
       <div
         className="relative w-full overflow-hidden"
-        style={{ height: Math.max(380, cardHeight + 80) }}
+        style={{ height: stackHeight ?? Math.max(380, cardHeight + 80) }}
         tabIndex={0}
         onKeyDown={onKeyDown}
       >
@@ -281,15 +338,15 @@ export function CardStack<T extends CardStackItem>({
               return (
                 <motion.div
                   key={item.id}
+                  ref={(el) => registerCard(item.id, el)}
                   className={cn(
-                    "absolute bottom-0 overflow-hidden",
+                    "absolute bottom-0",
                     "will-change-transform select-none",
                     isActive ? "cursor-grab active:cursor-grabbing" : "cursor-pointer",
                   )}
                   style={{
                     width: cardWidth,
                     maxWidth: "calc(100vw - 32px)",
-                    height: cardHeight,
                     zIndex,
                     transformStyle: "preserve-3d",
                   }}

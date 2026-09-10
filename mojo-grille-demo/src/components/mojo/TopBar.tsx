@@ -13,6 +13,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
   const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
   const [accountModalOpen, setAccountModalOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isPastHero, setIsPastHero] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const drawerRef = useRef<HTMLElement>(null);
   const accountModalRef = useRef<HTMLDivElement>(null);
@@ -24,9 +25,30 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
 
   const { scrollY } = useScroll();
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const checkPastHero = () => {
+      const heroHeight = window.innerHeight;
+      setIsPastHero(window.scrollY >= heroHeight - 80);
+    };
+    checkPastHero();
+    window.addEventListener("resize", checkPastHero);
+    return () => window.removeEventListener("resize", checkPastHero);
+  }, []);
+
   useMotionValueEvent(scrollY, "change", (latest) => {
+    const heroHeight = typeof window !== "undefined" ? window.innerHeight : 800;
+    const pastHero = latest >= heroHeight - 80;
+    setIsPastHero(pastHero);
+
     // Si estamos cerca del tope o cualquier modal/drawer está abierto, mantener visible
     if (latest <= 60 || menuDrawerOpen || accountModalOpen) {
+      setIsVisible(true);
+      return;
+    }
+
+    // Mientras estamos en el hero (el fondo inferior aún no sobrepasa el hero), mantener visible el header transparente
+    if (!pastHero) {
       setIsVisible(true);
       return;
     }
@@ -34,7 +56,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
     const previous = scrollY.getPrevious() ?? 0;
     const diff = latest - previous;
 
-    // Umbral de 5px para filtrar inercia o micro-scrolls
+    // Fuera del hero: ocultar al bajar, mostrar al subir
     if (diff > 5) {
       setIsVisible(false);
       if (open) setOpen(false);
@@ -94,7 +116,11 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
         initial={false}
         animate={{ y: isVisible ? "0%" : "-100%" }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="sticky top-0 z-40 bg-cream-bg will-change-transform"
+        className={`fixed top-0 left-0 right-0 z-40 will-change-transform transition-all duration-300 ${
+          isPastHero
+            ? "bg-[#F2ECE1]/85 backdrop-blur-xl backdrop-saturate-150 border-b border-charcoal-ink/10 shadow-[0_8px_32px_0_rgba(20,18,16,0.05),inset_0_1px_1px_0_rgba(255,255,255,0.7)]"
+            : "bg-transparent border-b border-transparent shadow-none"
+        }`}
       >
         <div className="w-full">
           <nav className="w-full flex items-center justify-between gap-4 px-4 sm:px-6 md:px-8 lg:px-12 py-3.5">
@@ -121,7 +147,11 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                 type="button"
                 onClick={() => setAccountModalOpen(true)}
                 aria-label="Open account and Club Mojo panel"
-                className="flex min-h-11 min-w-11 items-center justify-center gap-1.5 px-2 sm:px-2.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer select-none"
+                className={`flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-all cursor-pointer select-none ${
+                  isPastHero
+                    ? "bg-white/30 hover:bg-white/60 backdrop-blur-md border border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)]"
+                    : "bg-charcoal-ink/5 hover:bg-charcoal-ink/10 border border-charcoal-ink/10 backdrop-blur-sm"
+                }`}
               >
                 <User className="h-4 w-4 stroke-[2.2]" aria-hidden="true" />
                 <span lang="es" className="hidden sm:inline">CUENTA</span>
@@ -133,7 +163,11 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                 onClick={() => setMenuDrawerOpen(true)}
                 aria-label="Open navigation menu and locations"
                 aria-expanded={menuDrawerOpen}
-                className="flex min-h-11 min-w-11 items-center justify-center gap-1.5 px-2 sm:px-2.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-colors cursor-pointer select-none"
+                className={`flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-all cursor-pointer select-none ${
+                  isPastHero
+                    ? "bg-white/30 hover:bg-white/60 backdrop-blur-md border border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)]"
+                    : "bg-charcoal-ink/5 hover:bg-charcoal-ink/10 border border-charcoal-ink/10 backdrop-blur-sm"
+                }`}
               >
                 <Menu className="h-4 w-4 stroke-[2.2]" aria-hidden="true" />
                 <span lang="es" className="hidden sm:inline">MENÚ</span>

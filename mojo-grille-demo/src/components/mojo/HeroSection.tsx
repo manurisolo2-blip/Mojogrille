@@ -91,7 +91,7 @@ export function HeroSection({
       {/* Bloque Principal Hero */}
       <div
         ref={contentRef}
-        className={`relative z-10 py-12 md:py-20 ${animContainerClass}`}
+        className={`relative z-10 pt-20 sm:pt-24 md:pt-28 pb-12 md:pb-20 ${animContainerClass}`}
       >
         <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
           
