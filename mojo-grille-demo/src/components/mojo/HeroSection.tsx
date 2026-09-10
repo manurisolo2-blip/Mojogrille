@@ -42,42 +42,6 @@ export function HeroSection({
     return () => clearTimeout(timer);
   }, [shouldAnimateIn, reducedMotion]);
 
-  // Desvanecimiento suave del texto del hero a medida que la parte de abajo sube.
-  //
-  // Depende de animReady y usa fromTo con origen explícito. Con `gsap.to` y sin
-  // esperar, GSAP se montaba mientras el contenido todavía llevaba las clases
-  // de pre-entrada (opacity-0, translate-y-6), tomaba ese opacity: 0 como
-  // estado de partida del scrub y lo escribía en línea. Como el estilo en línea
-  // gana a la clase, cuando animReady pasaba a true y la clase cambiaba a
-  // opacity-100 el hero seguía invisible: titular, subtítulo y los dos CTA no
-  // se veían nunca en escritorio.
-  useEffect(() => {
-    if (reducedMotion || !animReady) return undefined;
-    if (!sectionRef.current || !contentRef.current) return undefined;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        contentRef.current,
-        { opacity: 1, y: 0 },
-        {
-          opacity: 0,
-          y: -40,
-          ease: "power1.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
-        },
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [reducedMotion, animReady]);
-
   const handleScrollToMenu = (e: React.MouseEvent<HTMLElement>) => {
     const target = document.getElementById(menuAnchorId);
     if (target) {
@@ -110,7 +74,7 @@ export function HeroSection({
       ref={sectionRef}
       id="top"
       aria-label="Welcome to Mojo Grille Cuban Kitchen"
-      className="relative z-10 min-h-[calc(100vh-68px)] md:min-h-screen flex flex-col justify-center bg-transparent"
+      className="relative z-10 w-full h-full min-h-dvh flex flex-col justify-center bg-transparent select-none"
     >
       {/* Descriptor editorial para lectores de pantalla y buscadores */}
       <p className="sr-only">
@@ -118,7 +82,7 @@ export function HeroSection({
       </p>
 
       {/*
-        Fondo de vídeo estático fijo al viewport: no se desplaza con el scroll.
+        Fondo de vídeo estático: se mantiene fijo dentro del contenedor del hero.
       */}
       <HeroVideoBackground
         videoSrc="/assets/hero-kitchen-loop.mp4"
@@ -126,10 +90,10 @@ export function HeroSection({
         opacity={0.45}
       />
 
-      {/* Bloque Principal Hero con desvanecimiento al scrollear */}
+      {/* Bloque Principal Hero */}
       <div
         ref={contentRef}
-        className={`relative z-10 py-12 md:py-20 will-change-transform ${animContainerClass}`}
+        className={`relative z-10 py-12 md:py-20 ${animContainerClass}`}
       >
         <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
           

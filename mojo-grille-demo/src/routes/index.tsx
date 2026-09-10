@@ -133,14 +133,19 @@ function IndexContent() {
       <div className="min-h-dvh bg-cream-bg text-charcoal-ink">
         <TopBar onOpenCart={openCart} />
         <main className="bg-transparent pb-20 md:pb-0">
-          <HeroSection
-            menuAnchorId="menu"
-            cateringHref="#catering"
-            shouldAnimateIn={isLoaded}
-          />
+          {/* Contenedor del Hero con pin/sticky: el hero se queda fijo y el fondo inferior sube tapándolo */}
+          <div className="relative h-[200dvh]">
+            <div className="sticky top-0 h-dvh w-full overflow-hidden z-10">
+              <HeroSection
+                menuAnchorId="menu"
+                cateringHref="#catering"
+                shouldAnimateIn={isLoaded}
+              />
+            </div>
+          </div>
 
-          {/* La parte de abajo: sube cubriendo el video estático como una cortina editorial */}
-          <div className="relative z-20 bg-cream-bg">
+          {/* El fondo inferior que sube y tapa el hero */}
+          <div className="relative z-20 -mt-[100dvh] bg-cream-bg shadow-[0_-24px_50px_rgba(20,18,16,0.14)] border-t border-charcoal-ink/10">
             {/* Fase 5: El Elemento Estrella: Deconstrucción en Scroll (CubanDeconstruction) */}
             <CubanDeconstruction />
 
