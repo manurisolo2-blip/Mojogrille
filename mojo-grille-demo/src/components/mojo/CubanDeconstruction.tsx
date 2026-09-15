@@ -568,7 +568,7 @@ export function CubanDeconstruction() {
                   />
                   <IngredientCallout
                     name="CITRUS MOJO ROAST PORK"
-                    detail="Slow-Roasted 24h in Sour Orange & Garlic"
+                    detail="Slow-Roasted 4h in Sour Orange & Garlic"
                     side="left"
                   />
                 </div>
@@ -604,7 +604,7 @@ export function CubanDeconstruction() {
         <div className="absolute bottom-4 right-4 sm:bottom-10 sm:right-10 z-30 flex items-center">
           <a
             href="#curated-menu"
-            className="bg-charcoal-ink hover:bg-brand-fire text-cream-bg min-h-11 py-2.5 px-4 sm:py-3 sm:px-6 text-sm sm:text-xs font-bold uppercase tracking-widest transition-colors flex items-center gap-2.5 sm:gap-3 rounded-none cursor-pointer group shadow-none"
+            className="bg-charcoal-ink hover:bg-brand-fire text-cream-bg min-h-11 py-2.5 px-4 sm:py-3 sm:px-6 text-sm sm:text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-2.5 sm:gap-3 rounded-none cursor-pointer group shadow-none"
           >
             <span className="flex items-center gap-2">
               <span>ORDER LIVE-FIRE</span>

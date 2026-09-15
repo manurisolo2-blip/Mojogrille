@@ -51,14 +51,14 @@ const GOOGLE_REVIEWS: GoogleReviewItem[] = [
     id: "review-3",
     title: "David Chen",
     description:
-      "Ordered catering for 35 people at our office in Doral. Delivery was on point, portions were generous, and the mojo chicken mojo rice disappeared in minutes.",
+      "Ordered catering for 35 people at our office in Doral. Delivery was on point, portions were generous, and the mojo chicken and rice disappeared in minutes.",
     imageSrc: "/assets/mojo-catering.jpg",
     href: GOOGLE_MAPS_URL,
     author: "David Chen",
     rating: 5,
     dish: "Corporate Mojo Catering Box",
     content:
-      "Ordered catering for 35 people at our office in Doral. Delivery was on point, portions were generous, and the mojo chicken mojo rice disappeared in minutes.",
+      "Ordered catering for 35 people at our office in Doral. Delivery was on point, portions were generous, and the mojo chicken and rice disappeared in minutes.",
     initials: "DC",
     avatarBg: "bg-charcoal-ink",
   },
@@ -124,7 +124,7 @@ export function GoogleReviewsSection() {
     <section
       id="reviews"
       aria-label="What Miami guests say about Mojo Grille"
-      className="relative w-full bg-transparent py-16 sm:py-24 overflow-hidden"
+      className="relative w-full scroll-mt-[var(--header-h)] bg-transparent py-16 sm:py-24 overflow-hidden"
     >
       <div className="relative mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8">
         

@@ -302,7 +302,7 @@ export function CravStyleMenuGrid({
             SLOW ROASTED, SERVED <span className="text-brand-fire">AL MOMENTO</span>.
           </h2>
           <p className="mt-2 font-sans text-sm font-bold uppercase tracking-[0.18em] text-brand-fire">
-            AUTHENTIC CRIOLLO FLAVORS GENERATIONAL RECIPES
+            AUTHENTIC CRIOLLO FLAVORS, GENERATIONAL RECIPES
           </p>
           <p className="mt-3 font-sans text-base text-charcoal-ink/80 leading-relaxed max-w-2xl mx-auto">
             Prepared fresh in Little Havana, Brickell, and Doral with 24 hours of marinade in Seville sour orange, crushed garlic, and fresh oregano.
@@ -311,11 +311,10 @@ export function CravStyleMenuGrid({
 
         {/* 1. Pestañas de Categorías con Retícula de Ángulo Recto (100% Unificado) */}
         {/*
-          El desplazamiento pegajoso arranca a 88px, que es lo que mide la
-          cabecera en escritorio (68px en móvil). Con los 64px de antes, 24px
-          de esta barra quedaban tapados debajo del header.
+          La barra se pega justo bajo la cabecera usando su alto medido
+          (--header-h). Con valores fijos se desajustaba en cada breakpoint.
         */}
-        <div className="sticky top-[68px] lg:top-[88px] z-30 mb-10 py-2.5 bg-cream-bg">
+        <div className="sticky top-[var(--header-h)] z-30 mb-10 py-2.5 bg-cream-bg">
           <div
             ref={tablistRef}
             role="tablist"

@@ -20,9 +20,16 @@ export interface CuratedMenuItem {
   techSpecs?: string;
 }
 
+/*
+ * Los id llevan el prefijo "plancha-" porque el carrito agrupa líneas por
+ * `${itemId}::${guarniciones}`. El Chicken Fresco Bowl de esta sección
+ * compartía id con el de la carta, con otro precio ($13.00 frente a $14.50):
+ * añadir uno y luego el otro sin guarniciones sumaba cantidad a la primera
+ * línea y cobraba la segunda unidad al precio equivocado.
+ */
 const CURATED_ITEMS: CuratedMenuItem[] = [
   {
-    id: "mojo-pork-bowl",
+    id: "plancha-mojo-pork-bowl",
     name: "Mojo Pork Bowl",
     price: 13.5,
     feature: "4h Braised",
@@ -32,7 +39,7 @@ const CURATED_ITEMS: CuratedMenuItem[] = [
     authorNote: "slow-roasted pernil & caramelized onions",
   },
   {
-    id: "classic-cubano-press",
+    id: "plancha-classic-cubano-press",
     name: "Classic Cubano Press",
     price: 12.95,
     feature: "Plancha Crunch",
@@ -42,7 +49,7 @@ const CURATED_ITEMS: CuratedMenuItem[] = [
     authorNote: "crispy golden crust & sweet ham fold",
   },
   {
-    id: "picadillo-meltadilla",
+    id: "plancha-picadillo-meltadilla",
     name: "Picadillo Meltadilla",
     price: 11.5,
     feature: "Queso Fundido",
@@ -52,7 +59,7 @@ const CURATED_ITEMS: CuratedMenuItem[] = [
     authorNote: "seasoned ground beef & melted swiss",
   },
   {
-    id: "loaded-pork-tostones",
+    id: "plancha-loaded-pork-tostones",
     name: "Loaded Pork Tostones",
     price: 10.75,
     feature: "Doble Fritura",
@@ -62,7 +69,7 @@ const CURATED_ITEMS: CuratedMenuItem[] = [
     authorNote: "double-fried plantain & crushed garlic",
   },
   {
-    id: "chicken-fresco-bowl",
+    id: "plancha-chicken-fresco-bowl",
     name: "Chicken Fresco Bowl",
     price: 13.0,
     feature: "Pechuga Marinada",
@@ -72,7 +79,7 @@ const CURATED_ITEMS: CuratedMenuItem[] = [
     authorNote: "24h citrus mojo & grilled hass avocado",
   },
   {
-    id: "pepper-steak-platter",
+    id: "plancha-pepper-steak-platter",
     name: "Pepper Steak Platter",
     price: 14.5,
     feature: "Salteado Criollo",
@@ -180,7 +187,7 @@ export function CuratedMenu() {
     <section
       id="curated-menu"
       aria-label="Hot Plancha Selection - Mojo Grille Signature Dishes"
-      className="relative bg-brand-fire py-16 sm:py-24 overflow-hidden"
+      className="relative scroll-mt-[var(--header-h)] bg-brand-fire py-16 sm:py-24 overflow-hidden"
     >
       {/* Miniatura Fotográfica Flotante al Cursor (Solo Desktop) */}
       <div
@@ -200,7 +207,7 @@ export function CuratedMenu() {
           {/* Metadato superior de previsualización */}
           <div className="absolute top-2.5 left-3 flex items-center">
             <span className="font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-cream-bg bg-brand-fire px-2 py-0.5">
-              MADE AL MOMENTO 100% FRESH
+              100% FRESH, MADE AL MOMENTO
             </span>
           </div>
 
@@ -223,7 +230,7 @@ export function CuratedMenu() {
       */}
       <div className="mx-auto max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>
-        <h2 className="font-display text-5xl md:text-7xl uppercase tracking-tight text-cream-bg leading-none">
+        <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-cream-bg leading-none">
           HOT PLANCHA SELECTION
         </h2>
         {/*
@@ -231,12 +238,12 @@ export function CuratedMenu() {
           pide este tamaño. El ámbar sólo aguanta aquí en display de 24px o más.
         */}
         <p className="mt-2 sm:mt-3 font-sans text-sm font-bold uppercase tracking-[0.18em] text-cream-bg">
-          MADE AL MOMENTO SEASONED WITH MOJO
+          MADE AL MOMENTO, SEASONED WITH MOJO
         </p>
         </div>
         <span
           aria-hidden="true"
-          className="font-display text-5xl md:text-7xl leading-none text-cream-bg/70 tabular-nums shrink-0"
+          className="font-display text-4xl sm:text-6xl lg:text-7xl leading-none text-cream-bg/70 tabular-nums shrink-0"
         >
           {String(CURATED_ITEMS.length).padStart(2, "0")}
         </span>

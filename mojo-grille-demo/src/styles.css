@@ -121,6 +121,15 @@
 :root {
   --radius: 0.875rem;
 
+  /*
+   * Alto real de la cabecera fija. TopBar lo mide con ResizeObserver y lo
+   * escribe aquí en cuanto hidrata; estos valores sólo cubren el primer
+   * pintado. Lo consumen la barra de pestañas pegajosa del menú, el
+   * scroll-margin de las anclas y el aviso de "añadido al pedido".
+   * Medidos: 73px hasta 767px, 77px hasta 1023px, 89px desde 1024px.
+   */
+  --header-h: 73px;
+
   /* Lienzo Primario (#FAF8F5) */
   --background: #FAF8F5;
   /* Texto Maestro (#1C1917) */
@@ -229,6 +238,13 @@
  *   - los rótulos de las guarniciones de JellyWaveTransition: sólo aparecen
  *     en hover, que en táctil no se dispara
  */
+
+@media (min-width: 768px) {
+  :root { --header-h: 77px; }
+}
+@media (min-width: 1024px) {
+  :root { --header-h: 89px; }
+}
 
 /* Official Miami-Latin Modernism Design Token Utilities */
 @utility bg-cream-bg {

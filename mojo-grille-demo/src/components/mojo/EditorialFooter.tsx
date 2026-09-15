@@ -7,6 +7,14 @@ export interface EditorialFooterProps {
   onOpenCart?: () => void;
 }
 
+const FOOTER_LINKS = [
+  { href: "#cuban-deconstruction", label: "Anatomy of the Pressed Cubano" },
+  { href: "#curated-menu", label: "Plancha Selection (Signature Dishes)" },
+  { href: "#menu", label: "Full Menu & Criollo Bowls" },
+  { href: "#reviews", label: "What Miami Says" },
+  { href: "#catering", label: "Catering & Events" },
+] as const;
+
 export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
@@ -101,191 +109,181 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
     <footer
       id="footer"
       aria-label="Mojo Grille editorial footer"
-      className="relative bg-brand-fire text-cream-bg pt-16 pb-28 md:pb-12 px-6 md:px-12 overflow-hidden"
+      className="relative bg-brand-fire text-cream-bg pt-16 pb-28 md:pb-12 overflow-hidden"
     >
       {/*
-        1. Marca de agua superior. Era un <h1>, que daba dos h1 en la home (el
-        otro es el titular del hero) y ponía el encabezado principal del
-        documento en un adorno del pie. Es decorativo, así que ahora es un div
-        oculto a lectores de pantalla: el nombre del negocio ya está en el
-        <title>, en el logo de la cabecera y en los datos estructurados.
+        Misma retícula que las secciones: max-w-[1600px] centrado con el
+        relleno por dentro. Con el relleno en el <footer>, en pantallas de más
+        de 1600px el pie quedaba 32px más a la izquierda que el contenido.
       */}
-      <div className="w-full border-b border-cream-bg/20 pb-10 sm:pb-14 overflow-hidden">
-        <div
-          aria-hidden="true"
-          className="text-[12vw] font-display uppercase tracking-tight text-cream-bg leading-none select-none text-center sm:text-left"
-        >
-          MOJO GRILLE
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+        {/*
+          1. Marca de agua superior. Era un <h1>, que daba dos h1 en la home (el
+          otro es el titular del hero) y ponía el encabezado principal del
+          documento en un adorno del pie. Es decorativo, así que ahora es un div
+          oculto a lectores de pantalla: el nombre del negocio ya está en el
+          <title>, en el logo de la cabecera y en los datos estructurados.
+        */}
+        <div className="w-full border-b border-cream-bg/20 pb-10 sm:pb-14 overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="text-[min(12vw,12rem)] font-display uppercase tracking-tight text-cream-bg leading-none select-none text-center sm:text-left"
+          >
+            MOJO GRILLE
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-between mt-3 text-sm font-sans uppercase tracking-widest text-cream-bg">
+            <p className="font-semibold">CUBAN KITCHEN &amp; ARTISANAL PLANCHA IN MIAMI, FL</p>
+            <p className="font-sans text-sm font-bold uppercase tracking-[0.15em] text-cream-bg mt-1 sm:mt-0">
+              AUTHENTIC CRIOLLO FLAVOR, 24-HOUR CITRUS MOJO
+            </p>
+          </div>
         </div>
-        <div className="flex flex-col sm:flex-row items-center justify-between mt-3 text-sm font-sans uppercase tracking-widest text-cream-bg">
-          <p className="font-semibold">CUBAN KITCHEN &amp; ARTISANAL PLANCHA MIAMI, FL</p>
-          <p className="font-sans text-sm font-bold uppercase tracking-[0.15em] text-cream-bg mt-1 sm:mt-0">
-            AUTHENTIC CRIOLLO FLAVOR 24-HOUR CITRUS MOJO
-          </p>
-        </div>
-      </div>
 
-      {/* 2. Grilla de Información (3 Columnas de Alto Impacto) */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 py-12 sm:py-16 border-b border-cream-bg/20">
+        {/* 2. Grilla de Información (3 Columnas de Alto Impacto) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 py-12 sm:py-16 border-b border-cream-bg/20">
         
-        {/* Columna 1: Horarios de Plancha y Ubicación Física */}
-        <div className="md:col-span-4 space-y-4">
-          <div className="flex items-center gap-2 text-cream-bg">
-            <MapPin className="h-4 w-4" />
-            <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-cream-bg">
-              Location &amp; Plancha Hours
-            </h3>
+          {/* Columna 1: Horarios de Plancha y Ubicación Física */}
+          <div className="md:col-span-4 space-y-4">
+            <div className="flex items-center gap-2 text-cream-bg">
+              <MapPin className="h-4 w-4" />
+              <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-cream-bg">
+                Location &amp; Plancha Hours
+              </h3>
+            </div>
+
+            <div className="space-y-1 font-sans text-base text-cream-bg">
+              <p className="font-bold text-base text-cream-bg">Brownsville Central Kitchen</p>
+              <a
+                href="https://maps.google.com/?q=2920+NW+27th+Ave,+Miami,+FL+33142"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center hover:underline transition-colors cursor-pointer"
+                aria-label="View 2920 NW 27th Ave, Miami on Google Maps"
+              >
+                2920 NW 27th Ave, Miami, FL 33142
+              </a>
+              <p className="text-sm text-cream-bg">Pickup hubs: Little Havana, Brickell, Doral</p>
+            </div>
+
+            <div className="pt-2 border-t border-cream-bg/20 space-y-1 font-sans text-sm text-cream-bg leading-relaxed">
+              <div className="flex items-center gap-1.5 font-bold text-cream-bg">
+                <Clock className="h-3.5 w-3.5" aria-hidden="true" />
+                <span>Plancha Active al Momento:</span>
+              </div>
+              <p>Monday to Thursday: 11:00 AM to 10:00 PM</p>
+              <p>Friday &amp; Saturday: 11:00 AM to 11:30 PM</p>
+              <p>Sunday: 12:00 PM to 9:00 PM</p>
+            </div>
           </div>
 
-          <div className="space-y-1 font-sans text-base text-cream-bg">
-            <p className="font-bold text-base text-cream-bg">Brownsville Central Kitchen</p>
+          {/* Columna 2: Enlaces de Navegación Rápida */}
+          <div className="md:col-span-4 space-y-4">
+            <div className="flex items-center gap-2 text-cream-bg">
+              <Sparkles className="h-4 w-4" />
+              <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-cream-bg">
+                Quick Navigation
+              </h3>
+            </div>
+
+            <ul className="space-y-2.5 font-sans text-sm font-semibold text-cream-bg">
+              {/*
+                Mismo orden en que aparecen las secciones al bajar, y las cinco
+                presentes. Faltaban las reseñas, y el catering se anunciaba como
+                "Thermal Packaging", de una sección que ya no existe.
+              */}
+              {FOOTER_LINKS.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="inline-flex min-h-11 items-center hover:underline hover:translate-x-1 transition-transform duration-200"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <button
+                  type="button"
+                  onClick={onOpenCart}
+                  className="inline-flex min-h-11 items-center gap-1.5 hover:underline hover:translate-x-1 transition-transform duration-200 cursor-pointer text-left"
+                >
+                  View Your Order
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Columna 3: Registro a Newsletter en una Sola Línea */}
+          <div className="md:col-span-4 space-y-4">
+            <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-cream-bg">
+              Criollo Dispatch &amp; Secret Drops
+            </h3>
+            <p className="font-sans text-base text-cream-bg leading-relaxed">
+              Get early access to exclusive small-batch citrus mojo, pop-up tastings, and secret perks for Miami gatherings.
+            </p>
+
+            <form onSubmit={handleNewsletterSubmit} className="pt-2">
+              {/*
+                Etiqueta real, no sólo placeholder: el placeholder desaparece en
+                cuanto escribes y muchos lectores de pantalla no lo anuncian, así
+                que el campo se presentaba sin nombre.
+              */}
+              <label htmlFor={emailFieldId} className="sr-only">
+                Email address for the Criollo Dispatch newsletter
+              </label>
+              <div className="flex items-center border-b-2 border-cream-bg/40 pb-2 focus-within:border-cream-bg transition-colors">
+                <input
+                  id={emailFieldId}
+                  type="email"
+                  required
+                  autoComplete="email"
+                  placeholder="your-email@miami.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full min-h-11 bg-transparent font-sans text-base text-cream-bg placeholder:text-cream-bg/80 focus:outline-hidden"
+                />
+                <button
+                  type="submit"
+                  className="shrink-0 min-h-11 font-sans text-sm sm:text-xs font-extrabold uppercase tracking-widest bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer px-4 py-1.5"
+                >
+                  JOIN
+                </button>
+              </div>
+              {/*
+                role="status" en un contenedor siempre presente: si la región
+                viva se monta a la vez que el texto, muchos lectores no la
+                anuncian. Vacío mientras no hay alta.
+              */}
+              <p role="status" className="mt-2 text-sm font-sans font-bold text-cream-bg">
+                {subscribed ? "You're on the list! Welcome to the Mojo Grille table." : ""}
+              </p>
+            </form>
+
+            <p className="text-sm font-sans text-cream-bg pt-1">
+              No spam. Pure plancha heat, culture, and high-craft criollo food.
+            </p>
+          </div>
+
+        </div>
+
+        {/* 3. Barra Inferior Legal & Marca de Agua */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm sm:text-xs font-sans text-cream-bg">
+          <p>© {new Date().getFullYear()} MOJO GRILLE LLC, ALL RIGHTS RESERVED</p>
+          <div className="flex items-center gap-4">
             <a
               href="https://maps.google.com/?q=2920+NW+27th+Ave,+Miami,+FL+33142"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center hover:underline transition-colors cursor-pointer"
+              className="inline-flex min-h-11 items-center gap-1 hover:underline transition-colors cursor-pointer text-cream-bg"
               aria-label="View 2920 NW 27th Ave, Miami on Google Maps"
             >
-              2920 NW 27th Ave, Miami, FL 33142
+              <MapPin className="h-3 w-3 shrink-0" aria-hidden="true" />
+              <span>2920 NW 27th Ave, Miami, FL 33142</span>
             </a>
-            <p className="text-sm text-cream-bg">Pickup hubs: Little Havana, Brickell, Doral</p>
+            <span className="inline-flex items-center gap-1">
+              Crafted with <Heart className="h-3 w-3" aria-hidden="true" /> and Seville Sour Orange
+            </span>
           </div>
-
-          <div className="pt-2 border-t border-cream-bg/20 space-y-1 font-sans text-sm text-cream-bg leading-relaxed">
-            <div className="flex items-center gap-1.5 font-bold text-cream-bg">
-              <Clock className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>Plancha Active al Momento:</span>
-            </div>
-            <p>Monday to Thursday: 11:00 AM to 10:00 PM</p>
-            <p>Friday &amp; Saturday: 11:00 AM to 11:30 PM</p>
-            <p>Sunday: 12:00 PM to 9:00 PM</p>
-          </div>
-        </div>
-
-        {/* Columna 2: Enlaces de Navegación Rápida */}
-        <div className="md:col-span-4 space-y-4">
-          <div className="flex items-center gap-2 text-cream-bg">
-            <Sparkles className="h-4 w-4" />
-            <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-cream-bg">
-              Quick Navigation
-            </h3>
-          </div>
-
-          <ul className="space-y-2.5 font-sans text-sm font-semibold text-cream-bg">
-            <li>
-              <a
-                href="#menu"
-                className="inline-flex min-h-11 items-center hover:underline hover:translate-x-1 transition-transform duration-200"
-              >
-                Full Menu &amp; Criollo Bowls
-              </a>
-            </li>
-            <li>
-              <a
-                href="#cuban-deconstruction"
-                className="inline-flex min-h-11 items-center hover:underline hover:translate-x-1 transition-transform duration-200"
-              >
-                Deconstruction of the Pressed Cubano
-              </a>
-            </li>
-            <li>
-              <a
-                href="#curated-menu"
-                className="inline-flex min-h-11 items-center hover:underline hover:translate-x-1 transition-transform duration-200"
-              >
-                Plancha Selection (Signature Dishes)
-              </a>
-            </li>
-            <li>
-              <a
-                href="#catering"
-                className="inline-flex min-h-11 items-center hover:underline hover:translate-x-1 transition-transform duration-200"
-              >
-                Thermal Packaging &amp; Corporate Catering
-              </a>
-            </li>
-            <li>
-              <button
-                type="button"
-                onClick={onOpenCart}
-                className="inline-flex min-h-11 items-center gap-1.5 hover:underline hover:translate-x-1 transition-transform duration-200 cursor-pointer text-left"
-              >
-                View Order / Order Drawer
-              </button>
-            </li>
-          </ul>
-        </div>
-
-        {/* Columna 3: Registro a Newsletter en una Sola Línea */}
-        <div className="md:col-span-4 space-y-4">
-          <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-cream-bg">
-            Criollo Dispatch &amp; Secret Drops
-          </h3>
-          <p className="font-sans text-base text-cream-bg leading-relaxed">
-            Get early access to exclusive small-batch citrus mojo, pop-up tastings, and secret perks for Miami gatherings.
-          </p>
-
-          <form onSubmit={handleNewsletterSubmit} className="pt-2">
-            {/*
-              Etiqueta real, no sólo placeholder: el placeholder desaparece en
-              cuanto escribes y muchos lectores de pantalla no lo anuncian, así
-              que el campo se presentaba sin nombre.
-            */}
-            <label htmlFor={emailFieldId} className="sr-only">
-              Email address for the Criollo Dispatch newsletter
-            </label>
-            <div className="flex items-center border-b-2 border-cream-bg/40 pb-2 focus-within:border-cream-bg transition-colors">
-              <input
-                id={emailFieldId}
-                type="email"
-                required
-                autoComplete="email"
-                placeholder="your-email@miami.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full min-h-11 bg-transparent font-sans text-base text-cream-bg placeholder:text-cream-bg/80 focus:outline-hidden"
-              />
-              <button
-                type="submit"
-                className="shrink-0 min-h-11 font-sans text-sm sm:text-xs font-extrabold uppercase tracking-widest bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer px-4 py-1.5"
-              >
-                JOIN
-              </button>
-            </div>
-            {/*
-              role="status" en un contenedor siempre presente: si la región
-              viva se monta a la vez que el texto, muchos lectores no la
-              anuncian. Vacío mientras no hay alta.
-            */}
-            <p role="status" className="mt-2 text-sm font-sans font-bold text-cream-bg">
-              {subscribed ? "You're on the list! Welcome to the Mojo Grille table." : ""}
-            </p>
-          </form>
-
-          <p className="text-sm font-sans text-cream-bg pt-1">
-            No spam. Pure plancha heat, culture, and high-craft criollo food.
-          </p>
-        </div>
-
-      </div>
-
-      {/* 3. Barra Inferior Legal & Marca de Agua */}
-      <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm sm:text-xs font-sans text-cream-bg">
-        <p>© {new Date().getFullYear()} MOJO GRILLE LLC ALL RIGHTS RESERVED MIAMI-LATIN MODERNISM</p>
-        <div className="flex items-center gap-4">
-          <a
-            href="https://maps.google.com/?q=2920+NW+27th+Ave,+Miami,+FL+33142"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center gap-1 hover:underline transition-colors cursor-pointer text-cream-bg"
-            aria-label="View 2920 NW 27th Ave, Miami on Google Maps"
-          >
-            <MapPin className="h-3 w-3 shrink-0" aria-hidden="true" />
-            <span>2920 NW 27th Ave, Miami, FL 33142</span>
-          </a>
-          <span className="inline-flex items-center gap-1">
-            Crafted with <Heart className="h-3 w-3" aria-hidden="true" /> and Seville Sour Orange
-          </span>
         </div>
       </div>
 

@@ -104,7 +104,7 @@ export function CartProvider({
         const toastId = `${key}-${Date.now()}`;
         setToast({
           id: toastId,
-          message: "¡Añadido al pedido criollo!",
+          message: "Added to your order!", // en inglés, como el resto de la interfaz de pedido
           itemName: line.name,
         });
         toastTimeout.current = setTimeout(() => {

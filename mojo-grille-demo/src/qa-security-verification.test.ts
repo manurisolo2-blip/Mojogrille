@@ -279,6 +279,22 @@ assert.equal(
 );
 console.log("  ✓ Side option price aggregation matches exact PRD dollar amounts ($16.95 -> $18.45 -> $20.45 -> $22.20).");
 
+// Las dos cartas (Selección de la Plancha y la rejilla del menú) añaden al
+// mismo carrito, que agrupa líneas por id. Un id repetido entre ellas con
+// distinto precio fusiona las líneas y cobra mal la segunda unidad.
+{
+  const idsIn = (file: string) =>
+    [...fs
+      .readFileSync(path.resolve(process.cwd(), "src/components/mojo", file), "utf-8")
+      .matchAll(/^\s*id: "([^"]+)",$/gm)].map((m) => m[1]);
+  const curatedIds = idsIn("CuratedMenu.tsx");
+  const gridIds = new Set(idsIn("CravStyleMenuGrid.tsx"));
+  assert.ok(curatedIds.length > 0 && gridIds.size > 0, "Both menus must expose item ids");
+  const shared = curatedIds.filter((id) => gridIds.has(id));
+  assert.deepEqual(shared, [], `Menu item ids must be unique across menus, shared: ${shared.join(", ")}`);
+  console.log("  ✓ Menu item ids are unique across the Plancha selection and the menu grid.");
+}
+
 console.log("✓ Cart arithmetic & deduplication verified.\n");
 
 // -----------------------------------------------------------------
@@ -315,21 +331,23 @@ assert.ok(
 assert.ok(heroCode.includes('aria-hidden="true"'), "Decorative icons must have aria-hidden");
 console.log("  ✓ HeroSection: Social proof is plain readable text and decorative icons are hidden from screen readers.");
 
-// Check CategoryTabs.tsx
-const tabsCode = fs.readFileSync(path.join(componentsDir, "CategoryTabs.tsx"), "utf-8");
-assert.ok(tabsCode.includes('role="tablist"'), "CategoryTabs must have role=tablist");
-assert.ok(tabsCode.includes('role="tab"'), "Each category button must have role=tab");
-assert.ok(tabsCode.includes('aria-selected={isActive}'), "Category tabs must communicate aria-selected");
-assert.ok(tabsCode.includes('id={`tab-${cat.id}`}'), "Tabs must have unique IDs");
-console.log("  ✓ CategoryTabs: Tab navigation complies with WAI-ARIA Tabs design pattern.");
+// Check CravStyleMenuGrid.tsx
+//
+// Estas dos comprobaciones leían CategoryTabs.tsx y MenuGrid.tsx, que ya no
+// se renderizaban en ninguna parte: pasaban en verde sobre código muerto
+// mientras la rejilla real quedaba sin revisar. Ahora miran la que se usa.
+const menuGridCode = fs.readFileSync(path.join(componentsDir, "CravStyleMenuGrid.tsx"), "utf-8");
+assert.ok(menuGridCode.includes('role="tablist"'), "Menu categories must have role=tablist");
+assert.ok(menuGridCode.includes('role="tab"'), "Each category button must have role=tab");
+assert.ok(menuGridCode.includes("aria-selected={isSelected}"), "Category tabs must communicate aria-selected");
+assert.ok(menuGridCode.includes("id={`tab-${category.id}`}"), "Tabs must have unique IDs");
+console.log("  ✓ CravStyleMenuGrid: Tab navigation complies with WAI-ARIA Tabs design pattern.");
 
-// Check MenuGrid.tsx
-const menuGridCode = fs.readFileSync(path.join(componentsDir, "MenuGrid.tsx"), "utf-8");
 assert.ok(menuGridCode.includes("<article"), "Menu items must use semantic <article> tags");
-assert.ok(menuGridCode.includes('aria-label={`View details for ${item.name}`}'), "Dish image buttons must have accessible label");
-assert.ok(menuGridCode.includes('aria-label={`Personalizar / Añadir ${item.name} (Add)`}'), "Action buttons must have accessible label");
+assert.ok(menuGridCode.includes("aria-label={`View details for ${item.name}`}"), "Dish image buttons must have accessible label");
+assert.ok(menuGridCode.includes("`Add ${item.name} to order`"), "Action buttons must have accessible label");
 assert.ok(menuGridCode.includes('loading="lazy"'), "Images must use lazy loading for performance");
-console.log("  ✓ MenuGrid: Uses semantic <article>, lazy images, and descriptive action labels.");
+console.log("  ✓ CravStyleMenuGrid: Uses semantic <article>, lazy images, and descriptive action labels.");
 
 // Check QuickOrderModal.tsx
 const modalCode = fs.readFileSync(path.join(componentsDir, "QuickOrderModal.tsx"), "utf-8");

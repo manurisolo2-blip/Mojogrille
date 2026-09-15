@@ -171,7 +171,7 @@ function IndexContent() {
               direction="up"
             />
 
-            <section id="menu" className="scroll-mt-[124px] lg:scroll-mt-[144px]">
+            <section id="menu" className="scroll-mt-[var(--header-h)]">
               <CravStyleMenuGrid onSelect={setSelected} />
             </section>
 
@@ -180,10 +180,10 @@ function IndexContent() {
 
             <section
               id="catering"
-              className="scroll-mt-[124px] lg:scroll-mt-[144px] bg-transparent px-4 py-16 sm:px-6 lg:px-8"
+              className="scroll-mt-[var(--header-h)] bg-transparent px-4 py-16 sm:px-6 lg:px-8"
             >
               <div className="mx-auto max-w-4xl text-center">
-                <h2 className="font-display text-4xl sm:text-6xl font-black tracking-tight uppercase text-charcoal-ink leading-none">
+                <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight uppercase text-charcoal-ink leading-none">
                   Authentic Criollo Catering for your next celebration
                 </h2>
                 <p className="mx-auto mt-3 max-w-2xl font-sans text-base text-charcoal-ink/80 leading-relaxed">

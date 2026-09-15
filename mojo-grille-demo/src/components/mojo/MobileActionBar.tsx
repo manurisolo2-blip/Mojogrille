@@ -24,7 +24,11 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
   const whatsappUrl = whatsappHref(location, lines, total);
 
   return (
+    // inert mientras está oculta: el contenedor desactiva los punteros, pero la
+    // tarjeta interior los reactiva, así que la barra invisible seguía
+    // recibiendo toques en el borde inferior y el foco del tabulador.
     <div
+      inert={!isVisible}
       className={`fixed inset-x-0 bottom-0 z-40 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] md:hidden transition-all duration-500 ease-out transform pointer-events-none ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-24 opacity-0"
       }`}
@@ -73,7 +77,7 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Order via WhatsApp"
-          className="group flex min-h-11 items-center justify-center gap-2 rounded-none bg-brand-fire px-5 py-3 font-sans text-sm font-bold text-cream-bg shadow-none transition-colors duration-150 hover:bg-cream-bg hover:text-charcoal-ink"
+          className="group flex min-h-11 items-center justify-center gap-2 rounded-none bg-brand-fire px-5 py-3 font-sans text-sm font-bold uppercase tracking-wider text-cream-bg shadow-none transition-colors duration-150 hover:bg-cream-bg hover:text-charcoal-ink"
         >
           <span>Order Now</span>
           <ArrowRight
@@ -86,5 +90,4 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
   );
 }
 
-export { FloatingCravBar } from "./FloatingCravBar";
 export default MobileActionBar;

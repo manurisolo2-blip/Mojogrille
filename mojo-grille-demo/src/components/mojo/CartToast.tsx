@@ -7,13 +7,17 @@ import { useCart } from "./cart";
  * Rendered permanently so the exit transition can play; visibility is driven
  * purely by the presence of `toast` in the cart context. "View" opens the
  * single cart drawer (CartSheet).
+ *
+ * Sits just below the fixed header (--header-h). At top-5 it covered the bag
+ * and menu buttons for as long as it was up, which is exactly when someone
+ * wants to open the order; on a phone it also ran flush to the left edge.
  */
 export function CartToast() {
   const { toast, dismissToast, openCart } = useCart();
 
   return (
     <div
-      className={`fixed top-5 right-5 z-60 max-w-sm rounded-none bg-charcoal-ink text-cream-bg p-4 flex items-center justify-between gap-3 select-none transition-all duration-300 ease-out transform ${
+      className={`fixed top-[calc(var(--header-h)+0.75rem)] left-4 right-4 sm:left-auto sm:right-5 z-60 sm:max-w-sm rounded-none bg-charcoal-ink text-cream-bg p-4 flex items-center justify-between gap-3 select-none transition-all duration-300 ease-out transform ${
         toast
           ? "translate-y-0 opacity-100 scale-100 pointer-events-auto"
           : "-translate-y-6 opacity-0 scale-95 pointer-events-none"

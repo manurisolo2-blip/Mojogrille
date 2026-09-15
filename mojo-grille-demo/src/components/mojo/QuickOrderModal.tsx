@@ -135,7 +135,7 @@ export function QuickOrderModal({
             </>
           ) : (
             <p className="mt-6 rounded-none bg-leaf-green/10 px-4 py-3 font-sans text-sm font-bold uppercase text-leaf-green">
-              MADE AL MOMENTO 100% ARTISANAL MIAMI
+              100% ARTISANAL, MADE AL MOMENTO IN MIAMI
             </p>
           )}
 

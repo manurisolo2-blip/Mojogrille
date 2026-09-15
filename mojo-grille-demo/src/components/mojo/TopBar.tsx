@@ -9,12 +9,20 @@ import { useBodyScrollLock } from "@/lib/useBodyScrollLock";
 
 export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
   const { count, location, setLocation, availableLocations } = useCart();
+
+  // El horario sale de los datos de la sede, no de un texto fijo: estaba
+  // escrito a mano con cierre a las 10:00 PM y Brickell cierra a las 11:00 PM.
+  const openingHours = (() => {
+    const match = /(\d{1,2}:\d{2} [AP]M) to (\d{1,2}:\d{2} [AP]M)/.exec(location.hours);
+    return match ? { opens: match[1], closes: match[2] } : null;
+  })();
   const [open, setOpen] = useState(false);
   const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
   const [accountModalOpen, setAccountModalOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isPastHero, setIsPastHero] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
   const drawerRef = useRef<HTMLElement>(null);
   const accountModalRef = useRef<HTMLDivElement>(null);
 
@@ -24,6 +32,25 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
   useBodyScrollLock(menuDrawerOpen || accountModalOpen);
 
   const { scrollY } = useScroll();
+
+  // Publica el alto real de la cabecera en --header-h. Antes la barra de
+  // pestañas del menú fijaba 68px y 88px a mano, y la cabecera mide 73, 77 y
+  // 89: quedaba entre 1 y 9px de la barra metida debajo.
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header || typeof ResizeObserver === "undefined") return undefined;
+    const root = document.documentElement;
+    const publish = () => {
+      root.style.setProperty("--header-h", `${Math.round(header.offsetHeight)}px`);
+    };
+    publish();
+    const observer = new ResizeObserver(publish);
+    observer.observe(header);
+    return () => {
+      observer.disconnect();
+      root.style.removeProperty("--header-h");
+    };
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -113,6 +140,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
   return (
     <>
       <motion.header
+        ref={headerRef}
         initial={false}
         animate={{ y: isVisible ? "0%" : "-100%" }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -123,7 +151,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
         }`}
       >
         <div className="w-full">
-          <nav className="w-full flex items-center justify-between gap-4 px-4 sm:px-6 md:px-8 lg:px-12 py-3.5">
+          <nav className="mx-auto max-w-[1600px] w-full flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 py-3.5">
             {/* Extremo Izquierdo: Titular Monumental MOJO GRILLE */}
             <a
               href="#top"
@@ -266,15 +294,21 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
 
                 {/* 1. NAVEGACIÓN PRINCIPAL (Minimalista, editorial, sin recuadros) */}
                 <nav className="space-y-2">
-                  <span className="font-sans text-[11px] font-black uppercase tracking-widest text-brand-fire block mb-1">
+                  <span className="font-sans text-sm sm:text-xs font-black uppercase tracking-widest text-brand-fire block mb-1">
                     CARTA & EXPERIENCIA
                   </span>
+                  {/*
+                    En el orden de la página y con las cinco secciones: faltaba
+                    la Selección de la Plancha. "Reseñas Verificadas" pasa a
+                    "Lo que dice Miami": los testimonios no son reseñas
+                    verificadas y la sección ya no se presenta así. "3D" fuera,
+                    la deconstrucción es por capas, no un modelo 3D.
+                  */}
                   {[
+                    { href: "#cuban-deconstruction", label: "Anatomía del Cubano" },
+                    { href: "#curated-menu", label: "Selección de la Plancha" },
                     { href: "#menu", label: "Menú & Bowls Criollos" },
-                    // Era #cubanos, que no existe en el DOM: el id real de la
-                    // sección de deconstrucción es #cuban-deconstruction.
-                    { href: "#cuban-deconstruction", label: "El Sándwich Cubano 3D" },
-                    { href: "#reviews", label: "Reseñas Verificadas" },
+                    { href: "#reviews", label: "Lo que dice Miami" },
                     { href: "#catering", label: "Catering para Eventos" },
                   ].map((item) => (
                     <a
@@ -286,7 +320,10 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                       <span className="font-display text-3xl font-black uppercase tracking-tight">
                         {item.label}
                       </span>
-                      <ArrowRight className="h-5 w-5 text-brand-fire opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                      <ArrowRight
+                        className="h-5 w-5 shrink-0 text-brand-fire opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"
+                        aria-hidden="true"
+                      />
                     </a>
                   ))}
                 </nav>
@@ -294,11 +331,12 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                 {/* 2. SEDES MIAMI (Adaptado al fondo, sin recuadros, badges ni líneas) */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="font-sans text-[11px] font-black uppercase tracking-widest text-brand-fire">
+                    <span className="font-sans text-sm sm:text-xs font-black uppercase tracking-widest text-brand-fire">
                       SEDES MIAMI
                     </span>
-                    <span className="font-sans text-sm sm:text-xs font-bold text-leaf-green">
-                      ● Abierto hoy
+                    <span className="inline-flex items-center gap-1.5 font-sans text-sm sm:text-xs font-bold text-leaf-green">
+                      <span aria-hidden="true" className="h-2 w-2 rounded-full bg-leaf-green" />
+                      Abierto hoy
                     </span>
                   </div>
 
@@ -361,9 +399,11 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                   >
                     {location.address.fullAddress}
                   </a>
-                  <p className="hidden md:block font-sans text-xs text-charcoal-ink/60">
-                    Horario: 11:00 AM – 10:00 PM · Cocina criolla al momento
-                  </p>
+                  {openingHours ? (
+                    <p className="hidden md:block font-sans text-xs text-charcoal-ink/60">
+                      Todos los días de {openingHours.opens} a {openingHours.closes}
+                    </p>
+                  ) : null}
                   <a
                     href={`tel:${location.phone.replace(/[^0-9+]/g, "")}`}
                     className="inline-flex min-h-11 items-center gap-1.5 text-brand-fire font-bold text-sm sm:text-xs uppercase tracking-wider hover:underline"
@@ -375,7 +415,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
 
                 {/* 3. CLUB MOJO / MI CUENTA (Acceso limpio sin duplicar tarjetas ni formularios) */}
                 <div className="space-y-1.5">
-                  <span className="font-sans text-[11px] font-black uppercase tracking-widest text-brand-fire block">
+                  <span className="font-sans text-sm sm:text-xs font-black uppercase tracking-widest text-brand-fire block">
                     CLUB MOJO MIAMI
                   </span>
                   <button
@@ -386,8 +426,9 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     }}
                     className="group text-left cursor-pointer select-none"
                   >
-                    <p className="font-display text-2xl font-black uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors">
-                      MI PASAPORTE & BENEFICIOS →
+                    <p className="flex items-center gap-2 font-display text-2xl font-black uppercase tracking-tight text-charcoal-ink group-hover:text-brand-fire transition-colors">
+                      MI PASAPORTE & BENEFICIOS
+                      <ArrowRight className="h-5 w-5 shrink-0 text-brand-fire" aria-hidden="true" />
                     </p>
                     <p className="hidden md:block font-sans text-xs text-charcoal-ink/75 mt-0.5">
                       Gana 1 cafecito de bienvenida y acumula puntos en cada orden.
