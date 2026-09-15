@@ -52,10 +52,10 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
         >
           <div className="relative flex h-11 w-11 shrink-0 items-center justify-center">
             <ShoppingBag className="h-5 w-5 text-cream-bg" aria-hidden="true" />
-            {/* Badge Verde Cilantro (#2F6A4F / leaf-green) */}
+            {/* Contador en lima sobre la barra de tinta: 8.51:1 con la cifra en tinta */}
             <span
               aria-hidden="true"
-              className="absolute -top-1.5 -right-1.5 flex h-5 min-w-5 items-center justify-center rounded-none bg-leaf-green px-1 font-sans text-xs font-black text-cream-bg"
+              className="absolute -top-1.5 -right-1.5 flex h-5 min-w-5 items-center justify-center rounded-none bg-leaf-green-soft px-1 font-sans text-xs font-black text-charcoal-ink"
             >
               {count}
             </span>
@@ -71,13 +71,13 @@ export function MobileActionBar({ onOpenCart }: { onOpenCart: () => void }) {
           </div>
         </button>
 
-        {/* Lado Derecho: Botón Rojo Mojo Scarlet (#C41B0E / brand-fire) */}
+        {/* Lado Derecho: botón rojo (brand-fire) con la etiqueta en tinta */}
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Order via WhatsApp"
-          className="group flex min-h-11 items-center justify-center gap-2 rounded-none bg-brand-fire px-5 py-3 font-sans text-sm font-bold uppercase tracking-wider text-cream-bg shadow-none transition-colors duration-150 hover:bg-cream-bg hover:text-charcoal-ink"
+          className="group flex min-h-11 items-center justify-center gap-2 rounded-none bg-brand-fire px-5 py-3 font-sans text-sm font-bold uppercase tracking-wider text-charcoal-ink shadow-none transition-colors duration-150 hover:bg-cream-bg hover:text-charcoal-ink"
         >
           <span>Order Now</span>
           <ArrowRight

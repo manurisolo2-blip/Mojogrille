@@ -10,7 +10,8 @@ export interface GoogleReviewItem extends CardStackItem {
   dish: string;
   content: string;
   initials: string;
-  avatarBg: string;
+  /** Fondo y color de las iniciales, siempre como pareja que pasa AA. */
+  avatarClass: string;
 }
 
 const GOOGLE_MAPS_URL =
@@ -30,7 +31,7 @@ const GOOGLE_REVIEWS: GoogleReviewItem[] = [
     content:
       "The lechón asado bowl and yuca fries are incredible. Real deal Cuban mojo flavor, juicy and tender. Best quick lunch in Miami!",
     initials: "CM",
-    avatarBg: "bg-brand-fire",
+    avatarClass: "bg-brand-fire text-charcoal-ink",
   },
   {
     id: "review-2",
@@ -45,7 +46,7 @@ const GOOGLE_REVIEWS: GoogleReviewItem[] = [
     content:
       "Best Cuban sandwich in the area! Pressed hot on the plancha, crisp bread with the right balance of mustard and pickles. You can taste the slow-roasted pork marinade.",
     initials: "SR",
-    avatarBg: "bg-charcoal-ink",
+    avatarClass: "bg-mojo-citrus text-charcoal-ink",
   },
   {
     id: "review-3",
@@ -60,7 +61,7 @@ const GOOGLE_REVIEWS: GoogleReviewItem[] = [
     content:
       "Ordered catering for 35 people at our office in Doral. Delivery was on point, portions were generous, and the mojo chicken and rice disappeared in minutes.",
     initials: "DC",
-    avatarBg: "bg-charcoal-ink",
+    avatarClass: "bg-mojo-citrus text-charcoal-ink",
   },
   {
     id: "review-4",
@@ -75,7 +76,7 @@ const GOOGLE_REVIEWS: GoogleReviewItem[] = [
     content:
       "The maduros and black beans taste just like abuela used to make them. True authentic criollo comfort food without cutting corners.",
     initials: "EV",
-    avatarBg: "bg-leaf-green",
+    avatarClass: "bg-leaf-green text-cream-bg",
   },
   {
     id: "review-5",
@@ -90,7 +91,7 @@ const GOOGLE_REVIEWS: GoogleReviewItem[] = [
     content:
       "The Garlic Mojo crunch on the pork is unreal. Great music, quick counter service, and ice-cold Materva. A must-stop spot in Miami.",
     initials: "MB",
-    avatarBg: "bg-brand-fire",
+    avatarClass: "bg-brand-fire text-charcoal-ink",
   },
   {
     id: "review-6",
@@ -105,7 +106,7 @@ const GOOGLE_REVIEWS: GoogleReviewItem[] = [
     content:
       "Unbelievable quality for the price. Fresh ingredients, no corporate taste. Real live-fire Cuban food that Miami-Dade should be proud of.",
     initials: "MK",
-    avatarBg: "bg-leaf-green",
+    avatarClass: "bg-leaf-green text-cream-bg",
   },
 ];
 
@@ -165,7 +166,7 @@ export function GoogleReviewsSection() {
               href={GOOGLE_MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 bg-charcoal-ink hover:bg-brand-fire text-cream-bg text-sm sm:text-xs font-bold uppercase tracking-wider px-5 py-2.5 transition-colors group cursor-pointer"
+              className="inline-flex min-h-11 items-center gap-2 bg-charcoal-ink hover:bg-brand-fire text-cream-bg hover:text-charcoal-ink text-sm sm:text-xs font-bold uppercase tracking-wider px-5 py-2.5 transition-colors group cursor-pointer"
             >
               <span>SEE ON MAPS</span>
               <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
@@ -225,7 +226,7 @@ export function GoogleReviewsSection() {
                         <div className="relative h-11 w-11 rounded-full overflow-hidden shrink-0 bg-charcoal-ink flex items-center justify-center">
                           <span
                             aria-hidden="true"
-                            className={`h-full w-full ${review.avatarBg} text-cream-bg flex items-center justify-center font-sans font-bold text-sm uppercase`}
+                            className={`h-full w-full ${review.avatarClass} flex items-center justify-center font-sans font-bold text-sm uppercase`}
                           >
                             {review.initials}
                           </span>
@@ -299,7 +300,7 @@ export function GoogleReviewsSection() {
             href={GOOGLE_MAPS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center gap-3 bg-brand-fire hover:bg-charcoal-ink text-cream-bg text-sm font-bold uppercase tracking-wider px-7 py-3.5 transition-colors group cursor-pointer"
+            className="inline-flex min-h-11 items-center gap-3 bg-brand-fire hover:bg-charcoal-ink text-charcoal-ink hover:text-cream-bg text-sm font-bold uppercase tracking-wider px-7 py-3.5 transition-colors group cursor-pointer"
           >
             <span>WRITE A REVIEW OR READ THEM ALL ON GOOGLE MAPS</span>
             <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-1" />

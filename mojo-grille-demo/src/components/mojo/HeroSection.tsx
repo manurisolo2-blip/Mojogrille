@@ -134,7 +134,7 @@ export function HeroSection({
                 text="HOT CAST IRON CRUSHED GARLIC SLOW ROASTED PERNIL"
                 baseClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(4rem,9.2vw,9.5rem)] font-black uppercase tracking-tight text-charcoal-ink leading-[0.84] text-center"
                 highlightClassName="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(4rem,9.2vw,9.5rem)] font-black uppercase tracking-tight text-brand-fire leading-[0.84] text-center"
-                strokeColor="#C41B0E"
+                strokeColor="#E8413C"
                 strokeWidth={1.5}
                 spotlightRadius={220}
                 spotlightSoftness={0.84}
@@ -150,7 +150,7 @@ export function HeroSection({
             */}
             <p className={`max-w-4xl text-balance font-sans text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-charcoal-ink text-center font-normal ${animItemClass}`}>
               No corporate bowls. We cook generational family recipes of slow-roasted pork marinated for 24 hours in Seville sour orange, pressed{" "}
-              <span className="font-bold text-brand-fire">al momento</span> in the heart of Brownsville.
+              <span className="font-bold underline decoration-brand-fire decoration-[3px] underline-offset-4">al momento</span> in the heart of Brownsville.
             </p>
 
             {/* Botones de Llamada a la Acción: ORDER HOT y Catering & Events */}
@@ -158,7 +158,7 @@ export function HeroSection({
               <MagneticButton
                 href={`#${menuAnchorId}`}
                 onClick={handleScrollToMenu}
-                className="group relative inline-flex items-center justify-center gap-3 rounded-none bg-brand-fire px-9 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
+                className="group relative inline-flex items-center justify-center gap-3 rounded-none bg-brand-fire px-9 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer select-none"
               >
                 <UtensilsCrossed className="h-4 w-4 transition-transform group-hover:rotate-12" aria-hidden="true" />
                 <span>ORDER HOT</span>

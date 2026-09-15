@@ -175,7 +175,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                 type="button"
                 onClick={() => setAccountModalOpen(true)}
                 aria-label="Open account and Club Mojo panel"
-                className={`flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-all cursor-pointer select-none ${
+                className={`flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-leaf-green transition-all cursor-pointer select-none ${
                   isPastHero
                     ? "bg-white/30 hover:bg-white/60 backdrop-blur-md border border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)]"
                     : "bg-charcoal-ink/5 hover:bg-charcoal-ink/10 border border-charcoal-ink/10 backdrop-blur-sm"
@@ -191,7 +191,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                 onClick={() => setMenuDrawerOpen(true)}
                 aria-label="Open navigation menu and locations"
                 aria-expanded={menuDrawerOpen}
-                className={`flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-brand-fire transition-all cursor-pointer select-none ${
+                className={`flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-full px-3 sm:px-3.5 py-1.5 font-sans text-xs uppercase tracking-widest font-bold text-charcoal-ink hover:text-leaf-green transition-all cursor-pointer select-none ${
                   isPastHero
                     ? "bg-white/30 hover:bg-white/60 backdrop-blur-md border border-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)]"
                     : "bg-charcoal-ink/5 hover:bg-charcoal-ink/10 border border-charcoal-ink/10 backdrop-blur-sm"
@@ -223,11 +223,11 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     ? `View shopping bag, ${count} ${count === 1 ? "item" : "items"}`
                     : "View shopping bag, empty"
                 }
-                className={`relative grid h-11 w-11 place-items-center rounded-full bg-brand-fire text-cream-bg transition-colors hover:bg-charcoal-ink active:scale-95 cursor-pointer select-none ${
+                className={`relative grid h-11 w-11 place-items-center rounded-full bg-brand-fire text-charcoal-ink transition-colors hover:bg-charcoal-ink hover:text-cream-bg active:scale-95 cursor-pointer select-none ${
                   isPastHero ? "" : "border-2 border-charcoal-ink"
                 }`}
               >
-                <LatinMarketBagIcon className="h-5 w-5 stroke-[2] text-cream-bg" />
+                <LatinMarketBagIcon className="h-5 w-5 stroke-[2]" />
                 {count > 0 && (
                   <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full border border-cream-bg bg-leaf-green px-1 font-sans text-xs font-black text-cream-bg shadow-none">
                     {count}
@@ -294,7 +294,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
 
                 {/* 1. NAVEGACIÓN PRINCIPAL (Minimalista, editorial, sin recuadros) */}
                 <nav className="space-y-2">
-                  <span className="font-sans text-sm sm:text-xs font-black uppercase tracking-widest text-brand-fire block mb-1">
+                  <span className="font-sans text-sm sm:text-xs font-black uppercase tracking-widest text-leaf-green block mb-1">
                     CARTA & EXPERIENCIA
                   </span>
                   {/*
@@ -331,7 +331,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                 {/* 2. SEDES MIAMI (Adaptado al fondo, sin recuadros, badges ni líneas) */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="font-sans text-sm sm:text-xs font-black uppercase tracking-widest text-brand-fire">
+                    <span className="font-sans text-sm sm:text-xs font-black uppercase tracking-widest text-leaf-green">
                       SEDES MIAMI
                     </span>
                     <span className="inline-flex items-center gap-1.5 font-sans text-sm sm:text-xs font-bold text-leaf-green">
@@ -375,8 +375,8 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                               }}
                               className={`block min-h-11 w-full px-3 py-2 text-left font-sans text-sm sm:text-xs uppercase tracking-wider font-bold transition-colors ${
                                 loc.id === location.id
-                                  ? "font-black text-brand-fire"
-                                  : "text-charcoal-ink hover:text-brand-fire"
+                                  ? "font-black text-leaf-green"
+                                  : "text-charcoal-ink hover:text-leaf-green"
                               }`}
                             >
                               <div>{loc.name}</div>
@@ -394,7 +394,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                     href={`https://maps.google.com/?q=${encodeURIComponent(location.address.fullAddress)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block font-sans text-sm sm:text-xs text-charcoal-ink/80 hover:text-brand-fire hover:underline transition-colors cursor-pointer"
+                    className="block font-sans text-sm sm:text-xs text-charcoal-ink/80 hover:text-leaf-green hover:underline transition-colors cursor-pointer"
                     aria-label={`View ${location.address.fullAddress} on Google Maps`}
                   >
                     {location.address.fullAddress}
@@ -406,7 +406,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
                   ) : null}
                   <a
                     href={`tel:${location.phone.replace(/[^0-9+]/g, "")}`}
-                    className="inline-flex min-h-11 items-center gap-1.5 text-brand-fire font-bold text-sm sm:text-xs uppercase tracking-wider hover:underline"
+                    className="inline-flex min-h-11 items-center gap-1.5 text-leaf-green font-bold text-sm sm:text-xs uppercase tracking-wider hover:underline"
                   >
                     <Phone className="h-3 w-3" aria-hidden="true" />
                     <span>{location.phone}</span>
@@ -415,7 +415,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
 
                 {/* 3. CLUB MOJO / MI CUENTA (Acceso limpio sin duplicar tarjetas ni formularios) */}
                 <div className="space-y-1.5">
-                  <span className="font-sans text-sm sm:text-xs font-black uppercase tracking-widest text-brand-fire block">
+                  <span className="font-sans text-sm sm:text-xs font-black uppercase tracking-widest text-leaf-green block">
                     CLUB MOJO MIAMI
                   </span>
                   <button
@@ -440,7 +440,7 @@ export function TopBar({ onOpenCart }: { onOpenCart: () => void }) {
               {/* Pie del Menú Drawer */}
               <div className="hidden md:flex pt-8 items-center justify-between text-xs text-charcoal-ink/70 font-sans uppercase tracking-widest font-bold">
                 <span>Miami Cuban Kitchen</span>
-                <span className="text-brand-fire">Al Momento</span>
+                <span className="text-leaf-green">Al Momento</span>
               </div>
             </motion.aside>
         </div>

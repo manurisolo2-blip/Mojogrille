@@ -138,7 +138,7 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
       aria-label="Loading Mojo Grille artisanal dining experience"
       data-loaded={false}
       onClick={finish}
-      className="fixed inset-0 z-[9999] bg-brand-fire text-cream-bg flex items-center justify-center p-6 md:p-12 overflow-hidden select-none will-change-transform shadow-none cursor-pointer"
+      className="fixed inset-0 z-[9999] bg-leaf-green text-cream-bg flex items-center justify-center p-6 md:p-12 overflow-hidden select-none will-change-transform shadow-none cursor-pointer"
     >
       {/* Centro Monumental: Contador Display + Titular Editorial */}
       <div className="text-center flex flex-col items-center justify-center">
@@ -150,7 +150,7 @@ export function Preloader({ onComplete, duration = 1.8 }: PreloaderProps) {
             0%
           </span>
         </div>
-        <p className="mt-6 sm:mt-8 font-sans text-sm md:text-base font-bold uppercase tracking-widest text-cream-bg">
+        <p className="mt-6 sm:mt-8 font-sans text-sm md:text-base font-bold uppercase tracking-widest text-mojo-citrus">
           HEATING UP THE CRIOLLO PLANCHA...
         </p>
         <p className="mt-4 font-sans text-sm uppercase tracking-widest text-cream-bg">

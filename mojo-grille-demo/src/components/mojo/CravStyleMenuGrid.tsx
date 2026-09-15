@@ -301,7 +301,7 @@ export function CravStyleMenuGrid({
           <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-charcoal-ink leading-none">
             SLOW ROASTED, SERVED <span className="text-brand-fire">AL MOMENTO</span>.
           </h2>
-          <p className="mt-2 font-sans text-sm font-bold uppercase tracking-[0.18em] text-brand-fire">
+          <p className="mt-2 font-sans text-sm font-bold uppercase tracking-[0.18em] text-leaf-green">
             AUTHENTIC CRIOLLO FLAVORS, GENERATIONAL RECIPES
           </p>
           <p className="mt-3 font-sans text-base text-charcoal-ink/80 leading-relaxed max-w-2xl mx-auto">
@@ -339,7 +339,7 @@ export function CravStyleMenuGrid({
                   className={`relative flex min-h-11 shrink-0 items-center rounded-none px-5 py-2.5 font-sans text-sm sm:text-xs uppercase font-bold tracking-wider transition-colors duration-200 focus:outline-none select-none ${
                     isSelected
                       ? "bg-charcoal-ink text-cream-bg"
-                      : "bg-transparent text-charcoal-ink hover:text-brand-fire hover:bg-charcoal-ink/5"
+                      : "bg-transparent text-charcoal-ink hover:text-leaf-green hover:bg-charcoal-ink/5"
                   }`}
                 >
                   {category.label}
@@ -389,7 +389,7 @@ export function CravStyleMenuGrid({
                 className={`relative inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-none px-4 py-2.5 font-sans text-sm sm:text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer select-none ${
                   isAdded
                     ? "bg-leaf-green text-cream-bg"
-                    : "bg-charcoal-ink text-cream-bg hover:bg-brand-fire"
+                    : "bg-charcoal-ink text-cream-bg hover:bg-brand-fire hover:text-charcoal-ink"
                 }`}
               >
                 {isAdded ? (
@@ -479,7 +479,7 @@ export function CravStyleMenuGrid({
               href={`https://wa.me/${cart.location.phoneRaw}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-sm font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
+              className="inline-flex min-h-11 items-center gap-2 rounded-none bg-brand-fire px-7 py-3.5 font-sans text-sm font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer select-none"
             >
               <span>Inquire via WhatsApp</span>
               <ArrowRight className="h-4 w-4" aria-hidden="true" />

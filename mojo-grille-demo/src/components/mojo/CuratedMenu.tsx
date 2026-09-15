@@ -187,7 +187,7 @@ export function CuratedMenu() {
     <section
       id="curated-menu"
       aria-label="Hot Plancha Selection - Mojo Grille Signature Dishes"
-      className="relative scroll-mt-[var(--header-h)] bg-brand-fire py-16 sm:py-24 overflow-hidden"
+      className="relative scroll-mt-[var(--header-h)] bg-leaf-green py-16 sm:py-24 overflow-hidden"
     >
       {/* Miniatura Fotográfica Flotante al Cursor (Solo Desktop) */}
       <div
@@ -206,7 +206,7 @@ export function CuratedMenu() {
           
           {/* Metadato superior de previsualización */}
           <div className="absolute top-2.5 left-3 flex items-center">
-            <span className="font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-cream-bg bg-brand-fire px-2 py-0.5">
+            <span className="font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-charcoal-ink bg-mojo-citrus px-2 py-0.5">
               100% FRESH, MADE AL MOMENTO
             </span>
           </div>
@@ -233,11 +233,8 @@ export function CuratedMenu() {
         <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight text-cream-bg leading-none">
           HOT PLANCHA SELECTION
         </h2>
-        {/*
-          Era text-mojo-citrus: 3.10:1 sobre el rojo, por debajo del 4.5:1 que
-          pide este tamaño. El ámbar sólo aguanta aquí en display de 24px o más.
-        */}
-        <p className="mt-2 sm:mt-3 font-sans text-sm font-bold uppercase tracking-[0.18em] text-cream-bg">
+        {/* Amarillo sobre el verde de la sección: 6.98:1. */}
+        <p className="mt-2 sm:mt-3 font-sans text-sm font-bold uppercase tracking-[0.18em] text-mojo-citrus">
           MADE AL MOMENTO, SEASONED WITH MOJO
         </p>
         </div>
@@ -292,7 +289,7 @@ export function CuratedMenu() {
                 as="button"
                 type="button"
                 onClick={() => handleAddToCart(featured)}
-                className="h-12 px-6 font-sans font-bold uppercase tracking-wider text-sm bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center justify-center gap-2 cursor-pointer shrink-0 select-none"
+                className="h-12 px-6 font-sans font-bold uppercase tracking-wider text-sm bg-cream-bg text-leaf-green hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center justify-center gap-2 cursor-pointer shrink-0 select-none"
                 aria-label={`Add ${featured.name} to order for $${featured.price.toFixed(2)}`}
               >
                 <Plus className="h-4 w-4 stroke-[3]" aria-hidden="true" />
@@ -371,7 +368,7 @@ export function CuratedMenu() {
                     e.stopPropagation();
                     handleAddToCart(item);
                   }}
-                  className="flex-1 sm:flex-none sm:w-48 h-11 px-3 sm:px-4 font-sans font-bold uppercase tracking-wider text-sm bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center justify-center gap-1.5 cursor-pointer shrink-0 select-none"
+                  className="flex-1 sm:flex-none sm:w-48 h-11 px-3 sm:px-4 font-sans font-bold uppercase tracking-wider text-sm bg-cream-bg text-leaf-green hover:bg-charcoal-ink hover:text-cream-bg transition-colors duration-200 rounded-none flex items-center justify-center gap-1.5 cursor-pointer shrink-0 select-none"
                   aria-label={`Add ${item.name} to order for $${item.price.toFixed(2)}`}
                 >
                   <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[3]" aria-hidden="true" />

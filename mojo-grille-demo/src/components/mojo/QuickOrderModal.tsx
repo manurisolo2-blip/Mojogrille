@@ -71,7 +71,7 @@ export function QuickOrderModal({
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="absolute right-3 top-3 grid h-11 w-11 place-items-center rounded-none bg-cream-bg text-charcoal-ink transition-colors hover:bg-brand-fire hover:text-cream-bg cursor-pointer"
+            className="absolute right-3 top-3 grid h-11 w-11 place-items-center rounded-none bg-cream-bg text-charcoal-ink transition-colors hover:bg-brand-fire hover:text-charcoal-ink cursor-pointer"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -115,7 +115,7 @@ export function QuickOrderModal({
                           className={
                             "grid h-5 w-5 shrink-0 place-items-center rounded-none transition-colors " +
                             (selected
-                              ? "bg-brand-fire text-cream-bg"
+                              ? "bg-brand-fire text-charcoal-ink"
                               : "bg-surface-sand")
                           }
                         >
@@ -150,7 +150,7 @@ export function QuickOrderModal({
               });
               onClose();
             }}
-            className="mt-6 flex w-full items-center justify-between gap-2 rounded-none bg-brand-fire px-6 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none shadow-none"
+            className="mt-6 flex w-full items-center justify-between gap-2 rounded-none bg-brand-fire px-6 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer select-none shadow-none"
           >
             <span className="truncate">ADD TO ORDER</span>
             <span className="shrink-0 font-display text-xl">{currency(total)}</span>

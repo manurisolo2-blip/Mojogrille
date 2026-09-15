@@ -52,7 +52,7 @@ export function CartSheet() {
             type="button"
             onClick={closeCart}
             aria-label="Close"
-            className="tap-target grid h-8 w-8 shrink-0 place-items-center rounded-none text-charcoal-ink transition-colors hover:bg-brand-fire hover:text-cream-bg cursor-pointer"
+            className="tap-target grid h-8 w-8 shrink-0 place-items-center rounded-none text-charcoal-ink transition-colors hover:bg-brand-fire hover:text-charcoal-ink cursor-pointer"
           >
             <X className="h-5 w-5" />
           </button>
@@ -79,7 +79,7 @@ export function CartSheet() {
               <p className="mt-3 font-sans text-sm text-charcoal-ink/70">
                 Your cart is empty. Start with our signature favorites!
               </p>
-              <p className="mt-1.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-brand-fire">
+              <p className="mt-1.5 font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-leaf-green">
                 HOT LECHÓN ASADO CRIOLLO BOWLS CAFECITO AL MOMENTO
               </p>
             </div>
@@ -146,7 +146,7 @@ export function CartSheet() {
             href={whatsappHref(location, lines, total)}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 block rounded-none bg-brand-fire px-6 py-3.5 text-center font-sans text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none shadow-none"
+            className="mt-3 block rounded-none bg-brand-fire px-6 py-3.5 text-center font-sans text-base font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer select-none shadow-none"
           >
             Order via WhatsApp
           </a>

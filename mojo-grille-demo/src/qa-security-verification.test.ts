@@ -60,70 +60,40 @@ interface ContrastCheck {
   level: "AA Normal" | "AA Large" | "AAA Normal";
 }
 
+// Los colores salen de los tokens reales de styles.css, no de valores
+// copiados a mano: antes esta lista comprobaba una paleta antigua (#FAF8F5,
+// #D95327, #4D7C0F...) que el sitio ya no usaba, y pasaba en verde pasara lo
+// que pasara con los colores de verdad.
+const stylesCss = fs.readFileSync(path.resolve(process.cwd(), "src/styles.css"), "utf-8");
+const token = (name: string): string => {
+  const match = new RegExp(`--color-${name}:\\s*(#[0-9A-Fa-f]{6})`).exec(stylesCss);
+  const value = match?.[1];
+  assert.ok(value, `Token --color-${name} must be defined in styles.css`);
+  return value;
+};
+const cream = token("cream-bg");
+const sand = token("surface-sand");
+const ink = token("charcoal-ink");
+const red = token("brand-fire");
+const green = token("leaf-green");
+const lime = token("leaf-green-soft");
+const yellow = token("mojo-citrus");
+
 const contrastChecks: ContrastCheck[] = [
-  {
-    description: "Text Charcoal on Canvas Cream (Body text, headings on canvas)",
-    foreground: "#1C1917",
-    background: "#FAF8F5",
-    minRatio: 4.5,
-    level: "AA Normal",
-  },
-  {
-    description: "Text Charcoal on Surface White (Card titles, modal headings)",
-    foreground: "#1C1917",
-    background: "#FFFFFF",
-    minRatio: 4.5,
-    level: "AA Normal",
-  },
-  {
-    description: "Text Muted on Canvas Cream (Secondary text on canvas)",
-    foreground: "#78716C",
-    background: "#FAF8F5",
-    minRatio: 4.5,
-    level: "AA Normal",
-  },
-  {
-    description: "Text Muted on Surface White (Card descriptions, ingredients)",
-    foreground: "#78716C",
-    background: "#FFFFFF",
-    minRatio: 4.5,
-    level: "AA Normal",
-  },
-  {
-    description: "White text on Mojo Terracotta (Primary CTA buttons, badges - Large Text / UI Component)",
-    foreground: "#FFFFFF",
-    background: "#D95327",
-    minRatio: 3.0,
-    level: "AA Large",
-  },
-  {
-    description: "White text on Mojo Terracotta Dark (CTA hover / active states)",
-    foreground: "#FFFFFF",
-    background: "#B83E16",
-    minRatio: 4.5,
-    level: "AA Normal",
-  },
-  {
-    description: "White text on Mojo Lime (Freshness badges, cart count pill)",
-    foreground: "#FFFFFF",
-    background: "#4D7C0F",
-    minRatio: 4.5,
-    level: "AA Normal",
-  },
-  {
-    description: "Gold text #B45309 on Gold Soft #FEF3C7 (Popular / Top Seller badge)",
-    foreground: "#B45309",
-    background: "#FEF3C7",
-    minRatio: 4.5,
-    level: "AA Normal",
-  },
-  {
-    description: "Light text #FAF8F5 on Charcoal #1C1917 (Top notification banner)",
-    foreground: "#FAF8F5",
-    background: "#1C1917",
-    minRatio: 4.5,
-    level: "AA Normal",
-  },
+  { description: "Ink on cream (body text, headings)", foreground: ink, background: cream, minRatio: 4.5, level: "AA Normal" },
+  { description: "Ink on sand (secondary hero button)", foreground: ink, background: sand, minRatio: 4.5, level: "AA Normal" },
+  { description: "Cream on ink (dark buttons, testimonial cards)", foreground: cream, background: ink, minRatio: 4.5, level: "AA Normal" },
+  { description: "Cream on green (Plancha selection, footer, preloader)", foreground: cream, background: green, minRatio: 4.5, level: "AA Normal" },
+  { description: "Green on cream (small accent text, buttons inside green blocks)", foreground: green, background: cream, minRatio: 4.5, level: "AA Normal" },
+  { description: "Yellow on green (eyebrows and footer headings)", foreground: yellow, background: green, minRatio: 4.5, level: "AA Normal" },
+  { description: "Ink on red (primary CTA labels)", foreground: ink, background: red, minRatio: 4.5, level: "AA Normal" },
+  { description: "Ink on yellow (preview tag, chef badge)", foreground: ink, background: yellow, minRatio: 4.5, level: "AA Normal" },
+  { description: "Green on yellow (chef badge tag)", foreground: green, background: yellow, minRatio: 4.5, level: "AA Normal" },
+  { description: "Yellow on ink (dish names on testimonial cards)", foreground: yellow, background: ink, minRatio: 4.5, level: "AA Normal" },
+  { description: "Lime on ink (testimonial footer label)", foreground: lime, background: ink, minRatio: 4.5, level: "AA Normal" },
+  { description: "Ink on lime (mobile bar item counter)", foreground: ink, background: lime, minRatio: 4.5, level: "AA Normal" },
+  { description: "Red on cream (display accents >= 24px, focus ring)", foreground: red, background: cream, minRatio: 3.0, level: "AA Large" },
+  { description: "Cream focus ring on green surfaces", foreground: cream, background: green, minRatio: 3.0, level: "AA Large" },
 ];
 
 for (const check of contrastChecks) {

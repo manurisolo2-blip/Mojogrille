@@ -242,7 +242,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
         )}
       >
         <div className="flex items-center justify-between mb-2">
-          <span className="font-sans text-[11px] font-black uppercase tracking-widest text-brand-fire flex items-center gap-1.5">
+          <span className="font-sans text-[11px] font-black uppercase tracking-widest text-leaf-green flex items-center gap-1.5">
             <Flame className="h-3.5 w-3.5 fill-current" />
             CLUB MOJO MIAMI
           </span>
@@ -286,7 +286,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
           <button
             type="button"
             onClick={handleLogout}
-            className="flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink/60 hover:text-brand-fire transition-colors cursor-pointer select-none"
+            className="flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-wider text-charcoal-ink/60 hover:text-leaf-green transition-colors cursor-pointer select-none"
           >
             <LogOut className="h-4 w-4 stroke-[2]" />
             <span>CERRAR SESIÓN</span>
@@ -386,7 +386,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
           top: -12%;
           right: 48%;
           transform: translateY(-50%);
-          background: #C41B0E;
+          background: var(--color-leaf-green, #14402A);
           transition: 1.1s cubic-bezier(0.77, 0, 0.175, 1);
           border-radius: 50%;
           z-index: 6;
@@ -640,7 +640,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
                 <div
                   className={`text-[11px] font-sans font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 ${
                     feedback.type === "error"
-                      ? "text-brand-fire bg-brand-fire/10"
+                      ? "text-charcoal-ink bg-brand-fire/20"
                       : "text-leaf-green bg-leaf-green/10"
                   }`}
                 >
@@ -657,7 +657,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full rounded-full bg-brand-fire hover:bg-charcoal-ink text-cream-bg font-sans font-bold text-xs uppercase tracking-wider py-3.5 transition-colors active:scale-[0.99] cursor-pointer mt-2"
+                className="w-full rounded-full bg-brand-fire hover:bg-charcoal-ink text-charcoal-ink hover:text-cream-bg font-sans font-bold text-xs uppercase tracking-wider py-3.5 transition-colors active:scale-[0.99] cursor-pointer mt-2"
               >
                 {isSubmitting ? "LOGGING IN..." : "LOGIN"}
               </button>
@@ -669,7 +669,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
               <button
                 type="button"
                 onClick={() => fillDemoData("login")}
-                className="text-[11px] font-sans font-bold text-charcoal-ink/50 hover:text-brand-fire transition-colors underline cursor-pointer"
+                className="text-[11px] font-sans font-bold text-charcoal-ink/70 hover:text-leaf-green transition-colors underline cursor-pointer"
               >
                 Autocompletar demo
               </button>
@@ -737,7 +737,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
                 <div
                   className={`text-[11px] font-sans font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 ${
                     feedback.type === "error"
-                      ? "text-brand-fire bg-brand-fire/10"
+                      ? "text-charcoal-ink bg-brand-fire/20"
                       : "text-leaf-green bg-leaf-green/10"
                   }`}
                 >
@@ -754,7 +754,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full rounded-full bg-brand-fire hover:bg-charcoal-ink text-cream-bg font-sans font-bold text-xs uppercase tracking-wider py-3.5 transition-colors active:scale-[0.99] cursor-pointer mt-2"
+                className="w-full rounded-full bg-brand-fire hover:bg-charcoal-ink text-charcoal-ink hover:text-cream-bg font-sans font-bold text-xs uppercase tracking-wider py-3.5 transition-colors active:scale-[0.99] cursor-pointer mt-2"
               >
                 {isSubmitting ? "SIGNING UP..." : "SIGN UP"}
               </button>
@@ -766,7 +766,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
               <button
                 type="button"
                 onClick={() => fillDemoData("signup")}
-                className="text-[11px] font-sans font-bold text-charcoal-ink/50 hover:text-brand-fire transition-colors underline cursor-pointer"
+                className="text-[11px] font-sans font-bold text-charcoal-ink/70 hover:text-leaf-green transition-colors underline cursor-pointer"
               >
                 Autocompletar demo
               </button>
@@ -814,7 +814,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
                 setFeedback(null);
                 setMode("signup");
               }}
-              className="rounded-full border-2 border-cream-bg text-cream-bg hover:bg-cream-bg hover:text-brand-fire font-sans font-bold text-xs uppercase tracking-wider px-8 py-3 transition-colors cursor-pointer active:scale-95"
+              className="rounded-full border-2 border-cream-bg text-cream-bg hover:bg-cream-bg hover:text-leaf-green font-sans font-bold text-xs uppercase tracking-wider px-8 py-3 transition-colors cursor-pointer active:scale-95"
             >
               SIGN UP
             </button>
@@ -863,7 +863,7 @@ export const AuthSwitch: React.FC<AuthSwitchProps> = ({
                 setFeedback(null);
                 setMode("login");
               }}
-              className="rounded-full border-2 border-cream-bg text-cream-bg hover:bg-cream-bg hover:text-brand-fire font-sans font-bold text-xs uppercase tracking-wider px-8 py-3 transition-colors cursor-pointer active:scale-95"
+              className="rounded-full border-2 border-cream-bg text-cream-bg hover:bg-cream-bg hover:text-leaf-green font-sans font-bold text-xs uppercase tracking-wider px-8 py-3 transition-colors cursor-pointer active:scale-95"
             >
               SIGN IN
             </button>

@@ -44,46 +44,55 @@
   --font-mono: "Space Mono", monospace;
 
 /*
- * Miami-Latin Modernism Color Palette
+ * Paleta: verde #14402A, lima #8DBE3D, rojo #E8413C, amarillo #F2C230,
+ * sobre la crema y la tinta de siempre. Los nombres de los tokens se
+ * conservan (leaf-green es el verde, leaf-green-soft la lima, mojo-citrus el
+ * amarillo, brand-fire el rojo) para no renombrar cientos de clases.
  *
- * Los valores están elegidos por contraste medido, no por gusto. Ratios
- * WCAG 2.1 relevantes (texto normal necesita 4.5:1, texto grande 3:1):
+ * Ratios WCAG 2.1 medidos (texto normal 4.5:1, texto grande 3:1):
  *
- *   charcoal-ink sobre cream-bg .......... 15.89:1
- *   cream-bg sobre brand-fire .............. 5.09:1
- *   brand-fire sobre cream-bg .............. 5.09:1
- *   cream-bg sobre charcoal-ink ........... 15.89:1
- *   leaf-green sobre cream-bg .............. 5.42:1
- *   leaf-green-soft sobre charcoal-ink ..... 5.76:1
- *   mojo-citrus sobre charcoal-ink ......... 9.68:1
- *   mojo-citrus sobre brand-fire ........... 3.10:1  <- SOLO texto grande
+ *   charcoal-ink sobre cream-bg ........... 15.89:1
+ *   cream-bg sobre leaf-green ............... 9.94:1
+ *   leaf-green sobre cream-bg ............... 9.94:1
+ *   mojo-citrus sobre leaf-green ............ 6.98:1
+ *   leaf-green-soft sobre leaf-green ........ 5.32:1
+ *   charcoal-ink sobre brand-fire ........... 4.67:1
+ *   charcoal-ink sobre mojo-citrus ......... 11.15:1
+ *   leaf-green sobre mojo-citrus ............ 6.98:1
+ *   mojo-citrus sobre charcoal-ink ......... 11.15:1
+ *   leaf-green-soft sobre charcoal-ink ...... 8.51:1
+ *   brand-fire sobre cream-bg ............... 3.40:1  <- SOLO texto grande
+ *   cream-bg sobre brand-fire ............... 3.40:1  <- SOLO texto grande
+ *   brand-fire sobre leaf-green ............. 2.92:1  <- nunca texto
  *
- * El rojo era #E52516, que dejaba el par crema/rojo en 3.88:1 y hundía todo
- * el bloque rojo del sitio (CuratedMenu, footer, preloader) por debajo de AA.
+ * Una regla sale de esa tabla: sobre superficies oscuras (verde, tinta) va
+ * texto crema, amarillo o lima; sobre superficies claras (crema, rojo,
+ * amarillo, lima) va texto tinta o verde.
  *
- * mojo-citrus sobre rojo sólo vale para display de 24px o más. Para texto
- * pequeño sobre rojo, usar cream-bg. leaf-green sólo vale sobre crema: sobre
- * tinta se queda en 2.93:1, para eso está leaf-green-soft.
+ * El rojo es claro y no aguanta texto crema: por eso los botones rojos llevan
+ * la etiqueta en tinta, el texto pequeño de acento pasa a verde y los grandes
+ * bloques de color (Selección de la Plancha, footer, preloader) son verdes.
+ * Rojo como texto, sólo en display de 24px o más sobre crema.
  */
   --color-cream-bg: #F2ECE1;
-  --color-brand-fire: #C41B0E;
+  --color-brand-fire: #E8413C;
   --color-charcoal-ink: #141210;
   --color-surface-sand: #ECE4D5;
-  --color-mojo-citrus: #FFA826;
-  --color-leaf-green: #2F6A4F;
-  --color-leaf-green-soft: #4E9E76;
+  --color-mojo-citrus: #F2C230;
+  --color-leaf-green: #14402A;
+  --color-leaf-green-soft: #8DBE3D;
 
   /* Backward Compatibility Aliases */
   --color-cream: #F2ECE1;
   --color-surface-white: #FFFFFF;
-  --color-mojo-terracotta: #C41B0E;
-  --color-mojo-terracotta-dark: #C71F12;
+  --color-mojo-terracotta: #E8413C;
+  --color-mojo-terracotta-dark: #E8413C;
   --color-charcoal: #141210;
   --color-text-charcoal: #141210;
   --color-text-muted: #78716C;
-  --color-mojo-lime: #2F6A4F;
-  --color-mojo-gold: #FFA826;
-  --color-mojo-red: #C41B0E;
+  --color-mojo-lime: #14402A;
+  --color-mojo-gold: #F2C230;
+  --color-mojo-red: #E8413C;
   --color-sand: #ECE4D5;
   --color-subtle: #ECE4D5;
   --color-border-subtle: #ECE4D5;
@@ -257,13 +266,13 @@
   color: #F2ECE1;
 }
 @utility bg-brand-fire {
-  background-color: #C41B0E;
+  background-color: #E8413C;
 }
 @utility text-brand-fire {
-  color: #C41B0E;
+  color: #E8413C;
 }
 @utility border-brand-fire {
-  border-color: #C41B0E;
+  border-color: #E8413C;
 }
 @utility bg-charcoal-ink {
   background-color: #141210;
@@ -284,24 +293,24 @@
   border-color: #ECE4D5;
 }
 @utility bg-mojo-citrus {
-  background-color: #FFA826;
+  background-color: #F2C230;
 }
 @utility text-mojo-citrus {
-  color: #FFA826;
+  color: #F2C230;
 }
 @utility bg-leaf-green {
-  background-color: #2F6A4F;
+  background-color: #14402A;
 }
 @utility text-leaf-green {
-  color: #2F6A4F;
+  color: #14402A;
 }
 /* Verde para superficies oscuras: el leaf-green normal se queda en 2.93:1
    sobre charcoal-ink, este llega a 5.76:1. */
 @utility text-leaf-green-soft {
-  color: #4E9E76;
+  color: #8DBE3D;
 }
 @utility bg-leaf-green-soft {
-  background-color: #4E9E76;
+  background-color: #8DBE3D;
 }
 @utility font-display {
   font-family: var(--font-display);
@@ -321,10 +330,10 @@
   color: #ECE4D5;
 }
 @utility bg-mojoRed {
-  background-color: #C41B0E;
+  background-color: #E8413C;
 }
 @utility text-mojoRed {
-  color: #C41B0E;
+  color: #E8413C;
 }
 @utility surface-white {
   background-color: #FFFFFF;
@@ -390,10 +399,10 @@
   background-color: #F59E0B;
 }
 @utility text-mojoRed {
-  color: #C41B0E;
+  color: #E8413C;
 }
 @utility bg-mojoRed {
-  background-color: #C41B0E;
+  background-color: #E8413C;
 }
 
 @keyframes marquee {
@@ -587,13 +596,16 @@
    para teclado. El anillo es la linea base de accesibilidad y debe ganar; sólo
    se aplica en :focus-visible, así que el mouse sigue sin verlo. */
 :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
-  outline: 2px solid var(--color-brand-fire, #c41b0e) !important;
+  outline: 2px solid var(--color-brand-fire, #e8413c) !important;
   outline-offset: 2px !important;
   border-radius: 1px;
 }
 
-/* Sobre superficies Mojo Scarlet el anillo rojo se pierde: se invierte a crema. */
-.bg-brand-fire
+/* Sobre las superficies verdes el anillo rojo se queda en 2.92:1, por debajo
+   del 3:1 que pide un indicador de foco: se invierte a crema (9.94:1). */
+.bg-leaf-green
+  :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible,
+.mojo-auth-container .panel-box
   :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
   outline-color: var(--color-cream-bg, #f2ece1) !important;
 }

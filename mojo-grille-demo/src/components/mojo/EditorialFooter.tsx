@@ -109,7 +109,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
     <footer
       id="footer"
       aria-label="Mojo Grille editorial footer"
-      className="relative bg-brand-fire text-cream-bg pt-16 pb-28 md:pb-12 overflow-hidden"
+      className="relative bg-leaf-green text-cream-bg pt-16 pb-28 md:pb-12 overflow-hidden"
     >
       {/*
         Misma retícula que las secciones: max-w-[1600px] centrado con el
@@ -146,7 +146,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
           <div className="md:col-span-4 space-y-4">
             <div className="flex items-center gap-2 text-cream-bg">
               <MapPin className="h-4 w-4" />
-              <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-cream-bg">
+              <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-mojo-citrus">
                 Location &amp; Plancha Hours
               </h3>
             </div>
@@ -180,7 +180,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
           <div className="md:col-span-4 space-y-4">
             <div className="flex items-center gap-2 text-cream-bg">
               <Sparkles className="h-4 w-4" />
-              <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-cream-bg">
+              <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-mojo-citrus">
                 Quick Navigation
               </h3>
             </div>
@@ -215,7 +215,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
 
           {/* Columna 3: Registro a Newsletter en una Sola Línea */}
           <div className="md:col-span-4 space-y-4">
-            <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-cream-bg">
+            <h3 className="font-sans text-sm sm:text-xs font-bold uppercase tracking-widest text-mojo-citrus">
               Criollo Dispatch &amp; Secret Drops
             </h3>
             <p className="font-sans text-base text-cream-bg leading-relaxed">
@@ -244,7 +244,7 @@ export function EditorialFooter({ onOpenCart }: EditorialFooterProps) {
                 />
                 <button
                   type="submit"
-                  className="shrink-0 min-h-11 font-sans text-sm sm:text-xs font-extrabold uppercase tracking-widest bg-cream-bg text-brand-fire hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer px-4 py-1.5"
+                  className="shrink-0 min-h-11 font-sans text-sm sm:text-xs font-extrabold uppercase tracking-widest bg-cream-bg text-leaf-green hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer px-4 py-1.5"
                 >
                   JOIN
                 </button>

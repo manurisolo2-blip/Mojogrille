@@ -156,7 +156,7 @@ function IndexContent() {
             {/* Transición 1: Onda Orgánica Jelly (Criollo Cream -> Mojo Scarlet) con stickers de guarnición */}
             <JellyWaveTransition
               topColor="#F2ECE1"
-              bottomColor="#C41B0E"
+              bottomColor="#14402A"
               direction="down"
               showGarnish
             />
@@ -166,7 +166,7 @@ function IndexContent() {
 
             {/* Transición 2: Onda Orgánica Jelly (Mojo Scarlet -> Criollo Cream) */}
             <JellyWaveTransition
-              topColor="#C41B0E"
+              topColor="#14402A"
               bottomColor="#F2ECE1"
               direction="up"
             />
@@ -193,7 +193,7 @@ function IndexContent() {
                 <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <a
                     href="tel:+13055550123"
-                    className="inline-flex min-h-11 items-center gap-2.5 rounded-none bg-brand-fire px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-cream-bg hover:bg-charcoal-ink transition-colors cursor-pointer select-none"
+                    className="inline-flex min-h-11 items-center gap-2.5 rounded-none bg-brand-fire px-8 py-4 font-sans text-sm sm:text-base font-bold uppercase tracking-wider text-charcoal-ink hover:bg-charcoal-ink hover:text-cream-bg transition-colors cursor-pointer select-none"
                   >
                     <Phone className="h-4 w-4" aria-hidden="true" />
                     <span>Talk to Catering Team: (305) 555-0123</span>
@@ -208,7 +208,7 @@ function IndexContent() {
             {/* Transición hacia el Footer Rojo Mojo Scarlet */}
             <JellyWaveTransition
               topColor="#F2ECE1"
-              bottomColor="#C41B0E"
+              bottomColor="#14402A"
               direction="down"
             />
 

@@ -26,7 +26,7 @@ export function CartToast() {
       aria-live="polite"
     >
       <div className="flex items-center gap-3">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-none bg-brand-fire text-cream-bg">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-none bg-brand-fire text-charcoal-ink">
           <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
         </div>
         <div className="text-left">
@@ -47,7 +47,7 @@ export function CartToast() {
             openCart();
           }}
           tabIndex={toast ? 0 : -1}
-          className="h-11 shrink-0 rounded-none bg-cream-bg px-3 py-1 font-sans text-sm sm:text-xs font-bold uppercase tracking-wider text-charcoal-ink hover:bg-brand-fire hover:text-cream-bg transition-colors cursor-pointer"
+          className="h-11 shrink-0 rounded-none bg-cream-bg px-3 py-1 font-sans text-sm sm:text-xs font-bold uppercase tracking-wider text-charcoal-ink hover:bg-brand-fire hover:text-charcoal-ink transition-colors cursor-pointer"
         >
           View
         </button>
